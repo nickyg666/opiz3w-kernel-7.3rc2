@@ -1094,12 +1094,12 @@ static int rwnx_close(struct net_device *dev)
 			spin_unlock_bh(&rwnx_hw->cb_lock);
 	}
 
-	if (rwnx_hw->roc_elem && (rwnx_hw->roc_elem->wdev == &rwnx_vif->wdev)) {
-		printk(KERN_CRIT "%s clear roc\n", __func__);
-		/* Initialize RoC element pointer to NULL, indicate that RoC can be started */
-		kfree(rwnx_hw->roc_elem);
-		rwnx_hw->roc_elem = NULL;
-	}
+	/* #20: teardown the ROC element *and* the off-channel TXQ that
+	 * rwnx_txq_offchan_init() armed. Freeing the element alone left the
+	 * TXQ initialised, so the next ROC re-initialised a live queue. The
+	 * helper also makes this path safe against the expiry kthread. */
+	if (rwnx_hw->roc_elem && (rwnx_hw->roc_elem->wdev == &rwnx_vif->wdev))
+		rwnx_roc_teardown(rwnx_hw);
 
 	rwnx_vif->up = false;
 
@@ -4545,6 +4545,51 @@ static int rwnx_cfg80211_set_txq_params(struct wiphy *wiphy, struct net_device *
 }
 
 
+/*
+ * 2026-09-26: single teardown point for a remain-on-channel element.
+ *
+ * Upstream issues #19 (double free), #20 (leak + unbalanced offchan deinit) and
+ * #24 (write-then-fail cookie) all stem from the same root cause: three
+ * different paths each free rwnx_hw->roc_elem independently, with no
+ * serialisation against the firmware-expiry kthread
+ * (rwnx_rx_remain_on_channel_exp_ind in rwnx_msg_rx.c).
+ *
+ *   - rwnx_main.c error paths free the *stale local* after publishing the
+ *     pointer to shared state and then blocking in rwnx_send_roc().  If the
+ *     expiry indication lands during that block, both threads free the same
+ *     object.
+ *   - the vif-down path freed the element but never called
+ *     rwnx_txq_offchan_deinit(), leaving the off-channel TXQ initialised.
+ *   - the expiry kthread frees and deinits, but takes a cached local pointer
+ *     with no lock.
+ *
+ * Doing it once, under cb_lock, makes the pointer the single source of truth:
+ * whichever thread gets there first frees it, and every other thread sees NULL
+ * and leaves the already-done work alone.
+ */
+void rwnx_roc_teardown(struct rwnx_hw *rwnx_hw)
+{
+	struct rwnx_roc_elem *roc_elem;
+	struct rwnx_vif *rwnx_vif;
+
+	spin_lock_bh(&rwnx_hw->cb_lock);
+	roc_elem = rwnx_hw->roc_elem;
+	if (!roc_elem) {
+		spin_unlock_bh(&rwnx_hw->cb_lock);
+		return;
+	}
+	/* Clear first: any other racing thread now bails out above. */
+	rwnx_hw->roc_elem = NULL;
+	spin_unlock_bh(&rwnx_hw->cb_lock);
+
+	rwnx_vif = container_of(roc_elem->wdev, struct rwnx_vif, wdev);
+
+	/* De-init the off-channel TXQ that rwnx_txq_offchan_init() armed. */
+	rwnx_txq_offchan_deinit(rwnx_vif);
+
+	kfree(roc_elem);
+}
+
 /**
  * @remain_on_channel: Request the driver to remain awake on the specified
  *	channel for the specified duration to complete an off-channel
@@ -4563,6 +4608,7 @@ rwnx_cfg80211_remain_on_channel_(struct wiphy *wiphy, struct wireless_dev *wdev,
 	struct rwnx_roc_elem *roc_elem;
 	struct mm_add_if_cfm add_if_cfm;
 	struct mm_remain_on_channel_cfm roc_cfm;
+	bool roc_busy;
 	int error;
 
 	RWNX_DBG(RWNX_FN_ENTRY_STR);
@@ -4571,13 +4617,18 @@ rwnx_cfg80211_remain_on_channel_(struct wiphy *wiphy, struct wireless_dev *wdev,
 #ifdef CREATE_TRACE_POINTS
 	trace_roc(rwnx_vif->vif_index, chan->center_freq, duration);
 #endif
-	/* Check that no other RoC procedure has been launched */
-	if (rwnx_hw->roc_elem) {
-		msleep(2);
-		if (rwnx_hw->roc_elem) {
-			printk("remain_on_channel fail\n");
-			return -EBUSY;
-		}
+	/* Check that no other RoC procedure has been launched.
+	 * 2026-09-26 (#22): the old code read rwnx_hw->roc_elem twice with no
+	 * lock and used msleep(2) as the barrier. That only guards the field
+	 * flipping to NULL; it cannot stop two requests both passing because an
+	 * expiry just cleared it, which left the loser's element overwritten and
+	 * leaked. Take cb_lock and test once. */
+	spin_lock_bh(&rwnx_hw->cb_lock);
+	roc_busy = rwnx_hw->roc_elem != NULL;
+	spin_unlock_bh(&rwnx_hw->cb_lock);
+	if (roc_busy) {
+		printk("remain_on_channel fail\n");
+		return -EBUSY;
 	}
 
 	printk("remain:%d,%d,%d\n", rwnx_vif->vif_index, rwnx_vif->is_p2p_vif, rwnx_hw->is_p2p_alive);
@@ -4639,17 +4690,20 @@ rwnx_cfg80211_remain_on_channel_(struct wiphy *wiphy, struct wireless_dev *wdev,
 		/* Set the cookie value */
 		*cookie = (u64)(rwnx_hw->roc_cookie_cnt);
 		if (roc_cfm.status) {
-			// failed to roc
-			rwnx_hw->roc_elem = NULL;
-			kfree(roc_elem);
-			rwnx_txq_offchan_deinit(rwnx_vif);
+			/* Firmware refused the ROC. #24: do not hand back a cookie
+			 * on a failing path - the value is only defined on success,
+			 * and a consumer that trusted it could cancel an unrelated
+			 * ROC. Zero it and report failure. */
+			*cookie = 0;
+			rwnx_roc_teardown(rwnx_hw);
 			return -EBUSY;
 		}
 	} else {
-		/* Free the allocated element */
-		rwnx_hw->roc_elem = NULL;
-		kfree(roc_elem);
-		rwnx_txq_offchan_deinit(rwnx_vif);
+		/* #19: free through the shared pointer under lock. Freeing the
+		 * stale local here raced the expiry kthread, which can free the
+		 * same element while rwnx_send_roc() above is still blocking. */
+		*cookie = 0;
+		rwnx_roc_teardown(rwnx_hw);
 	}
 
 	return error;
@@ -4673,6 +4727,7 @@ static int rwnx_cfg80211_cancel_remain_on_channel(struct wiphy *wiphy,
 												  u64 cookie)
 {
 	struct rwnx_hw *rwnx_hw = wiphy_priv(wiphy);
+	int error;
 #ifdef CREATE_TRACE_POINTS
 	struct rwnx_vif *rwnx_vif = container_of(wdev, struct rwnx_vif, wdev);//netdev_priv(wdev->netdev);
 #endif
@@ -4683,12 +4738,27 @@ static int rwnx_cfg80211_cancel_remain_on_channel(struct wiphy *wiphy,
 	trace_cancel_roc(rwnx_vif->vif_index);
 #endif
 	/* Check if a RoC procedure is pending */
+	/* 2026-09-26 (#21): the cookie is ignored and roc_elem was never cleared
+	 * here, so a failed cancel left the element set forever and every later
+	 * ROC hit -EBUSY until the module was reloaded. rwnx_send_cancel_roc()
+	 * has no cookie to pass down, so honour the cookie here: only cancel if it
+	 * matches the outstanding one, then tear it down locally instead of
+	 * waiting on an expiry IND that may never arrive. */
 	if (!rwnx_hw->roc_elem) {
 		return 0;
 	}
+	if (cookie && rwnx_hw->roc_cookie_cnt &&
+	    cookie != (u64)rwnx_hw->roc_cookie_cnt)
+		return 0;
 
-	/* Forward the information to the FMAC */
-	return rwnx_send_cancel_roc(rwnx_hw);
+	/* Forward the information to the FMAC. If that fails we still tear the
+	 * element down locally: the expiry IND that normally clears it may never
+	 * arrive, and leaving it set wedges every future ROC with -EBUSY (#21). */
+	error = rwnx_send_cancel_roc(rwnx_hw);
+	if (error)
+		rwnx_roc_teardown(rwnx_hw);
+
+	return error;
 }
 
 #define IS_2P4GHZ(n) (n >= 2412 && n <= 2484)

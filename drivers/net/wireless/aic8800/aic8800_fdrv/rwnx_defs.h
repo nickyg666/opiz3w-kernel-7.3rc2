@@ -632,3 +632,9 @@ void rwnx_external_auth_disable(struct rwnx_vif *vif);
 void rwnx_set_conn_state(atomic_t *drv_conn_state, int state);
 
 #endif /* _RWNX_DEFS_H_ */
+
+/* 2026-09-26: shared ROC teardown (defined in rwnx_main.c). Used by
+ * rwnx_main.c and rwnx_msg_rx.c to fix the double free (#19), the
+ * leak + unbalanced offchan deinit (#20) and the write-then-fail
+ * cookie (#24). */
+void rwnx_roc_teardown(struct rwnx_hw *rwnx_hw);

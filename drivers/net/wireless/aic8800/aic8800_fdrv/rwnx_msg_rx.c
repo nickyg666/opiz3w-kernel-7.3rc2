@@ -236,9 +236,6 @@ static inline int rwnx_rx_remain_on_channel_exp_ind(struct rwnx_hw *rwnx_hw,
 										   roc_elem->chan, GFP_ATOMIC);
 	}
 
-	/* De-init offchannel TX queue */
-	rwnx_txq_offchan_deinit(rwnx_vif);
-
 	/* Increase the cookie counter cannot be zero */
 	rwnx_hw->roc_cookie_cnt++;
 
@@ -246,9 +243,10 @@ static inline int rwnx_rx_remain_on_channel_exp_ind(struct rwnx_hw *rwnx_hw,
 		rwnx_hw->roc_cookie_cnt = 1;
 	}
 
-	/* Free the allocated RoC element */
-	kfree(roc_elem);
-	rwnx_hw->roc_elem = NULL;
+	/* 2026-09-26 (#19): free via the shared pointer under cb_lock instead of
+	 * this cached local, so a concurrent error path in
+	 * rwnx_cfg80211_remain_on_channel_() cannot double-free the element. */
+	rwnx_roc_teardown(rwnx_hw);
 
 #endif /* CONFIG_RWNX_FULLMAC */
 	return 0;
