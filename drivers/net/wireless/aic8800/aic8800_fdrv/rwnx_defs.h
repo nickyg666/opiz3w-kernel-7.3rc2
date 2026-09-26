@@ -601,19 +601,36 @@ int  rwnx_chanctx_valid(struct rwnx_hw *rwnx_hw, u8 idx);
 
 static inline bool is_multicast_sta(int sta_idx)
 {
+	/* 2026-09-26: this used to open `if (` inside #if defined(...) and close
+	 * the #endif *inside* the condition, so with neither AICWF_SDIO_SUPPORT nor
+	 * AICWF_USB_SUPPORT defined the `if (` was left dangling and the header
+	 * failed to parse:
+	 *   rwnx_defs.h:614: error: expected identifier or '(' before 'else'
+	 * Pick the bus expression first, then keep the control flow outside the
+	 * preprocessor entirely. */
 #if defined(AICWF_SDIO_SUPPORT)
-	if ((g_rwnx_plat->sdiodev->rwnx_hw->chipid == PRODUCT_ID_AIC8800D) ||
-		((g_rwnx_plat->sdiodev->rwnx_hw->chipid == PRODUCT_ID_AIC8800DC ||
-		g_rwnx_plat->sdiodev->rwnx_hw->chipid == PRODUCT_ID_AIC8800DW) && (g_rwnx_plat->sdiodev->rwnx_hw->rev < CHIP_REV_ID_U02))) {
-#elif defined(AICWF_USB_SUPPORT)
-	if ((g_rwnx_plat->usbdev->rwnx_hw->chipid == PRODUCT_ID_AIC8800D) ||
-		((g_rwnx_plat->usbdev->rwnx_hw->chipid == PRODUCT_ID_AIC8800DC ||
-		g_rwnx_plat->usbdev->rwnx_hw->chipid == PRODUCT_ID_AIC8800DW) && (g_rwnx_plat->usbdev->rwnx_hw->rev < CHIP_REV_ID_U02))) {
-#endif
-		return (sta_idx >= NX_REMOTE_STA_MAX_FOR_OLD_IC);
-	} else {
+	{
+		struct rwnx_hw *hw = g_rwnx_plat->sdiodev->rwnx_hw;
+		if ((hw->chipid == PRODUCT_ID_AIC8800D) ||
+		    ((hw->chipid == PRODUCT_ID_AIC8800DC ||
+		      hw->chipid == PRODUCT_ID_AIC8800DW) && (hw->rev < CHIP_REV_ID_U02))) {
+			return (sta_idx >= NX_REMOTE_STA_MAX_FOR_OLD_IC);
+		}
 		return (sta_idx >= NX_REMOTE_STA_MAX);
 	}
+#elif defined(AICWF_USB_SUPPORT)
+	{
+		struct rwnx_hw *hw = g_rwnx_plat->usbdev->rwnx_hw;
+		if ((hw->chipid == PRODUCT_ID_AIC8800D) ||
+		    ((hw->chipid == PRODUCT_ID_AIC8800DC ||
+		      hw->chipid == PRODUCT_ID_AIC8800DW) && (hw->rev < CHIP_REV_ID_U02))) {
+			return (sta_idx >= NX_REMOTE_STA_MAX_FOR_OLD_IC);
+		}
+		return (sta_idx >= NX_REMOTE_STA_MAX);
+	}
+#else
+	return (sta_idx >= NX_REMOTE_STA_MAX);
+#endif
 }
 struct rwnx_sta *rwnx_get_sta(struct rwnx_hw *rwnx_hw, const u8 *mac_addr);
 
