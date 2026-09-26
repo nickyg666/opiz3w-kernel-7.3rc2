@@ -11,10 +11,12 @@
 #include <linux/iopoll.h>
 #include <linux/module.h>
 #include <linux/slab.h>
+#include <linux/syscore_ops.h>
 
 #include "ccu_common.h"
 #include "ccu_gate.h"
 #include "ccu_reset.h"
+#include "ccu_nm.h"
 
 struct sunxi_ccu {
 	const struct sunxi_ccu_desc	*desc;
@@ -255,3 +257,195 @@ void of_sunxi_ccu_probe(struct device_node *node, void __iomem *reg,
 
 MODULE_DESCRIPTION("Common clock support for Allwinner SoCs");
 MODULE_LICENSE("GPL");
+
+/* ===== ported from BSP ccu_common.c (PM_SLEEP reg cache + register helpers) ===== */
+#ifdef CONFIG_PM_SLEEP
+
+static LIST_HEAD(ccu_reg_cache_list);
+static DEFINE_MUTEX(ccu_reg_cache_lock);
+
+struct sunxi_clock_reg_cache {
+	struct list_head node;
+	void __iomem *reg_base;
+	struct ccu_reg_dump *rdump;
+	unsigned int rd_num;
+	const struct ccu_reg_dump *rsuspend;
+	unsigned int rsuspend_num;
+};
+
+static void ccu_save(void __iomem *base, struct ccu_reg_dump *rd,
+		    unsigned int num_regs)
+{
+	for (; num_regs > 0; --num_regs, ++rd)
+		rd->value = readl(base + rd->offset);
+}
+
+static void ccu_restore_with_value(void __iomem *base,
+			const struct ccu_reg_dump *rd,
+			unsigned int num_regs)
+{
+	unsigned int reg, restore_reg;
+
+	for (; num_regs > 0; --num_regs, ++rd) {
+		reg = readl(base + rd->offset);
+		restore_reg = rd->value | reg;
+		writel(restore_reg, base + rd->offset);
+	}
+}
+
+static void ccu_restore(void __iomem *base,
+			const struct ccu_reg_dump *rd,
+			unsigned int num_regs)
+{
+	for (; num_regs > 0; --num_regs, ++rd)
+		writel(rd->value, base + rd->offset);
+}
+
+static struct ccu_reg_dump *ccu_alloc_reg_dump(struct ccu_common **rdump,
+					       unsigned long nr_rdump)
+{
+	struct ccu_reg_dump *rd;
+	unsigned int i;
+
+	rd = kcalloc(nr_rdump, sizeof(*rd), GFP_KERNEL);
+	if (!rd)
+		return NULL;
+
+	for (i = 0; i < nr_rdump; ++i) {
+		struct ccu_common *ccu_clks = rdump[i];
+
+		rd[i].offset = ccu_clks->reg;
+	}
+
+	return rd;
+}
+
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 19, 0))
+static int ccu_suspend(void *unused)
+#else
+static int ccu_suspend(void)
+#endif
+{
+	struct sunxi_clock_reg_cache *reg_cache;
+
+	list_for_each_entry(reg_cache, &ccu_reg_cache_list, node)
+		ccu_save(reg_cache->reg_base, reg_cache->rdump,
+			 reg_cache->rd_num);
+	return 0;
+}
+
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 19, 0))
+static void ccu_resume(void *unused)
+#else
+static void ccu_resume(void)
+#endif
+{
+	struct sunxi_clock_reg_cache *reg_cache;
+
+	list_for_each_entry(reg_cache, &ccu_reg_cache_list, node) {
+		ccu_restore(reg_cache->reg_base, reg_cache->rdump,
+				reg_cache->rd_num);
+		ccu_restore_with_value(reg_cache->reg_base, reg_cache->rsuspend,
+			reg_cache->rsuspend_num);
+	}
+}
+
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 19, 0))
+static struct syscore sunxi_clk_syscore = {
+	.ops = &(struct syscore_ops){
+		.suspend = ccu_suspend,
+		.resume = ccu_resume,
+	},
+	.data = NULL,
+};
+#else
+static struct syscore_ops sunxi_clk_syscore_ops = {
+	.suspend = ccu_suspend,
+	.resume = ccu_resume,
+};
+#endif
+#endif
+
+void sunxi_ccu_sleep_init(void __iomem *reg_base,
+			  struct ccu_common **rdump,
+			  unsigned long nr_rdump,
+			  const struct ccu_reg_dump *rsuspend,
+			  unsigned long nr_rsuspend)
+{
+#ifdef CONFIG_PM_SLEEP
+	struct sunxi_clock_reg_cache *reg_cache;
+
+	reg_cache = kzalloc(sizeof(*reg_cache),
+			GFP_KERNEL);
+	if (!reg_cache)
+		panic("could not allocate register reg_cache.\n");
+	reg_cache->rdump = ccu_alloc_reg_dump(rdump, nr_rdump);
+
+	if (!reg_cache->rdump)
+		panic("could not allocate register dump storage.\n");
+
+	mutex_lock(&ccu_reg_cache_lock);
+	if (list_empty(&ccu_reg_cache_list))
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 19, 0))
+		register_syscore(&sunxi_clk_syscore);
+#else
+		register_syscore_ops(&sunxi_clk_syscore_ops);
+#endif
+
+	reg_cache->reg_base = reg_base;
+	reg_cache->rd_num = nr_rdump;
+	reg_cache->rsuspend = rsuspend;
+	reg_cache->rsuspend_num = nr_rsuspend;
+	list_add_tail(&reg_cache->node, &ccu_reg_cache_list);
+	mutex_unlock(&ccu_reg_cache_lock);
+#endif
+}
+EXPORT_SYMBOL_GPL(sunxi_ccu_sleep_init);
+
+void set_reg(char __iomem *addr, u32 val, u8 bw, u8 bs)
+{
+	u32 mask = (1UL << bw) - 1UL;
+	u32 tmp = 0;
+
+	tmp = readl(addr);
+	tmp &= ~(mask << bs);
+
+	writel(tmp | ((val & mask) << bs), addr);
+}
+EXPORT_SYMBOL_GPL(set_reg);
+
+void set_reg_key(char __iomem *addr,
+		 u32 key, u8 kbw, u8 kbs,
+		 u32 val, u8 bw, u8 bs)
+{
+	u32 mask = (1UL << bw) - 1UL;
+	u32 kmask = (1UL << kbw) - 1UL;
+	u32 tmp = 0;
+
+	tmp = readl(addr);
+	tmp &= ~(mask << bs);
+
+	writel(tmp | ((val & mask) << bs) | ((key & kmask) << kbs), addr);
+}
+EXPORT_SYMBOL_GPL(set_reg_key);
+
+int ccu_is_sdm_enabled(struct clk *clk)
+{
+	struct clk_hw *cur_hw;
+	struct clk_hw *parent_hw;
+	cur_hw = __clk_get_hw(clk);
+
+	while (cur_hw && strcmp((clk_hw_get_name(cur_hw)), "dcxo24M")) {
+		parent_hw = cur_hw;
+		cur_hw = clk_hw_get_parent(cur_hw);
+	}
+
+	if (!parent_hw) {
+		sunxi_err(NULL, "Do not pass the argument 'dcxo' to the function\n");
+		return -1;
+	}
+	sunxi_err(NULL, "please make sure the top clk %s is nm type! %s:%d\n", clk_hw_get_name(parent_hw), __func__, __LINE__);
+
+	return ccu_nm_is_sdm_enabled(parent_hw);
+}
+EXPORT_SYMBOL_GPL(ccu_is_sdm_enabled);

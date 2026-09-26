@@ -83,10 +83,33 @@ struct ccu_mux {
 				      _reg, _shift, _width, _gate,	\
 				      _flags)
 
-#define SUNXI_CCU_MUX(_struct, _name, _parents, _reg, _shift, _width,	\
-		      _flags)						\
-	SUNXI_CCU_MUX_TABLE_WITH_GATE(_struct, _name, _parents, NULL,	\
-				      _reg, _shift, _width, 0, _flags)
+#define SUNXI_CCU_MUX(_struct, _name, _parents, _reg, _shift, _width, \
+	      _flags)				\
+	SUNXI_CCU_MUX_TABLE_WITH_GATE(_struct, _name, _parents, NULL, \
+	      _reg, _shift, _width, 0, _flags)
+
+/*
+ * BSP key-field mux macros (Allwinner sun60iw2). Set
+ * CCU_FEATURE_KEY_FIELD_MOD + key_value on the common struct so
+ * ccu_mux_helper_set_parent() ORs the key into register writes.
+ */
+#define SUNXI_CCU_MUX_WITH_GATE_KEY(_struct, _name, _parents,		\
+				_reg, _shift, _width,			\
+				_key_value, _gate, _flags)		\
+struct ccu_mux _struct = {						\
+	.enable	= _gate,						\
+	.mux	= _SUNXI_CCU_MUX(_shift, _width),			\
+	.common	= {							\
+		.reg	= _reg,					\
+		.key_reg = _reg,				\
+		.features = CCU_FEATURE_KEY_FIELD_MOD,	\
+		.key_value = _key_value,			\
+		.hw.init = CLK_HW_INIT_PARENTS(_name,		\
+					 _parents,		\
+					 &ccu_mux_ops,		\
+					 _flags),		\
+	}								\
+}
 
 #define SUNXI_CCU_MUX_DATA_WITH_GATE(_struct, _name, _parents, _reg,	\
 				     _shift, _width, _gate, _flags)	\
@@ -160,5 +183,60 @@ struct ccu_mux_nb {
 #define to_ccu_mux_nb(_nb) container_of(_nb, struct ccu_mux_nb, clk_nb)
 
 int ccu_mux_notifier_register(struct clk *clk, struct ccu_mux_nb *mux_nb);
+
+
+/* --- BSP add-only graft (append): macros absent from mainline HEAD --- */
+#define SUNXI_CCU_MUX_TABLE_WITH_GATE_FEAT(_struct, _name, _parents, _table,	\
+				     _reg, _shift, _width, _gate,		\
+				     _flags, _features)				\
+	struct ccu_mux _struct = {						\
+		.enable	= _gate,						\
+		.mux	= _SUNXI_CCU_MUX_TABLE(_shift, _width, _table),		\
+		.common	= {							\
+			.reg		= _reg,					\
+			.hw.init	= CLK_HW_INIT_PARENTS(_name,		\
+							      _parents,		\
+							      &ccu_mux_ops,	\
+							      _flags),		\
+			.features	= _features,				\
+		}								\
+	}
+#define SUNXI_CCU_MUX_TABLE_WITH_GATE_CLOSEST(_struct, _name, _parents,	\
+					      _table, _reg, _shift,	\
+					      _width, _gate, _flags)	\
+	SUNXI_CCU_MUX_TABLE_WITH_GATE_FEAT(_struct, _name, _parents,	\
+					   _table, _reg, _shift,	\
+					   _width, _gate, _flags,	\
+					   CCU_FEATURE_CLOSEST_RATE)
+#define SUNXI_CCU_MUX_DATA_WITH_GATE(_struct, _name, _parents, _reg,	\
+				     _shift, _width, _gate, _flags)	\
+	struct ccu_mux _struct = {					\
+		.enable	= _gate,					\
+		.mux	= _SUNXI_CCU_MUX(_shift, _width),		\
+		.common	= {						\
+			.reg		= _reg,				\
+			.hw.init	= CLK_HW_INIT_PARENTS_DATA(_name, \
+								   _parents, \
+								   &ccu_mux_ops, \
+								   _flags), \
+		}							\
+	}
+#define SUNXI_CCU_MUX_DATA(_struct, _name, _parents, _reg,		\
+		      _shift, _width, _flags)				\
+	SUNXI_CCU_MUX_DATA_WITH_GATE(_struct, _name, _parents, _reg,	\
+				     _shift, _width, 0, _flags)
+#define SUNXI_CCU_MUX_HW_WITH_GATE(_struct, _name, _parents, _reg,	\
+				   _shift, _width, _gate, _flags)	\
+	struct ccu_mux _struct = {					\
+		.enable	= _gate,					\
+		.mux	= _SUNXI_CCU_MUX(_shift, _width),		\
+		.common	= {						\
+			.reg		= _reg,				\
+			.hw.init	= CLK_HW_INIT_PARENTS_HW(_name, \
+								 _parents, \
+								 &ccu_mux_ops, \
+								 _flags), \
+		}							\
+	}
 
 #endif /* _CCU_MUX_H_ */

@@ -161,6 +161,31 @@ static struct mv64xxx_i2c_regs mv64xxx_i2c_regs_mv64xxx = {
 	.soft_reset	= 0x1c,
 };
 
+/*
+ * Allwinner R-I2C (twi v101) register map, as used by the A733 / sun60iw2
+ * R-TWI block. Offsets taken from the vendor 5.15 driver
+ * (bsp/drivers/twi/twi-sunxi.c):
+ *   TWI_ADDR  0x00  TWI_XADDR 0x04  TWI_DATA 0x08  TWI_CNTR 0x0C
+ *   TWI_STAT  0x10  TWI_CCR   0x14  TWI_SRST 0x18
+ *
+ * 2026-09-25: A733 was previously bound to mv64xxx_i2c_regs_mv64xxx, whose
+ * map (data 0x04, control 0x08, status 0x0c, clock 0x0c) is the Marvell
+ * layout. On this Allwinner block that is simply the wrong register set, so
+ * every I2C WRITE programmed the wrong hardware register and wedged the
+ * controller: all transfers timed out with bridge status 0x00 (no NACK, no
+ * error bit) while READS still worked, because the read path happens to touch
+ * fewer of the mismatched registers. This table is the fix.
+ */
+static struct mv64xxx_i2c_regs mv64xxx_i2c_regs_sun60i = {
+	.addr		= 0x00,
+	.ext_addr	= 0x04,
+	.data		= 0x08,
+	.control	= 0x0c,
+	.status		= 0x10,
+	.clock		= 0x14,
+	.soft_reset	= 0x18,
+};
+
 static struct mv64xxx_i2c_regs mv64xxx_i2c_regs_sun4i = {
 	.addr		= 0x00,
 	.ext_addr	= 0x04,
@@ -598,9 +623,24 @@ static void mv64xxx_i2c_wait_polling(struct mv64xxx_i2c_data *drv_data)
 
 static int
 mv64xxx_i2c_execute_msg(struct mv64xxx_i2c_data *drv_data, struct i2c_msg *msg,
-				int is_last)
+			int is_last)
 {
 	unsigned long	flags;
+	u16 diag_addr;
+	u8 diag_first = 0;
+
+	/*
+	 * 2026-09-25 A733 bring-up: the R-I2C0 bus wedges permanently during
+	 * the AXP515/AXP8191 MFD probe - every transfer after the first hang
+	 * reports "I2C bus locked" and i2c_recover_bus() never clears it,
+	 * while plain regmap reads still succeed. Name the exact transfer
+	 * that hangs so the offending register/address is visible.
+	 */
+	spin_lock_irqsave(&drv_data->lock, flags);
+	diag_addr = msg->addr;
+	if (msg->len)
+		diag_first = msg->buf[0];
+	spin_unlock_irqrestore(&drv_data->lock, flags);
 
 	spin_lock_irqsave(&drv_data->lock, flags);
 
@@ -615,6 +655,21 @@ mv64xxx_i2c_execute_msg(struct mv64xxx_i2c_data *drv_data, struct i2c_msg *msg,
 		mv64xxx_i2c_wait_for_completion(drv_data);
 	else
 		mv64xxx_i2c_wait_polling(drv_data);
+
+	if (drv_data->rc) {
+		/*
+		 * Distinguish "peripheral did not acknowledge" from a physically
+		 * wedged bus. A NACK/arbitration status means the controller got
+		 * through and the chip refused; BUS_ERR or NO_STATUS means the
+		 * controller itself never completed the transfer.
+		 */
+		u32 st = readl(drv_data->reg_base +
+			       MV64XXX_I2C_REG_BRIDGE_STATUS);
+
+		dev_err(&drv_data->adapter.dev,
+			"mv64xxx: xfer FAIL addr=0x%02x reg=0x%02x len=%u flags=0x%02x rc=%d st=0x%02x\n",
+			diag_addr, diag_first, msg->len, msg->flags, drv_data->rc, st);
+	}
 
 	return drv_data->rc;
 }
@@ -805,6 +860,8 @@ static const struct i2c_algorithm mv64xxx_i2c_algo = {
 static const struct of_device_id mv64xxx_i2c_of_match_table[] = {
 	{ .compatible = "allwinner,sun4i-a10-i2c", .data = &mv64xxx_i2c_regs_sun4i},
 	{ .compatible = "allwinner,sun6i-a31-i2c", .data = &mv64xxx_i2c_regs_sun4i},
+	{ .compatible = "allwinner,sun55i-a523-i2c", .data = &mv64xxx_i2c_regs_mv64xxx},
+	{ .compatible = "allwinner,sun60i-a733-i2c", .data = &mv64xxx_i2c_regs_sun60i},
 	{ .compatible = "marvell,mv64xxx-i2c", .data = &mv64xxx_i2c_regs_mv64xxx},
 	{ .compatible = "marvell,mv78230-i2c", .data = &mv64xxx_i2c_regs_mv64xxx},
 	{ .compatible = "marvell,mv78230-a0-i2c", .data = &mv64xxx_i2c_regs_mv64xxx},
@@ -953,7 +1010,8 @@ mv64xxx_i2c_runtime_suspend(struct device *dev)
 	struct mv64xxx_i2c_data *drv_data = dev_get_drvdata(dev);
 
 	reset_control_assert(drv_data->rstc);
-	clk_disable_unprepare(drv_data->reg_clk);
+	if (drv_data->reg_clk)
+		clk_disable_unprepare(drv_data->reg_clk);
 	clk_disable_unprepare(drv_data->clk);
 
 	return 0;
@@ -965,7 +1023,8 @@ mv64xxx_i2c_runtime_resume(struct device *dev)
 	struct mv64xxx_i2c_data *drv_data = dev_get_drvdata(dev);
 
 	clk_prepare_enable(drv_data->clk);
-	clk_prepare_enable(drv_data->reg_clk);
+	if (drv_data->reg_clk)
+		clk_prepare_enable(drv_data->reg_clk);
 	reset_control_reset(drv_data->rstc);
 
 	mv64xxx_i2c_hw_init(drv_data);
@@ -978,10 +1037,14 @@ mv64xxx_i2c_probe(struct platform_device *pd)
 {
 	struct mv64xxx_i2c_data		*drv_data;
 	struct mv64xxx_i2c_pdata	*pdata = dev_get_platdata(&pd->dev);
-	int	rc;
+	int rc;
 
-	if ((!pdata && !pd->dev.of_node))
+	dev_info(&pd->dev, "A733 I2C: probe entered\n");
+
+	if ((!pdata && !pd->dev.of_node)) {
+		dev_err(&pd->dev, "A733 I2C: no OF/legacy platform data\n");
 		return -ENODEV;
+	}
 
 	drv_data = devm_kzalloc(&pd->dev, sizeof(struct mv64xxx_i2c_data),
 				GFP_KERNEL);
@@ -989,8 +1052,13 @@ mv64xxx_i2c_probe(struct platform_device *pd)
 		return -ENOMEM;
 
 	drv_data->reg_base = devm_platform_ioremap_resource(pd, 0);
-	if (IS_ERR(drv_data->reg_base))
+	if (IS_ERR(drv_data->reg_base)) {
+		dev_err(&pd->dev, "A733 I2C: ioremap failed: %ld\n",
+			PTR_ERR(drv_data->reg_base));
 		return PTR_ERR(drv_data->reg_base);
+	}
+
+	dev_info(&pd->dev, "A733 I2C: ioremap ok\n");
 
 	strscpy(drv_data->adapter.name, MV64XXX_I2C_CTLR_NAME " adapter",
 		sizeof(drv_data->adapter.name));
@@ -998,40 +1066,63 @@ mv64xxx_i2c_probe(struct platform_device *pd)
 	init_waitqueue_head(&drv_data->waitq);
 	spin_lock_init(&drv_data->lock);
 
-	/* Not all platforms have clocks */
+	dev_info(&pd->dev, "A733 I2C: before main clock\n");
 	drv_data->clk = devm_clk_get(&pd->dev, NULL);
 	if (IS_ERR(drv_data->clk)) {
-		if (PTR_ERR(drv_data->clk) == -EPROBE_DEFER)
+		int clk_err = PTR_ERR(drv_data->clk);
+
+		dev_err(&pd->dev, "A733 I2C: main clock failed: %d\n", clk_err);
+		if (clk_err == -EPROBE_DEFER)
 			return -EPROBE_DEFER;
 		drv_data->clk = NULL;
 	}
 
+	/*
+	 * A733 R-I2C has one bus clock and no separate register clock, so
+	 * the "reg" lookup returns -ENOENT. Keep upstream's tolerant
+	 * handling: a missing clock is only fatal if it defers. Do not
+	 * hardcode reg_clk = NULL; that would discard a real clock on any
+	 * variant that does provide one.
+	 */
 	drv_data->reg_clk = devm_clk_get(&pd->dev, "reg");
 	if (IS_ERR(drv_data->reg_clk)) {
-		if (PTR_ERR(drv_data->reg_clk) == -EPROBE_DEFER)
+		int reg_err = PTR_ERR(drv_data->reg_clk);
+
+		if (reg_err == -EPROBE_DEFER)
 			return -EPROBE_DEFER;
 		drv_data->reg_clk = NULL;
 	}
 
+	dev_info(&pd->dev, "A733 I2C: before IRQ lookup\n");
 	drv_data->irq = platform_get_irq(pd, 0);
-	if (drv_data->irq < 0)
+	if (drv_data->irq < 0) {
+		dev_err(&pd->dev, "A733 I2C: IRQ failed: %d\n", drv_data->irq);
 		return drv_data->irq;
+	}
 
 	if (pdata) {
+		dev_info(&pd->dev, "A733 I2C: legacy platform data path\n");
 		drv_data->freq_m = pdata->freq_m;
 		drv_data->freq_n = pdata->freq_n;
 		drv_data->adapter.timeout = msecs_to_jiffies(pdata->timeout);
 		drv_data->offload_enabled = false;
 		memcpy(&drv_data->reg_offsets, &mv64xxx_i2c_regs_mv64xxx, sizeof(drv_data->reg_offsets));
 	} else if (pd->dev.of_node) {
+		dev_info(&pd->dev, "A733 I2C: OF config path\n");
 		rc = mv64xxx_of_config(drv_data, &pd->dev);
-		if (rc)
+		if (rc) {
+			dev_err(&pd->dev, "A733 I2C: OF config failed: %d\n", rc);
 			return rc;
+		}
 	}
 
+	dev_info(&pd->dev, "A733 I2C: before recovery/pinctrl\n");
 	rc = mv64xxx_i2c_init_recovery_info(drv_data, &pd->dev);
-	if (rc == -EPROBE_DEFER)
-		return rc;
+	if (rc) {
+		dev_err(&pd->dev, "A733 I2C: recovery/pinctrl failed: %d\n", rc);
+		if (rc == -EPROBE_DEFER)
+			return rc;
+	}
 
 	drv_data->adapter.dev.parent = &pd->dev;
 	drv_data->adapter.algo = &mv64xxx_i2c_algo;
@@ -1045,12 +1136,14 @@ mv64xxx_i2c_probe(struct platform_device *pd)
 	pm_runtime_set_autosuspend_delay(&pd->dev, MSEC_PER_SEC);
 	pm_runtime_use_autosuspend(&pd->dev);
 	pm_runtime_enable(&pd->dev);
+	dev_info(&pd->dev, "A733 I2C: before runtime resume\n");
 	if (!pm_runtime_enabled(&pd->dev)) {
 		rc = mv64xxx_i2c_runtime_resume(&pd->dev);
 		if (rc)
 			goto exit_disable_pm;
 	}
 
+	dev_info(&pd->dev, "A733 I2C: before request_irq\n");
 	rc = request_irq(drv_data->irq, mv64xxx_i2c_intr, 0,
 			 MV64XXX_I2C_CTLR_NAME, drv_data);
 	if (rc) {
@@ -1064,6 +1157,7 @@ mv64xxx_i2c_probe(struct platform_device *pd)
 		goto exit_free_irq;
 	}
 
+	dev_info(&pd->dev, "A733 I2C: adapter added\n");
 	return 0;
 
 exit_free_irq:

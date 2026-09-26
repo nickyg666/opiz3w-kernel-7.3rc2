@@ -142,6 +142,15 @@ static int i2c_device_match(struct device *dev, const struct device_driver *drv)
 	struct i2c_client	*client = i2c_verify_client(dev);
 	const struct i2c_driver	*driver;
 
+	/*
+	 * 2026-09-26: the per-driver "I2C match" / "I2C match result" dev_info
+	 * traces that lived here were added to diagnose the AXP binding fault.
+	 * That fault is fixed (A733 was bound to the Marvell I2C register map -
+	 * see docs/a733-root-bringup-state-20260925.md) and these lines are now
+	 * pure noise: one line per driver per client, thousands per boot, and at
+	 * loglevel 7 they interleave with and visibly corrupt the systemd console
+	 * output. Removed. Do not re-add unless diagnosing I2C binding again.
+	 */
 
 	/* Attempt an OF style match */
 	if (i2c_of_match_device(drv->of_match_table, client))
@@ -500,6 +509,9 @@ static int i2c_device_probe(struct device *dev)
 	if (!client)
 		return 0;
 
+	dev_info(dev, "I2C probe entered: client=%s addr=0x%02x\n",
+		client->name, client->addr);
+
 	client->irq = client->init_irq;
 
 	if (!client->irq) {
@@ -523,11 +535,14 @@ static int i2c_device_probe(struct device *dev)
 		}
 		if (irq == -EPROBE_DEFER) {
 			status = dev_err_probe(dev, irq, "can't get irq\n");
+			dev_info(dev, "I2C client pre-driver: IRQ defer %d\n", irq);
 			goto put_sync_adapter;
 		}
 
-		if (irq < 0)
+		if (irq < 0) {
+			dev_info(dev, "I2C client pre-driver: IRQ missing %d\n", irq);
 			irq = 0;
+		}
 
 		client->irq = irq;
 	}
@@ -570,14 +585,18 @@ static int i2c_device_probe(struct device *dev)
 	dev_dbg(dev, "probe\n");
 
 	status = of_clk_set_defaults(to_of_node(fwnode), false);
-	if (status < 0)
+	if (status < 0) {
+		dev_info(dev, "I2C client pre-driver: clock defaults failed %d\n", status);
 		goto err_clear_wakeup_irq;
+	}
 
 	do_power_on = !i2c_acpi_waive_d0_probe(dev);
 	status = dev_pm_domain_attach(&client->dev, PD_FLAG_DETACH_POWER_OFF |
 				      (do_power_on ? PD_FLAG_ATTACH_POWER_ON : 0));
-	if (status)
+	if (status) {
+		dev_info(dev, "I2C client pre-driver: PM domain failed %d\n", status);
 		goto err_clear_wakeup_irq;
+	}
 
 	client->devres_group_id = devres_open_group(&client->dev, NULL,
 						    GFP_KERNEL);
@@ -589,10 +608,13 @@ static int i2c_device_probe(struct device *dev)
 	client->debugfs = debugfs_create_dir(dev_name(&client->dev),
 					     client->adapter->debugfs);
 
-	if (driver->probe)
+	if (driver->probe) {
+		dev_info(dev, "I2C client pre-driver: invoking probe %s\n", driver->driver.name);
 		status = driver->probe(client);
-	else
+	} else {
+		dev_info(dev, "I2C client pre-driver: no probe callback\n");
 		status = -EINVAL;
+	}
 
 	/*
 	 * Note that we are not closing the devres group opened above so
@@ -2055,8 +2077,15 @@ int i2c_register_driver(struct module *owner, struct i2c_driver *driver)
 
 	pr_debug("driver [%s] registered\n", driver->driver.name);
 
-	/* Walk the adapters that are already present */
+	/*
+	 * Walk the adapters that are already present, then force an attach pass
+	 * over the clients that already exist. Built-in clients are created with
+	 * device_register() while no matching driver is present, so the attach
+	 * walk inside driver_register() may run before those clients appear; a
+	 * rescan is what actually binds them.
+	 */
 	i2c_for_each_dev(driver, __process_new_driver);
+	bus_rescan_devices(&i2c_bus_type);
 
 	return 0;
 }

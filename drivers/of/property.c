@@ -1553,7 +1553,14 @@ static const struct supplier_bindings of_supplier_bindings[] = {
 	{ .parse_prop = parse_nvmem_cells, },
 	{ .parse_prop = parse_phys, },
 	{ .parse_prop = parse_wakeup_parent, },
-	{ .parse_prop = parse_pinctrl_n, },
+	/*
+	 * pinctrl-N points at a pin-group node, not a device. The pinctrl
+	 * consumer path claims that group through pinctrl_get() and creates
+	 * its real device link later; treating the group as a firmware
+	 * supplier here makes fw_devlink wait for a struct device that will
+	 * never exist.
+	 */
+	{ .parse_prop = parse_pinctrl_n, .fwlink_flags = FWLINK_FLAG_IGNORE },
 	{
 		.parse_prop = parse_remote_endpoint,
 		.get_con_dev = of_graph_get_port_parent,

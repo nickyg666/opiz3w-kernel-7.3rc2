@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0
 # Enables support for device-tree overlays for named devices
+DTC_FLAGS_sun60i-a733-orangepi-zero3w := -@
 DTC_FLAGS_sun50i-a64-pine64-lts := -@
 DTC_FLAGS_sun50i-a64-pine64 := -@
 DTC_FLAGS_sun50i-a64-pine64-plus := -@
@@ -67,3 +68,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun55i-a527-cubie-a5e.dtb
 dtb-$(CONFIG_ARCH_SUNXI) += sun55i-h728-x96qpro+.dtb
 dtb-$(CONFIG_ARCH_SUNXI) += sun55i-t527-avaota-a1.dtb
 dtb-$(CONFIG_ARCH_SUNXI) += sun55i-t527-orangepi-4a.dtb
+dtb-$(CONFIG_ARCH_SUNXI) += sun60i-a733-cubie-a7a.dtb
+dtb-$(CONFIG_ARCH_SUNXI) += sun60i-a733-cubie-a7s.dtb
+dtb-$(CONFIG_ARCH_SUNXI) += sun60i-a733-cubie-a7z.dtb
+dtb-$(CONFIG_ARCH_SUNXI) += sun60i-a733-orangepi-zero3w.dtb

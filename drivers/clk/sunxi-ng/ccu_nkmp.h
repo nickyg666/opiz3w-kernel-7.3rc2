@@ -29,6 +29,12 @@ struct ccu_nkmp {
 	unsigned int		fixed_post_div;
 	unsigned int		max_rate;
 
+	/* Port from BSP (sun60iw2 cpupll) */
+	u32			output;
+	u32			lock_enable;
+	u32			ldo_en;
+	u16			p_reg;
+
 	struct ccu_common	common;
 };
 

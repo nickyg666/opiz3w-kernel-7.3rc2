@@ -238,3 +238,15 @@ const struct clk_ops ccu_nm_ops = {
 	.set_rate	= ccu_nm_set_rate,
 };
 EXPORT_SYMBOL_NS_GPL(ccu_nm_ops, "SUNXI_CCU");
+
+int ccu_nm_is_sdm_enabled(struct clk_hw *hw)
+{
+	struct ccu_nm *nm;
+	struct ccu_common sdm_common;
+
+	nm = hw_to_ccu_nm(hw);
+	sdm_common = nm->common;
+
+	return readl(sdm_common.base + sdm_common.reg) & BIT(24);
+}
+EXPORT_SYMBOL_GPL(ccu_nm_is_sdm_enabled);

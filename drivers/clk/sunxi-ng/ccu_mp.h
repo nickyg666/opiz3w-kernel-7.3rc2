@@ -1,4 +1,5 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
+/* Copyright(c) 2020 - 2023 Allwinner Technology Co.,Ltd. All rights reserved. */
 /*
  * Copyright (c) 2016 Maxime Ripard. All rights reserved.
  */
@@ -31,6 +32,67 @@ struct ccu_mp {
 	struct ccu_common	common;
 };
 
+
+#define SUNXI_CCU_MP_MIN_WITH_MUX_GATE_NO_INDEX(_struct, _name, _parents, _reg, \
+					   _mshift, _mwidth, _mmin,	\
+					   _pshift, _pwidth,		\
+					   _muxshift, _muxwidth,	\
+					   _gate, _flags)		\
+	struct ccu_mp _struct = {					\
+		.enable	= _gate,					\
+		.m	= _SUNXI_CCU_DIV_MIN(_mshift, _mwidth, _mmin),		\
+		.p	= _SUNXI_CCU_DIV(_pshift, _pwidth),		\
+		.mux	= _SUNXI_CCU_MUX(_muxshift, _muxwidth),		\
+		.common	= {						\
+			.reg		= _reg,				\
+			.features	= CCU_FEATURE_MP_NO_INDEX_MODE,	\
+			.hw.init	= CLK_HW_INIT_PARENTS(_name,	\
+							      _parents, \
+							      &ccu_mp_ops, \
+							      _flags),	\
+		}							\
+	}
+#define SUNXI_CCU_MP_WITH_MUX_GATE_NO_INDEX(_struct, _name, _parents, _reg, \
+					   _mshift, _mwidth,		\
+					   _pshift, _pwidth,		\
+					   _muxshift, _muxwidth,	\
+					   _gate, _flags)		\
+	struct ccu_mp _struct = {					\
+		.enable	= _gate,					\
+		.m	= _SUNXI_CCU_DIV(_mshift, _mwidth),		\
+		.p	= _SUNXI_CCU_DIV(_pshift, _pwidth),		\
+		.mux	= _SUNXI_CCU_MUX(_muxshift, _muxwidth),		\
+		.common	= {						\
+			.reg		= _reg,				\
+			.features	= CCU_FEATURE_MP_NO_INDEX_MODE,	\
+			.hw.init	= CLK_HW_INIT_PARENTS(_name,	\
+							      _parents, \
+							      &ccu_mp_ops, \
+							      _flags),	\
+		}							\
+	}
+
+#define SUNXI_CCU_MP_WITH_MUX_GATE_NO_INDEX_KEY(_struct, _name, _parents, _reg, \
+					   _mshift, _mwidth,		\
+					   _pshift, _pwidth,		\
+					   _muxshift, _muxwidth,	\
+					   _gate, _flags, _key_value)		\
+	struct ccu_mp _struct = {					\
+		.enable	= _gate,					\
+		.m	= _SUNXI_CCU_DIV(_mshift, _mwidth),		\
+		.p	= _SUNXI_CCU_DIV(_pshift, _pwidth),		\
+		.mux	= _SUNXI_CCU_MUX(_muxshift, _muxwidth),		\
+		.common	= {						\
+			.reg		= _reg,				\
+			.key_value	= _key_value,			\
+			.features	= CCU_FEATURE_MP_NO_INDEX_MODE,	\
+			.hw.init	= CLK_HW_INIT_PARENTS(_name,	\
+							      _parents, \
+							      &ccu_mp_ops, \
+							      _flags),	\
+		}							\
+	}
+
 #define SUNXI_CCU_MP_WITH_MUX_GATE_POSTDIV(_struct, _name, _parents, _reg, \
 					   _mshift, _mwidth,		\
 					   _pshift, _pwidth,		\
@@ -52,28 +114,28 @@ struct ccu_mp {
 		}							\
 	}
 
-#define SUNXI_CCU_MP_DATA_WITH_MUX_GATE_POSTDIV(_struct, _name, _parents, \
-						_reg,			\
-						_mshift, _mwidth,	\
-						_pshift, _pwidth,	\
-						_muxshift, _muxwidth,	\
-						_gate, _postdiv, _flags)\
+#define SUNXI_CCU_MP_WITH_MUX_GATE_KEY(_struct, _name, _parents, _reg,	\
+				   _mshift, _mwidth,			\
+				   _pshift, _pwidth,			\
+				   _muxshift, _muxwidth,		\
+				   _key_value,				\
+				   _gate, _flags)			\
 	struct ccu_mp _struct = {					\
 		.enable	= _gate,					\
 		.m	= _SUNXI_CCU_DIV(_mshift, _mwidth),		\
 		.p	= _SUNXI_CCU_DIV(_pshift, _pwidth),		\
 		.mux	= _SUNXI_CCU_MUX(_muxshift, _muxwidth),		\
-		.fixed_post_div	= _postdiv,				\
 		.common	= {						\
+			.features       = CCU_FEATURE_KEY_FIELD_MOD,	\
+			.key_value      = _key_value,			\
+			.key_reg        = _reg,				\
 			.reg		= _reg,				\
-			.features	= CCU_FEATURE_FIXED_POSTDIV,	\
-			.hw.init	= CLK_HW_INIT_PARENTS_DATA(_name, \
-							_parents,	\
-							&ccu_mp_ops,	\
-							_flags),	\
+			.hw.init	= CLK_HW_INIT_PARENTS(_name,	\
+							      _parents, \
+							      &ccu_mp_ops, \
+							      _flags),	\
 		}							\
 	}
-
 #define SUNXI_CCU_MP_WITH_MUX_GATE(_struct, _name, _parents, _reg,	\
 				   _mshift, _mwidth,			\
 				   _pshift, _pwidth,			\
@@ -103,102 +165,6 @@ struct ccu_mp {
 				   _pshift, _pwidth,			\
 				   _muxshift, _muxwidth,		\
 				   0, _flags)
-
-#define SUNXI_CCU_MP_MUX_GATE_POSTDIV_DUALDIV(_struct, _name, _parents, _reg, \
-					      _mshift, _mwidth,		\
-					      _pshift, _pwidth,		\
-					      _muxshift, _muxwidth,	\
-					      _gate, _postdiv,		\
-					      _flags)			\
-	struct ccu_mp _struct = {					\
-		.enable	= _gate,					\
-		.m	= _SUNXI_CCU_DIV(_mshift, _mwidth),		\
-		.p	= _SUNXI_CCU_DIV(_pshift, _pwidth),		\
-		.mux	= _SUNXI_CCU_MUX(_muxshift, _muxwidth),		\
-		.fixed_post_div = _postdiv,				\
-		.common	= {						\
-			.reg		= _reg,				\
-			.features	= CCU_FEATURE_FIXED_POSTDIV |	\
-						CCU_FEATURE_DUAL_DIV,	\
-			.hw.init	= CLK_HW_INIT_PARENTS_DATA(_name, \
-								   _parents, \
-								   &ccu_mp_ops, \
-								   _flags), \
-		}							\
-	}
-
-#define SUNXI_CCU_MP_DATA_WITH_MUX_GATE_FEAT(_struct, _name, _parents, _reg, \
-					     _mshift, _mwidth,		\
-					     _pshift, _pwidth,		\
-					     _muxshift, _muxwidth,	\
-					     _gate, _flags, _features)	\
-	struct ccu_mp _struct = {					\
-		.enable	= _gate,					\
-		.m	= _SUNXI_CCU_DIV(_mshift, _mwidth),		\
-		.p	= _SUNXI_CCU_DIV(_pshift, _pwidth),		\
-		.mux	= _SUNXI_CCU_MUX(_muxshift, _muxwidth),		\
-		.common	= {						\
-			.reg		= _reg,				\
-			.features	= _features,			\
-			.hw.init	= CLK_HW_INIT_PARENTS_DATA(_name, \
-								   _parents, \
-								   &ccu_mp_ops, \
-								   _flags), \
-		}							\
-	}
-
-#define SUNXI_CCU_MP_DATA_WITH_MUX_GATE(_struct, _name, _parents, _reg,	\
-					_mshift, _mwidth,		\
-					_pshift, _pwidth,		\
-					_muxshift, _muxwidth,		\
-					_gate, _flags)			\
-	SUNXI_CCU_MP_DATA_WITH_MUX_GATE_FEAT(_struct, _name, _parents,	\
-					     _reg, _mshift, _mwidth,	\
-					     _pshift, _pwidth,		\
-					     _muxshift, _muxwidth,	\
-					     _gate, _flags, 0)
-
-#define SUNXI_CCU_DUALDIV_MUX_GATE(_struct, _name, _parents, _reg,	\
-				   _mshift, _mwidth,			\
-				   _pshift, _pwidth,			\
-				   _muxshift, _muxwidth,		\
-				   _gate, _flags)			\
-	SUNXI_CCU_MP_DATA_WITH_MUX_GATE_FEAT(_struct, _name, _parents,	\
-					     _reg, _mshift, _mwidth,	\
-					     _pshift, _pwidth,		\
-					     _muxshift, _muxwidth,	\
-					     _gate, _flags,		\
-					     CCU_FEATURE_DUAL_DIV)
-
-#define SUNXI_CCU_MP_DATA_WITH_MUX(_struct, _name, _parents, _reg,	\
-				   _mshift, _mwidth,			\
-				   _pshift, _pwidth,			\
-				   _muxshift, _muxwidth,		\
-				   _flags)				\
-	SUNXI_CCU_MP_DATA_WITH_MUX_GATE(_struct, _name, _parents, _reg,	\
-					_mshift, _mwidth,		\
-					_pshift, _pwidth,		\
-					_muxshift, _muxwidth,		\
-					0, _flags)
-
-#define SUNXI_CCU_MP_HW_WITH_MUX_GATE(_struct, _name, _parents, _reg,	\
-				      _mshift, _mwidth,			\
-				      _pshift, _pwidth,			\
-				      _muxshift, _muxwidth,		\
-				      _gate, _flags)			\
-	struct ccu_mp _struct = {					\
-		.enable	= _gate,					\
-		.m	= _SUNXI_CCU_DIV(_mshift, _mwidth),		\
-		.p	= _SUNXI_CCU_DIV(_pshift, _pwidth),		\
-		.mux	= _SUNXI_CCU_MUX(_muxshift, _muxwidth),		\
-		.common	= {						\
-			.reg		= _reg,				\
-			.hw.init	= CLK_HW_INIT_PARENTS_HW(_name, \
-								 _parents, \
-								 &ccu_mp_ops, \
-								 _flags), \
-		}							\
-	}
 
 static inline struct ccu_mp *hw_to_ccu_mp(struct clk_hw *hw)
 {
@@ -237,5 +203,119 @@ extern const struct clk_ops ccu_mp_ops;
 	}
 
 extern const struct clk_ops ccu_mp_mmc_ops;
+
+
+/* --- BSP add-only graft (append): macros absent from mainline HEAD --- */
+#define SUNXI_CCU_MP_DATA_WITH_MUX_GATE_POSTDIV(_struct, _name, _parents, \
+						_reg,			\
+						_mshift, _mwidth,	\
+						_pshift, _pwidth,	\
+						_muxshift, _muxwidth,	\
+						_gate, _postdiv, _flags)\
+	struct ccu_mp _struct = {					\
+		.enable	= _gate,					\
+		.m	= _SUNXI_CCU_DIV(_mshift, _mwidth),		\
+		.p	= _SUNXI_CCU_DIV(_pshift, _pwidth),		\
+		.mux	= _SUNXI_CCU_MUX(_muxshift, _muxwidth),		\
+		.fixed_post_div	= _postdiv,				\
+		.common	= {						\
+			.reg		= _reg,				\
+			.features	= CCU_FEATURE_FIXED_POSTDIV,	\
+			.hw.init	= CLK_HW_INIT_PARENTS_DATA(_name, \
+							_parents,	\
+							&ccu_mp_ops,	\
+							_flags),	\
+		}							\
+	}
+#define SUNXI_CCU_MP_MUX_GATE_POSTDIV_DUALDIV(_struct, _name, _parents, _reg, \
+					      _mshift, _mwidth,		\
+					      _pshift, _pwidth,		\
+					      _muxshift, _muxwidth,	\
+					      _gate, _postdiv,		\
+					      _flags)			\
+	struct ccu_mp _struct = {					\
+		.enable	= _gate,					\
+		.m	= _SUNXI_CCU_DIV(_mshift, _mwidth),		\
+		.p	= _SUNXI_CCU_DIV(_pshift, _pwidth),		\
+		.mux	= _SUNXI_CCU_MUX(_muxshift, _muxwidth),		\
+		.fixed_post_div = _postdiv,				\
+		.common	= {						\
+			.reg		= _reg,				\
+			.features	= CCU_FEATURE_FIXED_POSTDIV |	\
+						CCU_FEATURE_DUAL_DIV,	\
+			.hw.init	= CLK_HW_INIT_PARENTS_DATA(_name, \
+								   _parents, \
+								   &ccu_mp_ops, \
+								   _flags), \
+		}							\
+	}
+#define SUNXI_CCU_MP_DATA_WITH_MUX_GATE_FEAT(_struct, _name, _parents, _reg, \
+					     _mshift, _mwidth,		\
+					     _pshift, _pwidth,		\
+					     _muxshift, _muxwidth,	\
+					     _gate, _flags, _features)	\
+	struct ccu_mp _struct = {					\
+		.enable	= _gate,					\
+		.m	= _SUNXI_CCU_DIV(_mshift, _mwidth),		\
+		.p	= _SUNXI_CCU_DIV(_pshift, _pwidth),		\
+		.mux	= _SUNXI_CCU_MUX(_muxshift, _muxwidth),		\
+		.common	= {						\
+			.reg		= _reg,				\
+			.features	= _features,			\
+			.hw.init	= CLK_HW_INIT_PARENTS_DATA(_name, \
+								   _parents, \
+								   &ccu_mp_ops, \
+								   _flags), \
+		}							\
+	}
+#define SUNXI_CCU_MP_DATA_WITH_MUX_GATE(_struct, _name, _parents, _reg,	\
+					_mshift, _mwidth,		\
+					_pshift, _pwidth,		\
+					_muxshift, _muxwidth,		\
+					_gate, _flags)			\
+	SUNXI_CCU_MP_DATA_WITH_MUX_GATE_FEAT(_struct, _name, _parents,	\
+					     _reg, _mshift, _mwidth,	\
+					     _pshift, _pwidth,		\
+					     _muxshift, _muxwidth,	\
+					     _gate, _flags, 0)
+#define SUNXI_CCU_DUALDIV_MUX_GATE(_struct, _name, _parents, _reg,	\
+				   _mshift, _mwidth,			\
+				   _pshift, _pwidth,			\
+				   _muxshift, _muxwidth,		\
+				   _gate, _flags)			\
+	SUNXI_CCU_MP_DATA_WITH_MUX_GATE_FEAT(_struct, _name, _parents,	\
+					     _reg, _mshift, _mwidth,	\
+					     _pshift, _pwidth,		\
+					     _muxshift, _muxwidth,	\
+					     _gate, _flags,		\
+					     CCU_FEATURE_DUAL_DIV)
+#define SUNXI_CCU_MP_DATA_WITH_MUX(_struct, _name, _parents, _reg,	\
+				   _mshift, _mwidth,			\
+				   _pshift, _pwidth,			\
+				   _muxshift, _muxwidth,		\
+				   _flags)				\
+	SUNXI_CCU_MP_DATA_WITH_MUX_GATE(_struct, _name, _parents, _reg,	\
+					_mshift, _mwidth,		\
+					_pshift, _pwidth,		\
+					_muxshift, _muxwidth,		\
+					0, _flags)
+#define SUNXI_CCU_MP_HW_WITH_MUX_GATE(_struct, _name, _parents, _reg,	\
+				      _mshift, _mwidth,			\
+				      _pshift, _pwidth,			\
+				      _muxshift, _muxwidth,		\
+				      _gate, _flags)			\
+	struct ccu_mp _struct = {					\
+		.enable	= _gate,					\
+		.m	= _SUNXI_CCU_DIV(_mshift, _mwidth),		\
+		.p	= _SUNXI_CCU_DIV(_pshift, _pwidth),		\
+		.mux	= _SUNXI_CCU_MUX(_muxshift, _muxwidth),		\
+		.common	= {						\
+			.reg		= _reg,				\
+			.hw.init	= CLK_HW_INIT_PARENTS_HW(_name, \
+								 _parents, \
+								 &ccu_mp_ops, \
+								 _flags), \
+		}							\
+	}
 
 #endif /* _CCU_MP_H_ */

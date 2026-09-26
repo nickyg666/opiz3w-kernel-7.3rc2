@@ -59,11 +59,32 @@ static unsigned long ccu_mp_find_best_with_parent_adj(struct clk_hw *hw,
 	unsigned long best_rate = 0;
 	unsigned int _m, _p, div;
 	unsigned long maxdiv;
+	/*
+	 * 2026-09-26 A733 bring-up: the search below calls
+	 * clk_hw_round_rate(hw, rate * div) - i.e. it re-enters the clock
+	 * framework for the very clock being queried, with a progressively
+	 * larger `div`. With the A733 SMHC clock (CLK_SET_RATE_PARENT set via
+	 * CLK_SET_RATE_NO_REPARENT being absent) this recursed without bound and
+	 * clk_round_rate() never returned, wedging the board inside
+	 * mmc_add_host(). The identical call exists in the 5.15 vendor tree, so
+	 * this is a latent BSP bug rather than a local regression; vendor never
+	 * triggers it because its MMC driver calls clk_round_rate with a
+	 * different target.
+	 *
+	 * Bound the re-entry: on recursive entry fall back to the current parent
+	 * rate instead of recursing again. A depth of 1 is enough - the outer
+	 * call is the only one that needs to consult the parent.
+	 */
+	static unsigned int depth;
 
+	if (depth) {
+		*parent = clk_hw_get_rate(hw);
+		return min(*parent, rate);
+	}
+	depth++;
 	parent_rate_saved = *parent;
 
-	/*
-	 * The maximum divider we can use without overflowing
+	/* The maximum divider we can use without overflowing
 	 * unsigned long in rate * m * p below
 	 */
 	maxdiv = max_m * max_p;
@@ -84,6 +105,7 @@ static unsigned long ccu_mp_find_best_with_parent_adj(struct clk_hw *hw,
 				 * divider immediately.
 				 */
 				*parent = parent_rate_saved;
+				depth--;
 				return rate;
 			}
 
@@ -94,12 +116,15 @@ static unsigned long ccu_mp_find_best_with_parent_adj(struct clk_hw *hw,
 				best_rate = now;
 				*parent = parent_rate;
 
-				if (now == rate)
+				if (now == rate) {
+					depth--;
 					return rate;
+				}
 			}
 		}
 	}
 
+	depth--;
 	return best_rate;
 }
 
@@ -119,10 +144,28 @@ static int ccu_mp_determine_rate_helper(struct ccu_mux_internal *mux,
 		shift = false;
 
 	max_m = cmp->m.max ?: 1 << cmp->m.width;
-	if (shift)
-		max_p = cmp->p.max ?: 1 << ((1 << cmp->p.width) - 1);
-	else
-		max_p = cmp->p.max ?: 1 << cmp->p.width;
+	/*
+	 * 2026-09-26 A733 bring-up - THE ROOT CAUSE of the MMC clock wedge.
+	 *
+	 * The old expression `1 << ((1 << cmp->p.width) - 1)` yields 1 << 31 for
+	 * pwidth 5. That is a legal unsigned int, but the rate search walks it
+	 * with `_p = next_div(_p, shift)` which doubles _p. At step 32 _p
+	 * overflows 2^31 -> 0, and since `0 <= max_p` is still true the loop never
+	 * terminates. clk_round_rate() therefore never returned and the board
+	 * wedged inside mmc_add_host(). Verified by simulation: overflow at step
+	 * 32, then infinite.
+	 *
+	 * The A733 SMHC clocks are declared with SUNXI_CCU_MP_WITH_MUX_GATE_NO_INDEX
+	 * which sets CCU_FEATURE_MP_NO_INDEX_MODE. For those, and for DUAL_DIV
+	 * clocks, p is a plain N-bit divider, so the bound is 1 << pwidth - exactly
+	 * what the 5.15 vendor ccu_mp.c does. Clamp so _p can never wrap.
+	 */
+	if ((cmp->common.features & CCU_FEATURE_MP_NO_INDEX_MODE) || !shift) {
+		max_p = cmp->p.max ?: min((1u << cmp->p.width) - 1,
+					  0x7fffffffu);
+	} else {
+		max_p = cmp->p.max ?: 1u << cmp->p.width;
+	}
 
 	if (!clk_hw_can_set_rate_parent(&cmp->common.hw)) {
 		req->rate = ccu_mp_find_best(req->best_parent_rate, req->rate,
@@ -222,10 +265,28 @@ static int ccu_mp_set_rate(struct clk_hw *hw, unsigned long rate,
 						  parent_rate);
 
 	max_m = cmp->m.max ?: 1 << cmp->m.width;
-	if (shift)
-		max_p = cmp->p.max ?: 1 << ((1 << cmp->p.width) - 1);
-	else
-		max_p = cmp->p.max ?: 1 << cmp->p.width;
+	/*
+	 * 2026-09-26 A733 bring-up - THE ROOT CAUSE of the MMC clock wedge.
+	 *
+	 * The old expression `1 << ((1 << cmp->p.width) - 1)` yields 1 << 31 for
+	 * pwidth 5. That is a legal unsigned int, but the rate search walks it
+	 * with `_p = next_div(_p, shift)` which doubles _p. At step 32 _p
+	 * overflows 2^31 -> 0, and since `0 <= max_p` is still true the loop never
+	 * terminates. clk_round_rate() therefore never returned and the board
+	 * wedged inside mmc_add_host(). Verified by simulation: overflow at step
+	 * 32, then infinite.
+	 *
+	 * The A733 SMHC clocks are declared with SUNXI_CCU_MP_WITH_MUX_GATE_NO_INDEX
+	 * which sets CCU_FEATURE_MP_NO_INDEX_MODE. For those, and for DUAL_DIV
+	 * clocks, p is a plain N-bit divider, so the bound is 1 << pwidth - exactly
+	 * what the 5.15 vendor ccu_mp.c does. Clamp so _p can never wrap.
+	 */
+	if ((cmp->common.features & CCU_FEATURE_MP_NO_INDEX_MODE) || !shift) {
+		max_p = cmp->p.max ?: min((1u << cmp->p.width) - 1,
+					  0x7fffffffu);
+	} else {
+		max_p = cmp->p.max ?: 1u << cmp->p.width;
+	}
 
 	/* Adjust target rate according to post-dividers */
 	if (cmp->common.features & CCU_FEATURE_FIXED_POSTDIV)

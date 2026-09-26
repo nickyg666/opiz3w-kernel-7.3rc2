@@ -1852,6 +1852,16 @@ long clk_round_rate(struct clk *clk, unsigned long rate)
 	if (!clk)
 		return 0;
 
+	/*
+	 * 2026-09-26: the "A733 clk_round_rate" bracket prints that lived here
+	 * identified the wedge as SPIN in clk_core_round_rate_nolock, which led
+	 * to the real fix in drivers/clk/sunxi-ng/ccu_mp.c (max_p overflowed
+	 * 2^31 -> 0, so the rate search never terminated). That is fixed and
+	 * verified: "set 400000, achieved 400000" on the root card. These prints
+	 * fired for every clock in the system, so they are removed. Re-add only
+	 * if clk_round_rate ever hangs again.
+	 */
+
 	clk_prepare_lock();
 
 	if (clk->exclusive_count)

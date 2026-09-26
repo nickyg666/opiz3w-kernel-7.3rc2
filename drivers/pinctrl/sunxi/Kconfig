@@ -133,7 +133,12 @@ config PINCTRL_SUN50I_H616_R
 
 config PINCTRL_SUN55I_A523
 	bool "Support for the Allwinner A523 PIO"
-	default ARM64 && ARCH_SUNXI
+	default MACH_SUN55I
+	select PINCTRL_SUNXI
+
+config PINCTRL_SUN60IW2
+	bool "Support for the Allwinner A733/sun60iw2 PIO"
+	default y
 	select PINCTRL_SUNXI
 
 config PINCTRL_SUN55I_A523_R
@@ -141,4 +146,11 @@ config PINCTRL_SUN55I_A523_R
 	default ARM64 && ARCH_SUNXI
 	select PINCTRL_SUNXI
 
+config PINCTRL_SUN60IW2_R
+	bool "Support for the Allwinner sun60iw2 R-PIO"
+	depends on ARCH_SUNXI
+	default y
+	select PINCTRL_SUNXI
+
 endif
+

@@ -12,21 +12,68 @@
 
 struct ccu_gate {
 	u32			enable;
+	u32			fixed_rate;
 
 	struct ccu_common	common;
 };
 
-#define SUNXI_CCU_GATE(_struct, _name, _parent, _reg, _gate, _flags)	\
-	struct ccu_gate _struct = {					\
-		.enable	= _gate,					\
-		.common	= {						\
-			.reg		= _reg,				\
-			.hw.init	= CLK_HW_INIT(_name,		\
-						      _parent,		\
-						      &ccu_gate_ops,	\
-						      _flags),		\
-		}							\
+#define SUNXI_CCU_GATE(_struct, _name, _parent, _reg, _gate, _flags) \
+	struct ccu_gate _struct = {			\
+		.enable	= _gate,			\
+		.common	= {				\
+			.reg	= _reg,			\
+			.hw.init	= CLK_HW_INIT(_name,	\
+						_parent,	\
+						&ccu_gate_ops,	\
+						_flags),	\
+		}					\
 	}
+
+/*
+ * BSP key-field gate macros (Allwinner sun60iw2). These set
+ * CCU_FEATURE_KEY_FIELD_MOD + the explicit key_value on the common
+ * struct so ccu_gate_helper_*() ORs the key into register writes.
+ */
+#define _SUNXI_CCU_GATE_WITH_KEY(_struct, _name, _parent, _reg,		\
+				 _key_reg, _key_value, _gate, _flags)	\
+struct ccu_gate _struct = {						\
+	.enable	= _gate,						\
+	.common	= {							\
+		.reg	= _reg,					\
+		.key_reg = _key_reg,				\
+		.features = CCU_FEATURE_KEY_FIELD_MOD,	\
+		.key_value = _key_value,			\
+		.hw.init = CLK_HW_INIT(_name,			\
+					 _parent,		\
+					 &ccu_gate_ops,		\
+					 _flags),		\
+	}								\
+}
+
+#define SUNXI_CCU_GATE_WITH_WP_KEY(_struct, _name, _parent, _reg,	\
+				 _key_reg, _key_value, _gate, _flags)	\
+	_SUNXI_CCU_GATE_WITH_KEY(_struct, _name, _parent, _reg,		\
+				 _key_reg, _key_value, _gate, _flags)
+
+#define SUNXI_CCU_GATE_WITH_KEY(_struct, _name, _parent, _reg,		\
+				_key_value, _gate, _flags)		\
+	_SUNXI_CCU_GATE_WITH_KEY(_struct, _name, _parent, _reg,		\
+				 _reg, _key_value, _gate, _flags)
+
+#define SUNXI_CCU_GATE_WITH_FIXED_RATE(_struct, _name, _parent, _reg,	\
+				   _fixed_rate, _gate)			\
+struct ccu_gate _struct = {						\
+	.enable	= _gate,						\
+	.fixed_rate = _fixed_rate,					\
+	.common	= {							\
+		.reg	= _reg,					\
+		.features = CCU_FEATURE_FIXED_RATE_GATE,	\
+		.hw.init = CLK_HW_INIT(_name,			\
+					 _parent,		\
+					 &ccu_gate_ops,		\
+					 0),			\
+	}								\
+}
 
 #define SUNXI_CCU_GATE_HW(_struct, _name, _parent, _reg, _gate, _flags)	\
 	struct ccu_gate _struct = {					\
@@ -123,5 +170,36 @@ int ccu_gate_helper_enable(struct ccu_common *common, u32 gate);
 int ccu_gate_helper_is_enabled(struct ccu_common *common, u32 gate);
 
 extern const struct clk_ops ccu_gate_ops;
+
+
+/* --- BSP add-only graft (append): macros absent from mainline HEAD --- */
+#define SUNXI_CCU_GATE_HWS_WITH_PREDIV(_struct, _name, _parent, _reg,	\
+				       _gate, _prediv, _flags)		\
+	struct ccu_gate _struct = {					\
+		.enable	= _gate,					\
+		.common	= {						\
+			.reg		= _reg,				\
+			.prediv		= _prediv,			\
+			.features	= CCU_FEATURE_ALL_PREDIV,	\
+			.hw.init	= CLK_HW_INIT_HWS(_name,	\
+							  _parent,	\
+							  &ccu_gate_ops, \
+							  _flags),	\
+		}							\
+	}
+#define SUNXI_CCU_GATE_DATA_WITH_PREDIV(_struct, _name, _parent, _reg,	\
+					_gate, _prediv, _flags)		\
+	struct ccu_gate _struct = {					\
+		.enable	= _gate,					\
+		.common	= {						\
+			.reg		= _reg,				\
+			.prediv		= _prediv,			\
+			.features	= CCU_FEATURE_ALL_PREDIV,	\
+			.hw.init	= CLK_HW_INIT_PARENTS_DATA(_name, \
+								   _parent, \
+								   &ccu_gate_ops, \
+								   _flags), \
+		}							\
+	}
 
 #endif /* _CCU_GATE_H_ */

@@ -2,3 +2,32 @@
 source "drivers/power/reset/Kconfig"
 source "drivers/power/sequencing/Kconfig"
 source "drivers/power/supply/Kconfig"
+
+menu "Allwinner PMIC (AXP2101/AXP8191)"
+
+config AW_MFD_AXP2101
+	tristate
+	select MFD_CORE
+	select REGMAP_IRQ
+	depends on HAS_IOMEM
+	help
+	  Allwinner X-Powers AXP2101/AXP8191 PMIC core (MFD). The OPi Zero 3W
+	  (sun60iw2) carries an AXP8191 PMU; without this driver the regulator
+	  dcdc1 never registers and sunxi-mmc defers forever (no root device).
+
+config AW_MFD_AXP2101_I2C
+	tristate "X-POWERS AXP2101/AXP8191 PMICs with I2C"
+	depends on I2C
+	select AW_MFD_AXP2101
+	select REGMAP_I2C
+	help
+	  Bind the AXP2101/AXP8191 PMU over I2C.
+
+config AW_REGULATOR_AXP2101
+	tristate "Regulator for X-POWERS AXP2101/AXP8191"
+	depends on AW_MFD_AXP2101
+	select REGULATOR
+	help
+	  Provides dcdc1/bldo1/dc1sw2/dcdc8, the rails the SoC and eMMC need.
+
+endmenu

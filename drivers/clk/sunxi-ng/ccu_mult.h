@@ -32,6 +32,10 @@ struct ccu_mult_internal {
 #define _SUNXI_CCU_MULT(_shift, _width)		\
 	_SUNXI_CCU_MULT_OFFSET_MIN_MAX(_shift, _width, 1, 1, 0)
 
+/* BSP helper: explicit min/max multiplier (used by ccu-sun60iw2.c). */
+#define SUNXI_CCU_MULT_MIN_MAX(_shift, _width, _min, _max)	\
+	_SUNXI_CCU_MULT_OFFSET_MIN_MAX(_shift, _width, 1, _min, _max)
+
 struct ccu_mult {
 	u32			enable;
 	u32			lock;
@@ -68,3 +72,7 @@ static inline struct ccu_mult *hw_to_ccu_mult(struct clk_hw *hw)
 extern const struct clk_ops ccu_mult_ops;
 
 #endif /* _CCU_MULT_H_ */
+
+#define _SUNXI_CCU_MULT_MIN_MAX(_shift, _width, _min, _max)	\
+		_SUNXI_CCU_MULT_OFFSET_MIN_MAX(_shift, _width, 1, _min, _max)
+

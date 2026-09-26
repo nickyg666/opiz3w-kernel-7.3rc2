@@ -2344,14 +2344,26 @@ void mmc_start_host(struct mmc_host *host)
 	host->f_init = max(min(freqs[0], host->f_max), host->f_min);
 	host->rescan_disable = 0;
 
+	/* 2026-09-25 A733 bring-up: boot freezes inside mmc_add_host() for the
+	 * root controller (sunxi-mmc 4020000.mmc) - "MMC: before mmc_add_host"
+	 * prints, "MMC: after mmc_add_host" never does. mmc_start_host() is the
+	 * last call in mmc_add_host() and it does four things; bracket each so
+	 * we can name which one blocks. Temporary diagnostic. */
 	if (power_up) {
+		dev_info(&host->class_dev, "MMC: claim_host begin\n");
 		mmc_claim_host(host);
+		dev_info(&host->class_dev, "MMC: power_up begin ocr=0x%x\n", host->ocr_avail);
 		mmc_power_up(host, host->ocr_avail);
+		dev_info(&host->class_dev, "MMC: release_host begin\n");
 		mmc_release_host(host);
+		dev_info(&host->class_dev, "MMC: release_host done\n");
 	}
 
+	dev_info(&host->class_dev, "MMC: gpiod_request_cd_irq begin\n");
 	mmc_gpiod_request_cd_irq(host);
+	dev_info(&host->class_dev, "MMC: detect_change begin\n");
 	_mmc_detect_change(host, 0, false);
+	dev_info(&host->class_dev, "MMC: detect_change done\n");
 }
 
 void __mmc_stop_host(struct mmc_host *host)

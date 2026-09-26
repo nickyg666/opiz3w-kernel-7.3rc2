@@ -70,13 +70,21 @@ static struct i2c_client *of_i2c_register_device(struct i2c_adapter *adap,
 
 	dev_dbg(&adap->dev, "of_i2c: register %pOF\n", node);
 
+	dev_info(&adap->dev, "I2C DT register child %s status=%s\n",
+			node->name, of_device_is_available(node) ? "ok" : "disabled");
 	ret = of_i2c_get_board_info(&adap->dev, node, &info);
-	if (ret)
+	if (ret) {
+		dev_err(&adap->dev, "I2C DT board-info failed child=%s rc=%d\n",
+				node->name, ret);
 		return ERR_PTR(ret);
+	}
+	dev_info(&adap->dev, "I2C DT client info child=%s type=%s addr=0x%x\n",
+			node->name, info.type, info.addr);
 
 	client = i2c_new_client_device(adap, &info);
 	if (IS_ERR(client))
-		dev_err(&adap->dev, "of_i2c: Failure registering %pOF\n", node);
+		dev_err(&adap->dev, "of_i2c: Failure registering %pOF child=%s err=%ld\n",
+				node, node->name, PTR_ERR(client));
 
 	return client;
 }
@@ -97,6 +105,9 @@ void of_i2c_register_devices(struct i2c_adapter *adap)
 		bus = of_node_get(adap->dev.of_node);
 
 	for_each_available_child_of_node(bus, node) {
+		dev_info(&adap->dev, "I2C DT child %s status=%s populated=%d\n",
+			node->name, of_device_is_available(node) ? "ok" : "disabled",
+			of_node_check_flag(node, OF_POPULATED));
 		if (of_node_test_and_set_flag(node, OF_POPULATED))
 			continue;
 

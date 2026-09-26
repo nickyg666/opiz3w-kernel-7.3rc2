@@ -79,3 +79,10 @@ sun8i-r-ccu-y			+= ccu-sun8i-r.o
 sun9i-a80-ccu-y			+= ccu-sun9i-a80.o
 sun9i-a80-de-ccu-y		+= ccu-sun9i-a80-de.o
 sun9i-a80-usb-ccu-y		+= ccu-sun9i-a80-usb.o
+
+# Allwinner A733 / sun60iw2
+obj-$(CONFIG_SUN60IW2_CCU)	+= sun60iw2-ccu.o
+sun60iw2-ccu-y			+= ccu-sun60iw2.o
+sun60iw2-ccu-y			+= ccu-sun60iw2-cpupll.o
+sun60iw2-ccu-y			+= ccu-sun60iw2-rtc.o
+sun60iw2-ccu-y			+= ccu-sun60iw2-r.o

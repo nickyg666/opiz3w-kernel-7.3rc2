@@ -6,6 +6,9 @@
 #include <linux/clk-provider.h>
 #include <linux/io.h>
 #include <linux/spinlock.h>
+#include <linux/sunxi-log.h>
+#include <linux/string.h>
+#include <linux/slab.h>
 
 #include "ccu_sdm.h"
 
@@ -159,3 +162,115 @@ int ccu_sdm_helper_get_factors(struct ccu_common *common,
 	return -EINVAL;
 }
 EXPORT_SYMBOL_NS_GPL(ccu_sdm_helper_get_factors, "SUNXI_CCU");
+
+/* ===== ported from BSP ccu_sdm.c (SDM info parse) ===== */
+#define SUNXI_CCU_SDM_VERSION        "1.0.1"
+
+struct clk_sdm_info *sdm_info;
+static int len;
+
+int sunxi_parse_sdm_info(struct device_node *node)
+{
+	int i = 0;
+	struct device_node *child_node = NULL;
+	struct device_node *sdm_node = NULL;
+
+	sdm_node = of_get_child_by_name(node, "sdm_info");
+	if (!sdm_node)
+		return -ENODEV;
+
+	len = of_get_child_count(sdm_node);
+	if (!len)
+		return -EINVAL;
+
+	if (sdm_info) {
+		sunxi_err(NULL, "sdm_info has been allocated!");
+		return -EBUSY;
+	}
+	sdm_info = kcalloc(len, sizeof(*sdm_info), GFP_KERNEL);
+	if (!sdm_info) {
+		len = 0;
+		return -ENOMEM;
+	}
+
+	for_each_child_of_node(sdm_node, child_node) {
+		if (of_property_read_u32(child_node, "sdm-enable", &sdm_info[i].sdm_enable)) {
+			sunxi_err(NULL, "%s fail to parse sdm-enable, please check dts config!\n", child_node->name);
+			continue;
+		}
+		if (sdm_info[i].sdm_enable != DTS_SDM_ON)
+			continue;
+		if (sdm_info[i].sdm_enable != DTS_SDM_OFF &&
+				sdm_info[i].sdm_enable != DTS_SDM_ON) {
+				sunxi_err(NULL, "clk: %s enable: %d\n",
+					child_node->name, sdm_info[i].sdm_enable);
+			continue;
+		}
+
+		if (of_property_read_u32(child_node, "sdm-factor", &sdm_info[i].sdm_factor)) {
+			sunxi_err(NULL, "%s fail to parse sdm-factor, please check dts config!\n", child_node->name);
+			continue;
+		}
+		/* the unit of factor is 1/1000 */
+		if (sdm_info[i].sdm_factor > 99) {
+			sunxi_err(NULL, "clk: %s invaild factor: %d, should be within 99\n",
+					child_node->name, sdm_info[i].sdm_factor);
+			continue;
+		}
+
+		if (of_property_read_u32(child_node, "freq-mode", &sdm_info[i].freq_mode)) {
+			sdm_info[i].freq_mode = TR_2;
+		} else {
+			if (sdm_info[i].freq_mode < 0 || sdm_info[i].freq_mode > 3) {
+				sunxi_err(NULL, "clk: %s invaild freq_mod: %d, should be within 0~3, use default TR_2\n",
+						child_node->name, sdm_info[i].freq_mode);
+				sdm_info[i].freq_mode = TR_2;
+			}
+		}
+
+		if (of_property_read_u32(child_node, "sdm-freq", &sdm_info[i].sdm_freq)) {
+			sdm_info[i].sdm_freq = FREQ_31_5;
+		} else {
+			if (sdm_info[i].sdm_freq < 0 || sdm_info[i].sdm_freq > 3) {
+				sunxi_err(NULL, "clk: %s invaild sdm_freq : %d, should be within 0~3, use default FREQ_31_5\n", child_node->name, sdm_info[i].sdm_freq);
+				sdm_info[i].sdm_freq = FREQ_31_5;
+			}
+		}
+
+		if (of_property_read_u32(child_node, "sdm-direction", &sdm_info[i].sdm_direction)) {
+			sdm_info[i].sdm_direction = SDM_DIR_NONE;
+		} else {
+			if (sdm_info[i].sdm_direction < 0 || sdm_info[i].sdm_direction > 1) {
+				sunxi_err(NULL, "clk: %s invaild sdm_direction : %d, should be within 0~1\n", child_node->name, sdm_info[i].sdm_direction);
+				sdm_info[i].sdm_direction = SDM_DIR_NONE;
+			}
+		}
+
+		sdm_info[i].clk_name = child_node->name;
+
+		sunxi_info(NULL, "%s: The %s has enabled Spread Spectrum in DTS\n", __func__, child_node->name);
+		sunxi_info(NULL, "%s: sdm-enable: %d sdm-factor: %d freq-mode: %d sdm-freq: %d sdm-direction: %d\n", __func__, sdm_info[i].sdm_enable, sdm_info[i].sdm_factor, sdm_info[i].freq_mode, sdm_info[i].sdm_freq, sdm_info[i].sdm_direction);
+		i++;
+	}
+	len = i;
+	return 0;
+}
+EXPORT_SYMBOL_GPL(sunxi_parse_sdm_info);
+
+struct clk_sdm_info *sunxi_clk_get_sdm_info(const char *clk_name)
+{
+	int i;
+	struct clk_sdm_info *sdm = NULL;
+
+	if (!sdm_info)
+		return NULL;
+
+	for (i = 0; i < len; i++) {
+		if (!strcmp(clk_name, sdm_info[i].clk_name)) {
+			sdm = &sdm_info[i];
+			break;
+		}
+	}
+	return sdm;
+}
+EXPORT_SYMBOL_GPL(sunxi_clk_get_sdm_info);

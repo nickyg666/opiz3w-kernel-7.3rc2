@@ -1,0 +1,1 @@
+/home/host/opikernel/scripts/kdir-build.sh

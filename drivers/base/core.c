@@ -1141,9 +1141,12 @@ int device_links_check_suppliers(struct device *dev)
 		if (sup_fw) {
 			if (dev_is_best_effort(dev))
 				fwnode_ret = -EAGAIN;
-			else
+			else {
+				dev_info(dev, "device links: waiting for supplier %pfwf\n",
+						sup_fw);
 				return dev_err_probe(dev, -EPROBE_DEFER,
 						     "wait for supplier %pfwf\n", sup_fw);
+			}
 		}
 	}
 
