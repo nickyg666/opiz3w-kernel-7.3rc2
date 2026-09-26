@@ -155,7 +155,21 @@ int aicbsp_set_subsys(int subsys, int state)
 				goto err2;
 			if (aicbsp_driver_fw_init(sdiodev))
 				goto err3;
-			aicbsp_sdio_release(sdiodev);
+			/*
+			 * 2026-09-26: do NOT call aicbsp_sdio_release() here.
+			 *
+			 * aicbsp_sdio_release() sets bus_if->state = BUS_DOWN_ST and calls
+			 * sdio_release_irq(). It is a teardown helper, but this is the
+			 * success path, so it marked the freshly-initialised bus DOWN and
+			 * dropped the IRQ. Every later command then failed in
+			 * aicwf_sdio_bus_pwrctl() with "bus down", the first IPC command was
+			 * never answered, cmd_mgr latched RWNX_CMD_MGR_STATE_CRASHED and
+			 * every later command returned -EPIPE - the endless "cmd queue
+			 * crashed" and a scan that found zero BSS.
+			 *
+			 * The release belongs on the error paths (err3 already does it)
+			 * and on power-off, never after a successful init.
+			 */
 		} else {
 			aicbsp_sdio_exit();
 			aicbsp_platform_power_off();
