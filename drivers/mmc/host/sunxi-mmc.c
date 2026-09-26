@@ -775,9 +775,7 @@ static int sunxi_mmc_clk_set_rate(struct sunxi_mmc_host *host,
 	/* 2026-09-25 A733 bring-up: boot wedges in sunxi_mmc_set_clk for the root
 	 * card (4020000.mmc) only. Bracket every step of this function so the
 	 * blocking call is named. Temporary diagnostic. */
-	dev_info(mmc_dev(mmc), "MMC clk_set_rate: oclk_off done new_timings=%d ccu_switch=%d clock=%u div=%u\n",
-		 host->use_new_timings, host->cfg->ccu_has_timings_switch,
-		 clock, div);
+	
 
 	/* Our clock is gated now */
 	mmc->actual_clock = 0;
@@ -836,9 +834,8 @@ static int sunxi_mmc_clk_set_rate(struct sunxi_mmc_host *host,
 	if (host->clk_src24m) {
 		host->ferror = clk_set_parent(host->clk_mmc, host->clk_src24m);
 		if (host->ferror)
-			dev_info(mmc_dev(mmc),
-				 "MMC clk_set_rate: set_parent failed %d\n",
-				 host->ferror);
+			dev_err(mmc_dev(mmc), "set_parent failed: %d\n",
+				host->ferror);
 	}
 
 	rate = clk_round_rate(host->clk_mmc, clock);
@@ -847,7 +844,7 @@ static int sunxi_mmc_clk_set_rate(struct sunxi_mmc_host *host,
 			clock, rate);
 		return rate;
 	}
-	dev_info(mmc_dev(mmc), "MMC clk_set_rate: rounded %ld\n", rate);
+	
 
 	/* setting clock rate */
 	ret = clk_set_rate(host->clk_mmc, rate);
@@ -858,9 +855,8 @@ static int sunxi_mmc_clk_set_rate(struct sunxi_mmc_host *host,
 	}
 	/* 2026-09-25: report the rate the clock core actually achieved and its
 	 * parent, so the smhc0 reparent fix can be verified from the boot log. */
-	dev_info(mmc_dev(mmc), "MMC clk_set_rate: set %ld, achieved %lu\n",
-		 rate, clk_get_rate(host->clk_mmc));
-	dev_info(mmc_dev(mmc), "MMC clk_set_rate: clk_set_rate done\n");
+	
+	
 
 	/* set internal divider */
 	rval = mmc_readl(host, REG_CLKCR);
@@ -888,12 +884,12 @@ static int sunxi_mmc_clk_set_rate(struct sunxi_mmc_host *host,
 	ret = sunxi_mmc_clk_set_phase(host, ios, rate);
 	if (ret)
 		return ret;
-	dev_info(mmc_dev(mmc), "MMC clk_set_rate: set_phase done\n");
+	
 
 	ret = sunxi_mmc_calibrate(host, SDXC_REG_SAMP_DL_REG);
 	if (ret)
 		return ret;
-	dev_info(mmc_dev(mmc), "MMC clk_set_rate: calibrate done\n");
+	
 
 	/*
 	 * FIXME:
@@ -999,14 +995,13 @@ static void sunxi_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 	/* 2026-09-25 A733 bring-up: boot wedges inside mmc_power_up() -> this
 	 * set_ios. Bracket the three steps so we can name the blocking one.
 	 * Temporary diagnostic. */
-	dev_info(mmc_dev(mmc), "MMC set_ios: card_power begin pmode=%u vdd=%d clock=%u\n",
-		 ios->power_mode, ios->vdd, ios->clock);
+	
 	sunxi_mmc_card_power(host, ios);
-	dev_info(mmc_dev(mmc), "MMC set_ios: card_power done ferror=%d\n", host->ferror);
+	
 	sunxi_mmc_set_bus_width(host, ios->bus_width);
-	dev_info(mmc_dev(mmc), "MMC set_ios: bus_width done\n");
+	
 	sunxi_mmc_set_clk(host, ios);
-	dev_info(mmc_dev(mmc), "MMC set_ios: set_clk done ferror=%d\n", host->ferror);
+	
 }
 
 static int sunxi_mmc_volt_switch(struct mmc_host *mmc, struct mmc_ios *ios)

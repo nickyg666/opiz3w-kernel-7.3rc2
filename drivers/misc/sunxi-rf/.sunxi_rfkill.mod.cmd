@@ -1,0 +1,1 @@
+savedcmd_drivers/misc/sunxi-rf/sunxi_rfkill.mod := printf '%s\n'   sunxi-gnss.o sunxi-modem.o sunxi-bluetooth.o sunxi-wlan.o sunxi-rfkill.o | awk '!x[$$0]++ { print("drivers/misc/sunxi-rf/"$$0) }' > drivers/misc/sunxi-rf/sunxi_rfkill.mod

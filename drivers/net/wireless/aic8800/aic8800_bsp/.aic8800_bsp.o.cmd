@@ -1,0 +1,1 @@
+savedcmd_drivers/net/wireless/aic8800/aic8800_bsp/aic8800_bsp.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/net/wireless/aic8800/aic8800_bsp/aic8800_bsp.o @drivers/net/wireless/aic8800/aic8800_bsp/aic8800_bsp.mod 

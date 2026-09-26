@@ -1,0 +1,1 @@
+savedcmd_drivers/misc/sunxi-rf/sunxi_rfkill.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/misc/sunxi-rf/sunxi_rfkill.o @drivers/misc/sunxi-rf/sunxi_rfkill.mod 

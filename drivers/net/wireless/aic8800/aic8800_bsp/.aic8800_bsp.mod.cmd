@@ -1,0 +1,1 @@
+savedcmd_drivers/net/wireless/aic8800/aic8800_bsp/aic8800_bsp.mod := printf '%s\n'   aic_bsp_main.o aic_bsp_driver.o aic_bsp_8800d.o aic_bsp_8800dc.o aic_bsp_8800d80.o aic_bsp_txrxif.o aicsdio.o aic_bsp_txq_prealloc.o aic_bsp_verify.o | awk '!x[$$0]++ { print("drivers/net/wireless/aic8800/aic8800_bsp/"$$0) }' > drivers/net/wireless/aic8800/aic8800_bsp/aic8800_bsp.mod

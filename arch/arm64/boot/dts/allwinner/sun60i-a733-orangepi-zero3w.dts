@@ -1785,9 +1785,17 @@
 };
 
 &dwc3 {
-	dr_mode = "otg"; //dr_mode option: host, peripheral, otg
+	/*
+	 * 2026-09-26: dr_mode was "otg" with role-switch-default-mode = "host".
+	 * This board has NO RJ45 port, so wired Ethernet is not an option, and
+	 * with the port defaulting to host the DWC3 controller never enumerates
+	 * as a gadget - which is the ONLY way to reach the board now. Force
+	 * peripheral so the board appears on the host over USB and we can do
+	 * USB gadget networking (configfs NCM/RNDIS, both already =y).
+	 */
+	dr_mode = "peripheral";
 	usb-role-switch;
-	role-switch-default-mode = "host";
+	role-switch-default-mode = "peripheral";
 //#ifdef TYPEC_DP
 	phys = <&u2phy>, <&combo0_usb>;
 //#else
@@ -3028,8 +3036,18 @@
 
 &rfkill {
 	compatible = "allwinner,sunxi-rfkill";
-	chip_en;
-	power_en;
+	/* 2026-09-26 A733: chip_en and power_en are BARE BOOLEAN properties here,
+	 * so they carry no GPIO at all and the driver logs "get gpio chip_en
+	 * failed". That path is non-fatal (it logs and continues) and the
+	 * schematic does not give me a verified pin for them, so they are left
+	 * alone rather than guessed at - do NOT invent a pin here.
+	 *
+	 * The real blocker is the wlan node below: of_get_named_gpio() /
+	 * of_find_gpio() in 7.3 only looks for "<con_id>-gpios" or
+	 * "<con_id>-gpio" (drivers/gpio/gpiolib-of.c, for_each_gpio_property_name),
+	 * so a bare "wlan_regon" can never resolve and the power sequence dies
+	 * with "wlan power on success" then an immediate "power off".
+	 */
 	pinctrl-0;
 	pinctrl-names;
 	status = "okay";
@@ -3042,6 +3060,10 @@
 		wlan_power    = "axp8191-bldo5", "axp8191-cldo1"; /* vcc-pg/vcc-pm */
 		wlan_power_vol= <1800000>, <1800000>;
 		wlan_busnum   = <0x1>;
+		/* vendor values; duplicated as -gpios so of_get_named_gpio() can
+		 * actually find them (it only tries <name>-gpios / <name>-gpio) */
+		wlan_regon-gpios    = <&r_pio PM 1 GPIO_ACTIVE_HIGH>;
+		wlan_hostwake-gpios = <&r_pio PM 0 GPIO_ACTIVE_HIGH>;
 		wlan_regon    = <&r_pio PM 1 GPIO_ACTIVE_HIGH>;
 		wlan_hostwake = <&r_pio PM 0 GPIO_ACTIVE_HIGH>;
 		wakeup-source;
@@ -3406,11 +3428,13 @@
 	rx-delay = <10>;
 	dwmac3v3-supply = <&reg_dc1sw2>;
 	phy3v3-supply = <&reg_dc1sw1>;
-	/* 2026-09-26: was status = "disabled" in both our tree and the 5.15
-	 * vendor tree, which is why the board boots to a login prompt with no
-	 * network at all and SSH is unreachable. Enable it now that userspace
-	 * runs. Revert to "disabled" if the stmmac probe wedges the boot. */
-	status = "okay";
+	/* 2026-09-26: this board has NO physical Ethernet port - Nick confirmed.
+	 * The earlier "No route to host" was the hardware, not a fault, so
+	 * enabling gmac0 was a wild goose chase. Reverted to "disabled", matching
+	 * both our original tree and the 5.15 vendor tree. Board access is via USB
+	 * gadget networking, not an RJ45 cable. Do not re-enable without a real
+	 * Ethernet port. */
+	status = "disabled";
 };
 
 &lradc {

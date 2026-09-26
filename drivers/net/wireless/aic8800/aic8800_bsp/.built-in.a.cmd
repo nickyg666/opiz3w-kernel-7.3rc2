@@ -1,0 +1,1 @@
+savedcmd_drivers/net/wireless/aic8800/aic8800_bsp/built-in.a := rm -f drivers/net/wireless/aic8800/aic8800_bsp/built-in.a;  aarch64-linux-gnu-ar cDPrST drivers/net/wireless/aic8800/aic8800_bsp/built-in.a
