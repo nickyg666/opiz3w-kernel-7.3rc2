@@ -1,0 +1,21 @@
+!<thin>
+//                                              136       `
+tidss_crtc.o/
+tidss_drv.o/
+tidss_encoder.o/
+tidss_kms.o/
+tidss_irq.o/
+tidss_plane.o/
+tidss_scale_coefs.o/
+tidss_dispc.o/
+tidss_oldi.o/
+
+/0              0           0     0     644     50696     `
+/14             0           0     0     644     49608     `
+/27             0           0     0     644     31560     `
+/44             0           0     0     644     29184     `
+/57             0           0     0     644     24976     `
+/70             0           0     0     644     43544     `
+/85             0           0     0     644     19120     `
+/106            0           0     0     644     296272    `
+/121            0           0     0     644     58008     `

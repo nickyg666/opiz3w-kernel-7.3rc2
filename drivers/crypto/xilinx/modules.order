@@ -1,0 +1,2 @@
+drivers/crypto/xilinx/zynqmp-aes-gcm.o
+drivers/crypto/xilinx/zynqmp-sha.o

@@ -1,0 +1,16 @@
+drivers/net/wireless/ath/ath12k/wifi7/core.o
+drivers/net/wireless/ath/ath12k/wifi7/pci.o
+drivers/net/wireless/ath/ath12k/wifi7/wmi.o
+drivers/net/wireless/ath/ath12k/wifi7/mhi.o
+drivers/net/wireless/ath/ath12k/wifi7/ce.o
+drivers/net/wireless/ath/ath12k/wifi7/hw.o
+drivers/net/wireless/ath/ath12k/wifi7/hal_tx.o
+drivers/net/wireless/ath/ath12k/wifi7/hal_rx.o
+drivers/net/wireless/ath/ath12k/wifi7/dp_rx.o
+drivers/net/wireless/ath/ath12k/wifi7/dp_tx.o
+drivers/net/wireless/ath/ath12k/wifi7/dp.o
+drivers/net/wireless/ath/ath12k/wifi7/dp_mon.o
+drivers/net/wireless/ath/ath12k/wifi7/hal.o
+drivers/net/wireless/ath/ath12k/wifi7/hal_qcn9274.o
+drivers/net/wireless/ath/ath12k/wifi7/hal_wcn7850.o
+drivers/net/wireless/ath/ath12k/wifi7/hal_qcc2072.o

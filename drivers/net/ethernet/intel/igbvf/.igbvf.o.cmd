@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/intel/igbvf/igbvf.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/net/ethernet/intel/igbvf/igbvf.o @drivers/net/ethernet/intel/igbvf/igbvf.mod 

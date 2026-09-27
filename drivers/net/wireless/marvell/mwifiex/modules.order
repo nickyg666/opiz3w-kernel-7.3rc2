@@ -1,0 +1,4 @@
+drivers/net/wireless/marvell/mwifiex/mwifiex.o
+drivers/net/wireless/marvell/mwifiex/mwifiex_sdio.o
+drivers/net/wireless/marvell/mwifiex/mwifiex_pcie.o
+drivers/net/wireless/marvell/mwifiex/mwifiex_usb.o

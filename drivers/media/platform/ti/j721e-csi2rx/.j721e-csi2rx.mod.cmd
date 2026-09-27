@@ -1,0 +1,1 @@
+savedcmd_drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.mod := printf '%s\n'   j721e-csi2rx.o | awk '!x[$$0]++ { print("drivers/media/platform/ti/j721e-csi2rx/"$$0) }' > drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.mod

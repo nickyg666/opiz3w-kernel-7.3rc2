@@ -1,0 +1,1 @@
+savedcmd_drivers/nfc/nxp-nci/nxp-nci.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/nfc/nxp-nci/nxp-nci.ko drivers/nfc/nxp-nci/nxp-nci.o drivers/nfc/nxp-nci/nxp-nci.mod.o .module-common.o

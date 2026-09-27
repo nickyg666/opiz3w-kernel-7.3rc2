@@ -1,0 +1,10 @@
+drivers/platform/chrome/cros_ec_rpmsg.o
+drivers/platform/chrome/cros-ec-typec.o
+drivers/platform/chrome/cros_kbd_led_backlight.o
+drivers/platform/chrome/cros_ec_chardev.o
+drivers/platform/arm64/acer-aspire1-ec.o
+drivers/platform/arm64/huawei-gaokun-ec.o
+drivers/platform/arm64/lenovo-yoga-c630.o
+drivers/platform/arm64/lenovo-thinkpad-t14s.o
+drivers/platform/arm64/qcom-hamoa-ec.o
+drivers/platform/raspberrypi/vchiq.o

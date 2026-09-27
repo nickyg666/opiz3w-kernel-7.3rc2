@@ -1,0 +1,51 @@
+!<thin>
+//                                              462       `
+core.o/
+amlogic/reset-meson.o/
+amlogic/reset-meson-common.o/
+hisilicon/hi6220_reset.o/
+hisilicon/reset-hi3660.o/
+tegra/reset-bpmp.o/
+reset-brcmstb.o/
+reset-brcmstb-rescal.o/
+reset-imx7.o/
+reset-imx8mp-audiomix.o/
+reset-npcm.o/
+reset-ma35d1.o/
+reset-mpfs.o/
+reset-qcom-aoss.o/
+reset-raspberrypi.o/
+reset-rzg2l-usbphy-ctrl.o/
+reset-scmi.o/
+reset-simple.o/
+reset-sunxi.o/
+reset-ti-sci.o/
+reset-ti-syscon.o/
+reset-uniphier.o/
+reset-uniphier-glue.o/
+reset-zynqmp.o/
+
+/0              0           0     0     644     127072    `
+/8              0           0     0     644     22016     `
+/31             0           0     0     644     22776     `
+/61             0           0     0     644     24560     `
+/87             0           0     0     644     23560     `
+/113            0           0     0     644     15312     `
+/133            0           0     0     644     25472     `
+/150            0           0     0     644     26952     `
+/174            0           0     0     644     33696     `
+/188            0           0     0     644     28296     `
+/213            0           0     0     644     52288     `
+/227            0           0     0     644     27432     `
+/243            0           0     0     644     29656     `
+/257            0           0     0     644     25416     `
+/276            0           0     0     644     28624     `
+/297            0           0     0     644     58304     `
+/324            0           0     0     644     22096     `
+/338            0           0     0     644     30384     `
+/354            0           0     0     644     21592     `
+/369            0           0     0     644     28528     `
+/385            0           0     0     644     27656     `
+/404            0           0     0     644     38256     `
+/422            0           0     0     644     30384     `
+/445            0           0     0     644     28504     `

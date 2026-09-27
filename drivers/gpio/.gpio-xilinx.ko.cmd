@@ -1,0 +1,1 @@
+savedcmd_drivers/gpio/gpio-xilinx.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpio/gpio-xilinx.ko drivers/gpio/gpio-xilinx.o drivers/gpio/gpio-xilinx.mod.o .module-common.o

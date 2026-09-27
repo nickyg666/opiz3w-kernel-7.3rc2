@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/hisilicon/kirin/built-in.a := rm -f drivers/gpu/drm/hisilicon/kirin/built-in.a;  printf "drivers/gpu/drm/hisilicon/kirin/%s " kirin_drm_drv.o kirin_drm_ade.o dw_drm_dsi.o | xargs aarch64-linux-gnu-ar cDPrST drivers/gpu/drm/hisilicon/kirin/built-in.a

@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/broadcom/asp2/bcm-asp.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/net/ethernet/broadcom/asp2/bcm-asp.o @drivers/net/ethernet/broadcom/asp2/bcm-asp.mod 

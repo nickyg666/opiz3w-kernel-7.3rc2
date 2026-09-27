@@ -1,0 +1,1 @@
+savedcmd_drivers/media/rc/keymaps/rc-vega-s9x.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/media/rc/keymaps/rc-vega-s9x.ko drivers/media/rc/keymaps/rc-vega-s9x.o drivers/media/rc/keymaps/rc-vega-s9x.mod.o .module-common.o

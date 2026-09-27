@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/arm/display/built-in.a := rm -f drivers/gpu/drm/arm/display/built-in.a;  printf "drivers/gpu/drm/arm/display/%s " komeda/built-in.a | xargs aarch64-linux-gnu-ar cDPrST drivers/gpu/drm/arm/display/built-in.a

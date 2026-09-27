@@ -1,0 +1,1 @@
+savedcmd_drivers/phy/xilinx/phy-zynqmp.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/phy/xilinx/phy-zynqmp.ko drivers/phy/xilinx/phy-zynqmp.o drivers/phy/xilinx/phy-zynqmp.mod.o .module-common.o

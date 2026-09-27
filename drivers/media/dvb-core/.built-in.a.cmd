@@ -1,0 +1,1 @@
+savedcmd_drivers/media/dvb-core/built-in.a := rm -f drivers/media/dvb-core/built-in.a;  printf "drivers/media/dvb-core/%s " dvbdev.o dmxdev.o dvb_demux.o dvb_ca_en50221.o dvb_frontend.o dvb_ringbuffer.o | xargs aarch64-linux-gnu-ar cDPrST drivers/media/dvb-core/built-in.a

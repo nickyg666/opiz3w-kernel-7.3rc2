@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/panel/panel-startek-kd070fhfid015.mod := printf '%s\n'   panel-startek-kd070fhfid015.o | awk '!x[$$0]++ { print("drivers/gpu/drm/panel/"$$0) }' > drivers/gpu/drm/panel/panel-startek-kd070fhfid015.mod

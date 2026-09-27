@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/socionext/modules.order := {   echo drivers/net/ethernet/socionext/sni_ave.o;   echo drivers/net/ethernet/socionext/netsec.o; :; } > drivers/net/ethernet/socionext/modules.order

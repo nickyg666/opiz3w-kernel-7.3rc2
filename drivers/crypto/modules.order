@@ -1,0 +1,14 @@
+drivers/crypto/allwinner/sun8i-ce/sun8i-ce.o
+drivers/crypto/xilinx/zynqmp-aes-gcm.o
+drivers/crypto/xilinx/zynqmp-sha.o
+drivers/crypto/ccree/ccree.o
+drivers/crypto/caam/error.o
+drivers/crypto/caam/caam.o
+drivers/crypto/caam/caam_jr.o
+drivers/crypto/caam/caamalg_desc.o
+drivers/crypto/caam/caamhash_desc.o
+drivers/crypto/caam/dpaa2_caam.o
+drivers/crypto/sa2ul.o
+drivers/crypto/tegra/tegra-se.o
+drivers/crypto/bcm/bcm_crypto_spu.o
+drivers/crypto/amlogic/amlogic-gxl-crypto.o

@@ -1,0 +1,1 @@
+savedcmd_drivers/media/cec/platform/meson/built-in.a := rm -f drivers/media/cec/platform/meson/built-in.a;  printf "drivers/media/cec/platform/meson/%s " ao-cec-g12a.o | xargs aarch64-linux-gnu-ar cDPrST drivers/media/cec/platform/meson/built-in.a

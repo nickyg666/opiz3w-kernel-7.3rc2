@@ -1,0 +1,14 @@
+drivers/pci/pwrctrl/pci-pwrctrl-pwrseq.o
+drivers/pci/pwrctrl/pci-pwrctrl-tc9563.o
+drivers/pci/endpoint/functions/pci-epf-test.o
+drivers/pci/controller/dwc/pci-meson.o
+drivers/pci/controller/dwc/pcie-tegra194.o
+drivers/pci/controller/dwc/pcie-rcar-gen4.o
+drivers/pci/controller/cadence/pcie-cadence-mod.o
+drivers/pci/controller/cadence/pcie-cadence-host-mod.o
+drivers/pci/controller/cadence/pci-j721e.o
+drivers/pci/controller/cadence/pci-sky1.o
+drivers/pci/controller/pcie-rockchip-host.o
+drivers/pci/controller/pcie-mediatek-gen3.o
+drivers/pci/controller/pcie-brcmstb.o
+drivers/pci/controller/pcie-apple.o

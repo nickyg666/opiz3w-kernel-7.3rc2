@@ -1,0 +1,1 @@
+savedcmd_drivers/platform/arm64/modules.order := {   echo drivers/platform/arm64/acer-aspire1-ec.o;   echo drivers/platform/arm64/huawei-gaokun-ec.o;   echo drivers/platform/arm64/lenovo-yoga-c630.o;   echo drivers/platform/arm64/lenovo-thinkpad-t14s.o;   echo drivers/platform/arm64/qcom-hamoa-ec.o; :; } > drivers/platform/arm64/modules.order

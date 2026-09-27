@@ -1,0 +1,1 @@
+savedcmd_drivers/net/can/xilinx_can.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/can/xilinx_can.ko drivers/net/can/xilinx_can.o drivers/net/can/xilinx_can.mod.o .module-common.o

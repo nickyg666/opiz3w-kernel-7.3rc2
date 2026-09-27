@@ -1,0 +1,10 @@
+drivers/net/ethernet/freescale/enetc/fsl-enetc-core.o
+drivers/net/ethernet/freescale/enetc/nxp-enetc-pf-common.o
+drivers/net/ethernet/freescale/enetc/nxp-netc-lib.o
+drivers/net/ethernet/freescale/enetc/fsl-enetc.o
+drivers/net/ethernet/freescale/enetc/nxp-enetc4.o
+drivers/net/ethernet/freescale/enetc/fsl-enetc-vf.o
+drivers/net/ethernet/freescale/enetc/fsl-enetc-ierb.o
+drivers/net/ethernet/freescale/enetc/fsl-enetc-mdio.o
+drivers/net/ethernet/freescale/enetc/fsl-enetc-ptp.o
+drivers/net/ethernet/freescale/enetc/nxp-netc-blk-ctrl.o

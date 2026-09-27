@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/ti/icssg-prueth.mod := printf '%s\n'   icssg/icssg_prueth.o icssg/icssg_switchdev.o | awk '!x[$$0]++ { print("drivers/net/ethernet/ti/"$$0) }' > drivers/net/ethernet/ti/icssg-prueth.mod

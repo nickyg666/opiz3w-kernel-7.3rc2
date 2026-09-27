@@ -1,0 +1,26 @@
+!<thin>
+//                                              224       `
+core/ufshcd.o/
+core/ufs-sysfs.o/
+core/ufs-mcq.o/
+core/ufs-txeq.o/
+core/ufs-debugfs.o/
+core/ufs_bsg.o/
+core/ufshcd-crypto.o/
+host/ufs-exynos.o/
+host/ufshcd-pltfrm.o/
+host/ufs-hisi.o/
+host/ufs-mediatek.o/
+host/ufs-rockchip.o/
+/0              0           0     0     644     659968    `
+/15             0           0     0     644     498648    `
+/33             0           0     0     644     82432     `
+/49             0           0     0     644     91848     `
+/66             0           0     0     644     74224     `
+/86             0           0     0     644     33304     `
+/102            0           0     0     644     36136     `
+/124            0           0     0     644     180928    `
+/143            0           0     0     644     63704     `
+/165            0           0     0     644     79160     `
+/182            0           0     0     644     183400    `
+/203            0           0     0     644     58096     `

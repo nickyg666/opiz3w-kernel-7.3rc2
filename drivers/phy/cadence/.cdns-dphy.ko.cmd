@@ -1,0 +1,1 @@
+savedcmd_drivers/phy/cadence/cdns-dphy.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/phy/cadence/cdns-dphy.ko drivers/phy/cadence/cdns-dphy.o drivers/phy/cadence/cdns-dphy.mod.o .module-common.o

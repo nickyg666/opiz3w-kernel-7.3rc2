@@ -1,0 +1,10 @@
+!<thin>
+//                                              64        `
+wwan_core.o/
+mhi_wwan_ctrl.o/
+mhi_wwan_mbim.o/
+qcom_bam_dmux.o/
+/0              0           0     0     644     161280    `
+/13             0           0     0     644     59136     `
+/30             0           0     0     644     93992     `
+/47             0           0     0     644     118512    `

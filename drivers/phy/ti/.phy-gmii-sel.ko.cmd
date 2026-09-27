@@ -1,0 +1,1 @@
+savedcmd_drivers/phy/ti/phy-gmii-sel.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/phy/ti/phy-gmii-sel.ko drivers/phy/ti/phy-gmii-sel.o drivers/phy/ti/phy-gmii-sel.mod.o .module-common.o

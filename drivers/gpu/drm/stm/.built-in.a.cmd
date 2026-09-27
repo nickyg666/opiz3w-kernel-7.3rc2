@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/stm/built-in.a := rm -f drivers/gpu/drm/stm/built-in.a;  printf "drivers/gpu/drm/stm/%s " lvds.o drv.o ltdc.o | xargs aarch64-linux-gnu-ar cDPrST drivers/gpu/drm/stm/built-in.a

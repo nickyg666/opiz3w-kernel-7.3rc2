@@ -1,0 +1,1 @@
+savedcmd_drivers/clk/qcom/dispcc-glymur.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/qcom/dispcc-glymur.ko drivers/clk/qcom/dispcc-glymur.o drivers/clk/qcom/dispcc-glymur.mod.o .module-common.o

@@ -1,0 +1,3 @@
+drivers/staging/media/max96712/max96712.o
+drivers/staging/media/meson/vdec/meson-vdec.o
+drivers/staging/vc04_services/bcm2835-audio/snd-bcm2835.o

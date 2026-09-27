@@ -1,0 +1,1 @@
+savedcmd_drivers/irqchip/irq-bcm2712-mip.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/irqchip/irq-bcm2712-mip.ko drivers/irqchip/irq-bcm2712-mip.o drivers/irqchip/irq-bcm2712-mip.mod.o .module-common.o

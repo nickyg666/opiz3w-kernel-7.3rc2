@@ -1,0 +1,48 @@
+!<thin>
+//                                              316       `
+transports/smc.o/
+transports/mailbox.o/
+transports/optee.o/
+vendors/imx/imx-sm-bbm.o/
+vendors/imx/imx-sm-cpu.o/
+vendors/imx/imx-sm-lmm.o/
+vendors/imx/imx-sm-misc.o/
+bus.o/
+driver.o/
+notify.o/
+quirks.o/
+base.o/
+clock.o/
+perf.o/
+power.o/
+reset.o/
+sensors.o/
+system.o/
+voltage.o/
+powercap.o/
+pinctrl.o/
+shmem.o/
+msg.o/
+/0              0           0     0     644     43728     `
+/18             0           0     0     644     41928     `
+/40             0           0     0     644     54256     `
+/60             0           0     0     644     32376     `
+/86             0           0     0     644     28808     `
+/112            0           0     0     644     28536     `
+/138            0           0     0     644     40984     `
+/165            0           0     0     644     64776     `
+/172            0           0     0     644     220240    `
+/182            0           0     0     644     121176    `
+/192            0           0     0     644     24856     `
+/202            0           0     0     644     32968     `
+/210            0           0     0     644     74336     `
+/219            0           0     0     644     79592     `
+/227            0           0     0     644     32456     `
+/236            0           0     0     644     34432     `
+/245            0           0     0     644     74744     `
+/256            0           0     0     644     23968     `
+/266            0           0     0     644     36136     `
+/277            0           0     0     644     61464     `
+/289            0           0     0     644     57848     `
+/300            0           0     0     644     41960     `
+/309            0           0     0     644     18792     `

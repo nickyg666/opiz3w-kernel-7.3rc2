@@ -1,0 +1,1 @@
+savedcmd_drivers/net/wireless/mediatek/mt76/mt7921/built-in.a := rm -f drivers/net/wireless/mediatek/mt76/mt7921/built-in.a;  printf "drivers/net/wireless/mediatek/mt76/mt7921/%s " mac.o mcu.o regd.o main.o init.o debugfs.o pci.o pci_mac.o pci_mcu.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/wireless/mediatek/mt76/mt7921/built-in.a

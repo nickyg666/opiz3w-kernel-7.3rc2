@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/xlnx/zynqmp-dpsub.mod := printf '%s\n'   zynqmp_disp.o zynqmp_dpsub.o zynqmp_dp.o zynqmp_kms.o zynqmp_dp_audio.o | awk '!x[$$0]++ { print("drivers/gpu/drm/xlnx/"$$0) }' > drivers/gpu/drm/xlnx/zynqmp-dpsub.mod

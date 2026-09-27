@@ -1,0 +1,57 @@
+!<thin>
+//                                              372       `
+pci-quirks.o/
+ehci-hcd.o/
+ehci-pci.o/
+ehci-platform.o/
+ehci-npcm7xx.o/
+ehci-orion.o/
+ehci-exynos.o/
+ohci-hcd.o/
+ohci-pci.o/
+ohci-platform.o/
+ohci-exynos.o/
+xhci.o/
+xhci-mem.o/
+xhci-ext-caps.o/
+xhci-ring.o/
+xhci-hub.o/
+xhci-dbg.o/
+xhci-trace.o/
+xhci-debugfs.o/
+xhci-sideband.o/
+xhci-pci.o/
+xhci-plat.o/
+xhci-rcar.o/
+xhci-rzv2m.o/
+xhci-mtk.o/
+xhci-mtk-sch.o/
+xhci-tegra.o/
+
+/0              0           0     0     644     48104     `
+/14             0           0     0     644     384152    `
+/26             0           0     0     644     34536     `
+/38             0           0     0     644     55184     `
+/55             0           0     0     644     27056     `
+/71             0           0     0     644     40280     `
+/85             0           0     0     644     38392     `
+/100            0           0     0     644     277120    `
+/112            0           0     0     644     31696     `
+/124            0           0     0     644     42456     `
+/141            0           0     0     644     35944     `
+/156            0           0     0     644     362264    `
+/164            0           0     0     644     148640    `
+/176            0           0     0     644     22744     `
+/193            0           0     0     644     205224    `
+/206            0           0     0     644     110064    `
+/218            0           0     0     644     14792     `
+/230            0           0     0     644     10864     `
+/244            0           0     0     644     109016    `
+/260            0           0     0     644     43472     `
+/277            0           0     0     644     73312     `
+/289            0           0     0     644     85512     `
+/302            0           0     0     644     42432     `
+/315            0           0     0     644     14528     `
+/329            0           0     0     644     106808    `
+/341            0           0     0     644     58656     `
+/357            0           0     0     644     191896    `

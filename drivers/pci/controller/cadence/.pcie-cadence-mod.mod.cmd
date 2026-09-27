@@ -1,0 +1,1 @@
+savedcmd_drivers/pci/controller/cadence/pcie-cadence-mod.mod := printf '%s\n'   pcie-cadence-hpa.o pcie-cadence.o | awk '!x[$$0]++ { print("drivers/pci/controller/cadence/"$$0) }' > drivers/pci/controller/cadence/pcie-cadence-mod.mod

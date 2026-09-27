@@ -1,0 +1,9 @@
+drivers/fpga/altera-cvp.o
+drivers/fpga/stratix10-soc.o
+drivers/fpga/zynqmp-fpga.o
+drivers/fpga/versal-fpga.o
+drivers/fpga/fpga-bridge.o
+drivers/fpga/altera-freeze-bridge.o
+drivers/fpga/xilinx-pr-decoupler.o
+drivers/fpga/fpga-region.o
+drivers/fpga/of-fpga-region.o

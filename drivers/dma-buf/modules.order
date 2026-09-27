@@ -1,0 +1,2 @@
+drivers/dma-buf/heaps/system_heap.o
+drivers/dma-buf/heaps/cma_heap.o

@@ -1,0 +1,6 @@
+drivers/firmware/google/coreboot_table.o
+drivers/firmware/google/cbmem.o
+drivers/firmware/qcom/qcom_pas_tee.o
+drivers/firmware/samsung/acpm-protocol.o
+drivers/firmware/stratix10-rsu.o
+drivers/firmware/mtk-adsp-ipc.o

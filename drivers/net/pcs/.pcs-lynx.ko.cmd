@@ -1,0 +1,1 @@
+savedcmd_drivers/net/pcs/pcs-lynx.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/pcs/pcs-lynx.ko drivers/net/pcs/pcs-lynx.o drivers/net/pcs/pcs-lynx.mod.o .module-common.o

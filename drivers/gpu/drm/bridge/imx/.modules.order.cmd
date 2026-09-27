@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/bridge/imx/modules.order := {   echo drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.o;   echo drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.o;   echo drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.o; :; } > drivers/gpu/drm/bridge/imx/modules.order

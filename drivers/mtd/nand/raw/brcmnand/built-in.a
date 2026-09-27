@@ -1,0 +1,11 @@
+!<thin>
+//                                              58        `
+iproc_nand.o/
+bcmbca_nand.o/
+brcmstb_nand.o/
+brcmnand.o/
+
+/0              0           0     0     644     27328     `
+/14             0           0     0     644     25064     `
+/29             0           0     0     644     16744     `
+/45             0           0     0     644     230224    `

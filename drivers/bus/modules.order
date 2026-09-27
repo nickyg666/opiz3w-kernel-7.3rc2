@@ -1,0 +1,4 @@
+drivers/bus/mhi/host/mhi.o
+drivers/bus/mhi/host/mhi_pci_generic.o
+drivers/bus/imx-aipstz.o
+drivers/bus/tegra-aconnect.o

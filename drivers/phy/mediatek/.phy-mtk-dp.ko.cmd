@@ -1,0 +1,1 @@
+savedcmd_drivers/phy/mediatek/phy-mtk-dp.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/phy/mediatek/phy-mtk-dp.ko drivers/phy/mediatek/phy-mtk-dp.o drivers/phy/mediatek/phy-mtk-dp.mod.o .module-common.o

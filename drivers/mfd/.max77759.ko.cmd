@@ -1,0 +1,1 @@
+savedcmd_drivers/mfd/max77759.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/mfd/max77759.ko drivers/mfd/max77759.o drivers/mfd/max77759.mod.o .module-common.o

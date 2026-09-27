@@ -1,0 +1,1 @@
+savedcmd_drivers/nvme/host/nvme-apple.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/nvme/host/nvme-apple.ko drivers/nvme/host/nvme-apple.o drivers/nvme/host/nvme-apple.mod.o .module-common.o

@@ -1,0 +1,26 @@
+!<thin>
+//                                              226       `
+exynos_drm_drv.o/
+exynos_drm_crtc.o/
+exynos_drm_fb.o/
+exynos_drm_gem.o/
+exynos_drm_plane.o/
+exynos_drm_dma.o/
+exynos_drm_fbdev.o/
+exynos5433_drm_decon.o/
+exynos7_drm_decon.o/
+exynos_drm_dsi.o/
+exynos_hdmi.o/
+exynos_drm_mic.o/
+/0              0           0     0     644     52856     `
+/18             0           0     0     644     47088     `
+/37             0           0     0     644     31616     `
+/54             0           0     0     644     57024     `
+/72             0           0     0     644     33832     `
+/92             0           0     0     644     13344     `
+/110            0           0     0     644     28232     `
+/130            0           0     0     644     88184     `
+/154            0           0     0     644     83984     `
+/175            0           0     0     644     27920     `
+/193            0           0     0     644     176896    `
+/208            0           0     0     644     61128     `

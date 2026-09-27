@@ -1,0 +1,15 @@
+drivers/media/platform/amphion/vpu_drv.o
+drivers/media/platform/amphion/vpu_core.o
+drivers/media/platform/amphion/vpu_mbox.o
+drivers/media/platform/amphion/vpu_v4l2.o
+drivers/media/platform/amphion/vpu_helpers.o
+drivers/media/platform/amphion/vpu_cmds.o
+drivers/media/platform/amphion/vpu_msgs.o
+drivers/media/platform/amphion/vpu_rpc.o
+drivers/media/platform/amphion/vpu_imx8q.o
+drivers/media/platform/amphion/vpu_windsor.o
+drivers/media/platform/amphion/vpu_malone.o
+drivers/media/platform/amphion/vpu_color.o
+drivers/media/platform/amphion/vdec.o
+drivers/media/platform/amphion/venc.o
+drivers/media/platform/amphion/vpu_dbg.o

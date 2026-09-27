@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/hisilicon/hibmc/built-in.a := rm -f drivers/gpu/drm/hisilicon/hibmc/built-in.a;  printf "drivers/gpu/drm/hisilicon/hibmc/%s " hibmc_drm_drv.o hibmc_drm_de.o hibmc_drm_vdac.o hibmc_drm_i2c.o dp/dp_aux.o dp/dp_link.o dp/dp_hw.o dp/dp_serdes.o hibmc_drm_dp.o hibmc_drm_debugfs.o | xargs aarch64-linux-gnu-ar cDPrST drivers/gpu/drm/hisilicon/hibmc/built-in.a

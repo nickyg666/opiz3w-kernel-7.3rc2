@@ -1,0 +1,1 @@
+savedcmd_drivers/slimbus/built-in.a := rm -f drivers/slimbus/built-in.a;  printf "drivers/slimbus/%s " core.o messaging.o sched.o stream.o qcom-ngd-ctrl.o | xargs aarch64-linux-gnu-ar cDPrST drivers/slimbus/built-in.a

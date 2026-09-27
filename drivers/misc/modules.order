@@ -1,0 +1,9 @@
+drivers/misc/qcom-coincell.o
+drivers/misc/fastrpc.o
+drivers/misc/pci_endpoint_test.o
+drivers/misc/uacce/uacce.o
+drivers/misc/xilinx_sdfec.o
+drivers/misc/tps6594-esm.o
+drivers/misc/tps6594-pfsm.o
+drivers/misc/rp1/rp1_pci.o
+drivers/misc/sunxi-rf/sunxi_rfkill.o

@@ -1,0 +1,1 @@
+savedcmd_drivers/phy/cadence/phy-cadence-salvo.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/phy/cadence/phy-cadence-salvo.ko drivers/phy/cadence/phy-cadence-salvo.o drivers/phy/cadence/phy-cadence-salvo.mod.o .module-common.o

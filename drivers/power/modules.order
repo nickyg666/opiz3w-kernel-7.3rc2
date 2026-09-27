@@ -1,0 +1,14 @@
+drivers/power/reset/macsmc-reboot.o
+drivers/power/reset/qcom-pon.o
+drivers/power/reset/tdx-ec-poweroff.o
+drivers/power/reset/nvmem-reboot-mode.o
+drivers/power/sequencing/pwrseq-qcom-wcn.o
+drivers/power/sequencing/pwrseq-pcie-m2.o
+drivers/power/supply/qcom_battmgr.o
+drivers/power/supply/sbs-battery.o
+drivers/power/supply/max17042_battery.o
+drivers/power/supply/mt6360_charger.o
+drivers/power/supply/bq25890_charger.o
+drivers/power/supply/bq25980_charger.o
+drivers/power/supply/rk817_charger.o
+drivers/power/supply/max77759_charger.o

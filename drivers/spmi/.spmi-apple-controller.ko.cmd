@@ -1,0 +1,1 @@
+savedcmd_drivers/spmi/spmi-apple-controller.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/spmi/spmi-apple-controller.ko drivers/spmi/spmi-apple-controller.o drivers/spmi/spmi-apple-controller.mod.o .module-common.o

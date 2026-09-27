@@ -1,0 +1,1 @@
+savedcmd_drivers/platform/arm64/huawei-gaokun-ec.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/platform/arm64/huawei-gaokun-ec.ko drivers/platform/arm64/huawei-gaokun-ec.o drivers/platform/arm64/huawei-gaokun-ec.mod.o .module-common.o

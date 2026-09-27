@@ -215,10 +215,24 @@ extern int sunxi_wlan_get_oob_irq(void);
 extern int sunxi_wlan_get_oob_irq_flags(void);
 #endif
 
+extern void sunxi_wlan_set_hostwake(int on);
+
 static irqreturn_t rwnx_hostwake_irq_handler(int irq, void *para)
 {
 	static int wake_cnt;
 	wake_cnt++;
+
+	/*
+	 * 2026-09-26: acknowledge the interrupt source BEFORE doing anything
+	 * else. This line is registered level-triggered (IRQF_TRIGGER_HIGH) and
+	 * the pin is driven high by sunxi-rf, so returning without deasserting it
+	 * re-entered this handler forever - observed as 416228 counts on
+	 * rwnx_hostwake_irq with no progress, and the first IPC command
+	 * (rwnx_send_set_stack_start_req) was never answered, which timed out
+	 * after ~6s and latched cmd_mgr CRASHED.
+	 */
+	sunxi_wlan_set_hostwake(0);
+
 	rwnx_wakeup_lock_timeout(g_rwnx_plat->sdiodev->rwnx_hw->ws_rx, 1000);
 
 #ifdef CONFIG_OOB

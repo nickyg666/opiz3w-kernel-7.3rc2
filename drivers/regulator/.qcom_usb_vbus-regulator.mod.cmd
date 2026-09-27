@@ -1,0 +1,1 @@
+savedcmd_drivers/regulator/qcom_usb_vbus-regulator.mod := printf '%s\n'   qcom_usb_vbus-regulator.o | awk '!x[$$0]++ { print("drivers/regulator/"$$0) }' > drivers/regulator/qcom_usb_vbus-regulator.mod

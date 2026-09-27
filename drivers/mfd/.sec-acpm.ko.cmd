@@ -1,0 +1,1 @@
+savedcmd_drivers/mfd/sec-acpm.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/mfd/sec-acpm.ko drivers/mfd/sec-acpm.o drivers/mfd/sec-acpm.mod.o .module-common.o

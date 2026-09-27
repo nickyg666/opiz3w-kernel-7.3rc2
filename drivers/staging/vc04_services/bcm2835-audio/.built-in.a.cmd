@@ -1,0 +1,1 @@
+savedcmd_drivers/staging/vc04_services/bcm2835-audio/built-in.a := rm -f drivers/staging/vc04_services/bcm2835-audio/built-in.a;  printf "drivers/staging/vc04_services/bcm2835-audio/%s " bcm2835.o bcm2835-ctl.o bcm2835-pcm.o bcm2835-vchiq.o | xargs aarch64-linux-gnu-ar cDPrST drivers/staging/vc04_services/bcm2835-audio/built-in.a

@@ -1,0 +1,1 @@
+savedcmd_drivers/clk/qcom/camcc-glymur.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/qcom/camcc-glymur.ko drivers/clk/qcom/camcc-glymur.o drivers/clk/qcom/camcc-glymur.mod.o .module-common.o

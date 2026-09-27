@@ -1,0 +1,28 @@
+!<thin>
+//                                              330       `
+chrome/chromeos_of_hw_prober.o/
+chrome/cros_ec.o/
+chrome/cros_ec_i2c.o/
+chrome/cros_ec_spi.o/
+chrome/cros_ec_proto.o/
+chrome/cros_ec_trace.o/
+chrome/cros_ec_lightbar.o/
+chrome/cros_ec_vbc.o/
+chrome/cros_ec_debugfs.o/
+chrome/cros_ec_sensorhub.o/
+chrome/cros_ec_sensorhub_ring.o/
+chrome/cros_ec_sysfs.o/
+chrome/cros_usbpd_notify.o/
+/0              0           0     0     644     23232     `
+/32             0           0     0     644     60928     `
+/50             0           0     0     644     48624     `
+/72             0           0     0     644     59464     `
+/94             0           0     0     644     66232     `
+/118            0           0     0     644     9736      `
+/142            0           0     0     644     53672     `
+/169            0           0     0     644     27408     `
+/191            0           0     0     644     63400     `
+/217            0           0     0     644     40680     `
+/245            0           0     0     644     49520     `
+/278            0           0     0     644     47192     `
+/302            0           0     0     644     27840     `

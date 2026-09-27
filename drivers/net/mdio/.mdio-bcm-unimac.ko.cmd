@@ -1,0 +1,1 @@
+savedcmd_drivers/net/mdio/mdio-bcm-unimac.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/mdio/mdio-bcm-unimac.ko drivers/net/mdio/mdio-bcm-unimac.o drivers/net/mdio/mdio-bcm-unimac.mod.o .module-common.o

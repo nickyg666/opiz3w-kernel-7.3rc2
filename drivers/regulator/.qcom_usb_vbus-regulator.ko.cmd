@@ -1,0 +1,1 @@
+savedcmd_drivers/regulator/qcom_usb_vbus-regulator.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/regulator/qcom_usb_vbus-regulator.ko drivers/regulator/qcom_usb_vbus-regulator.o drivers/regulator/qcom_usb_vbus-regulator.mod.o .module-common.o

@@ -1,0 +1,1 @@
+savedcmd_drivers/mtd/ubi/built-in.a := rm -f drivers/mtd/ubi/built-in.a;  printf "drivers/mtd/ubi/%s " vtbl.o vmt.o upd.o build.o cdev.o kapi.o eba.o io.o wl.o attach.o misc.o debug.o | xargs aarch64-linux-gnu-ar cDPrST drivers/mtd/ubi/built-in.a

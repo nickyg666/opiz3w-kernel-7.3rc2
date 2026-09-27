@@ -1,0 +1,1 @@
+savedcmd_drivers/iio/adc/imx8qxp-adc.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/iio/adc/imx8qxp-adc.ko drivers/iio/adc/imx8qxp-adc.o drivers/iio/adc/imx8qxp-adc.mod.o .module-common.o

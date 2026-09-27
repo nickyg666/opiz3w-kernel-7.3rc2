@@ -1,0 +1,1 @@
+savedcmd_drivers/pwm/pwm-rcar.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/pwm/pwm-rcar.ko drivers/pwm/pwm-rcar.o drivers/pwm/pwm-rcar.mod.o .module-common.o

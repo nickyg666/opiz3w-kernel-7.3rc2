@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/renesas/modules.order := {   echo drivers/net/ethernet/renesas/sh_eth.o;   echo drivers/net/ethernet/renesas/ravb.o;   echo drivers/net/ethernet/renesas/rswitch.o;   echo drivers/net/ethernet/renesas/rcar_gen4_ptp.o;   echo drivers/net/ethernet/renesas/rtsn.o; :; } > drivers/net/ethernet/renesas/modules.order

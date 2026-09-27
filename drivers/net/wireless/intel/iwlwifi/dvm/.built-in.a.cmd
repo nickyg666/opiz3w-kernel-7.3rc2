@@ -1,0 +1,1 @@
+savedcmd_drivers/net/wireless/intel/iwlwifi/dvm/built-in.a := rm -f drivers/net/wireless/intel/iwlwifi/dvm/built-in.a;  printf "drivers/net/wireless/intel/iwlwifi/dvm/%s " main.o rs.o mac80211.o ucode.o tx.o lib.o calib.o tt.o sta.o rx.o eeprom.o power.o scan.o rxon.o devices.o led.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/wireless/intel/iwlwifi/dvm/built-in.a

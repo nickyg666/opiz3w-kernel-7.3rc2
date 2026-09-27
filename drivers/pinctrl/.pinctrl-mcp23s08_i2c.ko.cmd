@@ -1,0 +1,1 @@
+savedcmd_drivers/pinctrl/pinctrl-mcp23s08_i2c.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/pinctrl/pinctrl-mcp23s08_i2c.ko drivers/pinctrl/pinctrl-mcp23s08_i2c.o drivers/pinctrl/pinctrl-mcp23s08_i2c.mod.o .module-common.o

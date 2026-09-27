@@ -1,0 +1,2 @@
+drivers/greybus/greybus.o
+drivers/greybus/gb-beagleplay.o

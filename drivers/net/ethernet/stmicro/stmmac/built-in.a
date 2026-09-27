@@ -1,0 +1,103 @@
+!<thin>
+//                                              768       `
+stmmac_main.o/
+stmmac_ethtool.o/
+stmmac_mdio.o/
+ring_mode.o/
+chain_mode.o/
+dwmac_lib.o/
+dwmac1000_core.o/
+dwmac1000_dma.o/
+dwmac100_core.o/
+dwmac100_dma.o/
+enh_desc.o/
+norm_desc.o/
+mmc_core.o/
+stmmac_hwtstamp.o/
+stmmac_ptp.o/
+dwmac4_descs.o/
+dwmac4_dma.o/
+dwmac4_lib.o/
+dwmac4_core.o/
+dwmac5.o/
+hwif.o/
+stmmac_tc.o/
+dwxgmac2_core.o/
+dwxgmac2_dma.o/
+dwxgmac2_descs.o/
+stmmac_xdp.o/
+stmmac_est.o/
+stmmac_fpe.o/
+stmmac_vlan.o/
+stmmac_pcs.o/
+stmmac_platform.o/
+dwmac-ipq806x.o/
+dwmac-mediatek.o/
+dwmac-meson.o/
+dwmac-meson8b.o/
+dwmac-nuvoton.o/
+dwmac-qcom-ethqos.o/
+dwmac-renesas-gbeth.o/
+dwmac-rk.o/
+dwmac-s32.o/
+dwmac-socfpga.o/
+dwmac-sophgo.o/
+dwmac-stm32.o/
+dwmac-sunxi.o/
+dwmac-sun8i.o/
+dwmac-sun55i.o/
+dwmac-generic.o/
+dwmac-imx.o/
+dwmac-tegra.o/
+dwmac-visconti.o/
+
+/0              0           0     0     644     621144    `
+/15             0           0     0     644     81408     `
+/33             0           0     0     644     64912     `
+/48             0           0     0     644     26008     `
+/61             0           0     0     644     26328     `
+/75             0           0     0     644     41240     `
+/88             0           0     0     644     63776     `
+/106            0           0     0     644     43344     `
+/123            0           0     0     644     34192     `
+/140            0           0     0     644     35800     `
+/156            0           0     0     644     35432     `
+/168            0           0     0     644     31416     `
+/181            0           0     0     644     58968     `
+/193            0           0     0     644     38688     `
+/212            0           0     0     644     38768     `
+/226            0           0     0     644     39776     `
+/242            0           0     0     644     79920     `
+/256            0           0     0     644     43568     `
+/270            0           0     0     644     99616     `
+/285            0           0     0     644     51248     `
+/295            0           0     0     644     47504     `
+/303            0           0     0     644     80360     `
+/316            0           0     0     644     132760    `
+/333            0           0     0     644     69264     `
+/349            0           0     0     644     34128     `
+/367            0           0     0     644     23640     `
+/381            0           0     0     644     29512     `
+/395            0           0     0     644     39256     `
+/409            0           0     0     644     38648     `
+/424            0           0     0     644     37584     `
+/438            0           0     0     644     79736     `
+/457            0           0     0     644     47184     `
+/474            0           0     0     644     81296     `
+/492            0           0     0     644     29016     `
+/507            0           0     0     644     53312     `
+/524            0           0     0     644     29896     `
+/541            0           0     0     644     72680     `
+/562            0           0     0     644     38520     `
+/585            0           0     0     644     113688    `
+/597            0           0     0     644     36248     `
+/610            0           0     0     644     61192     `
+/627            0           0     0     644     26608     `
+/643            0           0     0     644     56432     `
+/658            0           0     0     644     32424     `
+/673            0           0     0     644     111640    `
+/688            0           0     0     644     35224     `
+/704            0           0     0     644     24552     `
+/721            0           0     0     644     53048     `
+/734            0           0     0     644     64144     `
+/749            0           0     0     644     39408     `

@@ -1,0 +1,2 @@
+drivers/mtd/hyperbus/hyperbus-core.o
+drivers/mtd/hyperbus/hbmc-am654.o

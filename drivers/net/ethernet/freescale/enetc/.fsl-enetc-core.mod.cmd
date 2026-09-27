@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/freescale/enetc/fsl-enetc-core.mod := printf '%s\n'   enetc.o enetc_cbdr.o enetc_ethtool.o | awk '!x[$$0]++ { print("drivers/net/ethernet/freescale/enetc/"$$0) }' > drivers/net/ethernet/freescale/enetc/fsl-enetc-core.mod

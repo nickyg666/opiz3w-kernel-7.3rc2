@@ -1,0 +1,1 @@
+savedcmd_drivers/devfreq/mtk-cci-devfreq.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/devfreq/mtk-cci-devfreq.ko drivers/devfreq/mtk-cci-devfreq.o drivers/devfreq/mtk-cci-devfreq.mod.o .module-common.o

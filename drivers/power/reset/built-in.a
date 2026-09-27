@@ -1,0 +1,20 @@
+!<thin>
+//                                              156       `
+brcmstb-reboot.o/
+gpio-poweroff.o/
+gpio-restart.o/
+msm-poweroff.o/
+xgene-reboot.o/
+syscon-reboot.o/
+syscon-poweroff.o/
+reboot-mode.o/
+syscon-reboot-mode.o/
+/0              0           0     0     644     20160     `
+/18             0           0     0     644     25568     `
+/35             0           0     0     644     26248     `
+/51             0           0     0     644     18304     `
+/67             0           0     0     644     21960     `
+/83             0           0     0     644     25392     `
+/100            0           0     0     644     23120     `
+/119            0           0     0     644     43536     `
+/134            0           0     0     644     23840     `

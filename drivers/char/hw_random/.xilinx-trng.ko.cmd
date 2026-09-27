@@ -1,0 +1,1 @@
+savedcmd_drivers/char/hw_random/xilinx-trng.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/char/hw_random/xilinx-trng.ko drivers/char/hw_random/xilinx-trng.o drivers/char/hw_random/xilinx-trng.mod.o .module-common.o

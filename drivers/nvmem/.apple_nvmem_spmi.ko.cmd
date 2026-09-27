@@ -1,0 +1,1 @@
+savedcmd_drivers/nvmem/apple_nvmem_spmi.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/nvmem/apple_nvmem_spmi.ko drivers/nvmem/apple_nvmem_spmi.o drivers/nvmem/apple_nvmem_spmi.mod.o .module-common.o

@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/freescale/enetc/fsl-enetc.mod := printf '%s\n'   enetc_pf.o enetc_qos.o | awk '!x[$$0]++ { print("drivers/net/ethernet/freescale/enetc/"$$0) }' > drivers/net/ethernet/freescale/enetc/fsl-enetc.mod

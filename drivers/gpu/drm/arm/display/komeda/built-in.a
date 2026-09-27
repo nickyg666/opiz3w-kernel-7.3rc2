@@ -1,0 +1,33 @@
+!<thin>
+//                                              280       `
+komeda_drv.o/
+komeda_dev.o/
+komeda_format_caps.o/
+komeda_color_mgmt.o/
+komeda_pipeline.o/
+komeda_pipeline_state.o/
+komeda_framebuffer.o/
+komeda_kms.o/
+komeda_crtc.o/
+komeda_plane.o/
+komeda_wb_connector.o/
+komeda_private_obj.o/
+komeda_event.o/
+d71/d71_dev.o/
+d71/d71_component.o/
+
+/0              0           0     0     644     32848     `
+/14             0           0     0     644     42216     `
+/28             0           0     0     644     18792     `
+/50             0           0     0     644     13432     `
+/71             0           0     0     644     42344     `
+/90             0           0     0     644     63672     `
+/115            0           0     0     644     40968     `
+/137            0           0     0     644     38760     `
+/151            0           0     0     644     61800     `
+/166            0           0     0     644     36584     `
+/182            0           0     0     644     31304     `
+/205            0           0     0     644     41968     `
+/227            0           0     0     644     23144     `
+/243            0           0     0     644     73424     `
+/258            0           0     0     644     102976    `

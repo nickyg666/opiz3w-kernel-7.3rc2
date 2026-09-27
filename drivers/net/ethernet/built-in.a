@@ -1,0 +1,16 @@
+!<thin>
+//                                              206       `
+apm/xgene/xgene_enet_hw.o/
+apm/xgene/xgene_enet_sgmac.o/
+apm/xgene/xgene_enet_xgmac.o/
+apm/xgene/xgene_enet_main.o/
+apm/xgene/xgene_enet_ring2.o/
+apm/xgene/xgene_enet_ethtool.o/
+apm/xgene/xgene_enet_cle.o/
+/0              0           0     0     644     103080    `
+/27             0           0     0     644     61312     `
+/57             0           0     0     644     59680     `
+/87             0           0     0     644     187808    `
+/116            0           0     0     644     29256     `
+/146            0           0     0     644     42288     `
+/178            0           0     0     644     40664     `

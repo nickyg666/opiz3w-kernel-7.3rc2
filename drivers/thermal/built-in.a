@@ -1,0 +1,58 @@
+!<thin>
+//                                              546       `
+thermal_core.o/
+thermal_sysfs.o/
+thermal_trip.o/
+thermal_helpers.o/
+thermal_thresholds.o/
+thermal_hwmon.o/
+thermal_of.o/
+gov_step_wise.o/
+gov_power_allocator.o/
+cpufreq_cooling.o/
+devfreq_cooling.o/
+broadcom/ns-thermal.o/
+broadcom/sr-thermal.o/
+sun8i_thermal.o/
+renesas/rcar_gen3_thermal.o/
+renesas/rcar_thermal.o/
+renesas/rzg2l_thermal.o/
+renesas/rzg3e_thermal.o/
+samsung/exynos_tmu.o/
+armada_thermal.o/
+qcom/tsens.o/
+qcom/tsens-v2.o/
+qcom/tsens-v1.o/
+qcom/tsens-v0_1.o/
+qcom/tsens-8960.o/
+hisi_thermal.o/
+uniphier_thermal.o/
+amlogic_thermal.o/
+/0              0           0     0     644     136112    `
+/16             0           0     0     644     58456     `
+/33             0           0     0     644     16880     `
+/49             0           0     0     644     23368     `
+/68             0           0     0     644     28288     `
+/90             0           0     0     644     34408     `
+/107            0           0     0     644     52272     `
+/121            0           0     0     644     19584     `
+/138            0           0     0     644     42384     `
+/161            0           0     0     644     45248     `
+/180            0           0     0     644     42120     `
+/199            0           0     0     644     24296     `
+/222            0           0     0     644     26040     `
+/245            0           0     0     644     51200     `
+/262            0           0     0     644     56680     `
+/291            0           0     0     644     58976     `
+/315            0           0     0     644     37040     `
+/340            0           0     0     644     71608     `
+/365            0           0     0     644     95264     `
+/387            0           0     0     644     75040     `
+/405            0           0     0     644     115696    `
+/419            0           0     0     644     44832     `
+/436            0           0     0     644     42304     `
+/453            0           0     0     644     47544     `
+/472            0           0     0     644     40960     `
+/491            0           0     0     644     52432     `
+/507            0           0     0     644     37848     `
+/527            0           0     0     644     40080     `

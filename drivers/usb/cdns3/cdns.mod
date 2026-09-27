@@ -1,0 +1,10 @@
+drivers/usb/cdns3/core.o
+drivers/usb/cdns3/drd.o
+drivers/usb/cdns3/cdns3-plat.o
+drivers/usb/cdns3/host.o
+drivers/usb/cdns3/cdns3-gadget.o
+drivers/usb/cdns3/cdns3-ep0.o
+drivers/usb/cdns3/cdnsp-ring.o
+drivers/usb/cdns3/cdnsp-gadget.o
+drivers/usb/cdns3/cdnsp-mem.o
+drivers/usb/cdns3/cdnsp-ep0.o

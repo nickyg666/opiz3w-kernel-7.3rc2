@@ -1,0 +1,1 @@
+savedcmd_drivers/platform/arm64/acer-aspire1-ec.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/platform/arm64/acer-aspire1-ec.ko drivers/platform/arm64/acer-aspire1-ec.o drivers/platform/arm64/acer-aspire1-ec.mod.o .module-common.o

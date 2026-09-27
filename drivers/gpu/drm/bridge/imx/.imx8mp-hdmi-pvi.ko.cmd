@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.ko drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.o drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.mod.o .module-common.o

@@ -1,0 +1,1 @@
+savedcmd_drivers/auxdisplay/seg-led-gpio.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/auxdisplay/seg-led-gpio.ko drivers/auxdisplay/seg-led-gpio.o drivers/auxdisplay/seg-led-gpio.mod.o .module-common.o

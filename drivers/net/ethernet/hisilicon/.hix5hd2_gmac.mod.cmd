@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/hisilicon/hix5hd2_gmac.mod := printf '%s\n'   hix5hd2_gmac.o | awk '!x[$$0]++ { print("drivers/net/ethernet/hisilicon/"$$0) }' > drivers/net/ethernet/hisilicon/hix5hd2_gmac.mod

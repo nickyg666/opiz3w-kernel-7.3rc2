@@ -1,0 +1,23 @@
+!<thin>
+//                                              182       `
+panfrost_drv.o/
+panfrost_device.o/
+panfrost_devfreq.o/
+panfrost_gem.o/
+panfrost_gem_shrinker.o/
+panfrost_gpu.o/
+panfrost_job.o/
+panfrost_mmu.o/
+panfrost_perfcnt.o/
+panfrost_dump.o/
+
+/0              0           0     0     644     149096    `
+/16             0           0     0     644     62576     `
+/35             0           0     0     644     38736     `
+/55             0           0     0     644     104656    `
+/71             0           0     0     644     23200     `
+/96             0           0     0     644     106312    `
+/112            0           0     0     644     145000    `
+/128            0           0     0     644     120408    `
+/144            0           0     0     644     53840     `
+/164            0           0     0     644     35616     `

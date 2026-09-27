@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/panfrost/built-in.a := rm -f drivers/gpu/drm/panfrost/built-in.a;  printf "drivers/gpu/drm/panfrost/%s " panfrost_drv.o panfrost_device.o panfrost_devfreq.o panfrost_gem.o panfrost_gem_shrinker.o panfrost_gpu.o panfrost_job.o panfrost_mmu.o panfrost_perfcnt.o panfrost_dump.o | xargs aarch64-linux-gnu-ar cDPrST drivers/gpu/drm/panfrost/built-in.a

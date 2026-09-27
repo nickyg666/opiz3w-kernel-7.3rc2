@@ -1,0 +1,1 @@
+savedcmd_drivers/spi/spi-stm32-ospi.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/spi/spi-stm32-ospi.ko drivers/spi/spi-stm32-ospi.o drivers/spi/spi-stm32-ospi.mod.o .module-common.o

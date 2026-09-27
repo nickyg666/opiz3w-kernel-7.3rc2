@@ -1,0 +1,1 @@
+savedcmd_drivers/power/built-in.a := rm -f drivers/power/built-in.a;  printf "drivers/power/%s " reset/built-in.a sequencing/built-in.a supply/built-in.a axp2101.o axp2101-i2c.o axp2101-regulator.o | xargs aarch64-linux-gnu-ar cDPrST drivers/power/built-in.a

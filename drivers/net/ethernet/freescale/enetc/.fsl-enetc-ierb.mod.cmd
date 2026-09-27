@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/freescale/enetc/fsl-enetc-ierb.mod := printf '%s\n'   enetc_ierb.o | awk '!x[$$0]++ { print("drivers/net/ethernet/freescale/enetc/"$$0) }' > drivers/net/ethernet/freescale/enetc/fsl-enetc-ierb.mod

@@ -1,0 +1,1 @@
+savedcmd_drivers/reset/amlogic/built-in.a := rm -f drivers/reset/amlogic/built-in.a;  printf "drivers/reset/amlogic/%s " reset-meson.o reset-meson-common.o | xargs aarch64-linux-gnu-ar cDPrST drivers/reset/amlogic/built-in.a

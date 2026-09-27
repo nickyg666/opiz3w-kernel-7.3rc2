@@ -1,0 +1,13 @@
+drivers/dma/sh/usb-dmac.o
+drivers/dma/mediatek/mtk-uart-apdma.o
+drivers/dma/qcom/gpi.o
+drivers/dma/stm32/stm32-dma3.o
+drivers/dma/xilinx/xilinx_dma.o
+drivers/dma/xilinx/zynqmp_dma.o
+drivers/dma/xilinx/xilinx_dpdma.o
+drivers/dma/apple-admac.o
+drivers/dma/bcm-sba-raid.o
+drivers/dma/sun6i-dma.o
+drivers/dma/dw-edma/dw-edma.o
+drivers/dma/imx-sdma.o
+drivers/dma/tegra210-adma.o

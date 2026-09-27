@@ -1,0 +1,4 @@
+drivers/counter/counter.o
+drivers/counter/rz-mtu3-cnt.o
+drivers/counter/stm32-timer-cnt.o
+drivers/counter/ti-eqep.o

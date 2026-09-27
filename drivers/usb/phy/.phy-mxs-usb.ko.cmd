@@ -1,0 +1,1 @@
+savedcmd_drivers/usb/phy/phy-mxs-usb.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/usb/phy/phy-mxs-usb.ko drivers/usb/phy/phy-mxs-usb.o drivers/usb/phy/phy-mxs-usb.mod.o .module-common.o

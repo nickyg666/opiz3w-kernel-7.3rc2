@@ -1,0 +1,1 @@
+savedcmd_drivers/hwmon/macsmc-hwmon.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/hwmon/macsmc-hwmon.ko drivers/hwmon/macsmc-hwmon.o drivers/hwmon/macsmc-hwmon.mod.o .module-common.o

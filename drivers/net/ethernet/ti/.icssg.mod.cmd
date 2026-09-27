@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/ti/icssg.mod := printf '%s\n'   icssg/icssg_common.o icssg/icssg_classifier.o icssg/icssg_queues.o icssg/icssg_config.o icssg/icssg_mii_cfg.o icssg/icssg_stats.o icssg/icssg_ethtool.o | awk '!x[$$0]++ { print("drivers/net/ethernet/ti/"$$0) }' > drivers/net/ethernet/ti/icssg.mod

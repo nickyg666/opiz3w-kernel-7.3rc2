@@ -1,0 +1,1 @@
+savedcmd_drivers/usb/typec/mux/wcd939x-usbss.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/usb/typec/mux/wcd939x-usbss.ko drivers/usb/typec/mux/wcd939x-usbss.o drivers/usb/typec/mux/wcd939x-usbss.mod.o .module-common.o

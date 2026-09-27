@@ -1,0 +1,9 @@
+drivers/net/ethernet/hisilicon/hix5hd2_gmac.o
+drivers/net/ethernet/hisilicon/hns_mdio.o
+drivers/net/ethernet/hisilicon/hns/hnae.o
+drivers/net/ethernet/hisilicon/hns/hns_dsaf.o
+drivers/net/ethernet/hisilicon/hns/hns_enet_drv.o
+drivers/net/ethernet/hisilicon/hns3/hnae3.o
+drivers/net/ethernet/hisilicon/hns3/hns3.o
+drivers/net/ethernet/hisilicon/hns3/hclge.o
+drivers/net/ethernet/hisilicon/hns3/hclge-common.o

@@ -1,0 +1,4 @@
+drivers/net/ethernet/marvell/mvmdio.o
+drivers/net/ethernet/marvell/mvneta.o
+drivers/net/ethernet/marvell/mvpp2/mvpp2.o
+drivers/net/ethernet/marvell/sky2.o

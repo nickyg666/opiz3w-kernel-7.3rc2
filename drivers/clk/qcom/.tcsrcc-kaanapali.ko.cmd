@@ -1,0 +1,1 @@
+savedcmd_drivers/clk/qcom/tcsrcc-kaanapali.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/qcom/tcsrcc-kaanapali.ko drivers/clk/qcom/tcsrcc-kaanapali.o drivers/clk/qcom/tcsrcc-kaanapali.mod.o .module-common.o

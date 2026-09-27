@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/broadcom/bnx2x/built-in.a := rm -f drivers/net/ethernet/broadcom/bnx2x/built-in.a;  printf "drivers/net/ethernet/broadcom/bnx2x/%s " bnx2x_main.o bnx2x_link.o bnx2x_cmn.o bnx2x_ethtool.o bnx2x_stats.o bnx2x_dcb.o bnx2x_sp.o bnx2x_self_test.o bnx2x_vfpf.o bnx2x_sriov.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/ethernet/broadcom/bnx2x/built-in.a

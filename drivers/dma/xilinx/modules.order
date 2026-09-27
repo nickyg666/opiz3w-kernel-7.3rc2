@@ -1,0 +1,3 @@
+drivers/dma/xilinx/xilinx_dma.o
+drivers/dma/xilinx/zynqmp_dma.o
+drivers/dma/xilinx/xilinx_dpdma.o

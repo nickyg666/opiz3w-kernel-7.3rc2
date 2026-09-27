@@ -1,0 +1,1 @@
+savedcmd_drivers/net/can/built-in.a := rm -f drivers/net/can/built-in.a;  printf "drivers/net/can/%s " dev/built-in.a esd/built-in.a rcar/built-in.a rockchip/built-in.a spi/built-in.a usb/built-in.a softing/built-in.a flexcan/built-in.a m_can/built-in.a xilinx_can.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/can/built-in.a

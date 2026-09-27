@@ -1,0 +1,1 @@
+savedcmd_drivers/mfd/stm32-lptimer.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/mfd/stm32-lptimer.ko drivers/mfd/stm32-lptimer.o drivers/mfd/stm32-lptimer.mod.o .module-common.o

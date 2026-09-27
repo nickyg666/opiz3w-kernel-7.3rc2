@@ -1,0 +1,1 @@
+savedcmd_drivers/rtc/rtc-macsmc.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/rtc/rtc-macsmc.ko drivers/rtc/rtc-macsmc.o drivers/rtc/rtc-macsmc.mod.o .module-common.o

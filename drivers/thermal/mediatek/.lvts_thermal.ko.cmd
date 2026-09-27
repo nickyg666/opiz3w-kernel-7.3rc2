@@ -1,0 +1,1 @@
+savedcmd_drivers/thermal/mediatek/lvts_thermal.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/thermal/mediatek/lvts_thermal.ko drivers/thermal/mediatek/lvts_thermal.o drivers/thermal/mediatek/lvts_thermal.mod.o .module-common.o

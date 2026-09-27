@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/panthor/panthor.mod := printf '%s\n'   panthor_devfreq.o panthor_device.o panthor_drv.o panthor_fw.o panthor_gem.o panthor_gpu.o panthor_heap.o panthor_hw.o panthor_mmu.o panthor_pwr.o panthor_sched.o | awk '!x[$$0]++ { print("drivers/gpu/drm/panthor/"$$0) }' > drivers/gpu/drm/panthor/panthor.mod

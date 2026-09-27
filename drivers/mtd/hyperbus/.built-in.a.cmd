@@ -1,0 +1,1 @@
+savedcmd_drivers/mtd/hyperbus/built-in.a := rm -f drivers/mtd/hyperbus/built-in.a;  printf "drivers/mtd/hyperbus/%s " hyperbus-core.o hbmc-am654.o | xargs aarch64-linux-gnu-ar cDPrST drivers/mtd/hyperbus/built-in.a

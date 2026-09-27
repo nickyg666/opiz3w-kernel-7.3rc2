@@ -1,0 +1,1 @@
+savedcmd_drivers/firmware/mtk-adsp-ipc.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/firmware/mtk-adsp-ipc.ko drivers/firmware/mtk-adsp-ipc.o drivers/firmware/mtk-adsp-ipc.mod.o .module-common.o

@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/renesas/rz-du/modules.order := {   echo drivers/gpu/drm/renesas/rz-du/rzg2l-du-drm.o;   echo drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.o; :; } > drivers/gpu/drm/renesas/rz-du/modules.order

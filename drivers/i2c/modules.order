@@ -1,0 +1,11 @@
+drivers/i2c/algos/i2c-algo-bit.o
+drivers/i2c/busses/i2c-bcm2835.o
+drivers/i2c/busses/i2c-cadence.o
+drivers/i2c/busses/i2c-gpio.o
+drivers/i2c/busses/i2c-pasemi-core.o
+drivers/i2c/busses/i2c-pasemi-platform.o
+drivers/i2c/busses/i2c-qcom-cci.o
+drivers/i2c/busses/i2c-qcom-geni.o
+drivers/i2c/busses/i2c-rzv2m.o
+drivers/i2c/busses/i2c-xiic.o
+drivers/i2c/muxes/i2c-mux-pinctrl.o

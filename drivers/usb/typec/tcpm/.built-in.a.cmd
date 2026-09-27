@@ -1,0 +1,1 @@
+savedcmd_drivers/usb/typec/tcpm/built-in.a := rm -f drivers/usb/typec/tcpm/built-in.a;  printf "drivers/usb/typec/tcpm/%s " tcpm.o fusb302.o tcpci.o tcpci_rt1711h.o tcpci_mt6360.o tcpci_maxim_core.o maxim_contaminant.o qcom/built-in.a | xargs aarch64-linux-gnu-ar cDPrST drivers/usb/typec/tcpm/built-in.a

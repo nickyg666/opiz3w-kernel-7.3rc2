@@ -1,0 +1,1 @@
+savedcmd_drivers/nfc/s3fwrn5/built-in.a := rm -f drivers/nfc/s3fwrn5/built-in.a;  printf "drivers/nfc/s3fwrn5/%s " core.o firmware.o nci.o phy_common.o i2c.o | xargs aarch64-linux-gnu-ar cDPrST drivers/nfc/s3fwrn5/built-in.a

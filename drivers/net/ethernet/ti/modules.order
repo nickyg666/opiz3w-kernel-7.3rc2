@@ -1,0 +1,8 @@
+drivers/net/ethernet/ti/davinci_mdio.o
+drivers/net/ethernet/ti/k3-cppi-desc-pool.o
+drivers/net/ethernet/ti/ti-am65-cpsw-nuss.o
+drivers/net/ethernet/ti/ti-cpsw-sl.o
+drivers/net/ethernet/ti/ti-cpsw-ale.o
+drivers/net/ethernet/ti/icssg-prueth.o
+drivers/net/ethernet/ti/icssg.o
+drivers/net/ethernet/ti/icssg/icss_iep.o

@@ -1,0 +1,11 @@
+!<thin>
+//                                              74        `
+aquantia_main.o/
+aquantia_firmware.o/
+aquantia_leds.o/
+aquantia_hwmon.o/
+
+/0              0           0     0     644     121792    `
+/17             0           0     0     644     32544     `
+/38             0           0     0     644     19088     `
+/55             0           0     0     644     26256     `

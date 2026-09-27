@@ -1,0 +1,1 @@
+savedcmd_drivers/net/wireless/ti/wl18xx/built-in.a := rm -f drivers/net/wireless/ti/wl18xx/built-in.a;  printf "drivers/net/wireless/ti/wl18xx/%s " main.o acx.o tx.o io.o debugfs.o scan.o cmd.o event.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/wireless/ti/wl18xx/built-in.a

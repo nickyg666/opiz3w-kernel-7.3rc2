@@ -1,0 +1,5 @@
+drivers/platform/arm64/acer-aspire1-ec.o
+drivers/platform/arm64/huawei-gaokun-ec.o
+drivers/platform/arm64/lenovo-yoga-c630.o
+drivers/platform/arm64/lenovo-thinkpad-t14s.o
+drivers/platform/arm64/qcom-hamoa-ec.o

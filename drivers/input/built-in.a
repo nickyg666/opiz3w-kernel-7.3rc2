@@ -1,0 +1,57 @@
+!<thin>
+//                                              480       `
+input.o/
+input-compat.o/
+input-mt.o/
+input-poller.o/
+ff-core.o/
+touchscreen.o/
+touch-overlay.o/
+matrix-keymap.o/
+vivaldi-fmap.o/
+input-leds.o/
+evdev.o/
+keyboard/atkbd.o/
+keyboard/cros_ec_keyb.o/
+keyboard/gpio_keys.o/
+keyboard/imx-sm-bbm-key.o/
+mouse/psmouse-base.o/
+mouse/synaptics.o/
+mouse/focaltech.o/
+mouse/alps.o/
+mouse/byd.o/
+mouse/logips2pp.o/
+mouse/trackpoint.o/
+mouse/cypress_ps2.o/
+mouse/psmouse-smbus.o/
+misc/hisi_powerkey.o/
+misc/pm8941-pwrkey.o/
+misc/xen-kbdfront.o/
+
+/0              0           0     0     644     221080    `
+/9              0           0     0     644     33264     `
+/25             0           0     0     644     41760     `
+/37             0           0     0     644     34320     `
+/53             0           0     0     644     34960     `
+/64             0           0     0     644     25824     `
+/79             0           0     0     644     28056     `
+/96             0           0     0     644     27176     `
+/113            0           0     0     644     15600     `
+/129            0           0     0     644     31912     `
+/143            0           0     0     644     134944    `
+/152            0           0     0     644     131520    `
+/170            0           0     0     644     72888     `
+/195            0           0     0     644     88856     `
+/217            0           0     0     644     51248     `
+/244            0           0     0     644     132568    `
+/266            0           0     0     644     120856    `
+/285            0           0     0     644     34464     `
+/304            0           0     0     644     140488    `
+/318            0           0     0     644     32520     `
+/331            0           0     0     644     28608     `
+/350            0           0     0     644     51008     `
+/370            0           0     0     644     41192     `
+/391            0           0     0     644     43576     `
+/414            0           0     0     644     24200     `
+/436            0           0     0     644     42912     `
+/458            0           0     0     644     53464     `

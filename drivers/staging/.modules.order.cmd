@@ -1,0 +1,1 @@
+savedcmd_drivers/staging/modules.order := {   cat drivers/staging/media/modules.order;   cat drivers/staging/iio/modules.order;   cat drivers/staging/greybus/modules.order;   cat drivers/staging/vc04_services/modules.order; :; } > drivers/staging/modules.order

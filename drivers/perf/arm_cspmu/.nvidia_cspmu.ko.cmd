@@ -1,0 +1,1 @@
+savedcmd_drivers/perf/arm_cspmu/nvidia_cspmu.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/perf/arm_cspmu/nvidia_cspmu.ko drivers/perf/arm_cspmu/nvidia_cspmu.o drivers/perf/arm_cspmu/nvidia_cspmu.mod.o .module-common.o

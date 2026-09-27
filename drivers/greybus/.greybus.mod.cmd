@@ -1,0 +1,1 @@
+savedcmd_drivers/greybus/greybus.mod := printf '%s\n'   core.o debugfs.o hd.o manifest.o module.o interface.o bundle.o connection.o control.o svc.o svc_watchdog.o operation.o | awk '!x[$$0]++ { print("drivers/greybus/"$$0) }' > drivers/greybus/greybus.mod

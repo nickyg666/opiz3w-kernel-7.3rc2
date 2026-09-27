@@ -1,0 +1,1 @@
+savedcmd_drivers/fpga/zynqmp-fpga.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/fpga/zynqmp-fpga.ko drivers/fpga/zynqmp-fpga.o drivers/fpga/zynqmp-fpga.mod.o .module-common.o

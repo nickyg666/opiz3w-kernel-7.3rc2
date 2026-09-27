@@ -1,0 +1,49 @@
+!<thin>
+//                                              436       `
+cpufreq.o/
+freq_table.o/
+cpufreq_stats.o/
+cpufreq_performance.o/
+cpufreq_userspace.o/
+cpufreq_ondemand.o/
+cpufreq_governor.o/
+cpufreq_governor_attr_set.o/
+cpufreq-dt.o/
+cpufreq-dt-platdev.o/
+airoha-cpufreq.o/
+armada-37xx-cpufreq.o/
+mediatek-cpufreq.o/
+qcom-cpufreq-hw.o/
+qcom-cpufreq-nvmem.o/
+scmi-cpufreq.o/
+scpi-cpufreq.o/
+tegra20-cpufreq.o/
+tegra124-cpufreq.o/
+tegra186-cpufreq.o/
+tegra194-cpufreq.o/
+ti-cpufreq.o/
+qoriq-cpufreq.o/
+
+/0              0           0     0     644     244552    `
+/11             0           0     0     644     26512     `
+/25             0           0     0     644     31880     `
+/42             0           0     0     644     15576     `
+/65             0           0     0     644     25880     `
+/86             0           0     0     644     64032     `
+/106            0           0     0     644     61240     `
+/126            0           0     0     644     21616     `
+/155            0           0     0     644     48384     `
+/169            0           0     0     644     49376     `
+/191            0           0     0     644     28296     `
+/209            0           0     0     644     41440     `
+/232            0           0     0     644     85048     `
+/252            0           0     0     644     82480     `
+/271            0           0     0     644     52792     `
+/293            0           0     0     644     54584     `
+/309            0           0     0     644     37448     `
+/325            0           0     0     644     25856     `
+/344            0           0     0     644     31912     `
+/364            0           0     0     644     62320     `
+/384            0           0     0     644     81136     `
+/404            0           0     0     644     40496     `
+/418            0           0     0     644     43248     `

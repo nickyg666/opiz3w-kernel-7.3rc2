@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/mediatek/mtk_star_emac.mod := printf '%s\n'   mtk_star_emac.o | awk '!x[$$0]++ { print("drivers/net/ethernet/mediatek/"$$0) }' > drivers/net/ethernet/mediatek/mtk_star_emac.mod

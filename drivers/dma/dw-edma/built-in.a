@@ -1,0 +1,12 @@
+!<thin>
+//                                              98        `
+dw-edma-core.o/
+dw-edma-v0-core.o/
+dw-hdma-v0-core.o/
+dw-edma-v0-debugfs.o/
+dw-hdma-v0-debugfs.o/
+/0              0           0     0     644     125840    `
+/16             0           0     0     644     79008     `
+/35             0           0     0     644     51072     `
+/54             0           0     0     644     47600     `
+/76             0           0     0     644     31784     `

@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/panel/panel-raydium-rm692e5.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpu/drm/panel/panel-raydium-rm692e5.ko drivers/gpu/drm/panel/panel-raydium-rm692e5.o drivers/gpu/drm/panel/panel-raydium-rm692e5.mod.o .module-common.o

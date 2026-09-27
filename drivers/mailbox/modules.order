@@ -1,0 +1,6 @@
+drivers/mailbox/exynos-mailbox.o
+drivers/mailbox/omap-mailbox.o
+drivers/mailbox/bcm-flexrm-mailbox.o
+drivers/mailbox/mtk-adsp-mailbox.o
+drivers/mailbox/mtk-cmdq-mailbox.o
+drivers/mailbox/qcom-cpucp-mbox.o

@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/renesas/rcar_gen4_ptp.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/ethernet/renesas/rcar_gen4_ptp.ko drivers/net/ethernet/renesas/rcar_gen4_ptp.o drivers/net/ethernet/renesas/rcar_gen4_ptp.mod.o .module-common.o

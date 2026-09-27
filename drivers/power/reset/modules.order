@@ -1,0 +1,4 @@
+drivers/power/reset/macsmc-reboot.o
+drivers/power/reset/qcom-pon.o
+drivers/power/reset/tdx-ec-poweroff.o
+drivers/power/reset/nvmem-reboot-mode.o

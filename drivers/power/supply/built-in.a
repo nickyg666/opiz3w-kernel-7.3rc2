@@ -1,0 +1,17 @@
+!<thin>
+//                                              156       `
+power_supply_core.o/
+power_supply_sysfs.o/
+power_supply_leds.o/
+power_supply_hwmon.o/
+bq27xxx_battery.o/
+bq27xxx_battery_i2c.o/
+cros_peripheral_charger.o/
+
+/0              0           0     0     644     154048    `
+/21             0           0     0     644     69504     `
+/43             0           0     0     644     30944     `
+/64             0           0     0     644     44064     `
+/86             0           0     0     644     91104     `
+/105            0           0     0     644     56000     `
+/128            0           0     0     644     47280     `

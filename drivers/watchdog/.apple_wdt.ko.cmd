@@ -1,0 +1,1 @@
+savedcmd_drivers/watchdog/apple_wdt.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/watchdog/apple_wdt.ko drivers/watchdog/apple_wdt.o drivers/watchdog/apple_wdt.mod.o .module-common.o

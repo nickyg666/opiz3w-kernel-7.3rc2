@@ -1,0 +1,1 @@
+savedcmd_drivers/firmware/arm_scmi/modules.order := {   cat drivers/firmware/arm_scmi/transports/modules.order;   cat drivers/firmware/arm_scmi/vendors/imx/modules.order; :; } > drivers/firmware/arm_scmi/modules.order

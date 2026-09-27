@@ -1,0 +1,1 @@
+savedcmd_drivers/net/can/flexcan/built-in.a := rm -f drivers/net/can/flexcan/built-in.a;  printf "drivers/net/can/flexcan/%s " flexcan-core.o flexcan-ethtool.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/can/flexcan/built-in.a

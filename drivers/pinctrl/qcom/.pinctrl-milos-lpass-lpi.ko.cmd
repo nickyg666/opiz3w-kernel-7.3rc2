@@ -1,0 +1,1 @@
+savedcmd_drivers/pinctrl/qcom/pinctrl-milos-lpass-lpi.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/pinctrl/qcom/pinctrl-milos-lpass-lpi.ko drivers/pinctrl/qcom/pinctrl-milos-lpass-lpi.o drivers/pinctrl/qcom/pinctrl-milos-lpass-lpi.mod.o .module-common.o

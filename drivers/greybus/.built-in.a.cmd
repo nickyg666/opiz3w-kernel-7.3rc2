@@ -1,0 +1,1 @@
+savedcmd_drivers/greybus/built-in.a := rm -f drivers/greybus/built-in.a;  printf "drivers/greybus/%s " core.o debugfs.o hd.o manifest.o module.o interface.o bundle.o connection.o control.o svc.o svc_watchdog.o operation.o gb-beagleplay.o | xargs aarch64-linux-gnu-ar cDPrST drivers/greybus/built-in.a

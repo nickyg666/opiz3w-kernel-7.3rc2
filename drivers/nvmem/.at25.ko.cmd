@@ -1,0 +1,1 @@
+savedcmd_drivers/nvmem/at25.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/nvmem/at25.ko drivers/nvmem/at25.o drivers/nvmem/at25.mod.o .module-common.o

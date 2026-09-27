@@ -1,0 +1,27 @@
+# 0 "drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.dtso"
+# 9 "drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.dtso"
+/dts-v1/;
+/plugin/;
+
+&{/} {
+ fixup-hdmi-connector {
+  compatible = "hdmi-connector";
+  label = "HDMI";
+  type = "a";
+
+  port {
+   fixup_hdmi_connector_in: endpoint {
+    remote-endpoint = <&hdmi_tx_out>;
+   };
+  };
+ };
+};
+
+&{/soc@0/bus@32c00000/hdmi@32fd8000/ports/port@1} {
+ hdmi_tx_out: endpoint {
+  remote-endpoint = <&fixup_hdmi_connector_in>;
+ };
+};

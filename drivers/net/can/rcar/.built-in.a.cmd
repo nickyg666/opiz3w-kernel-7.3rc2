@@ -1,0 +1,1 @@
+savedcmd_drivers/net/can/rcar/built-in.a := rm -f drivers/net/can/rcar/built-in.a;  printf "drivers/net/can/rcar/%s " rcar_can.o rcar_canfd.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/can/rcar/built-in.a

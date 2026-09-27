@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/qualcomm/rmnet/built-in.a := rm -f drivers/net/ethernet/qualcomm/rmnet/built-in.a;  printf "drivers/net/ethernet/qualcomm/rmnet/%s " rmnet_config.o rmnet_vnd.o rmnet_handlers.o rmnet_map_data.o rmnet_map_command.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/ethernet/qualcomm/rmnet/built-in.a

@@ -1,0 +1,11 @@
+drivers/regulator/da9211-regulator.o
+drivers/regulator/lp873x-regulator.o
+drivers/regulator/max20411-regulator.o
+drivers/regulator/mt6315-regulator.o
+drivers/regulator/mt6316-regulator.o
+drivers/regulator/qcom-pm8008-regulator.o
+drivers/regulator/qcom-refgen-regulator.o
+drivers/regulator/qcom_usb_vbus-regulator.o
+drivers/regulator/tps6594-regulator.o
+drivers/regulator/tps65132-regulator.o
+drivers/regulator/vctrl-regulator.o

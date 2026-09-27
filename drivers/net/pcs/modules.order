@@ -1,0 +1,3 @@
+drivers/net/pcs/pcs_xpcs.o
+drivers/net/pcs/pcs-lynx.o
+drivers/net/pcs/pcs-rzn1-miic.o

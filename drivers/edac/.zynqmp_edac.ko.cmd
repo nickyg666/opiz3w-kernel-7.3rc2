@@ -1,0 +1,1 @@
+savedcmd_drivers/edac/zynqmp_edac.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/edac/zynqmp_edac.ko drivers/edac/zynqmp_edac.o drivers/edac/zynqmp_edac.mod.o .module-common.o

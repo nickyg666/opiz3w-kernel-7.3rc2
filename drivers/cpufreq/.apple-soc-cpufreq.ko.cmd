@@ -1,0 +1,1 @@
+savedcmd_drivers/cpufreq/apple-soc-cpufreq.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/cpufreq/apple-soc-cpufreq.ko drivers/cpufreq/apple-soc-cpufreq.o drivers/cpufreq/apple-soc-cpufreq.mod.o .module-common.o

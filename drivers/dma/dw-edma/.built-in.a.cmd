@@ -1,0 +1,1 @@
+savedcmd_drivers/dma/dw-edma/built-in.a := rm -f drivers/dma/dw-edma/built-in.a;  printf "drivers/dma/dw-edma/%s " dw-edma-core.o dw-edma-v0-core.o dw-hdma-v0-core.o dw-edma-v0-debugfs.o dw-hdma-v0-debugfs.o | xargs aarch64-linux-gnu-ar cDPrST drivers/dma/dw-edma/built-in.a

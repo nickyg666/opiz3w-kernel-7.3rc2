@@ -1,0 +1,1 @@
+savedcmd_drivers/input/touchscreen/himax_hx83112b.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/input/touchscreen/himax_hx83112b.ko drivers/input/touchscreen/himax_hx83112b.o drivers/input/touchscreen/himax_hx83112b.mod.o .module-common.o

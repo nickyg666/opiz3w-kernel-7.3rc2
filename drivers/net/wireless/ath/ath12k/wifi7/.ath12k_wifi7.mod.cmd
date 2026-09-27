@@ -1,0 +1,1 @@
+savedcmd_drivers/net/wireless/ath/ath12k/wifi7/ath12k_wifi7.mod := printf '%s\n'   core.o pci.o wmi.o mhi.o ce.o hw.o hal_tx.o hal_rx.o dp_rx.o dp_tx.o dp.o dp_mon.o hal.o hal_qcn9274.o hal_wcn7850.o hal_qcc2072.o | awk '!x[$$0]++ { print("drivers/net/wireless/ath/ath12k/wifi7/"$$0) }' > drivers/net/wireless/ath/ath12k/wifi7/ath12k_wifi7.mod

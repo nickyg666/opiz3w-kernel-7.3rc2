@@ -1,0 +1,1 @@
+savedcmd_drivers/soc/apple/modules.order := {   echo drivers/soc/apple/apple-mailbox.o;   echo drivers/soc/apple/apple-rtkit.o;   echo drivers/soc/apple/apple-sart.o; :; } > drivers/soc/apple/modules.order

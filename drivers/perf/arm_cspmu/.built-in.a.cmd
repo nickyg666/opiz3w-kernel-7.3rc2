@@ -1,0 +1,1 @@
+savedcmd_drivers/perf/arm_cspmu/built-in.a := rm -f drivers/perf/arm_cspmu/built-in.a;  printf "drivers/perf/arm_cspmu/%s " arm_cspmu.o nvidia_cspmu.o | xargs aarch64-linux-gnu-ar cDPrST drivers/perf/arm_cspmu/built-in.a

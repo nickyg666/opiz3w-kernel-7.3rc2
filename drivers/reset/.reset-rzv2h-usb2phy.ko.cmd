@@ -1,0 +1,1 @@
+savedcmd_drivers/reset/reset-rzv2h-usb2phy.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/reset/reset-rzv2h-usb2phy.ko drivers/reset/reset-rzv2h-usb2phy.o drivers/reset/reset-rzv2h-usb2phy.mod.o .module-common.o

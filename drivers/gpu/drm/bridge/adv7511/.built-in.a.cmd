@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/bridge/adv7511/built-in.a := rm -f drivers/gpu/drm/bridge/adv7511/built-in.a;  printf "drivers/gpu/drm/bridge/adv7511/%s " adv7511_drv.o adv7533.o adv7511_audio.o adv7511_cec.o | xargs aarch64-linux-gnu-ar cDPrST drivers/gpu/drm/bridge/adv7511/built-in.a

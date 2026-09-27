@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/pl111/built-in.a := rm -f drivers/gpu/drm/pl111/built-in.a;  printf "drivers/gpu/drm/pl111/%s " pl111_display.o pl111_versatile.o pl111_drv.o pl111_debugfs.o | xargs aarch64-linux-gnu-ar cDPrST drivers/gpu/drm/pl111/built-in.a

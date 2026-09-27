@@ -1,0 +1,1 @@
+savedcmd_drivers/input/misc/aw86927.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/input/misc/aw86927.ko drivers/input/misc/aw86927.o drivers/input/misc/aw86927.mod.o .module-common.o

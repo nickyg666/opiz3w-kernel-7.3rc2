@@ -1,0 +1,2 @@
+drivers/memory/renesas-rpc-if.o
+drivers/memory/stm32_omm.o

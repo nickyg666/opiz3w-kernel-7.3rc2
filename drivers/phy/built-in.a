@@ -1,0 +1,108 @@
+!<thin>
+//                                              1552      `
+phy-core.o/
+phy-core-mipi-dphy.o/
+phy-xgene.o/
+allwinner/phy-sun4i-usb.o/
+amlogic/phy-meson8b-usb2.o/
+amlogic/phy-meson-gxl-usb2.o/
+amlogic/phy-meson-g12a-usb2.o/
+amlogic/phy-meson-g12a-usb3-pcie.o/
+amlogic/phy-meson-g12a-mipi-dphy-analog.o/
+amlogic/phy-meson-axg-pcie.o/
+amlogic/phy-meson-axg-mipi-pcie-analog.o/
+amlogic/phy-meson-axg-mipi-dphy.o/
+broadcom/phy-bcm-ns2-pcie.o/
+broadcom/phy-bcm-ns2-usbdrd.o/
+broadcom/phy-brcm-sata.o/
+broadcom/phy-brcm-usb.o/
+broadcom/phy-brcm-usb-init.o/
+broadcom/phy-brcm-usb-init-synopsys.o/
+broadcom/phy-bcm-sr-pcie.o/
+broadcom/phy-bcm-sr-usb.o/
+freescale/phy-fsl-imx8m-pcie.o/
+hisilicon/phy-hi6220-usb.o/
+hisilicon/phy-histb-combphy.o/
+hisilicon/phy-hisi-inno-usb2.o/
+marvell/phy-mvebu-a3700-comphy.o/
+marvell/phy-mvebu-a3700-utmi.o/
+marvell/phy-mvebu-cp110-comphy.o/
+mediatek/phy-mtk-tphy.o/
+mediatek/phy-mtk-ufs.o/
+renesas/r8a779f0-ether-serdes.o/
+renesas/phy-rcar-gen3-pcie.o/
+renesas/phy-rcar-gen3-usb2.o/
+rockchip/phy-rockchip-emmc.o/
+rockchip/phy-rockchip-inno-usb2.o/
+rockchip/phy-rockchip-snps-pcie3.o/
+rockchip/phy-rockchip-typec.o/
+samsung/phy-exynos-dp-video.o/
+samsung/phy-exynos-mipi-video.o/
+samsung/phy-gs101-ufs.o/
+samsung/phy-samsung-ufs.o/
+samsung/phy-exynos7-ufs.o/
+samsung/phy-exynosautov9-ufs.o/
+samsung/phy-exynosautov920-ufs.o/
+samsung/phy-fsd-ufs.o/
+samsung/phy-samsung-usb2.o/
+socionext/phy-uniphier-usb2.o/
+socionext/phy-uniphier-usb3hs.o/
+socionext/phy-uniphier-usb3ss.o/
+socionext/phy-uniphier-ahci.o/
+tegra/xusb.o/
+tegra/xusb-tegra124.o/
+tegra/xusb-tegra210.o/
+tegra/xusb-tegra186.o/
+/0              0           0     0     644     116016    `
+/12             0           0     0     644     32120     `
+/34             0           0     0     644     101096    `
+/47             0           0     0     644     103776    `
+/74             0           0     0     644     52496     `
+/102            0           0     0     644     50144     `
+/132            0           0     0     644     73624     `
+/163            0           0     0     644     52152     `
+/199            0           0     0     644     32016     `
+/242            0           0     0     644     33296     `
+/272            0           0     0     644     34744     `
+/314            0           0     0     644     49880     `
+/349            0           0     0     644     22464     `
+/378            0           0     0     644     69408     `
+/409            0           0     0     644     67232     `
+/435            0           0     0     644     77472     `
+/460            0           0     0     644     107952    `
+/490            0           0     0     644     48488     `
+/529            0           0     0     644     45992     `
+/557            0           0     0     644     54832     `
+/584            0           0     0     644     56144     `
+/616            0           0     0     644     27392     `
+/644            0           0     0     644     54440     `
+/675            0           0     0     644     47672     `
+/707            0           0     0     644     85704     `
+/741            0           0     0     644     53120     `
+/773            0           0     0     644     92704     `
+/807            0           0     0     644     223944    `
+/832            0           0     0     644     57616     `
+/856            0           0     0     644     89432     `
+/889            0           0     0     644     43592     `
+/919            0           0     0     644     121184    `
+/949            0           0     0     644     60760     `
+/979            0           0     0     644     164552    `
+/1014           0           0     0     644     57472     `
+/1050           0           0     0     644     95944     `
+/1081           0           0     0     644     26856     `
+/1112           0           0     0     644     34536     `
+/1145           0           0     0     644     24200     `
+/1170           0           0     0     644     64072     `
+/1197           0           0     0     644     14464     `
+/1224           0           0     0     644     13984     `
+/1256           0           0     0     644     19560     `
+/1290           0           0     0     644     13936     `
+/1313           0           0     0     644     36816     `
+/1341           0           0     0     644     32088     `
+/1372           0           0     0     644     65688     `
+/1405           0           0     0     644     65648     `
+/1438           0           0     0     644     83328     `
+/1469           0           0     0     644     135040    `
+/1483           0           0     0     644     148400    `
+/1506           0           0     0     644     304440    `
+/1529           0           0     0     644     159080    `

@@ -1,0 +1,1 @@
+savedcmd_drivers/pci/controller/cadence/modules.order := {   echo drivers/pci/controller/cadence/pcie-cadence-mod.o;   echo drivers/pci/controller/cadence/pcie-cadence-host-mod.o;   echo drivers/pci/controller/cadence/pci-j721e.o;   echo drivers/pci/controller/cadence/pci-sky1.o; :; } > drivers/pci/controller/cadence/modules.order

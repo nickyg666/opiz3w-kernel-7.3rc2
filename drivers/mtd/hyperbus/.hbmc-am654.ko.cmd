@@ -1,0 +1,1 @@
+savedcmd_drivers/mtd/hyperbus/hbmc-am654.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/mtd/hyperbus/hbmc-am654.ko drivers/mtd/hyperbus/hbmc-am654.o drivers/mtd/hyperbus/hbmc-am654.mod.o .module-common.o

@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/v3d/built-in.a := rm -f drivers/gpu/drm/v3d/built-in.a;  printf "drivers/gpu/drm/v3d/%s " v3d_bo.o v3d_drv.o v3d_fence.o v3d_gem.o v3d_irq.o v3d_mmu.o v3d_perfmon.o v3d_power.o v3d_trace_points.o v3d_sched.o v3d_sysfs.o v3d_submit.o v3d_debugfs.o | xargs aarch64-linux-gnu-ar cDPrST drivers/gpu/drm/v3d/built-in.a

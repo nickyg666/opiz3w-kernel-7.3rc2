@@ -1,0 +1,1 @@
+savedcmd_drivers/mailbox/modules.order := {   echo drivers/mailbox/exynos-mailbox.o;   echo drivers/mailbox/omap-mailbox.o;   echo drivers/mailbox/bcm-flexrm-mailbox.o;   echo drivers/mailbox/mtk-adsp-mailbox.o;   echo drivers/mailbox/mtk-cmdq-mailbox.o;   echo drivers/mailbox/qcom-cpucp-mbox.o; :; } > drivers/mailbox/modules.order

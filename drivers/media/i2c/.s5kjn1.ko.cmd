@@ -1,0 +1,1 @@
+savedcmd_drivers/media/i2c/s5kjn1.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/media/i2c/s5kjn1.ko drivers/media/i2c/s5kjn1.o drivers/media/i2c/s5kjn1.mod.o .module-common.o

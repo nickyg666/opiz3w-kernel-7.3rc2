@@ -1,0 +1,36 @@
+!<thin>
+//                                              280       `
+mailbox.o/
+arm_mhu.o/
+arm_mhu_db.o/
+imx-mailbox.o/
+platform_mhu.o/
+bcm2835-mailbox.o/
+ti-msgmgr.o/
+hi3660-mailbox.o/
+hi6220-mailbox.o/
+qcom-apcs-ipc-mailbox.o/
+tegra-hsp.o/
+mtk-gpueb-mailbox.o/
+zynqmp-ipi-mailbox.o/
+sun6i-msgbox.o/
+qcom-ipcc.o/
+cix-mailbox.o/
+bcm74110-mailbox.o/
+/0              0           0     0     644     65920     `
+/11             0           0     0     644     42688     `
+/22             0           0     0     644     53728     `
+/36             0           0     0     644     127960    `
+/51             0           0     0     644     29824     `
+/67             0           0     0     644     31280     `
+/86             0           0     0     644     61080     `
+/99             0           0     0     644     34064     `
+/117            0           0     0     644     40496     `
+/135            0           0     0     644     31888     `
+/160            0           0     0     644     75408     `
+/173            0           0     0     644     44936     `
+/194            0           0     0     644     83168     `
+/216            0           0     0     644     49304     `
+/232            0           0     0     644     47440     `
+/245            0           0     0     644     50744     `
+/260            0           0     0     644     84704     `

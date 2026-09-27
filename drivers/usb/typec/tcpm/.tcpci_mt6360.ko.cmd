@@ -1,0 +1,1 @@
+savedcmd_drivers/usb/typec/tcpm/tcpci_mt6360.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/usb/typec/tcpm/tcpci_mt6360.ko drivers/usb/typec/tcpm/tcpci_mt6360.o drivers/usb/typec/tcpm/tcpci_mt6360.mod.o .module-common.o

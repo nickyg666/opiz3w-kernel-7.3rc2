@@ -1,0 +1,1 @@
+savedcmd_drivers/soc/renesas/built-in.a := rm -f drivers/soc/renesas/built-in.a;  printf "drivers/soc/renesas/%s " renesas-soc.o r9a08g045-sysc.o r9a08g046-sysc.o r9a09g047-sys.o r9a09g056-sys.o r9a09g057-sys.o pwc-rzv2m.o rcar-rst.o rz-sysc.o | xargs aarch64-linux-gnu-ar cDPrST drivers/soc/renesas/built-in.a

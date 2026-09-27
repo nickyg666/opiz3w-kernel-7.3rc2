@@ -1,0 +1,1 @@
+savedcmd_drivers/iio/trigger/stm32-timer-trigger.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/iio/trigger/stm32-timer-trigger.ko drivers/iio/trigger/stm32-timer-trigger.o drivers/iio/trigger/stm32-timer-trigger.mod.o .module-common.o

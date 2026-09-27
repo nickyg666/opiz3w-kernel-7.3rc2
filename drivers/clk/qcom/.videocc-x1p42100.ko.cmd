@@ -1,0 +1,1 @@
+savedcmd_drivers/clk/qcom/videocc-x1p42100.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/qcom/videocc-x1p42100.ko drivers/clk/qcom/videocc-x1p42100.o drivers/clk/qcom/videocc-x1p42100.mod.o .module-common.o

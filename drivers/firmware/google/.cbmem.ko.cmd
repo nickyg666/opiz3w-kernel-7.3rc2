@@ -1,0 +1,1 @@
+savedcmd_drivers/firmware/google/cbmem.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/firmware/google/cbmem.ko drivers/firmware/google/cbmem.o drivers/firmware/google/cbmem.mod.o .module-common.o

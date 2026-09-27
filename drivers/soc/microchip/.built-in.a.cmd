@@ -1,0 +1,1 @@
+savedcmd_drivers/soc/microchip/built-in.a := rm -f drivers/soc/microchip/built-in.a;  printf "drivers/soc/microchip/%s " mpfs-irqmux.o mpfs-control-scb.o mpfs-mss-top-sysreg.o | xargs aarch64-linux-gnu-ar cDPrST drivers/soc/microchip/built-in.a

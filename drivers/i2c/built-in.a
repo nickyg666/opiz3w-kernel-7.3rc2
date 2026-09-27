@@ -1,0 +1,73 @@
+!<thin>
+//                                              744       `
+i2c-boardinfo.o/
+i2c-core-base.o/
+i2c-core-smbus.o/
+i2c-core-slave.o/
+i2c-core-of.o/
+i2c-core-of-prober.o/
+i2c-smbus.o/
+i2c-dev.o/
+i2c-mux.o/
+busses/i2c-bcm-iproc.o/
+busses/i2c-designware-common.o/
+busses/i2c-designware-master.o/
+busses/i2c-designware-slave.o/
+busses/i2c-designware-platdrv.o/
+busses/i2c-exynos5.o/
+busses/i2c-imx.o/
+busses/i2c-imx-lpi2c.o/
+busses/i2c-meson.o/
+busses/i2c-mt65xx.o/
+busses/i2c-mv64xxx.o/
+busses/i2c-omap.o/
+busses/i2c-owl.o/
+busses/i2c-pxa.o/
+busses/i2c-qup.o/
+busses/i2c-riic.o/
+busses/i2c-rk3x.o/
+busses/i2c-s3c2410.o/
+busses/i2c-sh_mobile.o/
+busses/i2c-tegra.o/
+busses/i2c-tegra-bpmp.o/
+busses/i2c-uniphier-f.o/
+busses/i2c-rcar.o/
+busses/i2c-brcmstb.o/
+busses/i2c-cros-ec-tunnel.o/
+muxes/i2c-mux-pca954x.o/
+
+/0              0           0     0     644     35024     `
+/17             0           0     0     644     187192    `
+/34             0           0     0     644     60040     `
+/52             0           0     0     644     22736     `
+/70             0           0     0     644     48688     `
+/85             0           0     0     644     49976     `
+/107            0           0     0     644     55200     `
+/120            0           0     0     644     94664     `
+/131            0           0     0     644     56600     `
+/142            0           0     0     644     137144    `
+/166            0           0     0     644     84336     `
+/198            0           0     0     644     61608     `
+/230            0           0     0     644     22000     `
+/261            0           0     0     644     53056     `
+/294            0           0     0     644     79608     `
+/316            0           0     0     644     185384    `
+/334            0           0     0     644     151184    `
+/358            0           0     0     644     66080     `
+/378            0           0     0     644     112032    `
+/399            0           0     0     644     89960     `
+/421            0           0     0     644     106160    `
+/440            0           0     0     644     70656     `
+/458            0           0     0     644     99160     `
+/476            0           0     0     644     114264    `
+/494            0           0     0     644     100976    `
+/513            0           0     0     644     80144     `
+/532            0           0     0     644     83424     `
+/554            0           0     0     644     105008    `
+/578            0           0     0     644     151848    `
+/598            0           0     0     644     32520     `
+/623            0           0     0     644     58640     `
+/648            0           0     0     644     110808    `
+/667            0           0     0     644     64384     `
+/689            0           0     0     644     47376     `
+/718            0           0     0     644     72096     `

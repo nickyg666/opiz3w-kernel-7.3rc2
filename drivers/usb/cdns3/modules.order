@@ -1,0 +1,3 @@
+drivers/usb/cdns3/cdns.o
+drivers/usb/cdns3/cdns3-ti.o
+drivers/usb/cdns3/cdns3-imx.o

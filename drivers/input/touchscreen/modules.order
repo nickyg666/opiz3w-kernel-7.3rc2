@@ -1,0 +1,9 @@
+drivers/input/touchscreen/apple_z2.o
+drivers/input/touchscreen/atmel_mxt_ts.o
+drivers/input/touchscreen/edt-ft5x06.o
+drivers/input/touchscreen/elants_i2c.o
+drivers/input/touchscreen/goodix_ts.o
+drivers/input/touchscreen/goodix_berlin_core.o
+drivers/input/touchscreen/goodix_berlin_spi.o
+drivers/input/touchscreen/ili210x.o
+drivers/input/touchscreen/himax_hx83112b.o

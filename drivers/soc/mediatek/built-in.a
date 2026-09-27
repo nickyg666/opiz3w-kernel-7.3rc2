@@ -1,0 +1,11 @@
+!<thin>
+//                                              74        `
+mtk-infracfg.o/
+mtk-pmic-wrap.o/
+mtk-regulator-coupler.o/
+mtk-socinfo.o/
+
+/0              0           0     0     644     18896     `
+/16             0           0     0     644     126304    `
+/33             0           0     0     644     25376     `
+/58             0           0     0     644     30240     `

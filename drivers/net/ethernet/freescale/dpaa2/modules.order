@@ -1,0 +1,3 @@
+drivers/net/ethernet/freescale/dpaa2/fsl-dpaa2-eth.o
+drivers/net/ethernet/freescale/dpaa2/fsl-dpaa2-mac.o
+drivers/net/ethernet/freescale/dpaa2/fsl-dpaa2-ptp.o

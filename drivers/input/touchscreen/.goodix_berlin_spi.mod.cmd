@@ -1,0 +1,1 @@
+savedcmd_drivers/input/touchscreen/goodix_berlin_spi.mod := printf '%s\n'   goodix_berlin_spi.o | awk '!x[$$0]++ { print("drivers/input/touchscreen/"$$0) }' > drivers/input/touchscreen/goodix_berlin_spi.mod

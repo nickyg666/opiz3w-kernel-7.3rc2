@@ -1,0 +1,3 @@
+drivers/usb/gadget/udc/tegra-xudc.o
+drivers/usb/gadget/udc/renesas_usb3.o
+drivers/usb/gadget/legacy/g_mass_storage.o

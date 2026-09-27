@@ -1,0 +1,25 @@
+!<thin>
+//                                              174       `
+panthor_devfreq.o/
+panthor_device.o/
+panthor_drv.o/
+panthor_fw.o/
+panthor_gem.o/
+panthor_gpu.o/
+panthor_heap.o/
+panthor_hw.o/
+panthor_mmu.o/
+panthor_pwr.o/
+panthor_sched.o/
+
+/0              0           0     0     644     36384     `
+/19             0           0     0     644     84904     `
+/37             0           0     0     644     178328    `
+/52             0           0     0     644     152984    `
+/66             0           0     0     644     216104    `
+/81             0           0     0     644     95480     `
+/96             0           0     0     644     62696     `
+/112            0           0     0     644     44784     `
+/126            0           0     0     644     284512    `
+/141            0           0     0     644     95576     `
+/156            0           0     0     644     381320    `

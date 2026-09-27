@@ -1,0 +1,1 @@
+savedcmd_drivers/crypto/bcm/built-in.a := rm -f drivers/crypto/bcm/built-in.a;  printf "drivers/crypto/bcm/%s " util.o spu.o spu2.o cipher.o | xargs aarch64-linux-gnu-ar cDPrST drivers/crypto/bcm/built-in.a

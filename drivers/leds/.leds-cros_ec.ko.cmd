@@ -1,0 +1,1 @@
+savedcmd_drivers/leds/leds-cros_ec.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/leds/leds-cros_ec.ko drivers/leds/leds-cros_ec.o drivers/leds/leds-cros_ec.mod.o .module-common.o

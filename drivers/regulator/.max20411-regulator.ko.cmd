@@ -1,0 +1,1 @@
+savedcmd_drivers/regulator/max20411-regulator.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/regulator/max20411-regulator.ko drivers/regulator/max20411-regulator.o drivers/regulator/max20411-regulator.mod.o .module-common.o

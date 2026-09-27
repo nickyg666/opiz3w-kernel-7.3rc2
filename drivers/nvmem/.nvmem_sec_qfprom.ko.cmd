@@ -1,0 +1,1 @@
+savedcmd_drivers/nvmem/nvmem_sec_qfprom.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/nvmem/nvmem_sec_qfprom.ko drivers/nvmem/nvmem_sec_qfprom.o drivers/nvmem/nvmem_sec_qfprom.mod.o .module-common.o

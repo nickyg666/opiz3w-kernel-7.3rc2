@@ -1,0 +1,51 @@
+!<thin>
+//                                              370       `
+mtk_crtc.o/
+mtk_ddp_comp.o/
+mtk_disp_aal.o/
+mtk_disp_ccorr.o/
+mtk_disp_color.o/
+mtk_disp_gamma.o/
+mtk_disp_merge.o/
+mtk_disp_ovl.o/
+mtk_disp_ovl_adaptor.o/
+mtk_disp_rdma.o/
+mtk_drm_drv.o/
+mtk_dsi.o/
+mtk_dpi.o/
+mtk_ethdr.o/
+mtk_mdp_rdma.o/
+mtk_padding.o/
+mtk_plane.o/
+mtk_hdmi_common.o/
+mtk_cec.o/
+mtk_hdmi.o/
+mtk_hdmi_ddc.o/
+mtk_hdmi_v2.o/
+mtk_hdmi_ddc_v2.o/
+mtk_dp.o/
+
+/0              0           0     0     644     105560    `
+/12             0           0     0     644     74496     `
+/28             0           0     0     644     37200     `
+/44             0           0     0     644     31480     `
+/62             0           0     0     644     29448     `
+/80             0           0     0     644     51144     `
+/98             0           0     0     644     51480     `
+/116            0           0     0     644     65264     `
+/132            0           0     0     644     60040     `
+/156            0           0     0     644     54296     `
+/173            0           0     0     644     90992     `
+/188            0           0     0     644     129096    `
+/199            0           0     0     644     87192     `
+/210            0           0     0     644     40904     `
+/223            0           0     0     644     55016     `
+/239            0           0     0     644     41840     `
+/254            0           0     0     644     41432     `
+/267            0           0     0     644     55944     `
+/286            0           0     0     644     57216     `
+/297            0           0     0     644     88016     `
+/309            0           0     0     644     51056     `
+/325            0           0     0     644     139352    `
+/340            0           0     0     644     57600     `
+/359            0           0     0     644     226648    `

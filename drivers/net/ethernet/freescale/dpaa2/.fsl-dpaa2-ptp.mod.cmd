@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/freescale/dpaa2/fsl-dpaa2-ptp.mod := printf '%s\n'   dpaa2-ptp.o dprtc.o | awk '!x[$$0]++ { print("drivers/net/ethernet/freescale/dpaa2/"$$0) }' > drivers/net/ethernet/freescale/dpaa2/fsl-dpaa2-ptp.mod

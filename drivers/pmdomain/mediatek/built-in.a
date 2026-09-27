@@ -1,0 +1,11 @@
+!<thin>
+//                                              76        `
+mtk-mfg-pmdomain.o/
+mtk-scpsys.o/
+mtk-pm-domains.o/
+airoha-cpu-pmdomain.o/
+
+/0              0           0     0     644     95960     `
+/20             0           0     0     644     69824     `
+/34             0           0     0     644     200584    `
+/52             0           0     0     644     33728     `

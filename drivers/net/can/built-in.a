@@ -1,0 +1,54 @@
+!<thin>
+//                                              642       `
+dev/skb.o/
+dev/calc_bittiming.o/
+dev/bittiming.o/
+dev/dev.o/
+dev/length.o/
+dev/netlink.o/
+dev/rx-offload.o/
+rcar/rcar_can.o/
+rcar/rcar_canfd.o/
+spi/mcp251xfd/mcp251xfd-chip-fifo.o/
+spi/mcp251xfd/mcp251xfd-core.o/
+spi/mcp251xfd/mcp251xfd-crc16.o/
+spi/mcp251xfd/mcp251xfd-ethtool.o/
+spi/mcp251xfd/mcp251xfd-ram.o/
+spi/mcp251xfd/mcp251xfd-regmap.o/
+spi/mcp251xfd/mcp251xfd-ring.o/
+spi/mcp251xfd/mcp251xfd-rx.o/
+spi/mcp251xfd/mcp251xfd-tef.o/
+spi/mcp251xfd/mcp251xfd-timestamp.o/
+spi/mcp251xfd/mcp251xfd-tx.o/
+spi/mcp251xfd/mcp251xfd-dump.o/
+flexcan/flexcan-core.o/
+flexcan/flexcan-ethtool.o/
+m_can/m_can.o/
+m_can/m_can_platform.o/
+xilinx_can.o/
+/0              0           0     0     644     72824     `
+/11             0           0     0     644     25192     `
+/33             0           0     0     644     27496     `
+/50             0           0     0     644     82032     `
+/61             0           0     0     644     30680     `
+/75             0           0     0     644     91864     `
+/90             0           0     0     644     72872     `
+/108            0           0     0     644     127152    `
+/125            0           0     0     644     193880    `
+/144            0           0     0     644     19568     `
+/181            0           0     0     644     196848    `
+/213            0           0     0     644     29880     `
+/246            0           0     0     644     46672     `
+/281            0           0     0     644     19880     `
+/312            0           0     0     644     65712     `
+/346            0           0     0     644     71488     `
+/378            0           0     0     644     32392     `
+/408            0           0     0     644     36304     `
+/439            0           0     0     644     22080     `
+/476            0           0     0     644     61624     `
+/506            0           0     0     644     39408     `
+/538            0           0     0     644     162144    `
+/562            0           0     0     644     34840     `
+/589            0           0     0     644     215400    `
+/604            0           0     0     644     49888     `
+/628            0           0     0     644     139224    `

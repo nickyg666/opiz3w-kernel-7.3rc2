@@ -1,0 +1,2 @@
+drivers/leds/rgb/leds-pwm-multicolor.o
+drivers/leds/rgb/leds-qcom-lpg.o

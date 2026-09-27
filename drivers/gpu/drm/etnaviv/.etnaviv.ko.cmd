@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/etnaviv/etnaviv.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpu/drm/etnaviv/etnaviv.ko drivers/gpu/drm/etnaviv/etnaviv.o drivers/gpu/drm/etnaviv/etnaviv.mod.o .module-common.o

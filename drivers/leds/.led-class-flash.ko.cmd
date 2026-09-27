@@ -1,0 +1,1 @@
+savedcmd_drivers/leds/led-class-flash.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/leds/led-class-flash.ko drivers/leds/led-class-flash.o drivers/leds/led-class-flash.mod.o .module-common.o

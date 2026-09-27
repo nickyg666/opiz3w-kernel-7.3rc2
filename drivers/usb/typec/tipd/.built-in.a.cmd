@@ -1,0 +1,1 @@
+savedcmd_drivers/usb/typec/tipd/built-in.a := rm -f drivers/usb/typec/tipd/built-in.a;  printf "drivers/usb/typec/tipd/%s " core.o | xargs aarch64-linux-gnu-ar cDPrST drivers/usb/typec/tipd/built-in.a

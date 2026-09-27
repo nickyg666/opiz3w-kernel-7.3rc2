@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/xlnx/zynqmp-dpsub.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/gpu/drm/xlnx/zynqmp-dpsub.o @drivers/gpu/drm/xlnx/zynqmp-dpsub.mod 

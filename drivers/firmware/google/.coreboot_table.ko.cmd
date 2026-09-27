@@ -1,0 +1,1 @@
+savedcmd_drivers/firmware/google/coreboot_table.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/firmware/google/coreboot_table.ko drivers/firmware/google/coreboot_table.o drivers/firmware/google/coreboot_table.mod.o .module-common.o

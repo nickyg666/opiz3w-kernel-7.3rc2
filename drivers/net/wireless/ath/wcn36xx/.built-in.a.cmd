@@ -1,0 +1,1 @@
+savedcmd_drivers/net/wireless/ath/wcn36xx/built-in.a := rm -f drivers/net/wireless/ath/wcn36xx/built-in.a;  printf "drivers/net/wireless/ath/wcn36xx/%s " main.o dxe.o txrx.o smd.o pmc.o debug.o firmware.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/wireless/ath/wcn36xx/built-in.a

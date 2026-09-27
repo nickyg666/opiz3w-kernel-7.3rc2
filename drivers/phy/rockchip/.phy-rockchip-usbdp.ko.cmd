@@ -1,0 +1,1 @@
+savedcmd_drivers/phy/rockchip/phy-rockchip-usbdp.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/phy/rockchip/phy-rockchip-usbdp.ko drivers/phy/rockchip/phy-rockchip-usbdp.o drivers/phy/rockchip/phy-rockchip-usbdp.mod.o .module-common.o

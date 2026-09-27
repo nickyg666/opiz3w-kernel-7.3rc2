@@ -1,0 +1,3 @@
+drivers/nvme/host/nvme-core.o
+drivers/nvme/host/nvme.o
+drivers/nvme/host/nvme-apple.o

@@ -1,0 +1,1 @@
+savedcmd_drivers/clk/microchip/built-in.a := rm -f drivers/clk/microchip/built-in.a;  printf "drivers/clk/microchip/%s " clk-mpfs.o clk-mpfs-ccc.o | xargs aarch64-linux-gnu-ar cDPrST drivers/clk/microchip/built-in.a

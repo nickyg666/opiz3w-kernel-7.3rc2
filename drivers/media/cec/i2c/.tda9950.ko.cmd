@@ -1,0 +1,1 @@
+savedcmd_drivers/media/cec/i2c/tda9950.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/media/cec/i2c/tda9950.ko drivers/media/cec/i2c/tda9950.o drivers/media/cec/i2c/tda9950.mod.o .module-common.o

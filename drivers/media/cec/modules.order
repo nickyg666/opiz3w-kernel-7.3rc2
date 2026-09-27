@@ -1,0 +1,3 @@
+drivers/media/cec/core/cec.o
+drivers/media/cec/i2c/tda9950.o
+drivers/media/cec/platform/meson/ao-cec-g12a.o

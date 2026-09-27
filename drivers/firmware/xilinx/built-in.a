@@ -1,0 +1,11 @@
+!<thin>
+//                                              58        `
+zynqmp.o/
+zynqmp-ufs.o/
+zynqmp-crypto.o/
+zynqmp-debug.o/
+
+/0              0           0     0     644     145944    `
+/10             0           0     0     644     16680     `
+/24             0           0     0     644     24704     `
+/41             0           0     0     644     36064     `

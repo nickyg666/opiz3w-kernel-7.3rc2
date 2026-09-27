@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/ti/ti-am65-cpsw-nuss.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/ethernet/ti/ti-am65-cpsw-nuss.ko drivers/net/ethernet/ti/ti-am65-cpsw-nuss.o drivers/net/ethernet/ti/ti-am65-cpsw-nuss.mod.o .module-common.o

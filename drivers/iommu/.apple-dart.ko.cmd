@@ -1,0 +1,1 @@
+savedcmd_drivers/iommu/apple-dart.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/iommu/apple-dart.ko drivers/iommu/apple-dart.o drivers/iommu/apple-dart.mod.o .module-common.o

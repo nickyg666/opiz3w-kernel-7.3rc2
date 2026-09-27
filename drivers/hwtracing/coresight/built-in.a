@@ -1,0 +1,50 @@
+!<thin>
+//                                              516       `
+coresight-core.o/
+coresight-etm-perf.o/
+coresight-platform.o/
+coresight-sysfs.o/
+coresight-syscfg.o/
+coresight-config.o/
+coresight-cfg-preload.o/
+coresight-cfg-afdo.o/
+coresight-cfg-pstop.o/
+coresight-syscfg-configfs.o/
+coresight-trace-id.o/
+coresight-tmc-core.o/
+coresight-tmc-etf.o/
+coresight-tmc-etr.o/
+coresight-tpiu.o/
+coresight-etb10.o/
+coresight-funnel.o/
+coresight-replicator.o/
+coresight-stm.o/
+coresight-cpu-debug.o/
+coresight-catu.o/
+coresight-cti-core.o/
+coresight-cti-platform.o/
+coresight-cti-sysfs.o/
+/0              0           0     0     644     178040    `
+/18             0           0     0     644     86472     `
+/40             0           0     0     644     36232     `
+/62             0           0     0     644     54208     `
+/81             0           0     0     644     87856     `
+/101            0           0     0     644     22168     `
+/121            0           0     0     644     13208     `
+/146            0           0     0     644     10360     `
+/168            0           0     0     644     10360     `
+/191            0           0     0     644     44928     `
+/220            0           0     0     644     46776     `
+/242            0           0     0     644     94328     `
+/264            0           0     0     644     76096     `
+/285            0           0     0     644     147696    `
+/306            0           0     0     644     44584     `
+/324            0           0     0     644     86720     `
+/343            0           0     0     644     54088     `
+/363            0           0     0     644     53904     `
+/387            0           0     0     644     103096    `
+/404            0           0     0     644     72792     `
+/427            0           0     0     644     72056     `
+/445            0           0     0     644     67224     `
+/467            0           0     0     644     42680     `
+/493            0           0     0     644     96880     `

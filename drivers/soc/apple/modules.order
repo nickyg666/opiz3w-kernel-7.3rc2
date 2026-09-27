@@ -1,0 +1,3 @@
+drivers/soc/apple/apple-mailbox.o
+drivers/soc/apple/apple-rtkit.o
+drivers/soc/apple/apple-sart.o

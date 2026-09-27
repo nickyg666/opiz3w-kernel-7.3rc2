@@ -1,0 +1,1 @@
+savedcmd_drivers/soc/apple/apple-rtkit.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/soc/apple/apple-rtkit.ko drivers/soc/apple/apple-rtkit.o drivers/soc/apple/apple-rtkit.mod.o .module-common.o

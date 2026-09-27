@@ -1,0 +1,1 @@
+savedcmd_drivers/soc/apple/apple-mailbox.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/soc/apple/apple-mailbox.o @drivers/soc/apple/apple-mailbox.mod 

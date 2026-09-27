@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/tidss/built-in.a := rm -f drivers/gpu/drm/tidss/built-in.a;  printf "drivers/gpu/drm/tidss/%s " tidss_crtc.o tidss_drv.o tidss_encoder.o tidss_kms.o tidss_irq.o tidss_plane.o tidss_scale_coefs.o tidss_dispc.o tidss_oldi.o | xargs aarch64-linux-gnu-ar cDPrST drivers/gpu/drm/tidss/built-in.a

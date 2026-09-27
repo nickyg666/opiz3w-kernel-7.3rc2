@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/freescale/dpaa/fsl_dpa.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/ethernet/freescale/dpaa/fsl_dpa.ko drivers/net/ethernet/freescale/dpaa/fsl_dpa.o drivers/net/ethernet/freescale/dpaa/fsl_dpa.mod.o .module-common.o

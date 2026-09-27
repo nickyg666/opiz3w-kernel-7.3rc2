@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/imx/dcss/built-in.a := rm -f drivers/gpu/drm/imx/dcss/built-in.a;  printf "drivers/gpu/drm/imx/dcss/%s " dcss-drv.o dcss-dev.o dcss-blkctl.o dcss-ctxld.o dcss-dtg.o dcss-ss.o dcss-dpr.o dcss-scaler.o dcss-kms.o dcss-crtc.o dcss-plane.o | xargs aarch64-linux-gnu-ar cDPrST drivers/gpu/drm/imx/dcss/built-in.a

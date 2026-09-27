@@ -1,0 +1,1 @@
+savedcmd_drivers/net/wireless/broadcom/brcm80211/brcmutil/built-in.a := rm -f drivers/net/wireless/broadcom/brcm80211/brcmutil/built-in.a;  printf "drivers/net/wireless/broadcom/brcm80211/brcmutil/%s " utils.o d11.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/wireless/broadcom/brcm80211/brcmutil/built-in.a

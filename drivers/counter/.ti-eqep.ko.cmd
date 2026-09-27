@@ -1,0 +1,1 @@
+savedcmd_drivers/counter/ti-eqep.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/counter/ti-eqep.ko drivers/counter/ti-eqep.o drivers/counter/ti-eqep.mod.o .module-common.o

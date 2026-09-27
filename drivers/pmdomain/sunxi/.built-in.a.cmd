@@ -1,0 +1,1 @@
+savedcmd_drivers/pmdomain/sunxi/built-in.a := rm -f drivers/pmdomain/sunxi/built-in.a;  printf "drivers/pmdomain/sunxi/%s " sun20i-ppu.o sun55i-pck600.o | xargs aarch64-linux-gnu-ar cDPrST drivers/pmdomain/sunxi/built-in.a

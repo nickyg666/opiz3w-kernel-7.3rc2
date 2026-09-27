@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.mod := printf '%s\n'   imx8mp-hdmi-pai.o | awk '!x[$$0]++ { print("drivers/gpu/drm/bridge/imx/"$$0) }' > drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.mod

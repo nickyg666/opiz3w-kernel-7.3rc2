@@ -1,0 +1,15 @@
+!<thin>
+//                                              126       `
+pinctrl-bcm2835.o/
+pinctrl-bcm4908.o/
+pinctrl-brcmstb.o/
+pinctrl-brcmstb-bcm2712.o/
+pinctrl-iproc-gpio.o/
+pinctrl-ns2-mux.o/
+
+/0              0           0     0     644     133864    `
+/19             0           0     0     644     51792     `
+/38             0           0     0     644     44800     `
+/57             0           0     0     644     51776     `
+/84             0           0     0     644     81672     `
+/106            0           0     0     644     77512     `

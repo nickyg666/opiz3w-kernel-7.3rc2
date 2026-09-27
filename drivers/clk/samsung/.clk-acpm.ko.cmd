@@ -1,0 +1,1 @@
+savedcmd_drivers/clk/samsung/clk-acpm.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/samsung/clk-acpm.ko drivers/clk/samsung/clk-acpm.o drivers/clk/samsung/clk-acpm.mod.o .module-common.o

@@ -1,0 +1,2 @@
+drivers/spmi/spmi-apple-controller.o
+drivers/spmi/spmi-mtk-pmif.o

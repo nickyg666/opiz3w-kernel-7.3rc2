@@ -1,0 +1,111 @@
+!<thin>
+//                                              896       `
+drm_atomic.o/
+drm_atomic_uapi.o/
+drm_auth.o/
+drm_blend.o/
+drm_bridge.o/
+drm_cache.o/
+drm_color_mgmt.o/
+drm_colorop.o/
+drm_connector.o/
+drm_crtc.o/
+drm_displayid.o/
+drm_drv.o/
+drm_dumb_buffers.o/
+drm_edid.o/
+drm_eld.o/
+drm_encoder.o/
+drm_file.o/
+drm_fourcc.o/
+drm_framebuffer.o/
+drm_gem.o/
+drm_ioctl.o/
+drm_lease.o/
+drm_managed.o/
+drm_mm.o/
+drm_mode_config.o/
+drm_mode_object.o/
+drm_modes.o/
+drm_modeset_lock.o/
+drm_plane.o/
+drm_prime.o/
+drm_print.o/
+drm_property.o/
+drm_rect.o/
+drm_syncobj.o/
+drm_sysfs.o/
+drm_trace_points.o/
+drm_vblank.o/
+drm_vblank_work.o/
+drm_vma_manager.o/
+drm_writeback.o/
+drm_client.o/
+drm_client_event.o/
+drm_client_modeset.o/
+drm_client_sysrq.o/
+drm_ioc32.o/
+drm_panel.o/
+drm_of.o/
+drm_pci.o/
+drm_debugfs.o/
+drm_debugfs_crc.o/
+drm_panel_orientation_quirks.o/
+drm_mipi_dsi.o/
+bridge/imx/imx8mp-hdmi-tx-connector-fixup.o/
+bridge/imx/imx8mp-hdmi-tx-connector-fixup.dtbo.o/
+
+/0              0           0     0     644     141112    `
+/14             0           0     0     644     129856    `
+/33             0           0     0     644     65104     `
+/45             0           0     0     644     48520     `
+/58             0           0     0     644     118296    `
+/72             0           0     0     644     37936     `
+/85             0           0     0     644     84984     `
+/103            0           0     0     644     62928     `
+/118            0           0     0     644     226024    `
+/135            0           0     0     644     93616     `
+/147            0           0     0     644     18840     `
+/164            0           0     0     644     103368    `
+/175            0           0     0     644     19688     `
+/195            0           0     0     644     318256    `
+/207            0           0     0     644     8032      `
+/218            0           0     0     644     50376     `
+/233            0           0     0     644     119776    `
+/245            0           0     0     644     25664     `
+/259            0           0     0     644     100328    `
+/278            0           0     0     644     178840    `
+/289            0           0     0     644     77392     `
+/302            0           0     0     644     72616     `
+/315            0           0     0     644     37528     `
+/330            0           0     0     644     70704     `
+/340            0           0     0     644     87784     `
+/359            0           0     0     644     82304     `
+/378            0           0     0     644     134928    `
+/391            0           0     0     644     66768     `
+/411            0           0     0     644     108576    `
+/424            0           0     0     644     97664     `
+/437            0           0     0     644     44336     `
+/450            0           0     0     644     90416     `
+/466            0           0     0     644     28936     `
+/478            0           0     0     644     232144    `
+/493            0           0     0     644     56016     `
+/506            0           0     0     644     9920      `
+/526            0           0     0     644     184600    `
+/540            0           0     0     644     41776     `
+/559            0           0     0     644     43176     `
+/578            0           0     0     644     68992     `
+/595            0           0     0     644     49568     `
+/609            0           0     0     644     27328     `
+/629            0           0     0     644     104344    `
+/651            0           0     0     644     25152     `
+/671            0           0     0     644     45104     `
+/684            0           0     0     644     77784     `
+/697            0           0     0     644     41288     `
+/707            0           0     0     644     13736     `
+/718            0           0     0     644     81416     `
+/733            0           0     0     644     63296     `
+/752            0           0     0     644     25712     `
+/784            0           0     0     644     131480    `
+/800            0           0     0     644     14808     `
+/845            0           0     0     644     1648      `

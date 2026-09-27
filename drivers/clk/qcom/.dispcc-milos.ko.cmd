@@ -1,0 +1,1 @@
+savedcmd_drivers/clk/qcom/dispcc-milos.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/qcom/dispcc-milos.ko drivers/clk/qcom/dispcc-milos.o drivers/clk/qcom/dispcc-milos.mod.o .module-common.o

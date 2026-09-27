@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/hisilicon/hns/hnae.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/ethernet/hisilicon/hns/hnae.ko drivers/net/ethernet/hisilicon/hns/hnae.o drivers/net/ethernet/hisilicon/hns/hnae.mod.o .module-common.o

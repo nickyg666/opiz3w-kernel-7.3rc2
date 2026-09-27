@@ -1,0 +1,13 @@
+!<thin>
+//                                              100       `
+aspeed-lpc-ctrl.o/
+aspeed-lpc-snoop.o/
+aspeed-uart-routing.o/
+aspeed-p2a-ctrl.o/
+aspeed-socinfo.o/
+
+/0              0           0     0     644     41648     `
+/19             0           0     0     644     54888     `
+/39             0           0     0     644     39728     `
+/62             0           0     0     644     44128     `
+/81             0           0     0     644     25072     `

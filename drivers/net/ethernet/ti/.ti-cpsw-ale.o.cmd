@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/ti/ti-cpsw-ale.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/net/ethernet/ti/ti-cpsw-ale.o @drivers/net/ethernet/ti/ti-cpsw-ale.mod 

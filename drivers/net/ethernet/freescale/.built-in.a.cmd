@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/freescale/built-in.a := rm -f drivers/net/ethernet/freescale/built-in.a;  printf "drivers/net/ethernet/freescale/%s " dpaa2/built-in.a enetc/built-in.a | xargs aarch64-linux-gnu-ar cDPrST drivers/net/ethernet/freescale/built-in.a

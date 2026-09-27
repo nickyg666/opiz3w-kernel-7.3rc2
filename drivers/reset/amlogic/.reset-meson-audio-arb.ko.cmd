@@ -1,0 +1,1 @@
+savedcmd_drivers/reset/amlogic/reset-meson-audio-arb.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/reset/amlogic/reset-meson-audio-arb.ko drivers/reset/amlogic/reset-meson-audio-arb.o drivers/reset/amlogic/reset-meson-audio-arb.mod.o .module-common.o

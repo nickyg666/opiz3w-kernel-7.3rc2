@@ -1,0 +1,1 @@
+savedcmd_drivers/mailbox/mtk-adsp-mailbox.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/mailbox/mtk-adsp-mailbox.ko drivers/mailbox/mtk-adsp-mailbox.o drivers/mailbox/mtk-adsp-mailbox.mod.o .module-common.o

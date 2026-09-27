@@ -1,0 +1,9 @@
+!<thin>
+//                                              62        `
+pinctrl-sophgo-common.o/
+pinctrl-cv18xx.o/
+pinctrl-sg2000.o/
+
+/0              0           0     0     644     42544     `
+/25             0           0     0     644     51848     `
+/43             0           0     0     644     34864     `

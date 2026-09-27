@@ -1,0 +1,1 @@
+savedcmd_drivers/clk/qcom/videocc-milos.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/qcom/videocc-milos.ko drivers/clk/qcom/videocc-milos.o drivers/clk/qcom/videocc-milos.mod.o .module-common.o

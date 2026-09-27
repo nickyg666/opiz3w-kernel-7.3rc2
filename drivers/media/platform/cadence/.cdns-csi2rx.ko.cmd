@@ -1,0 +1,1 @@
+savedcmd_drivers/media/platform/cadence/cdns-csi2rx.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/media/platform/cadence/cdns-csi2rx.ko drivers/media/platform/cadence/cdns-csi2rx.o drivers/media/platform/cadence/cdns-csi2rx.mod.o .module-common.o

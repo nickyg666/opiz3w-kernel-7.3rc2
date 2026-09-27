@@ -1,0 +1,1 @@
+savedcmd_drivers/soc/qcom/qcom-pbs.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/soc/qcom/qcom-pbs.ko drivers/soc/qcom/qcom-pbs.o drivers/soc/qcom/qcom-pbs.mod.o .module-common.o

@@ -1,0 +1,3 @@
+drivers/net/ethernet/freescale/fman/fsl_dpaa_fman.o
+drivers/net/ethernet/freescale/fman/fsl_dpaa_fman_port.o
+drivers/net/ethernet/freescale/fman/fsl_dpaa_mac.o

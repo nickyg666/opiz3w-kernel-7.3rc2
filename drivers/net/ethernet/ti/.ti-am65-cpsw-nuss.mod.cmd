@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/ti/ti-am65-cpsw-nuss.mod := printf '%s\n'   am65-cpsw-nuss.o am65-cpsw-ethtool.o | awk '!x[$$0]++ { print("drivers/net/ethernet/ti/"$$0) }' > drivers/net/ethernet/ti/ti-am65-cpsw-nuss.mod

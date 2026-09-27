@@ -1,0 +1,1 @@
+savedcmd_drivers/media/platform/amphion/amphion-vpu.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/media/platform/amphion/amphion-vpu.ko drivers/media/platform/amphion/amphion-vpu.o drivers/media/platform/amphion/amphion-vpu.mod.o .module-common.o

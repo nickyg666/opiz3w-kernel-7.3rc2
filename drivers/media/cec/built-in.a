@@ -1,0 +1,14 @@
+!<thin>
+//                                              116       `
+core/cec-core.o/
+core/cec-adap.o/
+core/cec-api.o/
+core/cec-notifier.o/
+i2c/tda9950.o/
+platform/meson/ao-cec-g12a.o/
+/0              0           0     0     644     58048     `
+/17             0           0     0     644     121400    `
+/34             0           0     0     644     72040     `
+/50             0           0     0     644     57240     `
+/71             0           0     0     644     56984     `
+/86             0           0     0     644     63568     `

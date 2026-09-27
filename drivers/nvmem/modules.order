@@ -1,0 +1,13 @@
+drivers/nvmem/layouts/sl28vpd.o
+drivers/nvmem/at24.o
+drivers/nvmem/at25.o
+drivers/nvmem/nvmem-apple-efuses.o
+drivers/nvmem/apple_nvmem_spmi.o
+drivers/nvmem/nvmem-imx-ocotp-ele.o
+drivers/nvmem/nvmem-layerscape-sfp.o
+drivers/nvmem/nvmem-max77759.o
+drivers/nvmem/nvmem_meson_efuse.o
+drivers/nvmem/nvmem_sec_qfprom.o
+drivers/nvmem/nvmem-rmem.o
+drivers/nvmem/nvmem_qcom-spmi-sdam.o
+drivers/nvmem/nvmem_zynqmp_nvmem.o

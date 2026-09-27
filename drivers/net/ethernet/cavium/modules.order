@@ -1,0 +1,3 @@
+drivers/net/ethernet/cavium/thunder/thunder_xcv.o
+drivers/net/ethernet/cavium/thunder/thunder_bgx.o
+drivers/net/ethernet/cavium/thunder/nicpf.o

@@ -1,0 +1,1 @@
+savedcmd_drivers/clk/qcom/dispcc-sm6375.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/qcom/dispcc-sm6375.ko drivers/clk/qcom/dispcc-sm6375.o drivers/clk/qcom/dispcc-sm6375.mod.o .module-common.o

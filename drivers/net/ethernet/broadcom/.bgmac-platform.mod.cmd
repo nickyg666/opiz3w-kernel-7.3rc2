@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/broadcom/bgmac-platform.mod := printf '%s\n'   bgmac-platform.o | awk '!x[$$0]++ { print("drivers/net/ethernet/broadcom/"$$0) }' > drivers/net/ethernet/broadcom/bgmac-platform.mod

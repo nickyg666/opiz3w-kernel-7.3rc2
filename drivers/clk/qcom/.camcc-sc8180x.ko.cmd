@@ -1,0 +1,1 @@
+savedcmd_drivers/clk/qcom/camcc-sc8180x.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/qcom/camcc-sc8180x.ko drivers/clk/qcom/camcc-sc8180x.o drivers/clk/qcom/camcc-sc8180x.mod.o .module-common.o

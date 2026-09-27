@@ -1,0 +1,1 @@
+savedcmd_drivers/nvmem/nvmem-apple-efuses.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/nvmem/nvmem-apple-efuses.ko drivers/nvmem/nvmem-apple-efuses.o drivers/nvmem/nvmem-apple-efuses.mod.o .module-common.o

@@ -1,0 +1,22 @@
+!<thin>
+//                                              160       `
+hibmc_drm_drv.o/
+hibmc_drm_de.o/
+hibmc_drm_vdac.o/
+hibmc_drm_i2c.o/
+dp/dp_aux.o/
+dp/dp_link.o/
+dp/dp_hw.o/
+dp/dp_serdes.o/
+hibmc_drm_dp.o/
+hibmc_drm_debugfs.o/
+/0              0           0     0     644     61800     `
+/17             0           0     0     644     61080     `
+/33             0           0     0     644     20824     `
+/51             0           0     0     644     22744     `
+/68             0           0     0     644     33448     `
+/81             0           0     0     644     38280     `
+/95             0           0     0     644     108712    `
+/107            0           0     0     644     22192     `
+/123            0           0     0     644     32160     `
+/139            0           0     0     644     24384     `

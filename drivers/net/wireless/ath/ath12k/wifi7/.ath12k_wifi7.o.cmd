@@ -1,0 +1,1 @@
+savedcmd_drivers/net/wireless/ath/ath12k/wifi7/ath12k_wifi7.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/net/wireless/ath/ath12k/wifi7/ath12k_wifi7.o @drivers/net/wireless/ath/ath12k/wifi7/ath12k_wifi7.mod 

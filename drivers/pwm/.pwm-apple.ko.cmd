@@ -1,0 +1,1 @@
+savedcmd_drivers/pwm/pwm-apple.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/pwm/pwm-apple.ko drivers/pwm/pwm-apple.o drivers/pwm/pwm-apple.mod.o .module-common.o

@@ -1,0 +1,1 @@
+savedcmd_drivers/perf/amlogic/built-in.a := rm -f drivers/perf/amlogic/built-in.a;  printf "drivers/perf/amlogic/%s " meson_ddr_pmu_core.o meson_g12_ddr_pmu.o | xargs aarch64-linux-gnu-ar cDPrST drivers/perf/amlogic/built-in.a

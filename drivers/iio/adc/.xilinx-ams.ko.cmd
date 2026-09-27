@@ -1,0 +1,1 @@
+savedcmd_drivers/iio/adc/xilinx-ams.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/iio/adc/xilinx-ams.ko drivers/iio/adc/xilinx-ams.o drivers/iio/adc/xilinx-ams.mod.o .module-common.o

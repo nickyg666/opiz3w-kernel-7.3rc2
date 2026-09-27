@@ -1,0 +1,149 @@
+#include <linux/module.h>
+#include <linux/export-internal.h>
+#include <linux/compiler.h>
+
+MODULE_INFO(name, KBUILD_MODNAME);
+
+__visible struct module __this_module
+__section(".gnu.linkonce.this_module") = {
+	.name = KBUILD_MODNAME,
+	.init = init_module,
+#ifdef CONFIG_MODULE_UNLOAD
+	.exit = cleanup_module,
+#endif
+	.arch = MODULE_ARCH_INIT,
+};
+
+MODULE_INFO(intree, "Y");
+
+KSYMTAB_DATA(coresight_barrier_pkt, "");
+SYMBOL_FLAGS(coresight_barrier_pkt, 0x01);
+KSYMTAB_FUNC(coresight_set_cti_ops, "");
+SYMBOL_FLAGS(coresight_set_cti_ops, 0x01);
+KSYMTAB_FUNC(coresight_remove_cti_ops, "");
+SYMBOL_FLAGS(coresight_remove_cti_ops, 0x01);
+KSYMTAB_FUNC(coresight_set_percpu_sink, "");
+SYMBOL_FLAGS(coresight_set_percpu_sink, 0x01);
+KSYMTAB_FUNC(coresight_get_percpu_sink, "");
+SYMBOL_FLAGS(coresight_get_percpu_sink, 0x01);
+KSYMTAB_FUNC(coresight_clear_self_claim_tag, "");
+SYMBOL_FLAGS(coresight_clear_self_claim_tag, 0x01);
+KSYMTAB_FUNC(coresight_clear_self_claim_tag_unlocked, "");
+SYMBOL_FLAGS(coresight_clear_self_claim_tag_unlocked, 0x01);
+KSYMTAB_FUNC(coresight_claim_device_unlocked, "");
+SYMBOL_FLAGS(coresight_claim_device_unlocked, 0x01);
+KSYMTAB_FUNC(coresight_claim_device, "");
+SYMBOL_FLAGS(coresight_claim_device, 0x01);
+KSYMTAB_FUNC(coresight_disclaim_device_unlocked, "");
+SYMBOL_FLAGS(coresight_disclaim_device_unlocked, 0x01);
+KSYMTAB_FUNC(coresight_disclaim_device, "");
+SYMBOL_FLAGS(coresight_disclaim_device, 0x01);
+KSYMTAB_FUNC(coresight_add_helper, "");
+SYMBOL_FLAGS(coresight_add_helper, 0x01);
+KSYMTAB_FUNC(coresight_disable_source, "");
+SYMBOL_FLAGS(coresight_disable_source, 0x01);
+KSYMTAB_FUNC(coresight_pause_source, "");
+SYMBOL_FLAGS(coresight_pause_source, 0x01);
+KSYMTAB_FUNC(coresight_resume_source, "");
+SYMBOL_FLAGS(coresight_resume_source, 0x01);
+KSYMTAB_FUNC(coresight_disable_path, "");
+SYMBOL_FLAGS(coresight_disable_path, 0x01);
+KSYMTAB_FUNC(coresight_get_sink, "");
+SYMBOL_FLAGS(coresight_get_sink, 0x01);
+KSYMTAB_FUNC(coresight_find_default_sink, "");
+SYMBOL_FLAGS(coresight_find_default_sink, 0x01);
+KSYMTAB_FUNC(coresight_timeout_action, "");
+SYMBOL_FLAGS(coresight_timeout_action, 0x01);
+KSYMTAB_FUNC(coresight_timeout, "");
+SYMBOL_FLAGS(coresight_timeout, 0x01);
+KSYMTAB_FUNC(coresight_register, "");
+SYMBOL_FLAGS(coresight_register, 0x01);
+KSYMTAB_FUNC(coresight_unregister, "");
+SYMBOL_FLAGS(coresight_unregister, 0x01);
+KSYMTAB_FUNC(coresight_find_input_type, "");
+SYMBOL_FLAGS(coresight_find_input_type, 0x01);
+KSYMTAB_FUNC(coresight_find_output_type, "");
+SYMBOL_FLAGS(coresight_find_output_type, 0x01);
+KSYMTAB_FUNC(coresight_loses_context_with_cpu, "");
+SYMBOL_FLAGS(coresight_loses_context_with_cpu, 0x01);
+KSYMTAB_FUNC(coresight_alloc_device_name, "");
+SYMBOL_FLAGS(coresight_alloc_device_name, 0x01);
+KSYMTAB_FUNC(coresight_init_driver_with_owner, "");
+SYMBOL_FLAGS(coresight_init_driver_with_owner, 0x01);
+KSYMTAB_FUNC(coresight_remove_driver, "");
+SYMBOL_FLAGS(coresight_remove_driver, 0x01);
+KSYMTAB_FUNC(coresight_etm_get_trace_id, "");
+SYMBOL_FLAGS(coresight_etm_get_trace_id, 0x01);
+KSYMTAB_FUNC(coresight_get_enable_clocks, "");
+SYMBOL_FLAGS(coresight_get_enable_clocks, 0x01);
+KSYMTAB_FUNC(etm_perf_symlink, "");
+SYMBOL_FLAGS(etm_perf_symlink, 0x01);
+KSYMTAB_FUNC(coresight_add_out_conn, "");
+SYMBOL_FLAGS(coresight_add_out_conn, 0x01);
+KSYMTAB_FUNC(coresight_add_in_conn, "");
+SYMBOL_FLAGS(coresight_add_in_conn, 0x01);
+KSYMTAB_FUNC(coresight_find_csdev_by_fwnode, "");
+SYMBOL_FLAGS(coresight_find_csdev_by_fwnode, 0x01);
+KSYMTAB_FUNC(coresight_get_cpu, "");
+SYMBOL_FLAGS(coresight_get_cpu, 0x01);
+KSYMTAB_FUNC(coresight_get_static_trace_id, "");
+SYMBOL_FLAGS(coresight_get_static_trace_id, 0x01);
+KSYMTAB_FUNC(coresight_get_platform_data, "");
+SYMBOL_FLAGS(coresight_get_platform_data, 0x01);
+KSYMTAB_FUNC(coresight_simple_show_pair, "");
+SYMBOL_FLAGS(coresight_simple_show_pair, 0x01);
+KSYMTAB_FUNC(coresight_simple_show32, "");
+SYMBOL_FLAGS(coresight_simple_show32, 0x01);
+KSYMTAB_FUNC(coresight_enable_sysfs, "");
+SYMBOL_FLAGS(coresight_enable_sysfs, 0x01);
+KSYMTAB_FUNC(coresight_disable_sysfs, "");
+SYMBOL_FLAGS(coresight_disable_sysfs, 0x01);
+KSYMTAB_FUNC(coresight_add_sysfs_link, "");
+SYMBOL_FLAGS(coresight_add_sysfs_link, 0x01);
+KSYMTAB_FUNC(coresight_remove_sysfs_link, "");
+SYMBOL_FLAGS(coresight_remove_sysfs_link, 0x01);
+KSYMTAB_FUNC(cscfg_load_config_sets, "");
+SYMBOL_FLAGS(cscfg_load_config_sets, 0x01);
+KSYMTAB_FUNC(cscfg_unload_config_sets, "");
+SYMBOL_FLAGS(cscfg_unload_config_sets, 0x01);
+KSYMTAB_FUNC(cscfg_register_csdev, "");
+SYMBOL_FLAGS(cscfg_register_csdev, 0x01);
+KSYMTAB_FUNC(cscfg_unregister_csdev, "");
+SYMBOL_FLAGS(cscfg_unregister_csdev, 0x01);
+KSYMTAB_FUNC(cscfg_csdev_reset_feats, "");
+SYMBOL_FLAGS(cscfg_csdev_reset_feats, 0x01);
+KSYMTAB_FUNC(cscfg_config_sysfs_get_active_cfg, "");
+SYMBOL_FLAGS(cscfg_config_sysfs_get_active_cfg, 0x01);
+KSYMTAB_FUNC(cscfg_activate_config, "");
+SYMBOL_FLAGS(cscfg_activate_config, 0x01);
+KSYMTAB_FUNC(cscfg_deactivate_config, "");
+SYMBOL_FLAGS(cscfg_deactivate_config, 0x01);
+KSYMTAB_FUNC(cscfg_csdev_enable_active_config, "");
+SYMBOL_FLAGS(cscfg_csdev_enable_active_config, 0x01);
+KSYMTAB_FUNC(cscfg_csdev_disable_active_config, "");
+SYMBOL_FLAGS(cscfg_csdev_disable_active_config, 0x01);
+KSYMTAB_FUNC(coresight_trace_id_get_cpu_id, "");
+SYMBOL_FLAGS(coresight_trace_id_get_cpu_id, 0x01);
+KSYMTAB_FUNC(coresight_trace_id_get_cpu_id_map, "");
+SYMBOL_FLAGS(coresight_trace_id_get_cpu_id_map, 0x01);
+KSYMTAB_FUNC(coresight_trace_id_put_cpu_id, "");
+SYMBOL_FLAGS(coresight_trace_id_put_cpu_id, 0x01);
+KSYMTAB_FUNC(coresight_trace_id_put_cpu_id_map, "");
+SYMBOL_FLAGS(coresight_trace_id_put_cpu_id_map, 0x01);
+KSYMTAB_FUNC(coresight_trace_id_read_cpu_id, "");
+SYMBOL_FLAGS(coresight_trace_id_read_cpu_id, 0x01);
+KSYMTAB_FUNC(coresight_trace_id_read_cpu_id_map, "");
+SYMBOL_FLAGS(coresight_trace_id_read_cpu_id_map, 0x01);
+KSYMTAB_FUNC(coresight_trace_id_get_system_id, "");
+SYMBOL_FLAGS(coresight_trace_id_get_system_id, 0x01);
+KSYMTAB_FUNC(coresight_trace_id_get_static_system_id, "");
+SYMBOL_FLAGS(coresight_trace_id_get_static_system_id, 0x01);
+KSYMTAB_FUNC(coresight_trace_id_put_system_id, "");
+SYMBOL_FLAGS(coresight_trace_id_put_system_id, 0x01);
+KSYMTAB_FUNC(coresight_trace_id_perf_start, "");
+SYMBOL_FLAGS(coresight_trace_id_perf_start, 0x01);
+KSYMTAB_FUNC(coresight_trace_id_perf_stop, "");
+SYMBOL_FLAGS(coresight_trace_id_perf_stop, 0x01);
+
+MODULE_INFO(depends, "");
+

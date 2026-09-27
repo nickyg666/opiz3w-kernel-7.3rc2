@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/freescale/dpaa2/fsl-dpaa2-eth.mod := printf '%s\n'   dpaa2-eth.o dpaa2-ethtool.o dpni.o dpaa2-eth-devlink.o dpaa2-xsk.o dpaa2-eth-debugfs.o | awk '!x[$$0]++ { print("drivers/net/ethernet/freescale/dpaa2/"$$0) }' > drivers/net/ethernet/freescale/dpaa2/fsl-dpaa2-eth.mod

@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/freescale/enetc/nxp-netc-blk-ctrl.mod := printf '%s\n'   netc_blk_ctrl.o | awk '!x[$$0]++ { print("drivers/net/ethernet/freescale/enetc/"$$0) }' > drivers/net/ethernet/freescale/enetc/nxp-netc-blk-ctrl.mod

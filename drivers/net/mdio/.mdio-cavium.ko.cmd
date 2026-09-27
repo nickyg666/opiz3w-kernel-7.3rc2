@@ -1,0 +1,1 @@
+savedcmd_drivers/net/mdio/mdio-cavium.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/mdio/mdio-cavium.ko drivers/net/mdio/mdio-cavium.o drivers/net/mdio/mdio-cavium.mod.o .module-common.o

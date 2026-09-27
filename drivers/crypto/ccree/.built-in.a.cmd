@@ -1,0 +1,1 @@
+savedcmd_drivers/crypto/ccree/built-in.a := rm -f drivers/crypto/ccree/built-in.a;  printf "drivers/crypto/ccree/%s " cc_driver.o cc_buffer_mgr.o cc_request_mgr.o cc_cipher.o cc_hash.o cc_aead.o cc_sram_mgr.o cc_debugfs.o cc_pm.o | xargs aarch64-linux-gnu-ar cDPrST drivers/crypto/ccree/built-in.a

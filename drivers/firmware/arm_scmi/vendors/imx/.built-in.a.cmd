@@ -1,0 +1,1 @@
+savedcmd_drivers/firmware/arm_scmi/vendors/imx/built-in.a := rm -f drivers/firmware/arm_scmi/vendors/imx/built-in.a;  printf "drivers/firmware/arm_scmi/vendors/imx/%s " imx-sm-bbm.o imx-sm-cpu.o imx-sm-lmm.o imx-sm-misc.o | xargs aarch64-linux-gnu-ar cDPrST drivers/firmware/arm_scmi/vendors/imx/built-in.a

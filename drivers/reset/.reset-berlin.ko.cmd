@@ -1,0 +1,1 @@
+savedcmd_drivers/reset/reset-berlin.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/reset/reset-berlin.ko drivers/reset/reset-berlin.o drivers/reset/reset-berlin.mod.o .module-common.o

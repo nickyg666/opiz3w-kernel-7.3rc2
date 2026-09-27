@@ -1,0 +1,14 @@
+drivers/gpio/gpio-adp5585.o
+drivers/gpio/gpio-aggregator.o
+drivers/gpio/gpio-altera.o
+drivers/gpio/gpio-bd9571mwv.o
+drivers/gpio/gpio-cadence.o
+drivers/gpio/gpio-macsmc.o
+drivers/gpio/gpio-max77759.o
+drivers/gpio/gpio-pcf857x.o
+drivers/gpio/gpio-shared-proxy.o
+drivers/gpio/gpio-sl28cpld.o
+drivers/gpio/gpio-tpic2810.o
+drivers/gpio/gpio-wcd934x.o
+drivers/gpio/gpio-xilinx.o
+drivers/gpio/gpio-zynq.o

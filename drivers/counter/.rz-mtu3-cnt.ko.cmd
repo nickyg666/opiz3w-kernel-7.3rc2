@@ -1,0 +1,1 @@
+savedcmd_drivers/counter/rz-mtu3-cnt.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/counter/rz-mtu3-cnt.ko drivers/counter/rz-mtu3-cnt.o drivers/counter/rz-mtu3-cnt.mod.o .module-common.o

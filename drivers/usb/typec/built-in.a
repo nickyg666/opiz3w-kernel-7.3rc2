@@ -1,0 +1,71 @@
+!<thin>
+//                                              620       `
+class.o/
+mux.o/
+bus.o/
+pd.o/
+retimer.o/
+mode_selection.o/
+altmodes/displayport.o/
+tcpm/tcpm.o/
+tcpm/fusb302.o/
+tcpm/tcpci.o/
+tcpm/tcpci_rt1711h.o/
+tcpm/tcpci_mt6360.o/
+tcpm/tcpci_maxim_core.o/
+tcpm/maxim_contaminant.o/
+tcpm/qcom/qcom_pmic_typec.o/
+tcpm/qcom/qcom_pmic_typec_port.o/
+tcpm/qcom/qcom_pmic_typec_pdphy.o/
+tcpm/qcom/qcom_pmic_typec_pdphy_stub.o/
+ucsi/ucsi.o/
+ucsi/debugfs.o/
+ucsi/psy.o/
+ucsi/displayport.o/
+ucsi/ucsi_ccg.o/
+ucsi/ucsi_glink.o/
+ucsi/cros_ec_ucsi.o/
+tipd/core.o/
+hd3ss3220.o/
+mux/fsa4480.o/
+mux/gpio-sbu-mux.o/
+mux/it5205.o/
+mux/nb7vpq904m.o/
+mux/ps883x.o/
+mux/ptn36502.o/
+mux/wcd939x-usbss.o/
+
+/0              0           0     0     644     179824    `
+/9              0           0     0     644     41896     `
+/16             0           0     0     644     39912     `
+/23             0           0     0     644     70152     `
+/29             0           0     0     644     26952     `
+/40             0           0     0     644     39488     `
+/58             0           0     0     644     91032     `
+/82             0           0     0     644     351184    `
+/95             0           0     0     644     118832    `
+/111            0           0     0     644     99400     `
+/125            0           0     0     644     45136     `
+/147            0           0     0     644     30624     `
+/168            0           0     0     644     54400     `
+/193            0           0     0     644     40224     `
+/219            0           0     0     644     41928     `
+/248            0           0     0     644     46600     `
+/282            0           0     0     644     57144     `
+/317            0           0     0     644     14976     `
+/357            0           0     0     644     163792    `
+/370            0           0     0     644     33992     `
+/386            0           0     0     644     35632     `
+/398            0           0     0     644     32088     `
+/418            0           0     0     644     103640    `
+/435            0           0     0     644     52744     `
+/454            0           0     0     644     45288     `
+/475            0           0     0     644     125744    `
+/488            0           0     0     644     50608     `
+/501            0           0     0     644     35264     `
+/516            0           0     0     644     27832     `
+/536            0           0     0     644     47784     `
+/550            0           0     0     644     45744     `
+/568            0           0     0     644     48720     `
+/582            0           0     0     644     41528     `
+/598            0           0     0     644     47992     `

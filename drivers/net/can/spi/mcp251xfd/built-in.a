@@ -1,0 +1,26 @@
+!<thin>
+//                                              226       `
+mcp251xfd-chip-fifo.o/
+mcp251xfd-core.o/
+mcp251xfd-crc16.o/
+mcp251xfd-ethtool.o/
+mcp251xfd-ram.o/
+mcp251xfd-regmap.o/
+mcp251xfd-ring.o/
+mcp251xfd-rx.o/
+mcp251xfd-tef.o/
+mcp251xfd-timestamp.o/
+mcp251xfd-tx.o/
+mcp251xfd-dump.o/
+/0              0           0     0     644     19568     `
+/23             0           0     0     644     196848    `
+/41             0           0     0     644     29880     `
+/60             0           0     0     644     46672     `
+/81             0           0     0     644     19880     `
+/98             0           0     0     644     65712     `
+/118            0           0     0     644     71488     `
+/136            0           0     0     644     32392     `
+/152            0           0     0     644     36304     `
+/169            0           0     0     644     22080     `
+/192            0           0     0     644     61624     `
+/208            0           0     0     644     39408     `

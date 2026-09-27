@@ -1,0 +1,5 @@
+drivers/net/ethernet/renesas/sh_eth.o
+drivers/net/ethernet/renesas/ravb.o
+drivers/net/ethernet/renesas/rswitch.o
+drivers/net/ethernet/renesas/rcar_gen4_ptp.o
+drivers/net/ethernet/renesas/rtsn.o

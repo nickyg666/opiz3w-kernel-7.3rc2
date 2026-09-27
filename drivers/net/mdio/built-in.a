@@ -1,0 +1,18 @@
+!<thin>
+//                                              136       `
+fwnode_mdio.o/
+of_mdio.o/
+mdio-bcm-iproc.o/
+mdio-xgene.o/
+mdio-mux.o/
+mdio-mux-bcm-iproc.o/
+mdio-mux-mmioreg.o/
+mdio-mux-multiplexer.o/
+/0              0           0     0     644     33752     `
+/15             0           0     0     644     77144     `
+/26             0           0     0     644     43320     `
+/44             0           0     0     644     66104     `
+/58             0           0     0     644     39112     `
+/70             0           0     0     644     52000     `
+/92             0           0     0     644     43448     `
+/112            0           0     0     644     35896     `

@@ -1,0 +1,2 @@
+imx8mp-hdmi-tx-connector-fixup.o: \
+ drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.dtso

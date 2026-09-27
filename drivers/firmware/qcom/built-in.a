@@ -1,0 +1,15 @@
+!<thin>
+//                                              90        `
+qcom_scm.o/
+qcom_scm-smc.o/
+qcom_scm-legacy.o/
+qcom_tzmem.o/
+qcom_qseecom.o/
+qcom_pas.o/
+
+/0              0           0     0     644     174592    `
+/12             0           0     0     644     22728     `
+/28             0           0     0     644     40856     `
+/47             0           0     0     644     71192     `
+/61             0           0     0     644     37656     `
+/77             0           0     0     644     28240     `

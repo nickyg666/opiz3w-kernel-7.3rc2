@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/scheduler/built-in.a := rm -f drivers/gpu/drm/scheduler/built-in.a;  printf "drivers/gpu/drm/scheduler/%s " sched_main.o sched_fence.o sched_entity.o sched_rq.o | xargs aarch64-linux-gnu-ar cDPrST drivers/gpu/drm/scheduler/built-in.a

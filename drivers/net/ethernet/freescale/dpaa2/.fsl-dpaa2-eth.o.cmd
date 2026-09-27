@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/freescale/dpaa2/fsl-dpaa2-eth.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/net/ethernet/freescale/dpaa2/fsl-dpaa2-eth.o @drivers/net/ethernet/freescale/dpaa2/fsl-dpaa2-eth.mod 

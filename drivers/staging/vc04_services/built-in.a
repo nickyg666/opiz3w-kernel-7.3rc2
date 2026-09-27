@@ -1,0 +1,10 @@
+!<thin>
+//                                              114       `
+bcm2835-audio/bcm2835.o/
+bcm2835-audio/bcm2835-ctl.o/
+bcm2835-audio/bcm2835-pcm.o/
+bcm2835-audio/bcm2835-vchiq.o/
+/0              0           0     0     644     38528     `
+/25             0           0     0     644     22480     `
+/54             0           0     0     644     38352     `
+/83             0           0     0     644     38632     `

@@ -1,0 +1,1 @@
+savedcmd_drivers/platform/raspberrypi/vchiq.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/platform/raspberrypi/vchiq.o @drivers/platform/raspberrypi/vchiq.mod 

@@ -1,0 +1,11 @@
+!<thin>
+//                                              72        `
+rcar_gen3_thermal.o/
+rcar_thermal.o/
+rzg2l_thermal.o/
+rzg3e_thermal.o/
+
+/0              0           0     0     644     56680     `
+/21             0           0     0     644     58976     `
+/37             0           0     0     644     37040     `
+/54             0           0     0     644     71608     `

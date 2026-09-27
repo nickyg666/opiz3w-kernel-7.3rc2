@@ -1,0 +1,1 @@
+savedcmd_drivers/usb/typec/tcpm/tcpci_maxim.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/usb/typec/tcpm/tcpci_maxim.o @drivers/usb/typec/tcpm/tcpci_maxim.mod 

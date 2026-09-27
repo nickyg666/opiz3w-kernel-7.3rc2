@@ -1,0 +1,1 @@
+savedcmd_drivers/net/ethernet/intel/igbvf/igbvf.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/ethernet/intel/igbvf/igbvf.ko drivers/net/ethernet/intel/igbvf/igbvf.o drivers/net/ethernet/intel/igbvf/igbvf.mod.o .module-common.o

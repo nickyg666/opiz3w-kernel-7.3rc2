@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/bridge/imx/built-in.a := rm -f drivers/gpu/drm/bridge/imx/built-in.a;  printf "drivers/gpu/drm/bridge/imx/%s " imx8mp-hdmi-tx-connector-fixup.o imx8mp-hdmi-tx-connector-fixup.dtbo.o | xargs aarch64-linux-gnu-ar cDPrST drivers/gpu/drm/bridge/imx/built-in.a

@@ -1,0 +1,1 @@
+savedcmd_drivers/hwspinlock/omap_hwspinlock.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/hwspinlock/omap_hwspinlock.ko drivers/hwspinlock/omap_hwspinlock.o drivers/hwspinlock/omap_hwspinlock.mod.o .module-common.o

@@ -1,0 +1,8 @@
+drivers/clk/mediatek/clk-mt8196-mfg.o
+drivers/clk/mediatek/clk-mt8196-disp0.o
+drivers/clk/mediatek/clk-mt8196-disp1.o
+drivers/clk/mediatek/clk-mt8196-vdisp_ao.o
+drivers/clk/mediatek/clk-mt8196-ovl0.o
+drivers/clk/mediatek/clk-mt8196-ovl1.o
+drivers/clk/mediatek/clk-mt8196-vdec.o
+drivers/clk/mediatek/clk-mt8196-venc.o

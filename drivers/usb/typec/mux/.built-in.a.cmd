@@ -1,0 +1,1 @@
+savedcmd_drivers/usb/typec/mux/built-in.a := rm -f drivers/usb/typec/mux/built-in.a;  printf "drivers/usb/typec/mux/%s " fsa4480.o gpio-sbu-mux.o it5205.o nb7vpq904m.o ps883x.o ptn36502.o wcd939x-usbss.o | xargs aarch64-linux-gnu-ar cDPrST drivers/usb/typec/mux/built-in.a

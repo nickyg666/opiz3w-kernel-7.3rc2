@@ -1,0 +1,1 @@
+savedcmd_drivers/dma/mediatek/mtk-uart-apdma.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/dma/mediatek/mtk-uart-apdma.ko drivers/dma/mediatek/mtk-uart-apdma.o drivers/dma/mediatek/mtk-uart-apdma.mod.o .module-common.o

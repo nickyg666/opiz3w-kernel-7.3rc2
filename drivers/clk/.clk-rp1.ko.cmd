@@ -1,0 +1,1 @@
+savedcmd_drivers/clk/clk-rp1.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/clk-rp1.ko drivers/clk/clk-rp1.o drivers/clk/clk-rp1.mod.o .module-common.o

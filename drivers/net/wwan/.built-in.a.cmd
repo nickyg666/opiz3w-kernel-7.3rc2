@@ -1,0 +1,1 @@
+savedcmd_drivers/net/wwan/built-in.a := rm -f drivers/net/wwan/built-in.a;  printf "drivers/net/wwan/%s " wwan_core.o mhi_wwan_ctrl.o mhi_wwan_mbim.o qcom_bam_dmux.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/wwan/built-in.a

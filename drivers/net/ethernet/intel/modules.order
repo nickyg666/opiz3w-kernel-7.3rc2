@@ -1,0 +1,4 @@
+drivers/net/ethernet/intel/e1000/e1000.o
+drivers/net/ethernet/intel/e1000e/e1000e.o
+drivers/net/ethernet/intel/igb/igb.o
+drivers/net/ethernet/intel/igbvf/igbvf.o

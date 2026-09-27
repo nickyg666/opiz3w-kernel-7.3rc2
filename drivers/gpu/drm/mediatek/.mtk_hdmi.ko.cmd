@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/mediatek/mtk_hdmi.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpu/drm/mediatek/mtk_hdmi.ko drivers/gpu/drm/mediatek/mtk_hdmi.o drivers/gpu/drm/mediatek/mtk_hdmi.mod.o .module-common.o

@@ -1,0 +1,1 @@
+savedcmd_drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.ko drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.o drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.mod.o .module-common.o

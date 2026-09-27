@@ -1,0 +1,1 @@
+savedcmd_drivers/platform/chrome/cros_kbd_led_backlight.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/platform/chrome/cros_kbd_led_backlight.ko drivers/platform/chrome/cros_kbd_led_backlight.o drivers/platform/chrome/cros_kbd_led_backlight.mod.o .module-common.o

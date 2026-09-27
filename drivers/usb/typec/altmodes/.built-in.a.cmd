@@ -1,0 +1,1 @@
+savedcmd_drivers/usb/typec/altmodes/built-in.a := rm -f drivers/usb/typec/altmodes/built-in.a;  printf "drivers/usb/typec/altmodes/%s " displayport.o | xargs aarch64-linux-gnu-ar cDPrST drivers/usb/typec/altmodes/built-in.a

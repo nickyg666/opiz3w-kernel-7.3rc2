@@ -1,0 +1,1 @@
+savedcmd_drivers/gpu/drm/panel/panel-novatek-nt36672e.mod := printf '%s\n'   panel-novatek-nt36672e.o | awk '!x[$$0]++ { print("drivers/gpu/drm/panel/"$$0) }' > drivers/gpu/drm/panel/panel-novatek-nt36672e.mod

@@ -1,0 +1,2 @@
+drivers/clk/xilinx/xlnx_vcu.o
+drivers/clk/xilinx/clk-xlnx-clock-wizard.o

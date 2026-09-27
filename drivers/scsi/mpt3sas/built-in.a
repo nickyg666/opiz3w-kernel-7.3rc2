@@ -1,0 +1,20 @@
+!<thin>
+//                                              168       `
+mpt3sas_base.o/
+mpt3sas_config.o/
+mpt3sas_scsih.o/
+mpt3sas_transport.o/
+mpt3sas_ctl.o/
+mpt3sas_trigger_diag.o/
+mpt3sas_warpdrive.o/
+mpt3sas_debugfs.o/
+mpt3sas_hwmon.o/
+/0              0           0     0     644     421752    `
+/16             0           0     0     644     90392     `
+/34             0           0     0     644     777904    `
+/51             0           0     0     644     129712    `
+/72             0           0     0     644     242032    `
+/87             0           0     0     644     34280     `
+/111            0           0     0     644     30664     `
+/132            0           0     0     644     24488     `
+/151            0           0     0     644     25960     `

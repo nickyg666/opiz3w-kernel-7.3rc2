@@ -1,0 +1,17 @@
+!<thin>
+//                                              140       `
+pinctrl-tegra.o/
+pinctrl-tegra124.o/
+pinctrl-tegra210.o/
+pinctrl-tegra186.o/
+pinctrl-tegra194.o/
+pinctrl-tegra234.o/
+pinctrl-tegra-xusb.o/
+
+/0              0           0     0     644     73088     `
+/17             0           0     0     644     97016     `
+/37             0           0     0     644     81880     `
+/57             0           0     0     644     102824    `
+/77             0           0     0     644     109840    `
+/97             0           0     0     644     103264    `
+/117            0           0     0     644     93120     `

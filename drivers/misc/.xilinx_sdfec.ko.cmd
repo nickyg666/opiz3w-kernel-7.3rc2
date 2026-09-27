@@ -1,0 +1,1 @@
+savedcmd_drivers/misc/xilinx_sdfec.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/misc/xilinx_sdfec.ko drivers/misc/xilinx_sdfec.o drivers/misc/xilinx_sdfec.mod.o .module-common.o

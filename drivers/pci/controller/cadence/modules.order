@@ -1,0 +1,4 @@
+drivers/pci/controller/cadence/pcie-cadence-mod.o
+drivers/pci/controller/cadence/pcie-cadence-host-mod.o
+drivers/pci/controller/cadence/pci-j721e.o
+drivers/pci/controller/cadence/pci-sky1.o

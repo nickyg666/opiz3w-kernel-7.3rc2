@@ -1,0 +1,1 @@
+savedcmd_drivers/usb/misc/onboard_usb_dev.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/usb/misc/onboard_usb_dev.ko drivers/usb/misc/onboard_usb_dev.o drivers/usb/misc/onboard_usb_dev.mod.o .module-common.o

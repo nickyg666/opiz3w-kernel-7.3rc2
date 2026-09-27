@@ -1,0 +1,8 @@
+drivers/net/mdio/mdio-bcm-unimac.o
+drivers/net/mdio/mdio-bitbang.o
+drivers/net/mdio/mdio-cavium.o
+drivers/net/mdio/mdio-gpio.o
+drivers/net/mdio/mdio-regmap.o
+drivers/net/mdio/mdio-thunder.o
+drivers/net/mdio/mdio-mux-meson-g12a.o
+drivers/net/mdio/mdio-mux-meson-gxl.o

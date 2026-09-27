@@ -1,0 +1,42 @@
+!<thin>
+//                                              480       `
+reset/brcmstb-reboot.o/
+reset/gpio-poweroff.o/
+reset/gpio-restart.o/
+reset/msm-poweroff.o/
+reset/xgene-reboot.o/
+reset/syscon-reboot.o/
+reset/syscon-poweroff.o/
+reset/reboot-mode.o/
+reset/syscon-reboot-mode.o/
+sequencing/core.o/
+supply/power_supply_core.o/
+supply/power_supply_sysfs.o/
+supply/power_supply_leds.o/
+supply/power_supply_hwmon.o/
+supply/bq27xxx_battery.o/
+supply/bq27xxx_battery_i2c.o/
+supply/cros_peripheral_charger.o/
+axp2101.o/
+axp2101-i2c.o/
+axp2101-regulator.o/
+/0              0           0     0     644     20160     `
+/24             0           0     0     644     25568     `
+/47             0           0     0     644     26248     `
+/69             0           0     0     644     18304     `
+/91             0           0     0     644     21960     `
+/113            0           0     0     644     25392     `
+/136            0           0     0     644     23120     `
+/161            0           0     0     644     43536     `
+/182            0           0     0     644     23840     `
+/210            0           0     0     644     101640    `
+/229            0           0     0     644     154048    `
+/257            0           0     0     644     69504     `
+/286            0           0     0     644     30944     `
+/314            0           0     0     644     44064     `
+/343            0           0     0     644     91104     `
+/369            0           0     0     644     56000     `
+/399            0           0     0     644     47280     `
+/433            0           0     0     644     214560    `
+/444            0           0     0     644     32464     `
+/459            0           0     0     644     185792    `

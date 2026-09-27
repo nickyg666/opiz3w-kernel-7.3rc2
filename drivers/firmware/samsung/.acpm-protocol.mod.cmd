@@ -1,0 +1,1 @@
+savedcmd_drivers/firmware/samsung/acpm-protocol.mod := printf '%s\n'   exynos-acpm.o exynos-acpm-pmic.o exynos-acpm-dvfs.o exynos-acpm-tmu.o | awk '!x[$$0]++ { print("drivers/firmware/samsung/"$$0) }' > drivers/firmware/samsung/acpm-protocol.mod

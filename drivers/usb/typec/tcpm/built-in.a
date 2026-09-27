@@ -1,0 +1,24 @@
+!<thin>
+//                                              220       `
+tcpm.o/
+fusb302.o/
+tcpci.o/
+tcpci_rt1711h.o/
+tcpci_mt6360.o/
+tcpci_maxim_core.o/
+maxim_contaminant.o/
+qcom/qcom_pmic_typec.o/
+qcom/qcom_pmic_typec_port.o/
+qcom/qcom_pmic_typec_pdphy.o/
+qcom/qcom_pmic_typec_pdphy_stub.o/
+/0              0           0     0     644     351184    `
+/8              0           0     0     644     118832    `
+/19             0           0     0     644     99400     `
+/28             0           0     0     644     45136     `
+/45             0           0     0     644     30624     `
+/61             0           0     0     644     54400     `
+/81             0           0     0     644     40224     `
+/102            0           0     0     644     41928     `
+/126            0           0     0     644     46600     `
+/155            0           0     0     644     57144     `
+/185            0           0     0     644     14976     `

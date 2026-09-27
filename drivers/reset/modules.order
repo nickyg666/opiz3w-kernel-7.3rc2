@@ -1,0 +1,6 @@
+drivers/reset/amlogic/reset-meson-aux.o
+drivers/reset/amlogic/reset-meson-audio-arb.o
+drivers/reset/reset-berlin.o
+drivers/reset/reset-gpio.o
+drivers/reset/reset-qcom-pdc.o
+drivers/reset/reset-rzv2h-usb2phy.o

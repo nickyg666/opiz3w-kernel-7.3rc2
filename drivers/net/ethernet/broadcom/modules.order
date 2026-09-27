@@ -1,0 +1,7 @@
+drivers/net/ethernet/broadcom/bcm4908_enet.o
+drivers/net/ethernet/broadcom/genet/genet.o
+drivers/net/ethernet/broadcom/bnx2x/bnx2x.o
+drivers/net/ethernet/broadcom/bgmac.o
+drivers/net/ethernet/broadcom/bgmac-platform.o
+drivers/net/ethernet/broadcom/bcmsysport.o
+drivers/net/ethernet/broadcom/asp2/bcm-asp.o

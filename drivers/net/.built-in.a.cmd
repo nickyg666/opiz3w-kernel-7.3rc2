@@ -1,0 +1,1 @@
+savedcmd_drivers/net/built-in.a := rm -f drivers/net/built-in.a;  printf "drivers/net/%s " loopback.o phy/built-in.a pse-pd/built-in.a mdio/built-in.a pcs/built-in.a tun.o virtio_net.o dsa/built-in.a ethernet/built-in.a wireless/built-in.a xen-netfront.o usb/built-in.a net_failover.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/built-in.a
