@@ -139,6 +139,42 @@ static const struct aicbsp_firmware fw_u01[] = {
 	},
 };
 
+static const struct aicbsp_firmware fw_d80n[] = {
+	[AICBSP_CPMODE_WORK] = {
+		.desc          = "normal work mode(sdio d80n)",
+		.bt_adid       = "aic8800d80/fw_adid_8800d80.bin",
+		.bt_patch      = "aic8800d80/fw_patch_8800d80.bin",
+		.bt_table      = "aic8800d80/fw_patch_table_8800d80.bin",
+		.wl_fw         = "aic8800d80/fmacfw_8800d80.bin"
+	},
+
+	[AICBSP_CPMODE_TEST] = {
+		.desc          = "rf test mode(sdio d80n)",
+		.bt_adid       = "aic8800d80/fw_adid_8800d80.bin",
+		.bt_patch      = "aic8800d80/fw_patch_8800d80.bin",
+		.bt_table      = "aic8800d80/fw_patch_table_8800d80.bin",
+		.wl_fw         = "aic8800d80/lmacfw_rf_8800d80.bin"
+	},
+};
+
+static const struct aicbsp_firmware fw_d80x2[] = {
+	[AICBSP_CPMODE_WORK] = {
+		.desc          = "normal work mode(sdio d80x2)",
+		.bt_adid       = "aic8800d80/fw_adid_8800d80.bin",
+		.bt_patch      = "aic8800d80/fw_patch_8800d80.bin",
+		.bt_table      = "aic8800d80/fw_patch_table_8800d80.bin",
+		.wl_fw         = "aic8800d80/fmacfw_8800d80.bin"
+	},
+
+	[AICBSP_CPMODE_TEST] = {
+		.desc          = "rf test mode(sdio d80x2)",
+		.bt_adid       = "aic8800d80/fw_adid_8800d80.bin",
+		.bt_patch      = "aic8800d80/fw_patch_8800d80.bin",
+		.bt_table      = "aic8800d80/fw_patch_table_8800d80.bin",
+		.wl_fw         = "aic8800d80/lmacfw_rf_8800d80.bin"
+	},
+};
+
 static const struct aicbsp_firmware fw_u02[] = {
 	[AICBSP_CPMODE_WORK] = {
 		.desc          = "normal work mode(sdio u02)",
@@ -404,6 +440,7 @@ static int aicwifi_patch_config(struct priv_dev *aicdev)
 	rd_version_val = rd_patch_addr_cfm.memdata;
 	printk("rd_version_val=%08X\n", rd_version_val);
 	aicdev->fw_version_uint = rd_version_val;
+
 	if (rd_version_val > 0x06090100) {
 		patch_buff_addr = rd_patch_addr + 12;
 		ret = rwnx_send_dbg_mem_read_req(aicdev, patch_buff_addr, &rd_patch_addr_cfm);
@@ -541,6 +578,20 @@ static int aicbsp_system_config(struct priv_dev *aicdev)
 	return 0;
 }
 
+/*
+ * 2026-09-27: firmware variant selector. The SDIO rev-0x7 path always picked
+ * fw_u02, but the chip reports subrev 0x82 and upstream shenmintao/aic8800d80
+ * ships distinct aic8800D80N and aic8800D80X2 firmware sets. Being able to
+ * choose at insmod time avoids a card swap per guess.
+ *
+ *   aic8800_fdrv_variant=u02   default, original _u02 blobs
+ *   aic8800_fdrv_variant=d80n   D80N set (fmacfw_btusb/lmacfw_rf_..._d80n)
+ *   aic8800_fdrv_variant=x2     D80X2 set (fmacfw_8800d80x2.bin etc)
+ */
+static int fw_variant = 0;
+module_param(fw_variant, int, 0644);
+MODULE_PARM_DESC(fw_variant, "aic8800d80 firmware variant: 0=u02 1=d80n 2=x2");
+
 int aicbsp_8800d80_fw_init(struct priv_dev *aicdev)
 {
 	const u32 mem_addr = 0x40500000;
@@ -602,6 +653,14 @@ int aicbsp_8800d80_fw_init(struct priv_dev *aicdev)
 			aicbsp_firmware_list = fw_u01;
 		else if (aicbsp_info.chipinfo->rev == CHIP_REV_ID_U02 || aicbsp_info.chipinfo->rev == CHIP_REV_ID_U03)
 			aicbsp_firmware_list = fw_u02;
+
+		/* 2026-09-27: allow the D80N / D80X2 firmware sets. The filename
+		 * tables above all say "aic8800d80/xxx", so swapping the staged
+		 * set selects the variant without any code change. */
+		if (fw_variant == 1)
+			aicbsp_firmware_list = fw_d80n;
+		else if (fw_variant == 2)
+			aicbsp_firmware_list = fw_d80x2;
 	}
 #elif defined(AICWF_USB_SUPPORT)
 	if (aicbsp_info.chipinfo->rev == CHIP_REV_ID_U02)
