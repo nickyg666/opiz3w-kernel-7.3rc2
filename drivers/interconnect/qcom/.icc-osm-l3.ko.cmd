@@ -1,1 +1,0 @@
-savedcmd_drivers/interconnect/qcom/icc-osm-l3.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/interconnect/qcom/icc-osm-l3.ko drivers/interconnect/qcom/icc-osm-l3.o drivers/interconnect/qcom/icc-osm-l3.mod.o .module-common.o

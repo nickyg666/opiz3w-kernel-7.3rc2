@@ -1,1 +1,0 @@
-savedcmd_drivers/leds/rgb/built-in.a := rm -f drivers/leds/rgb/built-in.a;  printf "drivers/leds/rgb/%s " leds-pwm-multicolor.o leds-qcom-lpg.o | xargs aarch64-linux-gnu-ar cDPrST drivers/leds/rgb/built-in.a

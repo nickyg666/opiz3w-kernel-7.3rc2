@@ -1,1 +1,0 @@
-savedcmd_drivers/phy/freescale/phy-fsl-samsung-hdmi.mod := printf '%s\n'   phy-fsl-samsung-hdmi.o | awk '!x[$$0]++ { print("drivers/phy/freescale/"$$0) }' > drivers/phy/freescale/phy-fsl-samsung-hdmi.mod

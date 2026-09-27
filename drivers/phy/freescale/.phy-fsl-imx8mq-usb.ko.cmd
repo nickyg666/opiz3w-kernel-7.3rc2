@@ -1,1 +1,0 @@
-savedcmd_drivers/phy/freescale/phy-fsl-imx8mq-usb.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/phy/freescale/phy-fsl-imx8mq-usb.ko drivers/phy/freescale/phy-fsl-imx8mq-usb.o drivers/phy/freescale/phy-fsl-imx8mq-usb.mod.o .module-common.o

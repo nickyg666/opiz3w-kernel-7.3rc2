@@ -1,1 +1,0 @@
-savedcmd_drivers/platform/chrome/cros-ec-typec.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/platform/chrome/cros-ec-typec.ko drivers/platform/chrome/cros-ec-typec.o drivers/platform/chrome/cros-ec-typec.mod.o .module-common.o

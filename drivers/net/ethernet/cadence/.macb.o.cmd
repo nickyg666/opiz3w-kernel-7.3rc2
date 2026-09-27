@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/cadence/macb.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/net/ethernet/cadence/macb.o @drivers/net/ethernet/cadence/macb.mod 

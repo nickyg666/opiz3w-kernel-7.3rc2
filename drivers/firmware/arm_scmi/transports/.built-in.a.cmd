@@ -1,1 +1,0 @@
-savedcmd_drivers/firmware/arm_scmi/transports/built-in.a := rm -f drivers/firmware/arm_scmi/transports/built-in.a;  printf "drivers/firmware/arm_scmi/transports/%s " smc.o mailbox.o optee.o | xargs aarch64-linux-gnu-ar cDPrST drivers/firmware/arm_scmi/transports/built-in.a

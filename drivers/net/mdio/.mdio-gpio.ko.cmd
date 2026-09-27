@@ -1,1 +1,0 @@
-savedcmd_drivers/net/mdio/mdio-gpio.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/mdio/mdio-gpio.ko drivers/net/mdio/mdio-gpio.o drivers/net/mdio/mdio-gpio.mod.o .module-common.o

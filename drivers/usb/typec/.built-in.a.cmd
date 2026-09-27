@@ -1,1 +1,0 @@
-savedcmd_drivers/usb/typec/built-in.a := rm -f drivers/usb/typec/built-in.a;  printf "drivers/usb/typec/%s " class.o mux.o bus.o pd.o retimer.o mode_selection.o altmodes/built-in.a tcpm/built-in.a ucsi/built-in.a tipd/built-in.a hd3ss3220.o mux/built-in.a | xargs aarch64-linux-gnu-ar cDPrST drivers/usb/typec/built-in.a

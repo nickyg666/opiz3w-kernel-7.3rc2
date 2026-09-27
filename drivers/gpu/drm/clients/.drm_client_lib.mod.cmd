@@ -1,1 +1,0 @@
-savedcmd_drivers/gpu/drm/clients/drm_client_lib.mod := printf '%s\n'   drm_client_setup.o drm_fbdev_client.o | awk '!x[$$0]++ { print("drivers/gpu/drm/clients/"$$0) }' > drivers/gpu/drm/clients/drm_client_lib.mod

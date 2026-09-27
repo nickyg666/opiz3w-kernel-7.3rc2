@@ -1,1 +1,0 @@
-savedcmd_drivers/usb/typec/mux/nb7vpq904m.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/usb/typec/mux/nb7vpq904m.ko drivers/usb/typec/mux/nb7vpq904m.o drivers/usb/typec/mux/nb7vpq904m.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/char/ipmi/ipmi_si.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/char/ipmi/ipmi_si.ko drivers/char/ipmi/ipmi_si.o drivers/char/ipmi/ipmi_si.mod.o .module-common.o

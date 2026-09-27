@@ -1,1 +1,0 @@
-savedcmd_drivers/firmware/stratix10-rsu.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/firmware/stratix10-rsu.ko drivers/firmware/stratix10-rsu.o drivers/firmware/stratix10-rsu.mod.o .module-common.o

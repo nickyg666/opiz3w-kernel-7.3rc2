@@ -1,1 +1,0 @@
-savedcmd_drivers/phy/ti/phy-j721e-wiz.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/phy/ti/phy-j721e-wiz.ko drivers/phy/ti/phy-j721e-wiz.o drivers/phy/ti/phy-j721e-wiz.mod.o .module-common.o

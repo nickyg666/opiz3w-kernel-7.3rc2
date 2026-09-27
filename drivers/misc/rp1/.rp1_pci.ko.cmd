@@ -1,1 +1,0 @@
-savedcmd_drivers/misc/rp1/rp1_pci.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/misc/rp1/rp1_pci.ko drivers/misc/rp1/rp1_pci.o drivers/misc/rp1/rp1_pci.mod.o .module-common.o

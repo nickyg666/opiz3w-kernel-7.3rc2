@@ -1,1 +1,0 @@
-savedcmd_drivers/input/touchscreen/apple_z2.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/input/touchscreen/apple_z2.ko drivers/input/touchscreen/apple_z2.o drivers/input/touchscreen/apple_z2.mod.o .module-common.o

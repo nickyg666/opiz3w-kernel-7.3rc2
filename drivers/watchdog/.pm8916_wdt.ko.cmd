@@ -1,1 +1,0 @@
-savedcmd_drivers/watchdog/pm8916_wdt.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/watchdog/pm8916_wdt.ko drivers/watchdog/pm8916_wdt.o drivers/watchdog/pm8916_wdt.mod.o .module-common.o

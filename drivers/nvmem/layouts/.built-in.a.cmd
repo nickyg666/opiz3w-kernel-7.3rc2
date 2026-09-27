@@ -1,1 +1,0 @@
-savedcmd_drivers/nvmem/layouts/built-in.a := rm -f drivers/nvmem/layouts/built-in.a;  printf "drivers/nvmem/layouts/%s " fixed-layout.o | xargs aarch64-linux-gnu-ar cDPrST drivers/nvmem/layouts/built-in.a

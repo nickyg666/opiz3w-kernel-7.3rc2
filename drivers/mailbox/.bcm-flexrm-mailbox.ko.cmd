@@ -1,1 +1,0 @@
-savedcmd_drivers/mailbox/bcm-flexrm-mailbox.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/mailbox/bcm-flexrm-mailbox.ko drivers/mailbox/bcm-flexrm-mailbox.o drivers/mailbox/bcm-flexrm-mailbox.mod.o .module-common.o

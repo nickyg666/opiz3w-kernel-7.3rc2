@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/hisilicon/hns3/modules.order := {   echo drivers/net/ethernet/hisilicon/hns3/hnae3.o;   echo drivers/net/ethernet/hisilicon/hns3/hns3.o;   echo drivers/net/ethernet/hisilicon/hns3/hclge.o;   echo drivers/net/ethernet/hisilicon/hns3/hclge-common.o; :; } > drivers/net/ethernet/hisilicon/hns3/modules.order

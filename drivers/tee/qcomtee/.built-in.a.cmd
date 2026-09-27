@@ -1,1 +1,0 @@
-savedcmd_drivers/tee/qcomtee/built-in.a := rm -f drivers/tee/qcomtee/built-in.a;  printf "drivers/tee/qcomtee/%s " async.o call.o core.o mem_obj.o primordial_obj.o shm.o user_obj.o | xargs aarch64-linux-gnu-ar cDPrST drivers/tee/qcomtee/built-in.a

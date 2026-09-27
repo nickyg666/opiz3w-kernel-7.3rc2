@@ -1,1 +1,0 @@
-savedcmd_drivers/net/phy/ax88796b.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/phy/ax88796b.ko drivers/net/phy/ax88796b.o drivers/net/phy/ax88796b.mod.o .module-common.o

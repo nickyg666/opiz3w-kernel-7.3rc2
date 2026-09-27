@@ -1,1 +1,0 @@
-savedcmd_drivers/video/backlight/qcom-wled.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/video/backlight/qcom-wled.ko drivers/video/backlight/qcom-wled.o drivers/video/backlight/qcom-wled.mod.o .module-common.o

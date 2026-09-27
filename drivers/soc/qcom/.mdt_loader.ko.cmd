@@ -1,1 +1,0 @@
-savedcmd_drivers/soc/qcom/mdt_loader.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/soc/qcom/mdt_loader.ko drivers/soc/qcom/mdt_loader.o drivers/soc/qcom/mdt_loader.mod.o .module-common.o

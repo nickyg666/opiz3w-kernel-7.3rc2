@@ -1,1 +1,0 @@
-savedcmd_drivers/spi/spi-tegra210-quad.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/spi/spi-tegra210-quad.ko drivers/spi/spi-tegra210-quad.o drivers/spi/spi-tegra210-quad.mod.o .module-common.o

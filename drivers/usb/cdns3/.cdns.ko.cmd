@@ -1,1 +1,0 @@
-savedcmd_drivers/usb/cdns3/cdns.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/usb/cdns3/cdns.ko drivers/usb/cdns3/cdns.o drivers/usb/cdns3/cdns.mod.o .module-common.o

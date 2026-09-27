@@ -1,1 +1,0 @@
-savedcmd_drivers/phy/ti/phy-am654-serdes.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/phy/ti/phy-am654-serdes.ko drivers/phy/ti/phy-am654-serdes.o drivers/phy/ti/phy-am654-serdes.mod.o .module-common.o

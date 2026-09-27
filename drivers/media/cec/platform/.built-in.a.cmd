@@ -1,1 +1,0 @@
-savedcmd_drivers/media/cec/platform/built-in.a := rm -f drivers/media/cec/platform/built-in.a;  printf "drivers/media/cec/platform/%s " meson/built-in.a | xargs aarch64-linux-gnu-ar cDPrST drivers/media/cec/platform/built-in.a

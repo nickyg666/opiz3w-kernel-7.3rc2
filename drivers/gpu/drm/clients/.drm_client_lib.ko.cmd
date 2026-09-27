@@ -1,1 +1,0 @@
-savedcmd_drivers/gpu/drm/clients/drm_client_lib.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpu/drm/clients/drm_client_lib.ko drivers/gpu/drm/clients/drm_client_lib.o drivers/gpu/drm/clients/drm_client_lib.mod.o .module-common.o

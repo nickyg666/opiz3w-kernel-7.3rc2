@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/atheros/atl1c/built-in.a := rm -f drivers/net/ethernet/atheros/atl1c/built-in.a;  printf "drivers/net/ethernet/atheros/atl1c/%s " atl1c_main.o atl1c_hw.o atl1c_ethtool.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/ethernet/atheros/atl1c/built-in.a

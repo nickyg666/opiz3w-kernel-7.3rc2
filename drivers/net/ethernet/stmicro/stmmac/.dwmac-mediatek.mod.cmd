@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.mod := printf '%s\n'   dwmac-mediatek.o | awk '!x[$$0]++ { print("drivers/net/ethernet/stmicro/stmmac/"$$0) }' > drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.mod

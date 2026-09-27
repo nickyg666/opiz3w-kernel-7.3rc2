@@ -1,1 +1,0 @@
-savedcmd_drivers/pci/controller/cadence/pcie-cadence-host-mod.mod := printf '%s\n'   pcie-cadence-host-common.o pcie-cadence-host.o pcie-cadence-host-hpa.o | awk '!x[$$0]++ { print("drivers/pci/controller/cadence/"$$0) }' > drivers/pci/controller/cadence/pcie-cadence-host-mod.mod

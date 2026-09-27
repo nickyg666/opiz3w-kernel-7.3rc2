@@ -1,1 +1,0 @@
-savedcmd_drivers/usb/gadget/function/u_ether.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/usb/gadget/function/u_ether.ko drivers/usb/gadget/function/u_ether.o drivers/usb/gadget/function/u_ether.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/fpga/xilinx-pr-decoupler.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/fpga/xilinx-pr-decoupler.ko drivers/fpga/xilinx-pr-decoupler.o drivers/fpga/xilinx-pr-decoupler.mod.o .module-common.o

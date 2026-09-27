@@ -1,1 +1,0 @@
-savedcmd_drivers/bluetooth/btmrvl_sdio.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/bluetooth/btmrvl_sdio.ko drivers/bluetooth/btmrvl_sdio.o drivers/bluetooth/btmrvl_sdio.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/net/can/m_can/built-in.a := rm -f drivers/net/can/m_can/built-in.a;  printf "drivers/net/can/m_can/%s " m_can.o m_can_platform.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/can/m_can/built-in.a

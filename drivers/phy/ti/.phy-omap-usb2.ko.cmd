@@ -1,1 +1,0 @@
-savedcmd_drivers/phy/ti/phy-omap-usb2.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/phy/ti/phy-omap-usb2.ko drivers/phy/ti/phy-omap-usb2.o drivers/phy/ti/phy-omap-usb2.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/net/phy/xilinx_gmii2rgmii.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/phy/xilinx_gmii2rgmii.ko drivers/net/phy/xilinx_gmii2rgmii.o drivers/net/phy/xilinx_gmii2rgmii.mod.o .module-common.o

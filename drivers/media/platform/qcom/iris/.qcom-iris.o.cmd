@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/qcom/iris/qcom-iris.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/media/platform/qcom/iris/qcom-iris.o @drivers/media/platform/qcom/iris/qcom-iris.mod 

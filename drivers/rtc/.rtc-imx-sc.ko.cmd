@@ -1,1 +1,0 @@
-savedcmd_drivers/rtc/rtc-imx-sc.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/rtc/rtc-imx-sc.ko drivers/rtc/rtc-imx-sc.o drivers/rtc/rtc-imx-sc.mod.o .module-common.o

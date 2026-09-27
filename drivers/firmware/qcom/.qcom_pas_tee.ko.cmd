@@ -1,1 +1,0 @@
-savedcmd_drivers/firmware/qcom/qcom_pas_tee.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/firmware/qcom/qcom_pas_tee.ko drivers/firmware/qcom/qcom_pas_tee.o drivers/firmware/qcom/qcom_pas_tee.mod.o .module-common.o

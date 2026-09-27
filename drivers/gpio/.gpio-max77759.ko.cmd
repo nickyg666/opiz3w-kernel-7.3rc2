@@ -1,1 +1,0 @@
-savedcmd_drivers/gpio/gpio-max77759.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpio/gpio-max77759.ko drivers/gpio/gpio-max77759.o drivers/gpio/gpio-max77759.mod.o .module-common.o

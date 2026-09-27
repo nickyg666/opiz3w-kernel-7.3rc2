@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/hisilicon/hns/modules.order := {   echo drivers/net/ethernet/hisilicon/hns/hnae.o;   echo drivers/net/ethernet/hisilicon/hns/hns_dsaf.o;   echo drivers/net/ethernet/hisilicon/hns/hns_enet_drv.o; :; } > drivers/net/ethernet/hisilicon/hns/modules.order

@@ -1,1 +1,0 @@
-savedcmd_drivers/mfd/exynos-lpass.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/mfd/exynos-lpass.ko drivers/mfd/exynos-lpass.o drivers/mfd/exynos-lpass.mod.o .module-common.o

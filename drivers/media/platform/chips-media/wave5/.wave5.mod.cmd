@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/chips-media/wave5/wave5.mod := printf '%s\n'   wave5-hw.o wave5-vpuapi.o wave5-vdi.o wave5-vpu-dec.o wave5-vpu.o wave5-vpu-enc.o wave5-helper.o | awk '!x[$$0]++ { print("drivers/media/platform/chips-media/wave5/"$$0) }' > drivers/media/platform/chips-media/wave5/wave5.mod

@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/mediatek/vcodec/encoder/modules.order := {   echo drivers/media/platform/mediatek/vcodec/encoder/mtk-vcodec-enc.o; :; } > drivers/media/platform/mediatek/vcodec/encoder/modules.order

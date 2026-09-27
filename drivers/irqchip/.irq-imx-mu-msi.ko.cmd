@@ -1,1 +1,0 @@
-savedcmd_drivers/irqchip/irq-imx-mu-msi.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/irqchip/irq-imx-mu-msi.ko drivers/irqchip/irq-imx-mu-msi.o drivers/irqchip/irq-imx-mu-msi.mod.o .module-common.o

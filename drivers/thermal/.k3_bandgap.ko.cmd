@@ -1,1 +1,0 @@
-savedcmd_drivers/thermal/k3_bandgap.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/thermal/k3_bandgap.ko drivers/thermal/k3_bandgap.o drivers/thermal/k3_bandgap.mod.o .module-common.o

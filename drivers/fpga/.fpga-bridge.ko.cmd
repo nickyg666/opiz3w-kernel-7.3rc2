@@ -1,1 +1,0 @@
-savedcmd_drivers/fpga/fpga-bridge.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/fpga/fpga-bridge.ko drivers/fpga/fpga-bridge.o drivers/fpga/fpga-bridge.mod.o .module-common.o

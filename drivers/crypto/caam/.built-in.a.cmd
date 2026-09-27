@@ -1,1 +1,0 @@
-savedcmd_drivers/crypto/caam/built-in.a := rm -f drivers/crypto/caam/built-in.a;  printf "drivers/crypto/caam/%s " error.o ctrl.o qi.o debugfs.o jr.o key_gen.o caamalg.o caamalg_qi.o caamhash.o caamrng.o caampkc.o pkc_desc.o caamalg_desc.o caamhash_desc.o caamalg_qi2.o dpseci.o dpseci-debugfs.o | xargs aarch64-linux-gnu-ar cDPrST drivers/crypto/caam/built-in.a

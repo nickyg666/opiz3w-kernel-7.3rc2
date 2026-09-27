@@ -1,1 +1,0 @@
-savedcmd_drivers/nfc/nxp-nci/built-in.a := rm -f drivers/nfc/nxp-nci/built-in.a;  printf "drivers/nfc/nxp-nci/%s " core.o firmware.o i2c.o | xargs aarch64-linux-gnu-ar cDPrST drivers/nfc/nxp-nci/built-in.a

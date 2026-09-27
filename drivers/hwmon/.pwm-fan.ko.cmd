@@ -1,1 +1,0 @@
-savedcmd_drivers/hwmon/pwm-fan.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/hwmon/pwm-fan.ko drivers/hwmon/pwm-fan.o drivers/hwmon/pwm-fan.mod.o .module-common.o

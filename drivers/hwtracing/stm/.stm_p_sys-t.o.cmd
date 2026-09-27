@@ -1,1 +1,0 @@
-savedcmd_drivers/hwtracing/stm/stm_p_sys-t.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/hwtracing/stm/stm_p_sys-t.o @drivers/hwtracing/stm/stm_p_sys-t.mod 

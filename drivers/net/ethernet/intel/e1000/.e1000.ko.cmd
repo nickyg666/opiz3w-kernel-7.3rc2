@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/intel/e1000/e1000.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/ethernet/intel/e1000/e1000.ko drivers/net/ethernet/intel/e1000/e1000.o drivers/net/ethernet/intel/e1000/e1000.mod.o .module-common.o

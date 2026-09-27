@@ -1,1 +1,0 @@
-savedcmd_drivers/platform/chrome/cros_kbd_led_backlight.mod := printf '%s\n'   cros_kbd_led_backlight.o | awk '!x[$$0]++ { print("drivers/platform/chrome/"$$0) }' > drivers/platform/chrome/cros_kbd_led_backlight.mod

@@ -1,1 +1,0 @@
-savedcmd_drivers/net/can/flexcan/flexcan.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/can/flexcan/flexcan.ko drivers/net/can/flexcan/flexcan.o drivers/net/can/flexcan/flexcan.mod.o .module-common.o

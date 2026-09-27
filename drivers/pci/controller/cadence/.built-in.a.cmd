@@ -1,1 +1,0 @@
-savedcmd_drivers/pci/controller/cadence/built-in.a := rm -f drivers/pci/controller/cadence/built-in.a;  printf "drivers/pci/controller/cadence/%s " pcie-cadence-hpa.o pcie-cadence.o pcie-cadence-host-common.o pcie-cadence-host.o pcie-cadence-host-hpa.o pci-j721e.o pci-sky1.o | xargs aarch64-linux-gnu-ar cDPrST drivers/pci/controller/cadence/built-in.a

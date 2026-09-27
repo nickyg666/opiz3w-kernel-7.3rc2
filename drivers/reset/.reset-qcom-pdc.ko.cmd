@@ -1,1 +1,0 @@
-savedcmd_drivers/reset/reset-qcom-pdc.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/reset/reset-qcom-pdc.ko drivers/reset/reset-qcom-pdc.o drivers/reset/reset-qcom-pdc.mod.o .module-common.o

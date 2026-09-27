@@ -1,1 +1,0 @@
-savedcmd_drivers/crypto/xilinx/zynqmp-sha.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/crypto/xilinx/zynqmp-sha.ko drivers/crypto/xilinx/zynqmp-sha.o drivers/crypto/xilinx/zynqmp-sha.mod.o .module-common.o

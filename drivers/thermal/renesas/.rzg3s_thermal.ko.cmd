@@ -1,1 +1,0 @@
-savedcmd_drivers/thermal/renesas/rzg3s_thermal.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/thermal/renesas/rzg3s_thermal.ko drivers/thermal/renesas/rzg3s_thermal.o drivers/thermal/renesas/rzg3s_thermal.mod.o .module-common.o

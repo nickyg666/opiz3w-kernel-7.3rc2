@@ -1,1 +1,0 @@
-savedcmd_drivers/gpu/drm/mediatek/mediatek-drm.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpu/drm/mediatek/mediatek-drm.ko drivers/gpu/drm/mediatek/mediatek-drm.o drivers/gpu/drm/mediatek/mediatek-drm.mod.o .module-common.o

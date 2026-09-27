@@ -1,1 +1,0 @@
-savedcmd_drivers/media/i2c/ir-kbd-i2c.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/media/i2c/ir-kbd-i2c.ko drivers/media/i2c/ir-kbd-i2c.o drivers/media/i2c/ir-kbd-i2c.mod.o .module-common.o

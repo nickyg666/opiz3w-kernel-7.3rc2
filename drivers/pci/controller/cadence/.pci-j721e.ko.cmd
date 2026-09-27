@@ -1,1 +1,0 @@
-savedcmd_drivers/pci/controller/cadence/pci-j721e.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/pci/controller/cadence/pci-j721e.ko drivers/pci/controller/cadence/pci-j721e.o drivers/pci/controller/cadence/pci-j721e.mod.o .module-common.o

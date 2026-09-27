@@ -1,1 +1,0 @@
-savedcmd_drivers/regulator/lp873x-regulator.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/regulator/lp873x-regulator.ko drivers/regulator/lp873x-regulator.o drivers/regulator/lp873x-regulator.mod.o .module-common.o

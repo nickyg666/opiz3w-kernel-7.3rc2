@@ -1,1 +1,0 @@
-savedcmd_drivers/dma/qcom/gpi.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/dma/qcom/gpi.ko drivers/dma/qcom/gpi.o drivers/dma/qcom/gpi.mod.o .module-common.o

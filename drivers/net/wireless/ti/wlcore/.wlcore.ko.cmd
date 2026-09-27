@@ -1,1 +1,0 @@
-savedcmd_drivers/net/wireless/ti/wlcore/wlcore.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/wireless/ti/wlcore/wlcore.ko drivers/net/wireless/ti/wlcore/wlcore.o drivers/net/wireless/ti/wlcore/wlcore.mod.o .module-common.o

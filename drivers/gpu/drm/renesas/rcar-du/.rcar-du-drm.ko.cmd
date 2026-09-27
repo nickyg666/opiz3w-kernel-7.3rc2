@@ -1,1 +1,0 @@
-savedcmd_drivers/gpu/drm/renesas/rcar-du/rcar-du-drm.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpu/drm/renesas/rcar-du/rcar-du-drm.ko drivers/gpu/drm/renesas/rcar-du/rcar-du-drm.o drivers/gpu/drm/renesas/rcar-du/rcar-du-drm.mod.o .module-common.o

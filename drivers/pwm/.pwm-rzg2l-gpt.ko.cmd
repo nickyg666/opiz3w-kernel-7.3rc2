@@ -1,1 +1,0 @@
-savedcmd_drivers/pwm/pwm-rzg2l-gpt.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/pwm/pwm-rzg2l-gpt.ko drivers/pwm/pwm-rzg2l-gpt.o drivers/pwm/pwm-rzg2l-gpt.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/pci/controller/pcie-apple.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/pci/controller/pcie-apple.ko drivers/pci/controller/pcie-apple.o drivers/pci/controller/pcie-apple.mod.o .module-common.o

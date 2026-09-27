@@ -1,1 +1,0 @@
-savedcmd_drivers/soundwire/built-in.a := rm -f drivers/soundwire/built-in.a;  printf "drivers/soundwire/%s " bus_type.o bus.o master.o slave.o mipi_disco.o stream.o sysfs_slave.o sysfs_slave_dpn.o debugfs.o irq.o qcom.o | xargs aarch64-linux-gnu-ar cDPrST drivers/soundwire/built-in.a

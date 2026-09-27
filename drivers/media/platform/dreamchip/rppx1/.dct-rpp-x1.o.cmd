@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/dreamchip/rppx1/dct-rpp-x1.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/media/platform/dreamchip/rppx1/dct-rpp-x1.o @drivers/media/platform/dreamchip/rppx1/dct-rpp-x1.mod 

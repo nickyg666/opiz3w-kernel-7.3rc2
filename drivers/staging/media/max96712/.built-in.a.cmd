@@ -1,1 +1,0 @@
-savedcmd_drivers/staging/media/max96712/built-in.a := rm -f drivers/staging/media/max96712/built-in.a;  printf "drivers/staging/media/max96712/%s " max96712.o | xargs aarch64-linux-gnu-ar cDPrST drivers/staging/media/max96712/built-in.a

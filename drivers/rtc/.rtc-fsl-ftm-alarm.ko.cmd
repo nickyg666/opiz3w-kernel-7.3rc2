@@ -1,1 +1,0 @@
-savedcmd_drivers/rtc/rtc-fsl-ftm-alarm.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/rtc/rtc-fsl-ftm-alarm.ko drivers/rtc/rtc-fsl-ftm-alarm.o drivers/rtc/rtc-fsl-ftm-alarm.mod.o .module-common.o

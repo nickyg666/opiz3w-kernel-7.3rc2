@@ -1,1 +1,0 @@
-savedcmd_drivers/thermal/thermal-generic-adc.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/thermal/thermal-generic-adc.ko drivers/thermal/thermal-generic-adc.o drivers/thermal/thermal-generic-adc.mod.o .module-common.o

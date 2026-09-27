@@ -1,1 +1,0 @@
-savedcmd_drivers/hwtracing/stm/modules.order := {   echo drivers/hwtracing/stm/stm_core.o;   echo drivers/hwtracing/stm/stm_p_basic.o;   echo drivers/hwtracing/stm/stm_p_sys-t.o; :; } > drivers/hwtracing/stm/modules.order

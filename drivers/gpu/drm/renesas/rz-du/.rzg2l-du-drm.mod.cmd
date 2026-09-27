@@ -1,1 +1,0 @@
-savedcmd_drivers/gpu/drm/renesas/rz-du/rzg2l-du-drm.mod := printf '%s\n'   rzg2l_du_crtc.o rzg2l_du_drv.o rzg2l_du_encoder.o rzg2l_du_kms.o rzg2l_du_vsp.o | awk '!x[$$0]++ { print("drivers/gpu/drm/renesas/rz-du/"$$0) }' > drivers/gpu/drm/renesas/rz-du/rzg2l-du-drm.mod

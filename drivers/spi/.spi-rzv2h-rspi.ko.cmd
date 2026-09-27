@@ -1,1 +1,0 @@
-savedcmd_drivers/spi/spi-rzv2h-rspi.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/spi/spi-rzv2h-rspi.ko drivers/spi/spi-rzv2h-rspi.o drivers/spi/spi-rzv2h-rspi.mod.o .module-common.o

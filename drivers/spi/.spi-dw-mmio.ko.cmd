@@ -1,1 +1,0 @@
-savedcmd_drivers/spi/spi-dw-mmio.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/spi/spi-dw-mmio.ko drivers/spi/spi-dw-mmio.o drivers/spi/spi-dw-mmio.mod.o .module-common.o

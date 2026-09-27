@@ -1,1 +1,0 @@
-savedcmd_drivers/mfd/stm32-timers.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/mfd/stm32-timers.ko drivers/mfd/stm32-timers.o drivers/mfd/stm32-timers.mod.o .module-common.o

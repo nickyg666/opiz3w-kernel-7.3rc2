@@ -1,1 +1,0 @@
-savedcmd_drivers/char/hw_random/qcom-rng.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/char/hw_random/qcom-rng.ko drivers/char/hw_random/qcom-rng.o drivers/char/hw_random/qcom-rng.mod.o .module-common.o

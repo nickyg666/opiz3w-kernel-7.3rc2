@@ -1,1 +1,0 @@
-savedcmd_drivers/platform/modules.order := {   cat drivers/platform/chrome/modules.order;   cat drivers/platform/surface/modules.order;   cat drivers/platform/arm64/modules.order;   cat drivers/platform/raspberrypi/modules.order; :; } > drivers/platform/modules.order

@@ -1,1 +1,0 @@
-savedcmd_drivers/crypto/tegra/tegra-se.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/crypto/tegra/tegra-se.ko drivers/crypto/tegra/tegra-se.o drivers/crypto/tegra/tegra-se.mod.o .module-common.o

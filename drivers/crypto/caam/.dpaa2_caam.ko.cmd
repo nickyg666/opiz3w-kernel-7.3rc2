@@ -1,1 +1,0 @@
-savedcmd_drivers/crypto/caam/dpaa2_caam.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/crypto/caam/dpaa2_caam.ko drivers/crypto/caam/dpaa2_caam.o drivers/crypto/caam/dpaa2_caam.mod.o .module-common.o

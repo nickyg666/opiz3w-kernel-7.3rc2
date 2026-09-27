@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/stmicro/stmmac/dwmac-s32.mod := printf '%s\n'   dwmac-s32.o | awk '!x[$$0]++ { print("drivers/net/ethernet/stmicro/stmmac/"$$0) }' > drivers/net/ethernet/stmicro/stmmac/dwmac-s32.mod

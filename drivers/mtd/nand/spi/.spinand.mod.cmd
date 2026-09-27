@@ -1,1 +1,0 @@
-savedcmd_drivers/mtd/nand/spi/spinand.mod := printf '%s\n'   core.o otp.o alliancememory.o ato.o dosilicon.o esmt.o fmsh.o foresee.o gigadevice.o heyangtek.o macronix.o micron.o paragon.o skyhigh.o toshiba.o winbond.o xtx.o | awk '!x[$$0]++ { print("drivers/mtd/nand/spi/"$$0) }' > drivers/mtd/nand/spi/spinand.mod

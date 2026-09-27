@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/imagination/e5010_jpeg_enc.mod := printf '%s\n'   e5010-jpeg-enc-hw.o e5010-jpeg-enc.o | awk '!x[$$0]++ { print("drivers/media/platform/imagination/"$$0) }' > drivers/media/platform/imagination/e5010_jpeg_enc.mod

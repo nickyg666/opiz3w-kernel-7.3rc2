@@ -1,1 +1,0 @@
-savedcmd_drivers/pci/pcie/built-in.a := rm -f drivers/pci/pcie/built-in.a;  printf "drivers/pci/pcie/%s " portdrv.o rcec.o bwctrl.o aspm.o aer.o err.o tlp.o pme.o | xargs aarch64-linux-gnu-ar cDPrST drivers/pci/pcie/built-in.a

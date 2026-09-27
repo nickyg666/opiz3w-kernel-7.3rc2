@@ -1,1 +1,0 @@
-savedcmd_drivers/net/wireless/ath/ath12k/ath12k.mod := printf '%s\n'   core.o hal.o wmi.o mac.o reg.o htc.o qmi.o dp.o dp_tx.o dp_rx.o dp_htt.o dp_peer.o debug.o ce.o peer.o dbring.o mhi.o pci.o dp_mon.o fw.o p2p.o wow.o thermal.o | awk '!x[$$0]++ { print("drivers/net/wireless/ath/ath12k/"$$0) }' > drivers/net/wireless/ath/ath12k/ath12k.mod

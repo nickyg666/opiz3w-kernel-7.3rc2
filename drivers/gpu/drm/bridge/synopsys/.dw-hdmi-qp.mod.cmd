@@ -1,1 +1,0 @@
-savedcmd_drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.mod := printf '%s\n'   dw-hdmi-qp.o | awk '!x[$$0]++ { print("drivers/gpu/drm/bridge/synopsys/"$$0) }' > drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.mod

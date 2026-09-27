@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/freescale/dpaa2/modules.order := {   echo drivers/net/ethernet/freescale/dpaa2/fsl-dpaa2-eth.o;   echo drivers/net/ethernet/freescale/dpaa2/fsl-dpaa2-mac.o;   echo drivers/net/ethernet/freescale/dpaa2/fsl-dpaa2-ptp.o; :; } > drivers/net/ethernet/freescale/dpaa2/modules.order

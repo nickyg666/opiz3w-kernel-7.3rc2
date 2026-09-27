@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/broadcom/asp2/bcm-asp.mod := printf '%s\n'   bcmasp.o bcmasp_intf.o bcmasp_ethtool.o | awk '!x[$$0]++ { print("drivers/net/ethernet/broadcom/asp2/"$$0) }' > drivers/net/ethernet/broadcom/asp2/bcm-asp.mod

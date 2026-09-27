@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/chips-media/wave5/wave5.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/media/platform/chips-media/wave5/wave5.o @drivers/media/platform/chips-media/wave5/wave5.mod 

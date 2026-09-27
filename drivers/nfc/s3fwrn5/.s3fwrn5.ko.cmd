@@ -1,1 +1,0 @@
-savedcmd_drivers/nfc/s3fwrn5/s3fwrn5.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/nfc/s3fwrn5/s3fwrn5.ko drivers/nfc/s3fwrn5/s3fwrn5.o drivers/nfc/s3fwrn5/s3fwrn5.mod.o .module-common.o

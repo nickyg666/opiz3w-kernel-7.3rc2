@@ -1,1 +1,0 @@
-savedcmd_drivers/usb/typec/ucsi/built-in.a := rm -f drivers/usb/typec/ucsi/built-in.a;  printf "drivers/usb/typec/ucsi/%s " ucsi.o debugfs.o psy.o displayport.o ucsi_ccg.o ucsi_glink.o cros_ec_ucsi.o | xargs aarch64-linux-gnu-ar cDPrST drivers/usb/typec/ucsi/built-in.a

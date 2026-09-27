@@ -1,1 +1,0 @@
-savedcmd_drivers/bus/imx-aipstz.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/bus/imx-aipstz.ko drivers/bus/imx-aipstz.o drivers/bus/imx-aipstz.mod.o .module-common.o

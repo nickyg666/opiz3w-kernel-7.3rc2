@@ -1,1 +1,0 @@
-savedcmd_drivers/remoteproc/ti_k3_common.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/remoteproc/ti_k3_common.ko drivers/remoteproc/ti_k3_common.o drivers/remoteproc/ti_k3_common.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/mfd/qcom-pm8008.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/mfd/qcom-pm8008.ko drivers/mfd/qcom-pm8008.o drivers/mfd/qcom-pm8008.mod.o .module-common.o

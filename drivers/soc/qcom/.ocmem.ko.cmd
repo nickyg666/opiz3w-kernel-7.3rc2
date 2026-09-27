@@ -1,1 +1,0 @@
-savedcmd_drivers/soc/qcom/ocmem.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/soc/qcom/ocmem.ko drivers/soc/qcom/ocmem.o drivers/soc/qcom/ocmem.mod.o .module-common.o

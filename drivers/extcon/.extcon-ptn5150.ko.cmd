@@ -1,1 +1,0 @@
-savedcmd_drivers/extcon/extcon-ptn5150.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/extcon/extcon-ptn5150.ko drivers/extcon/extcon-ptn5150.o drivers/extcon/extcon-ptn5150.mod.o .module-common.o

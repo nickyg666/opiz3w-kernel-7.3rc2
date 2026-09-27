@@ -1,1 +1,0 @@
-savedcmd_drivers/gpu/drm/bridge/synopsys/dw-dp.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpu/drm/bridge/synopsys/dw-dp.ko drivers/gpu/drm/bridge/synopsys/dw-dp.o drivers/gpu/drm/bridge/synopsys/dw-dp.mod.o .module-common.o

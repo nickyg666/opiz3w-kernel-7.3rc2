@@ -1,1 +1,0 @@
-savedcmd_drivers/phy/renesas/phy-rzg3e-usb3.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/phy/renesas/phy-rzg3e-usb3.ko drivers/phy/renesas/phy-rzg3e-usb3.o drivers/phy/renesas/phy-rzg3e-usb3.mod.o .module-common.o

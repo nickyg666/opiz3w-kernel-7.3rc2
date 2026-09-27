@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-encdec.mod := printf '%s\n'   mxc-jpeg-hw.o mxc-jpeg.o | awk '!x[$$0]++ { print("drivers/media/platform/nxp/imx-jpeg/"$$0) }' > drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-encdec.mod

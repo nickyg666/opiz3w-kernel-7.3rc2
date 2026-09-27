@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/ti/ti-cpsw-sl.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/ethernet/ti/ti-cpsw-sl.ko drivers/net/ethernet/ti/ti-cpsw-sl.o drivers/net/ethernet/ti/ti-cpsw-sl.mod.o .module-common.o

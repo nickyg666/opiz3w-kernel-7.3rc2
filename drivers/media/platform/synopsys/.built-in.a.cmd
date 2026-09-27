@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/synopsys/built-in.a := rm -f drivers/media/platform/synopsys/built-in.a;  printf "drivers/media/platform/synopsys/%s " hdmirx/built-in.a | xargs aarch64-linux-gnu-ar cDPrST drivers/media/platform/synopsys/built-in.a

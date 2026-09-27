@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/freescale/enetc/nxp-enetc-pf-common.mod := printf '%s\n'   enetc_pf_common.o enetc_msg.o | awk '!x[$$0]++ { print("drivers/net/ethernet/freescale/enetc/"$$0) }' > drivers/net/ethernet/freescale/enetc/nxp-enetc-pf-common.mod

@@ -1,1 +1,0 @@
-savedcmd_drivers/net/phy/qcom/built-in.a := rm -f drivers/net/phy/qcom/built-in.a;  printf "drivers/net/phy/qcom/%s " qcom-phy-lib.o at803x.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/phy/qcom/built-in.a

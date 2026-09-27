@@ -1,1 +1,0 @@
-savedcmd_drivers/fpga/fpga-region.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/fpga/fpga-region.ko drivers/fpga/fpga-region.o drivers/fpga/fpga-region.mod.o .module-common.o

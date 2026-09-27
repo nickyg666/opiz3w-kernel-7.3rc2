@@ -1,1 +1,0 @@
-savedcmd_drivers/char/ipmi/ipmi_msghandler.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/char/ipmi/ipmi_msghandler.ko drivers/char/ipmi/ipmi_msghandler.o drivers/char/ipmi/ipmi_msghandler.mod.o .module-common.o

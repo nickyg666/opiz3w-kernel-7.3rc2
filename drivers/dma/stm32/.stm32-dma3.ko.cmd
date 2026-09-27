@@ -1,1 +1,0 @@
-savedcmd_drivers/dma/stm32/stm32-dma3.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/dma/stm32/stm32-dma3.ko drivers/dma/stm32/stm32-dma3.o drivers/dma/stm32/stm32-dma3.mod.o .module-common.o

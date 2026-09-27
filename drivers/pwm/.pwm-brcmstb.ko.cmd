@@ -1,1 +1,0 @@
-savedcmd_drivers/pwm/pwm-brcmstb.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/pwm/pwm-brcmstb.ko drivers/pwm/pwm-brcmstb.o drivers/pwm/pwm-brcmstb.mod.o .module-common.o

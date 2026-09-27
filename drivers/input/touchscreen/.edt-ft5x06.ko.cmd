@@ -1,1 +1,0 @@
-savedcmd_drivers/input/touchscreen/edt-ft5x06.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/input/touchscreen/edt-ft5x06.ko drivers/input/touchscreen/edt-ft5x06.o drivers/input/touchscreen/edt-ft5x06.mod.o .module-common.o

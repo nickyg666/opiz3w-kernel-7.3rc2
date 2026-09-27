@@ -1,1 +1,0 @@
-savedcmd_drivers/net/wireless/marvell/mwifiex/mwifiex.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/wireless/marvell/mwifiex/mwifiex.ko drivers/net/wireless/marvell/mwifiex/mwifiex.o drivers/net/wireless/marvell/mwifiex/mwifiex.mod.o .module-common.o

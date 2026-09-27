@@ -1,1 +1,0 @@
-savedcmd_drivers/net/wireless/mediatek/mt76/mt792x-lib.mod := printf '%s\n'   mt792x_core.o mt792x_mac.o mt792x_trace.o mt792x_debugfs.o mt792x_dma.o | awk '!x[$$0]++ { print("drivers/net/wireless/mediatek/mt76/"$$0) }' > drivers/net/wireless/mediatek/mt76/mt792x-lib.mod

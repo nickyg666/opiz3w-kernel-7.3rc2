@@ -1,1 +1,0 @@
-savedcmd_drivers/platform/raspberrypi/vchiq.mod := printf '%s\n'   vchiq-interface/vchiq_core.o vchiq-interface/vchiq_arm.o vchiq-interface/vchiq_bus.o vchiq-interface/vchiq_debugfs.o vchiq-interface/vchiq_dev.o | awk '!x[$$0]++ { print("drivers/platform/raspberrypi/"$$0) }' > drivers/platform/raspberrypi/vchiq.mod

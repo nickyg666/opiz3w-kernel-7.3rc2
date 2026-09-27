@@ -1,1 +1,0 @@
-drivers/gpu/drm/panel/panel-himax-hx83112b.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/net/wireless/ti/wlcore/built-in.a := rm -f drivers/net/wireless/ti/wlcore/built-in.a;  printf "drivers/net/wireless/ti/wlcore/%s " main.o cmd.o io.o event.o tx.o rx.o ps.o acx.o boot.o init.o debugfs.o scan.o sysfs.o vendor_cmd.o sdio.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/wireless/ti/wlcore/built-in.a

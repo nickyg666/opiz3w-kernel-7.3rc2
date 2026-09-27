@@ -1,1 +1,0 @@
-savedcmd_drivers/platform/arm64/lenovo-thinkpad-t14s.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/platform/arm64/lenovo-thinkpad-t14s.ko drivers/platform/arm64/lenovo-thinkpad-t14s.o drivers/platform/arm64/lenovo-thinkpad-t14s.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/ufs/host/built-in.a := rm -f drivers/ufs/host/built-in.a;  printf "drivers/ufs/host/%s " ufs-exynos.o ufshcd-pltfrm.o ufs-hisi.o ufs-mediatek.o ufs-rockchip.o | xargs aarch64-linux-gnu-ar cDPrST drivers/ufs/host/built-in.a

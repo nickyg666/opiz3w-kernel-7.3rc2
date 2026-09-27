@@ -1,1 +1,0 @@
-savedcmd_drivers/pci/controller/dwc/pcie-rcar-gen4.mod := printf '%s\n'   pcie-rcar-gen4.o | awk '!x[$$0]++ { print("drivers/pci/controller/dwc/"$$0) }' > drivers/pci/controller/dwc/pcie-rcar-gen4.mod

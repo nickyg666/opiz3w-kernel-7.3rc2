@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/intel/built-in.a := rm -f drivers/net/ethernet/intel/built-in.a;  printf "drivers/net/ethernet/intel/%s " libie/built-in.a | xargs aarch64-linux-gnu-ar cDPrST drivers/net/ethernet/intel/built-in.a

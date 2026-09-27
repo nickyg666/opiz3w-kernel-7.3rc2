@@ -1,1 +1,0 @@
-savedcmd_drivers/usb/typec/tcpm/qcom/qcom_pmic_tcpm.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/usb/typec/tcpm/qcom/qcom_pmic_tcpm.o @drivers/usb/typec/tcpm/qcom/qcom_pmic_tcpm.mod 

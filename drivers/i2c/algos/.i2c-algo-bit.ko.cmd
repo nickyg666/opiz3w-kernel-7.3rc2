@@ -1,1 +1,0 @@
-savedcmd_drivers/i2c/algos/i2c-algo-bit.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/i2c/algos/i2c-algo-bit.ko drivers/i2c/algos/i2c-algo-bit.o drivers/i2c/algos/i2c-algo-bit.mod.o .module-common.o

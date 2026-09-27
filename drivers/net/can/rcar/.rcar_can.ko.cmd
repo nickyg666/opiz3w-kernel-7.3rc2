@@ -1,1 +1,0 @@
-savedcmd_drivers/net/can/rcar/rcar_can.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/can/rcar/rcar_can.ko drivers/net/can/rcar/rcar_can.o drivers/net/can/rcar/rcar_can.mod.o .module-common.o

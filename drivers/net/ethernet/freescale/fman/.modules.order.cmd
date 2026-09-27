@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/freescale/fman/modules.order := {   echo drivers/net/ethernet/freescale/fman/fsl_dpaa_fman.o;   echo drivers/net/ethernet/freescale/fman/fsl_dpaa_fman_port.o;   echo drivers/net/ethernet/freescale/fman/fsl_dpaa_mac.o; :; } > drivers/net/ethernet/freescale/fman/modules.order

@@ -1,1 +1,0 @@
-savedcmd_drivers/soc/qcom/apr.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/soc/qcom/apr.ko drivers/soc/qcom/apr.o drivers/soc/qcom/apr.mod.o .module-common.o

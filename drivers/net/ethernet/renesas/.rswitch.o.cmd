@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/renesas/rswitch.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/net/ethernet/renesas/rswitch.o @drivers/net/ethernet/renesas/rswitch.mod 

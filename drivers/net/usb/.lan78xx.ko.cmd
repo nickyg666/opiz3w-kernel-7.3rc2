@@ -1,1 +1,0 @@
-savedcmd_drivers/net/usb/lan78xx.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/usb/lan78xx.ko drivers/net/usb/lan78xx.o drivers/net/usb/lan78xx.mod.o .module-common.o

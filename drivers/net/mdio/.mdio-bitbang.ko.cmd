@@ -1,1 +1,0 @@
-savedcmd_drivers/net/mdio/mdio-bitbang.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/mdio/mdio-bitbang.ko drivers/net/mdio/mdio-bitbang.o drivers/net/mdio/mdio-bitbang.mod.o .module-common.o

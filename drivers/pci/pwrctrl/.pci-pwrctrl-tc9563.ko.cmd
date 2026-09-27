@@ -1,1 +1,0 @@
-savedcmd_drivers/pci/pwrctrl/pci-pwrctrl-tc9563.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/pci/pwrctrl/pci-pwrctrl-tc9563.ko drivers/pci/pwrctrl/pci-pwrctrl-tc9563.o drivers/pci/pwrctrl/pci-pwrctrl-tc9563.mod.o .module-common.o

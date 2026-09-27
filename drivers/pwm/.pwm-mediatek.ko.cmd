@@ -1,1 +1,0 @@
-savedcmd_drivers/pwm/pwm-mediatek.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/pwm/pwm-mediatek.ko drivers/pwm/pwm-mediatek.o drivers/pwm/pwm-mediatek.mod.o .module-common.o

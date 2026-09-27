@@ -1,1 +1,0 @@
-savedcmd_drivers/gpu/drm/bridge/nwl-dsi.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpu/drm/bridge/nwl-dsi.ko drivers/gpu/drm/bridge/nwl-dsi.o drivers/gpu/drm/bridge/nwl-dsi.mod.o .module-common.o

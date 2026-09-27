@@ -1,1 +1,0 @@
-savedcmd_drivers/crypto/allwinner/sun8i-ce/built-in.a := rm -f drivers/crypto/allwinner/sun8i-ce/built-in.a;  printf "drivers/crypto/allwinner/sun8i-ce/%s " sun8i-ce-core.o sun8i-ce-cipher.o | xargs aarch64-linux-gnu-ar cDPrST drivers/crypto/allwinner/sun8i-ce/built-in.a

@@ -1,1 +1,0 @@
-savedcmd_drivers/i2c/busses/i2c-bcm2835.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/i2c/busses/i2c-bcm2835.ko drivers/i2c/busses/i2c-bcm2835.o drivers/i2c/busses/i2c-bcm2835.mod.o .module-common.o

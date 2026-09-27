@@ -1,1 +1,0 @@
-savedcmd_drivers/media/tuners/xc5000.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/media/tuners/xc5000.ko drivers/media/tuners/xc5000.o drivers/media/tuners/xc5000.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/usb/gadget/function/built-in.a := rm -f drivers/usb/gadget/function/built-in.a;  printf "drivers/usb/gadget/function/%s " f_acm.o u_serial.o f_serial.o f_obex.o u_ether.o f_ncm.o f_ecm.o f_eem.o f_subset.o f_rndis.o rndis.o f_mass_storage.o storage_common.o f_fs.o | xargs aarch64-linux-gnu-ar cDPrST drivers/usb/gadget/function/built-in.a

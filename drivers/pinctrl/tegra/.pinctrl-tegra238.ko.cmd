@@ -1,1 +1,0 @@
-savedcmd_drivers/pinctrl/tegra/pinctrl-tegra238.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/pinctrl/tegra/pinctrl-tegra238.ko drivers/pinctrl/tegra/pinctrl-tegra238.o drivers/pinctrl/tegra/pinctrl-tegra238.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/nvmem/nvmem_zynqmp_nvmem.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/nvmem/nvmem_zynqmp_nvmem.o @drivers/nvmem/nvmem_zynqmp_nvmem.mod 

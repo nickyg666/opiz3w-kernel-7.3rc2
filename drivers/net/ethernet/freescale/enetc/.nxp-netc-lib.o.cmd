@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/freescale/enetc/nxp-netc-lib.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/net/ethernet/freescale/enetc/nxp-netc-lib.o @drivers/net/ethernet/freescale/enetc/nxp-netc-lib.mod 

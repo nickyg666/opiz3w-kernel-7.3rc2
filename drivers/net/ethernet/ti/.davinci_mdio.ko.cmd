@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/ti/davinci_mdio.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/ethernet/ti/davinci_mdio.ko drivers/net/ethernet/ti/davinci_mdio.o drivers/net/ethernet/ti/davinci_mdio.mod.o .module-common.o

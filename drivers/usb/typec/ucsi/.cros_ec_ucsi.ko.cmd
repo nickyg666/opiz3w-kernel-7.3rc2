@@ -1,1 +1,0 @@
-savedcmd_drivers/usb/typec/ucsi/cros_ec_ucsi.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/usb/typec/ucsi/cros_ec_ucsi.ko drivers/usb/typec/ucsi/cros_ec_ucsi.o drivers/usb/typec/ucsi/cros_ec_ucsi.mod.o .module-common.o

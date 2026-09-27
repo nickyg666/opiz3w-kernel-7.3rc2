@@ -1,1 +1,0 @@
-savedcmd_drivers/input/misc/da9063_onkey.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/input/misc/da9063_onkey.ko drivers/input/misc/da9063_onkey.o drivers/input/misc/da9063_onkey.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/phy/freescale/phy-fsl-samsung-hdmi.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/phy/freescale/phy-fsl-samsung-hdmi.ko drivers/phy/freescale/phy-fsl-samsung-hdmi.o drivers/phy/freescale/phy-fsl-samsung-hdmi.mod.o .module-common.o

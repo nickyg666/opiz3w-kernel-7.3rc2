@@ -1,1 +1,0 @@
-savedcmd_drivers/pci/controller/cadence/pcie-cadence-host-mod.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/pci/controller/cadence/pcie-cadence-host-mod.o @drivers/pci/controller/cadence/pcie-cadence-host-mod.mod 

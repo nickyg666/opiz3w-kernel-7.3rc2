@@ -1,1 +1,0 @@
-savedcmd_drivers/gpu/drm/panthor/built-in.a := rm -f drivers/gpu/drm/panthor/built-in.a;  printf "drivers/gpu/drm/panthor/%s " panthor_devfreq.o panthor_device.o panthor_drv.o panthor_fw.o panthor_gem.o panthor_gpu.o panthor_heap.o panthor_hw.o panthor_mmu.o panthor_pwr.o panthor_sched.o | xargs aarch64-linux-gnu-ar cDPrST drivers/gpu/drm/panthor/built-in.a

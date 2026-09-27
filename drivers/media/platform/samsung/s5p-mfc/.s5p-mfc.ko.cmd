@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/samsung/s5p-mfc/s5p-mfc.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/media/platform/samsung/s5p-mfc/s5p-mfc.ko drivers/media/platform/samsung/s5p-mfc/s5p-mfc.o drivers/media/platform/samsung/s5p-mfc/s5p-mfc.mod.o .module-common.o

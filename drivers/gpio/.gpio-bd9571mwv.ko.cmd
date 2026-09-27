@@ -1,1 +1,0 @@
-savedcmd_drivers/gpio/gpio-bd9571mwv.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpio/gpio-bd9571mwv.ko drivers/gpio/gpio-bd9571mwv.o drivers/gpio/gpio-bd9571mwv.mod.o .module-common.o

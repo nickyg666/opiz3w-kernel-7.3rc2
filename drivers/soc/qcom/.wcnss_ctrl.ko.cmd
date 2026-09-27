@@ -1,1 +1,0 @@
-savedcmd_drivers/soc/qcom/wcnss_ctrl.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/soc/qcom/wcnss_ctrl.ko drivers/soc/qcom/wcnss_ctrl.o drivers/soc/qcom/wcnss_ctrl.mod.o .module-common.o

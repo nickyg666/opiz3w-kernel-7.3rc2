@@ -1,1 +1,0 @@
-savedcmd_drivers/interconnect/imx/imx8mm-interconnect.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/interconnect/imx/imx8mm-interconnect.ko drivers/interconnect/imx/imx8mm-interconnect.o drivers/interconnect/imx/imx8mm-interconnect.mod.o .module-common.o

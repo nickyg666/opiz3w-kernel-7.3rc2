@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/cadence/cdns-csi2rx.mod := printf '%s\n'   cdns-csi2rx.o | awk '!x[$$0]++ { print("drivers/media/platform/cadence/"$$0) }' > drivers/media/platform/cadence/cdns-csi2rx.mod

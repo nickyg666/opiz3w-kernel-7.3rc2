@@ -1,1 +1,0 @@
-savedcmd_drivers/net/wireless/aic8800/built-in.a := rm -f drivers/net/wireless/aic8800/built-in.a;  printf "drivers/net/wireless/aic8800/%s " aic8800_btlpm/built-in.a aic8800_bsp/built-in.a | xargs aarch64-linux-gnu-ar cDPrST drivers/net/wireless/aic8800/built-in.a

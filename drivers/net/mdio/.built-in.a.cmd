@@ -1,1 +1,0 @@
-savedcmd_drivers/net/mdio/built-in.a := rm -f drivers/net/mdio/built-in.a;  printf "drivers/net/mdio/%s " fwnode_mdio.o of_mdio.o mdio-bcm-iproc.o mdio-xgene.o mdio-mux.o mdio-mux-bcm-iproc.o mdio-mux-mmioreg.o mdio-mux-multiplexer.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/mdio/built-in.a

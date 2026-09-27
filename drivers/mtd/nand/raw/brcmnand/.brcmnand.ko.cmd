@@ -1,1 +1,0 @@
-savedcmd_drivers/mtd/nand/raw/brcmnand/brcmnand.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/mtd/nand/raw/brcmnand/brcmnand.ko drivers/mtd/nand/raw/brcmnand/brcmnand.o drivers/mtd/nand/raw/brcmnand/brcmnand.mod.o .module-common.o

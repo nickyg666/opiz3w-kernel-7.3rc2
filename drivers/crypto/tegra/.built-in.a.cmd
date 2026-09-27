@@ -1,1 +1,0 @@
-savedcmd_drivers/crypto/tegra/built-in.a := rm -f drivers/crypto/tegra/built-in.a;  printf "drivers/crypto/tegra/%s " tegra-se-key.o tegra-se-main.o tegra-se-aes.o tegra-se-hash.o | xargs aarch64-linux-gnu-ar cDPrST drivers/crypto/tegra/built-in.a

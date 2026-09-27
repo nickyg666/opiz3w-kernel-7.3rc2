@@ -1,1 +1,0 @@
-savedcmd_drivers/media/rc/keymaps/rc-flydvb.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/media/rc/keymaps/rc-flydvb.ko drivers/media/rc/keymaps/rc-flydvb.o drivers/media/rc/keymaps/rc-flydvb.mod.o .module-common.o

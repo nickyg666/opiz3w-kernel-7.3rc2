@@ -1,1 +1,0 @@
-savedcmd_drivers/gpio/gpio-adp5585.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpio/gpio-adp5585.ko drivers/gpio/gpio-adp5585.o drivers/gpio/gpio-adp5585.mod.o .module-common.o

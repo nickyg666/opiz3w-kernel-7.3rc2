@@ -1,1 +1,0 @@
-savedcmd_drivers/pmdomain/mediatek/built-in.a := rm -f drivers/pmdomain/mediatek/built-in.a;  printf "drivers/pmdomain/mediatek/%s " mtk-mfg-pmdomain.o mtk-scpsys.o mtk-pm-domains.o airoha-cpu-pmdomain.o | xargs aarch64-linux-gnu-ar cDPrST drivers/pmdomain/mediatek/built-in.a

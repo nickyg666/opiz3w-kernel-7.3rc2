@@ -1,1 +1,0 @@
-savedcmd_drivers/usb/cdns3/cdns.mod := printf '%s\n'   core.o drd.o cdns3-plat.o host.o cdns3-gadget.o cdns3-ep0.o cdnsp-ring.o cdnsp-gadget.o cdnsp-mem.o cdnsp-ep0.o | awk '!x[$$0]++ { print("drivers/usb/cdns3/"$$0) }' > drivers/usb/cdns3/cdns.mod

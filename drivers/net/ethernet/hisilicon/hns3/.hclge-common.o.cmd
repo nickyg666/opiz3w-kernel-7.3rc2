@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/hisilicon/hns3/hclge-common.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/net/ethernet/hisilicon/hns3/hclge-common.o @drivers/net/ethernet/hisilicon/hns3/hclge-common.mod 

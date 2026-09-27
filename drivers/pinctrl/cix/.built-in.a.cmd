@@ -1,1 +1,0 @@
-savedcmd_drivers/pinctrl/cix/built-in.a := rm -f drivers/pinctrl/cix/built-in.a;  printf "drivers/pinctrl/cix/%s " pinctrl-sky1-base.o pinctrl-sky1.o | xargs aarch64-linux-gnu-ar cDPrST drivers/pinctrl/cix/built-in.a

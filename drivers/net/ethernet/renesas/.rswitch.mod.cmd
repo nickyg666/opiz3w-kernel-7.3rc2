@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/renesas/rswitch.mod := printf '%s\n'   rswitch_main.o rswitch_l2.o | awk '!x[$$0]++ { print("drivers/net/ethernet/renesas/"$$0) }' > drivers/net/ethernet/renesas/rswitch.mod

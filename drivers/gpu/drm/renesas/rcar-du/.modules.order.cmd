@@ -1,1 +1,0 @@
-savedcmd_drivers/gpu/drm/renesas/rcar-du/modules.order := {   echo drivers/gpu/drm/renesas/rcar-du/rcar_cmm.o;   echo drivers/gpu/drm/renesas/rcar-du/rcar-du-drm.o;   echo drivers/gpu/drm/renesas/rcar-du/rcar_dw_hdmi.o;   echo drivers/gpu/drm/renesas/rcar-du/rcar_lvds.o;   echo drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi.o; :; } > drivers/gpu/drm/renesas/rcar-du/modules.order

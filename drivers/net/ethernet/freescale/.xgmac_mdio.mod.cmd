@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/freescale/xgmac_mdio.mod := printf '%s\n'   xgmac_mdio.o | awk '!x[$$0]++ { print("drivers/net/ethernet/freescale/"$$0) }' > drivers/net/ethernet/freescale/xgmac_mdio.mod

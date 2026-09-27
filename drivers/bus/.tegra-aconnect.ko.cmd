@@ -1,1 +1,0 @@
-savedcmd_drivers/bus/tegra-aconnect.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/bus/tegra-aconnect.ko drivers/bus/tegra-aconnect.o drivers/bus/tegra-aconnect.mod.o .module-common.o

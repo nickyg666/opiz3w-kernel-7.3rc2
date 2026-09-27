@@ -1,1 +1,0 @@
-savedcmd_drivers/iio/adc/mt6577_auxadc.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/iio/adc/mt6577_auxadc.ko drivers/iio/adc/mt6577_auxadc.o drivers/iio/adc/mt6577_auxadc.mod.o .module-common.o

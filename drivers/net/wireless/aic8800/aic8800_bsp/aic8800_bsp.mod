@@ -1,9 +1,0 @@
-drivers/net/wireless/aic8800/aic8800_bsp/aic_bsp_main.o
-drivers/net/wireless/aic8800/aic8800_bsp/aic_bsp_driver.o
-drivers/net/wireless/aic8800/aic8800_bsp/aic_bsp_8800d.o
-drivers/net/wireless/aic8800/aic8800_bsp/aic_bsp_8800dc.o
-drivers/net/wireless/aic8800/aic8800_bsp/aic_bsp_8800d80.o
-drivers/net/wireless/aic8800/aic8800_bsp/aic_bsp_txrxif.o
-drivers/net/wireless/aic8800/aic8800_bsp/aicsdio.o
-drivers/net/wireless/aic8800/aic8800_bsp/aic_bsp_txq_prealloc.o
-drivers/net/wireless/aic8800/aic8800_bsp/aic_bsp_verify.o

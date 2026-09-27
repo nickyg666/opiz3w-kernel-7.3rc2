@@ -1,1 +1,0 @@
-savedcmd_drivers/bluetooth/built-in.a := rm -f drivers/bluetooth/built-in.a;  printf "drivers/bluetooth/%s " hci_ldisc.o hci_serdev.o hci_h4.o hci_ll.o hci_bcm.o hci_qca.o hci_mrvl.o btusb.o btintel.o btmrvl_main.o btmrvl_debugfs.o btmrvl_sdio.o btqcomsmd.o btbcm.o btrtl.o btqca.o btmtk.o btnxpuart.o btrsi.o | xargs aarch64-linux-gnu-ar cDPrST drivers/bluetooth/built-in.a

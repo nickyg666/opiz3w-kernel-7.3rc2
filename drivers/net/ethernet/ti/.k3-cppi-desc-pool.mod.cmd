@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/ti/k3-cppi-desc-pool.mod := printf '%s\n'   k3-cppi-desc-pool.o | awk '!x[$$0]++ { print("drivers/net/ethernet/ti/"$$0) }' > drivers/net/ethernet/ti/k3-cppi-desc-pool.mod

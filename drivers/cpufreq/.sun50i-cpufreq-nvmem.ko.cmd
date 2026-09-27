@@ -1,1 +1,0 @@
-savedcmd_drivers/cpufreq/sun50i-cpufreq-nvmem.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/cpufreq/sun50i-cpufreq-nvmem.ko drivers/cpufreq/sun50i-cpufreq-nvmem.o drivers/cpufreq/sun50i-cpufreq-nvmem.mod.o .module-common.o

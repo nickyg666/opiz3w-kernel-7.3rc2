@@ -1,1 +1,0 @@
-savedcmd_drivers/dma/sh/usb-dmac.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/dma/sh/usb-dmac.ko drivers/dma/sh/usb-dmac.o drivers/dma/sh/usb-dmac.mod.o .module-common.o

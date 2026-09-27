@@ -1,1 +1,0 @@
-savedcmd_drivers/usb/typec/tcpm/qcom/qcom_pmic_tcpm.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/usb/typec/tcpm/qcom/qcom_pmic_tcpm.ko drivers/usb/typec/tcpm/qcom/qcom_pmic_tcpm.o drivers/usb/typec/tcpm/qcom/qcom_pmic_tcpm.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/counter/built-in.a := rm -f drivers/counter/built-in.a;  printf "drivers/counter/%s " counter-core.o counter-sysfs.o counter-chrdev.o rz-mtu3-cnt.o stm32-timer-cnt.o ti-eqep.o | xargs aarch64-linux-gnu-ar cDPrST drivers/counter/built-in.a

@@ -1,1 +1,0 @@
-savedcmd_drivers/gpu/drm/sun4i/sun4i-tcon.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpu/drm/sun4i/sun4i-tcon.ko drivers/gpu/drm/sun4i/sun4i-tcon.o drivers/gpu/drm/sun4i/sun4i-tcon.mod.o .module-common.o

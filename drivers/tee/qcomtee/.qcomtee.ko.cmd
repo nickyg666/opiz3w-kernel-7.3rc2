@@ -1,1 +1,0 @@
-savedcmd_drivers/tee/qcomtee/qcomtee.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/tee/qcomtee/qcomtee.ko drivers/tee/qcomtee/qcomtee.o drivers/tee/qcomtee/qcomtee.mod.o .module-common.o

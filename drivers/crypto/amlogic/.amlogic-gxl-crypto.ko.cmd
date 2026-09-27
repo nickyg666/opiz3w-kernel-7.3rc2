@@ -1,1 +1,0 @@
-savedcmd_drivers/crypto/amlogic/amlogic-gxl-crypto.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/crypto/amlogic/amlogic-gxl-crypto.ko drivers/crypto/amlogic/amlogic-gxl-crypto.o drivers/crypto/amlogic/amlogic-gxl-crypto.mod.o .module-common.o

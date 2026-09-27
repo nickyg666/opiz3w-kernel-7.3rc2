@@ -1,1 +1,0 @@
-savedcmd_drivers/bluetooth/btqca.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/bluetooth/btqca.ko drivers/bluetooth/btqca.o drivers/bluetooth/btqca.mod.o .module-common.o

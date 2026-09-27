@@ -1,1 +1,0 @@
-savedcmd_drivers/power/sequencing/built-in.a := rm -f drivers/power/sequencing/built-in.a;  printf "drivers/power/sequencing/%s " core.o | xargs aarch64-linux-gnu-ar cDPrST drivers/power/sequencing/built-in.a

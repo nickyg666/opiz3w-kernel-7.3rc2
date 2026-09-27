@@ -1,1 +1,0 @@
-savedcmd_drivers/pinctrl/sophgo/built-in.a := rm -f drivers/pinctrl/sophgo/built-in.a;  printf "drivers/pinctrl/sophgo/%s " pinctrl-sophgo-common.o pinctrl-cv18xx.o pinctrl-sg2000.o | xargs aarch64-linux-gnu-ar cDPrST drivers/pinctrl/sophgo/built-in.a

@@ -1,1 +1,0 @@
-savedcmd_drivers/input/keyboard/imx_sc_key.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/input/keyboard/imx_sc_key.ko drivers/input/keyboard/imx_sc_key.o drivers/input/keyboard/imx_sc_key.mod.o .module-common.o

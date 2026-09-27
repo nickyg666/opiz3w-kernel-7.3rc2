@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/freescale/fman/fsl_dpaa_mac.mod := printf '%s\n'   mac.o fman_dtsec.o fman_memac.o fman_tgec.o | awk '!x[$$0]++ { print("drivers/net/ethernet/freescale/fman/"$$0) }' > drivers/net/ethernet/freescale/fman/fsl_dpaa_mac.mod

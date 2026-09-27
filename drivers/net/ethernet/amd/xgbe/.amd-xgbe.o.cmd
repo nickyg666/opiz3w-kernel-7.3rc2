@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/amd/xgbe/amd-xgbe.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/net/ethernet/amd/xgbe/amd-xgbe.o @drivers/net/ethernet/amd/xgbe/amd-xgbe.mod 

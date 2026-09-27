@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/marvell/mvpp2/mvpp2.mod := printf '%s\n'   mvpp2_main.o mvpp2_prs.o mvpp2_cls.o mvpp2_debugfs.o | awk '!x[$$0]++ { print("drivers/net/ethernet/marvell/mvpp2/"$$0) }' > drivers/net/ethernet/marvell/mvpp2/mvpp2.mod

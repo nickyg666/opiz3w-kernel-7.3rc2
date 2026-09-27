@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/synopsys/hdmirx/synopsys-hdmirx.mod := printf '%s\n'   snps_hdmirx.o snps_hdmirx_cec.o | awk '!x[$$0]++ { print("drivers/media/platform/synopsys/hdmirx/"$$0) }' > drivers/media/platform/synopsys/hdmirx/synopsys-hdmirx.mod

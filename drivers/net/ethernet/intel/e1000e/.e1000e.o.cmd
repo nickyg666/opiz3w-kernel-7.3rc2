@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/intel/e1000e/e1000e.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/net/ethernet/intel/e1000e/e1000e.o @drivers/net/ethernet/intel/e1000e/e1000e.mod 

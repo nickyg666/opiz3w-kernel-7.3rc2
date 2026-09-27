@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/renesas/rcar-isp/built-in.a := rm -f drivers/media/platform/renesas/rcar-isp/built-in.a;  aarch64-linux-gnu-ar cDPrST drivers/media/platform/renesas/rcar-isp/built-in.a

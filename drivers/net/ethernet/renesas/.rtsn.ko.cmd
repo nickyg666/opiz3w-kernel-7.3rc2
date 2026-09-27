@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/renesas/rtsn.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/ethernet/renesas/rtsn.ko drivers/net/ethernet/renesas/rtsn.o drivers/net/ethernet/renesas/rtsn.mod.o .module-common.o

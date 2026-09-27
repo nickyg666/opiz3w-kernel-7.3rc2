@@ -1,1 +1,0 @@
-savedcmd_drivers/char/tpm/tpm_tis_core.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/char/tpm/tpm_tis_core.ko drivers/char/tpm/tpm_tis_core.o drivers/char/tpm/tpm_tis_core.mod.o .module-common.o

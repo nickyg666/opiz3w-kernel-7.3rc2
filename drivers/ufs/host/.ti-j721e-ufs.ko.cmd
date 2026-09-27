@@ -1,1 +1,0 @@
-savedcmd_drivers/ufs/host/ti-j721e-ufs.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/ufs/host/ti-j721e-ufs.ko drivers/ufs/host/ti-j721e-ufs.o drivers/ufs/host/ti-j721e-ufs.mod.o .module-common.o

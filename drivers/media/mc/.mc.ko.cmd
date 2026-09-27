@@ -1,1 +1,0 @@
-savedcmd_drivers/media/mc/mc.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/media/mc/mc.ko drivers/media/mc/mc.o drivers/media/mc/mc.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/amazon/ena/built-in.a := rm -f drivers/net/ethernet/amazon/ena/built-in.a;  printf "drivers/net/ethernet/amazon/ena/%s " ena_netdev.o ena_com.o ena_eth_com.o ena_ethtool.o ena_xdp.o ena_phc.o ena_devlink.o ena_debugfs.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/ethernet/amazon/ena/built-in.a

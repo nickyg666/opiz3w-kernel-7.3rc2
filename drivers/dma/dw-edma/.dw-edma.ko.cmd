@@ -1,1 +1,0 @@
-savedcmd_drivers/dma/dw-edma/dw-edma.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/dma/dw-edma/dw-edma.ko drivers/dma/dw-edma/dw-edma.o drivers/dma/dw-edma/dw-edma.mod.o .module-common.o

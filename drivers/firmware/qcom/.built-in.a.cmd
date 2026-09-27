@@ -1,1 +1,0 @@
-savedcmd_drivers/firmware/qcom/built-in.a := rm -f drivers/firmware/qcom/built-in.a;  printf "drivers/firmware/qcom/%s " qcom_scm.o qcom_scm-smc.o qcom_scm-legacy.o qcom_tzmem.o qcom_qseecom.o qcom_pas.o | xargs aarch64-linux-gnu-ar cDPrST drivers/firmware/qcom/built-in.a

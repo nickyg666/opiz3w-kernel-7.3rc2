@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/qcom/venus/venus-dec.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/media/platform/qcom/venus/venus-dec.ko drivers/media/platform/qcom/venus/venus-dec.o drivers/media/platform/qcom/venus/venus-dec.mod.o .module-common.o

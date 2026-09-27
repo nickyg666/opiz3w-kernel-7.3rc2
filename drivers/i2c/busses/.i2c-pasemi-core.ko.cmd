@@ -1,1 +1,0 @@
-savedcmd_drivers/i2c/busses/i2c-pasemi-core.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/i2c/busses/i2c-pasemi-core.ko drivers/i2c/busses/i2c-pasemi-core.o drivers/i2c/busses/i2c-pasemi-core.mod.o .module-common.o

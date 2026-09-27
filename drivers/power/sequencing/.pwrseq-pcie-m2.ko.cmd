@@ -1,1 +1,0 @@
-savedcmd_drivers/power/sequencing/pwrseq-pcie-m2.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/power/sequencing/pwrseq-pcie-m2.ko drivers/power/sequencing/pwrseq-pcie-m2.o drivers/power/sequencing/pwrseq-pcie-m2.mod.o .module-common.o

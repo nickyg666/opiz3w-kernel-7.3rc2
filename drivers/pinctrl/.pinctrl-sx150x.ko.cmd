@@ -1,1 +1,0 @@
-savedcmd_drivers/pinctrl/pinctrl-sx150x.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/pinctrl/pinctrl-sx150x.ko drivers/pinctrl/pinctrl-sx150x.o drivers/pinctrl/pinctrl-sx150x.mod.o .module-common.o

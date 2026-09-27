@@ -1,1 +1,0 @@
-savedcmd_drivers/input/keyboard/sun4i-lradc-keys.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/input/keyboard/sun4i-lradc-keys.ko drivers/input/keyboard/sun4i-lradc-keys.o drivers/input/keyboard/sun4i-lradc-keys.mod.o .module-common.o

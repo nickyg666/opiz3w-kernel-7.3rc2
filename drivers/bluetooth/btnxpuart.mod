@@ -1,1 +1,0 @@
-drivers/bluetooth/btnxpuart.o

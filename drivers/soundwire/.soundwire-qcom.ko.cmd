@@ -1,1 +1,0 @@
-savedcmd_drivers/soundwire/soundwire-qcom.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/soundwire/soundwire-qcom.ko drivers/soundwire/soundwire-qcom.o drivers/soundwire/soundwire-qcom.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/pci/controller/dwc/modules.order := {   echo drivers/pci/controller/dwc/pci-meson.o;   echo drivers/pci/controller/dwc/pcie-tegra194.o;   echo drivers/pci/controller/dwc/pcie-rcar-gen4.o; :; } > drivers/pci/controller/dwc/modules.order

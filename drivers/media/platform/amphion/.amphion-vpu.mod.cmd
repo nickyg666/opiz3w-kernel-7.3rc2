@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/amphion/amphion-vpu.mod := printf '%s\n'   vpu_drv.o vpu_core.o vpu_mbox.o vpu_v4l2.o vpu_helpers.o vpu_cmds.o vpu_msgs.o vpu_rpc.o vpu_imx8q.o vpu_windsor.o vpu_malone.o vpu_color.o vdec.o venc.o vpu_dbg.o | awk '!x[$$0]++ { print("drivers/media/platform/amphion/"$$0) }' > drivers/media/platform/amphion/amphion-vpu.mod

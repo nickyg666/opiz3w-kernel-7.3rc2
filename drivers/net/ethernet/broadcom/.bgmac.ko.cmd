@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/broadcom/bgmac.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/ethernet/broadcom/bgmac.ko drivers/net/ethernet/broadcom/bgmac.o drivers/net/ethernet/broadcom/bgmac.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/platform/raspberrypi/built-in.a := rm -f drivers/platform/raspberrypi/built-in.a;  printf "drivers/platform/raspberrypi/%s " vchiq-interface/vchiq_core.o vchiq-interface/vchiq_arm.o vchiq-interface/vchiq_bus.o vchiq-interface/vchiq_debugfs.o vchiq-interface/vchiq_dev.o | xargs aarch64-linux-gnu-ar cDPrST drivers/platform/raspberrypi/built-in.a

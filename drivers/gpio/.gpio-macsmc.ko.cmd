@@ -1,1 +1,0 @@
-savedcmd_drivers/gpio/gpio-macsmc.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpio/gpio-macsmc.ko drivers/gpio/gpio-macsmc.o drivers/gpio/gpio-macsmc.mod.o .module-common.o

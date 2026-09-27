@@ -1,1 +1,0 @@
-savedcmd_drivers/hwtracing/stm/built-in.a := rm -f drivers/hwtracing/stm/built-in.a;  printf "drivers/hwtracing/stm/%s " core.o policy.o p_basic.o p_sys-t.o | xargs aarch64-linux-gnu-ar cDPrST drivers/hwtracing/stm/built-in.a

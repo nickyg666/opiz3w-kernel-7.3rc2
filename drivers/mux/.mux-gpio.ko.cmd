@@ -1,1 +1,0 @@
-savedcmd_drivers/mux/mux-gpio.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/mux/mux-gpio.ko drivers/mux/mux-gpio.o drivers/mux/mux-gpio.mod.o .module-common.o

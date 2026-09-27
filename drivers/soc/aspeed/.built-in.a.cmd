@@ -1,1 +1,0 @@
-savedcmd_drivers/soc/aspeed/built-in.a := rm -f drivers/soc/aspeed/built-in.a;  printf "drivers/soc/aspeed/%s " aspeed-lpc-ctrl.o aspeed-lpc-snoop.o aspeed-uart-routing.o aspeed-p2a-ctrl.o aspeed-socinfo.o | xargs aarch64-linux-gnu-ar cDPrST drivers/soc/aspeed/built-in.a

@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/broadcom/asp2/bcm-asp.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/ethernet/broadcom/asp2/bcm-asp.ko drivers/net/ethernet/broadcom/asp2/bcm-asp.o drivers/net/ethernet/broadcom/asp2/bcm-asp.mod.o .module-common.o

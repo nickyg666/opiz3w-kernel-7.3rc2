@@ -1,1 +1,0 @@
-drivers/remoteproc/ti_k3_r5_remoteproc.o

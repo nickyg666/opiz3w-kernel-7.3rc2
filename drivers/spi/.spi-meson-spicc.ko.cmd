@@ -1,1 +1,0 @@
-savedcmd_drivers/spi/spi-meson-spicc.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/spi/spi-meson-spicc.ko drivers/spi/spi-meson-spicc.o drivers/spi/spi-meson-spicc.mod.o .module-common.o

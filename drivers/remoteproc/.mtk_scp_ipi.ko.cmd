@@ -1,1 +1,0 @@
-savedcmd_drivers/remoteproc/mtk_scp_ipi.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/remoteproc/mtk_scp_ipi.ko drivers/remoteproc/mtk_scp_ipi.o drivers/remoteproc/mtk_scp_ipi.mod.o .module-common.o

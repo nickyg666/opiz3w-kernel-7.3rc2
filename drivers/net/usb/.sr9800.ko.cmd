@@ -1,1 +1,0 @@
-savedcmd_drivers/net/usb/sr9800.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/usb/sr9800.ko drivers/net/usb/sr9800.o drivers/net/usb/sr9800.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/gpio/gpio-zynq.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpio/gpio-zynq.ko drivers/gpio/gpio-zynq.o drivers/gpio/gpio-zynq.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/char/ipmi/ipmi_devintf.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/char/ipmi/ipmi_devintf.ko drivers/char/ipmi/ipmi_devintf.o drivers/char/ipmi/ipmi_devintf.mod.o .module-common.o

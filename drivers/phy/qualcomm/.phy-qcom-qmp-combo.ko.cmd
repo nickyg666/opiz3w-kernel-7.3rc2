@@ -1,1 +1,0 @@
-savedcmd_drivers/phy/qualcomm/phy-qcom-qmp-combo.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/phy/qualcomm/phy-qcom-qmp-combo.ko drivers/phy/qualcomm/phy-qcom-qmp-combo.o drivers/phy/qualcomm/phy-qcom-qmp-combo.mod.o .module-common.o

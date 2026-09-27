@@ -1,1 +1,0 @@
-savedcmd_drivers/bus/mhi/host/built-in.a := rm -f drivers/bus/mhi/host/built-in.a;  printf "drivers/bus/mhi/host/%s " init.o main.o pm.o boot.o pci_generic.o | xargs aarch64-linux-gnu-ar cDPrST drivers/bus/mhi/host/built-in.a

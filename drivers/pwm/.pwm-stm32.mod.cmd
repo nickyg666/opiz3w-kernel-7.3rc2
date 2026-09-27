@@ -1,1 +1,0 @@
-savedcmd_drivers/pwm/pwm-stm32.mod := printf '%s\n'   pwm-stm32.o | awk '!x[$$0]++ { print("drivers/pwm/"$$0) }' > drivers/pwm/pwm-stm32.mod

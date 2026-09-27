@@ -1,1 +1,0 @@
-savedcmd_drivers/usb/renesas_usbhs/built-in.a := rm -f drivers/usb/renesas_usbhs/built-in.a;  printf "drivers/usb/renesas_usbhs/%s " common.o mod.o pipe.o fifo.o rcar2.o rcar3.o rza.o rza2.o mod_host.o mod_gadget.o | xargs aarch64-linux-gnu-ar cDPrST drivers/usb/renesas_usbhs/built-in.a

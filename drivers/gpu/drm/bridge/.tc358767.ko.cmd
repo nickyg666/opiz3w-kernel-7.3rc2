@@ -1,1 +1,0 @@
-savedcmd_drivers/gpu/drm/bridge/tc358767.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpu/drm/bridge/tc358767.ko drivers/gpu/drm/bridge/tc358767.o drivers/gpu/drm/bridge/tc358767.mod.o .module-common.o

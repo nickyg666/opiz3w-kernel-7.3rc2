@@ -1,1 +1,0 @@
-savedcmd_drivers/ufs/host/ufs-qcom.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/ufs/host/ufs-qcom.ko drivers/ufs/host/ufs-qcom.o drivers/ufs/host/ufs-qcom.mod.o .module-common.o

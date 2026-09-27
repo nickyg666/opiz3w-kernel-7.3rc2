@@ -1,1 +1,0 @@
-savedcmd_drivers/net/can/spi/built-in.a := rm -f drivers/net/can/spi/built-in.a;  printf "drivers/net/can/spi/%s " mcp251xfd/built-in.a | xargs aarch64-linux-gnu-ar cDPrST drivers/net/can/spi/built-in.a

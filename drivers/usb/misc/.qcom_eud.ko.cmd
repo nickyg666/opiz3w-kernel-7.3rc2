@@ -1,1 +1,0 @@
-savedcmd_drivers/usb/misc/qcom_eud.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/usb/misc/qcom_eud.ko drivers/usb/misc/qcom_eud.o drivers/usb/misc/qcom_eud.mod.o .module-common.o

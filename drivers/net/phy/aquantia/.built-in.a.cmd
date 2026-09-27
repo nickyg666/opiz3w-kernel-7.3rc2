@@ -1,1 +1,0 @@
-savedcmd_drivers/net/phy/aquantia/built-in.a := rm -f drivers/net/phy/aquantia/built-in.a;  printf "drivers/net/phy/aquantia/%s " aquantia_main.o aquantia_firmware.o aquantia_leds.o aquantia_hwmon.o | xargs aarch64-linux-gnu-ar cDPrST drivers/net/phy/aquantia/built-in.a

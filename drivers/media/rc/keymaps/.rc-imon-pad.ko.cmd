@@ -1,1 +1,0 @@
-savedcmd_drivers/media/rc/keymaps/rc-imon-pad.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/media/rc/keymaps/rc-imon-pad.ko drivers/media/rc/keymaps/rc-imon-pad.o drivers/media/rc/keymaps/rc-imon-pad.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/mediatek/mdp3/mtk-mdp3.mod := printf '%s\n'   mdp_cfg_data.o mtk-mdp3-core.o mtk-mdp3-vpu.o mtk-mdp3-regs.o mtk-mdp3-m2m.o mtk-mdp3-comp.o mtk-mdp3-cmdq.o | awk '!x[$$0]++ { print("drivers/media/platform/mediatek/mdp3/"$$0) }' > drivers/media/platform/mediatek/mdp3/mtk-mdp3.mod

@@ -1,1 +1,0 @@
-savedcmd_drivers/hwtracing/coresight/coresight-cti.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/hwtracing/coresight/coresight-cti.ko drivers/hwtracing/coresight/coresight-cti.o drivers/hwtracing/coresight/coresight-cti.mod.o .module-common.o

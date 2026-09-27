@@ -1,1 +1,0 @@
-savedcmd_drivers/gpu/drm/bridge/tda998x.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/gpu/drm/bridge/tda998x.ko drivers/gpu/drm/bridge/tda998x.o drivers/gpu/drm/bridge/tda998x.mod.o .module-common.o

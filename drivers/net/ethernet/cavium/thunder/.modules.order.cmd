@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/cavium/thunder/modules.order := {   echo drivers/net/ethernet/cavium/thunder/thunder_xcv.o;   echo drivers/net/ethernet/cavium/thunder/thunder_bgx.o;   echo drivers/net/ethernet/cavium/thunder/nicpf.o; :; } > drivers/net/ethernet/cavium/thunder/modules.order

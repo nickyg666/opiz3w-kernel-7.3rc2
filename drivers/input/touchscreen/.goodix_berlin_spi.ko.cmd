@@ -1,1 +1,0 @@
-savedcmd_drivers/input/touchscreen/goodix_berlin_spi.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/input/touchscreen/goodix_berlin_spi.ko drivers/input/touchscreen/goodix_berlin_spi.o drivers/input/touchscreen/goodix_berlin_spi.mod.o .module-common.o

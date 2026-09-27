@@ -1,1 +1,0 @@
-savedcmd_drivers/dma/xilinx/modules.order := {   echo drivers/dma/xilinx/xilinx_dma.o;   echo drivers/dma/xilinx/zynqmp_dma.o;   echo drivers/dma/xilinx/xilinx_dpdma.o; :; } > drivers/dma/xilinx/modules.order

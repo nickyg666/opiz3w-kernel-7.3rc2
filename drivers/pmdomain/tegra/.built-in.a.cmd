@@ -1,1 +1,0 @@
-savedcmd_drivers/pmdomain/tegra/built-in.a := rm -f drivers/pmdomain/tegra/built-in.a;  printf "drivers/pmdomain/tegra/%s " powergate-bpmp.o | xargs aarch64-linux-gnu-ar cDPrST drivers/pmdomain/tegra/built-in.a

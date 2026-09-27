@@ -1,1 +1,0 @@
-savedcmd_drivers/remoteproc/qcom_q6v5_mss.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/remoteproc/qcom_q6v5_mss.ko drivers/remoteproc/qcom_q6v5_mss.o drivers/remoteproc/qcom_q6v5_mss.mod.o .module-common.o

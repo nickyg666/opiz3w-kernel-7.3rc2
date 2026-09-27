@@ -1,1 +1,0 @@
-savedcmd_drivers/mfd/tps6594-core.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/mfd/tps6594-core.ko drivers/mfd/tps6594-core.o drivers/mfd/tps6594-core.mod.o .module-common.o

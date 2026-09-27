@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/amd/built-in.a := rm -f drivers/media/platform/amd/built-in.a;  printf "drivers/media/platform/amd/%s " isp4/built-in.a | xargs aarch64-linux-gnu-ar cDPrST drivers/media/platform/amd/built-in.a

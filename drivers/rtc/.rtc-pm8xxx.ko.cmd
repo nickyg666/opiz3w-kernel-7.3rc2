@@ -1,1 +1,0 @@
-savedcmd_drivers/rtc/rtc-pm8xxx.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/rtc/rtc-pm8xxx.ko drivers/rtc/rtc-pm8xxx.o drivers/rtc/rtc-pm8xxx.mod.o .module-common.o

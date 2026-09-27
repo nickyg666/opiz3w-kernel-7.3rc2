@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/hisilicon/hix5hd2_gmac.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/ethernet/hisilicon/hix5hd2_gmac.ko drivers/net/ethernet/hisilicon/hix5hd2_gmac.o drivers/net/ethernet/hisilicon/hix5hd2_gmac.mod.o .module-common.o

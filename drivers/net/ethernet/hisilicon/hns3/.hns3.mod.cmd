@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/hisilicon/hns3/hns3.mod := printf '%s\n'   hns3_enet.o hns3_ethtool.o hns3_debugfs.o | awk '!x[$$0]++ { print("drivers/net/ethernet/hisilicon/hns3/"$$0) }' > drivers/net/ethernet/hisilicon/hns3/hns3.mod

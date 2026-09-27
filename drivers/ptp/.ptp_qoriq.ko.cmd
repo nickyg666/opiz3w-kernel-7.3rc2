@@ -1,1 +1,0 @@
-savedcmd_drivers/ptp/ptp_qoriq.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/ptp/ptp_qoriq.ko drivers/ptp/ptp_qoriq.o drivers/ptp/ptp_qoriq.mod.o .module-common.o

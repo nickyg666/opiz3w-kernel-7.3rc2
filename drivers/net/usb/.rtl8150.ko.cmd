@@ -1,1 +1,0 @@
-savedcmd_drivers/net/usb/rtl8150.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/usb/rtl8150.ko drivers/net/usb/rtl8150.o drivers/net/usb/rtl8150.mod.o .module-common.o

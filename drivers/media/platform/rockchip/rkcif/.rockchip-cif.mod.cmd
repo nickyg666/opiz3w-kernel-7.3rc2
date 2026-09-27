@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/rockchip/rkcif/rockchip-cif.mod := printf '%s\n'   rkcif-capture-dvp.o rkcif-capture-mipi.o rkcif-dev.o rkcif-interface.o rkcif-stream.o | awk '!x[$$0]++ { print("drivers/media/platform/rockchip/rkcif/"$$0) }' > drivers/media/platform/rockchip/rkcif/rockchip-cif.mod

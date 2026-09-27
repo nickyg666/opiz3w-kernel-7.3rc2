@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/marvell/mvpp2/mvpp2.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/net/ethernet/marvell/mvpp2/mvpp2.o @drivers/net/ethernet/marvell/mvpp2/mvpp2.mod 

@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/hisilicon/hns/hns_dsaf.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/net/ethernet/hisilicon/hns/hns_dsaf.o @drivers/net/ethernet/hisilicon/hns/hns_dsaf.mod 

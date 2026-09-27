@@ -1,1 +1,0 @@
-savedcmd_drivers/hid/i2c-hid/built-in.a := rm -f drivers/hid/i2c-hid/built-in.a;  printf "drivers/hid/i2c-hid/%s " i2c-hid-core.o i2c-hid-of.o i2c-hid-of-elan.o | xargs aarch64-linux-gnu-ar cDPrST drivers/hid/i2c-hid/built-in.a

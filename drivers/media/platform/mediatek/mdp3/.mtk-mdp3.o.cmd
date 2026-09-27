@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/mediatek/mdp3/mtk-mdp3.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/media/platform/mediatek/mdp3/mtk-mdp3.o @drivers/media/platform/mediatek/mdp3/mtk-mdp3.mod 

@@ -1,1 +1,0 @@
-savedcmd_drivers/iio/common/cros_ec_sensors/cros-ec-sensors-core.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/iio/common/cros_ec_sensors/cros-ec-sensors-core.o @drivers/iio/common/cros_ec_sensors/cros-ec-sensors-core.mod 

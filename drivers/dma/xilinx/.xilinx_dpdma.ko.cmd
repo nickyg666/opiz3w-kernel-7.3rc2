@@ -1,1 +1,0 @@
-savedcmd_drivers/dma/xilinx/xilinx_dpdma.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/dma/xilinx/xilinx_dpdma.ko drivers/dma/xilinx/xilinx_dpdma.o drivers/dma/xilinx/xilinx_dpdma.mod.o .module-common.o

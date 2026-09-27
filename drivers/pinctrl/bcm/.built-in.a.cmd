@@ -1,1 +1,0 @@
-savedcmd_drivers/pinctrl/bcm/built-in.a := rm -f drivers/pinctrl/bcm/built-in.a;  printf "drivers/pinctrl/bcm/%s " pinctrl-bcm2835.o pinctrl-bcm4908.o pinctrl-brcmstb.o pinctrl-brcmstb-bcm2712.o pinctrl-iproc-gpio.o pinctrl-ns2-mux.o | xargs aarch64-linux-gnu-ar cDPrST drivers/pinctrl/bcm/built-in.a

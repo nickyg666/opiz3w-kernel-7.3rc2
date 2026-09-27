@@ -1,1 +1,0 @@
-savedcmd_drivers/usb/cdns3/built-in.a := rm -f drivers/usb/cdns3/built-in.a;  printf "drivers/usb/cdns3/%s " core.o drd.o cdns3-plat.o host.o cdns3-gadget.o cdns3-ep0.o cdnsp-ring.o cdnsp-gadget.o cdnsp-mem.o cdnsp-ep0.o cdns3-ti.o cdns3-imx.o | xargs aarch64-linux-gnu-ar cDPrST drivers/usb/cdns3/built-in.a

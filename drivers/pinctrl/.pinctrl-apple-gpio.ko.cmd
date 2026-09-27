@@ -1,1 +1,0 @@
-savedcmd_drivers/pinctrl/pinctrl-apple-gpio.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/pinctrl/pinctrl-apple-gpio.ko drivers/pinctrl/pinctrl-apple-gpio.o drivers/pinctrl/pinctrl-apple-gpio.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/freescale/dpaa/fsl_dpa.mod := printf '%s\n'   dpaa_eth.o dpaa_ethtool.o dpaa_eth_sysfs.o | awk '!x[$$0]++ { print("drivers/net/ethernet/freescale/dpaa/"$$0) }' > drivers/net/ethernet/freescale/dpaa/fsl_dpa.mod

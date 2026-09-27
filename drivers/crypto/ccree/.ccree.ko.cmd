@@ -1,1 +1,0 @@
-savedcmd_drivers/crypto/ccree/ccree.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/crypto/ccree/ccree.ko drivers/crypto/ccree/ccree.o drivers/crypto/ccree/ccree.mod.o .module-common.o

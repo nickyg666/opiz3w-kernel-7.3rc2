@@ -1,1 +1,0 @@
-savedcmd_drivers/thermal/qcom/qcom-spmi-temp-alarm.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/thermal/qcom/qcom-spmi-temp-alarm.ko drivers/thermal/qcom/qcom-spmi-temp-alarm.o drivers/thermal/qcom/qcom-spmi-temp-alarm.mod.o .module-common.o

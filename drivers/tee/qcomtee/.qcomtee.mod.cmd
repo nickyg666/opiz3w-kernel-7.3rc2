@@ -1,1 +1,0 @@
-savedcmd_drivers/tee/qcomtee/qcomtee.mod := printf '%s\n'   async.o call.o core.o mem_obj.o primordial_obj.o shm.o user_obj.o | awk '!x[$$0]++ { print("drivers/tee/qcomtee/"$$0) }' > drivers/tee/qcomtee/qcomtee.mod

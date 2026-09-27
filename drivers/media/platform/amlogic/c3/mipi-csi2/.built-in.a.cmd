@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/amlogic/c3/mipi-csi2/built-in.a := rm -f drivers/media/platform/amlogic/c3/mipi-csi2/built-in.a;  aarch64-linux-gnu-ar cDPrST drivers/media/platform/amlogic/c3/mipi-csi2/built-in.a

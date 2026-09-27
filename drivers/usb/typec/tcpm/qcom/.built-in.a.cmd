@@ -1,1 +1,0 @@
-savedcmd_drivers/usb/typec/tcpm/qcom/built-in.a := rm -f drivers/usb/typec/tcpm/qcom/built-in.a;  printf "drivers/usb/typec/tcpm/qcom/%s " qcom_pmic_typec.o qcom_pmic_typec_port.o qcom_pmic_typec_pdphy.o qcom_pmic_typec_pdphy_stub.o | xargs aarch64-linux-gnu-ar cDPrST drivers/usb/typec/tcpm/qcom/built-in.a

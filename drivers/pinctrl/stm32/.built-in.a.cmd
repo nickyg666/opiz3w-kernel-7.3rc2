@@ -1,1 +1,0 @@
-savedcmd_drivers/pinctrl/stm32/built-in.a := rm -f drivers/pinctrl/stm32/built-in.a;  printf "drivers/pinctrl/stm32/%s " pinctrl-stm32.o pinctrl-stm32mp257.o pinctrl-stm32-hdp.o | xargs aarch64-linux-gnu-ar cDPrST drivers/pinctrl/stm32/built-in.a

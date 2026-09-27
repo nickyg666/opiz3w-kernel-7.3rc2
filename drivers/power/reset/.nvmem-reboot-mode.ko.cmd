@@ -1,1 +1,0 @@
-savedcmd_drivers/power/reset/nvmem-reboot-mode.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/power/reset/nvmem-reboot-mode.ko drivers/power/reset/nvmem-reboot-mode.o drivers/power/reset/nvmem-reboot-mode.mod.o .module-common.o

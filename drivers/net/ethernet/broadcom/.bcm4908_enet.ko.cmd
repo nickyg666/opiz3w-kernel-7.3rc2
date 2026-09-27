@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/broadcom/bcm4908_enet.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/ethernet/broadcom/bcm4908_enet.ko drivers/net/ethernet/broadcom/bcm4908_enet.o drivers/net/ethernet/broadcom/bcm4908_enet.mod.o .module-common.o

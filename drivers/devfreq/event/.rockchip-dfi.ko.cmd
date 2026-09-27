@@ -1,1 +1,0 @@
-savedcmd_drivers/devfreq/event/rockchip-dfi.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/devfreq/event/rockchip-dfi.ko drivers/devfreq/event/rockchip-dfi.o drivers/devfreq/event/rockchip-dfi.mod.o .module-common.o

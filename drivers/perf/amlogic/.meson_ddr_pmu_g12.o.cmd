@@ -1,1 +1,0 @@
-savedcmd_drivers/perf/amlogic/meson_ddr_pmu_g12.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/perf/amlogic/meson_ddr_pmu_g12.o @drivers/perf/amlogic/meson_ddr_pmu_g12.mod 

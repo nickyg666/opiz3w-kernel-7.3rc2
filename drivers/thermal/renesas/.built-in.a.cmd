@@ -1,1 +1,0 @@
-savedcmd_drivers/thermal/renesas/built-in.a := rm -f drivers/thermal/renesas/built-in.a;  printf "drivers/thermal/renesas/%s " rcar_gen3_thermal.o rcar_thermal.o rzg2l_thermal.o rzg3e_thermal.o | xargs aarch64-linux-gnu-ar cDPrST drivers/thermal/renesas/built-in.a

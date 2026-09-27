@@ -1,1 +1,0 @@
-savedcmd_drivers/greybus/greybus.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/greybus/greybus.ko drivers/greybus/greybus.o drivers/greybus/greybus.mod.o .module-common.o

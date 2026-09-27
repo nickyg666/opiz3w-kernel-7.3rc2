@@ -1,1 +1,0 @@
-savedcmd_drivers/regulator/mt6316-regulator.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/regulator/mt6316-regulator.ko drivers/regulator/mt6316-regulator.o drivers/regulator/mt6316-regulator.mod.o .module-common.o

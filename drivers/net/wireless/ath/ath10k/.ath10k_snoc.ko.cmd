@@ -1,1 +1,0 @@
-savedcmd_drivers/net/wireless/ath/ath10k/ath10k_snoc.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/wireless/ath/ath10k/ath10k_snoc.ko drivers/net/wireless/ath/ath10k/ath10k_snoc.o drivers/net/wireless/ath/ath10k/ath10k_snoc.mod.o .module-common.o

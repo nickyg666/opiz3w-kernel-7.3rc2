@@ -1,1 +1,0 @@
-savedcmd_drivers/usb/typec/hd3ss3220.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/usb/typec/hd3ss3220.ko drivers/usb/typec/hd3ss3220.o drivers/usb/typec/hd3ss3220.mod.o .module-common.o

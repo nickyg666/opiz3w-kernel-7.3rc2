@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/mediatek/mtk_star_emac.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/net/ethernet/mediatek/mtk_star_emac.ko drivers/net/ethernet/mediatek/mtk_star_emac.o drivers/net/ethernet/mediatek/mtk_star_emac.mod.o .module-common.o

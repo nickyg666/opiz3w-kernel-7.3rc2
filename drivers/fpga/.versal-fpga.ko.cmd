@@ -1,1 +1,0 @@
-savedcmd_drivers/fpga/versal-fpga.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/fpga/versal-fpga.ko drivers/fpga/versal-fpga.o drivers/fpga/versal-fpga.mod.o .module-common.o

@@ -1,1 +1,0 @@
-savedcmd_drivers/media/platform/renesas/rcar-isp/rcar-isp.mod := printf '%s\n'   csisp.o core.o core-io.o | awk '!x[$$0]++ { print("drivers/media/platform/renesas/rcar-isp/"$$0) }' > drivers/media/platform/renesas/rcar-isp/rcar-isp.mod

@@ -1,1 +1,0 @@
-savedcmd_drivers/pmdomain/samsung/built-in.a := rm -f drivers/pmdomain/samsung/built-in.a;  printf "drivers/pmdomain/samsung/%s " exynos-pm-domains.o | xargs aarch64-linux-gnu-ar cDPrST drivers/pmdomain/samsung/built-in.a

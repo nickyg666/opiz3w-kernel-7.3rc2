@@ -1,1 +1,0 @@
-savedcmd_drivers/interconnect/qcom/modules.order := {   echo drivers/interconnect/qcom/qnoc-msm8916.o;   echo drivers/interconnect/qcom/icc-osm-l3.o;   echo drivers/interconnect/qcom/qnoc-qcs404.o; :; } > drivers/interconnect/qcom/modules.order

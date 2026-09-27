@@ -1,1 +1,0 @@
-savedcmd_drivers/phy/tegra/phy-tegra194-p2u.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/phy/tegra/phy-tegra194-p2u.ko drivers/phy/tegra/phy-tegra194-p2u.o drivers/phy/tegra/phy-tegra194-p2u.mod.o .module-common.o

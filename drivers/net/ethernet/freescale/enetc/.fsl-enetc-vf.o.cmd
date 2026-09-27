@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/freescale/enetc/fsl-enetc-vf.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/net/ethernet/freescale/enetc/fsl-enetc-vf.o @drivers/net/ethernet/freescale/enetc/fsl-enetc-vf.mod 

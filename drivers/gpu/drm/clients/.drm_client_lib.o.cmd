@@ -1,1 +1,0 @@
-savedcmd_drivers/gpu/drm/clients/drm_client_lib.o := aarch64-linux-gnu-ld -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments   -r -o drivers/gpu/drm/clients/drm_client_lib.o @drivers/gpu/drm/clients/drm_client_lib.mod 

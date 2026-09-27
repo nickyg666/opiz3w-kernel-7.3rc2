@@ -1,1 +1,0 @@
-savedcmd_drivers/phy/phy-snps-eusb2.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/phy/phy-snps-eusb2.ko drivers/phy/phy-snps-eusb2.o drivers/phy/phy-snps-eusb2.mod.o .module-common.o

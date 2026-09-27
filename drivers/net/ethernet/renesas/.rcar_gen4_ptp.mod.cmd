@@ -1,1 +1,0 @@
-savedcmd_drivers/net/ethernet/renesas/rcar_gen4_ptp.mod := printf '%s\n'   rcar_gen4_ptp.o | awk '!x[$$0]++ { print("drivers/net/ethernet/renesas/"$$0) }' > drivers/net/ethernet/renesas/rcar_gen4_ptp.mod
