@@ -1412,12 +1412,19 @@ static void aicwf_sdio_hal_irqhandler(struct sdio_func *func)
 	complete(&bus_if->busrx_trgg);
 }
 
+/* 2026-09-26: bound on the SDIO interrupt-status drain loop in the IRQ
+ * handler. An unbounded drain inside an IRQ handler with a printk per
+ * iteration is a guaranteed hard hang, and it kills SysRq because interrupts
+ * are already disabled in that context. */
+#define AIC_SDIO_RX_SPIN_MAX 64
+
 static void aicwf_sdio_hal_irqhandler_func2(struct sdio_func *func)
 {
 	struct aicwf_bus *bus_if = sdiodev->bus_if;
 	struct priv_dev *aicdev = sdiodev;
 	u8 intstatus = 0;
 	u8 byte_len = 0;
+	int spins;
 #ifdef CONFIG_PREALLOC_RX_SKB
 	struct rx_buff *pkt = NULL;
 #else
@@ -1443,10 +1450,24 @@ static void aicwf_sdio_hal_irqhandler_func2(struct sdio_func *func)
 
 	ret = aicwf_sdio_readb(aicdev->func[1], aicdev->sdio_reg.block_cnt_reg, &intstatus);
 
-	while (ret || (intstatus & SDIO_OTHER_INTERRUPT)) {
-		bsp_err("ret=%d, intstatus=%x\r\n", ret, intstatus);
+	/*
+	 * 2026-09-26: this loop was unbounded. If the chip never clears
+	 * SDIO_OTHER_INTERRUPT, or the read keeps failing, it spins forever
+	 * while printing one bsp_err per iteration - which is exactly what was
+	 * observed: the boot stopped dead at 17.6s, the console produced no
+	 * further output, and even SysRq (which needs interrupts) could not get
+	 * a byte back. A live SDIO read loop like this is a hang by construction.
+	 *
+	 * Bound it, and do not spam the console from it.
+	 */
+	for (spins = 0; spins < AIC_SDIO_RX_SPIN_MAX; spins++) {
+		if (!ret && !(intstatus & SDIO_OTHER_INTERRUPT))
+			break;
 		ret = aicwf_sdio_readb(aicdev->func[0], aicdev->sdio_reg.block_cnt_reg, &intstatus);
 	}
+	if (ret || (intstatus & SDIO_OTHER_INTERRUPT))
+		bsp_err("rx: intstatus=%x still set after %d retries\r\n",
+			intstatus, AIC_SDIO_RX_SPIN_MAX);
 	aicdev->rx_priv->data_len = intstatus * SDIOWIFI_FUNC_BLOCKSIZE;
 	if (intstatus > 0) {
 		if (intstatus < 64) {
