@@ -215,29 +215,40 @@ extern int sunxi_wlan_get_oob_irq(void);
 extern int sunxi_wlan_get_oob_irq_flags(void);
 #endif
 
-extern void sunxi_wlan_set_hostwake(int on);
+/*
+ * 2026-09-26: the hostwake line is an INPUT driven by the chip (the board shows
+ * it as `in hi IRQ` in debugfs/gpio), so the host cannot deassert it -
+ * gpio_set_value() on an input is a no-op. It is requested LEVEL triggered, so
+ * while the chip holds it high the CPU re-enters this handler forever: observed
+ * as 228850-416228 counts on rwnx_hostwake_irq with no forward progress, and the
+ * first IPC command (rwnx_send_set_stack_start_req) was never answered, timing
+ * out after ~6s and latching RWNX_CMD_MGR_STATE_CRASHED.
+ *
+ * Mask the line for the duration of the handler so a level condition that the
+ * chip has not yet released cannot re-enter us mid-handler, then unmask. If the
+ * chip is still asserting it when we unmask, the hardware re-delivers once -
+ * bounded by the chip's own deassert, not by us spinning.
+ */
+static unsigned int rwnx_hostwake_irq_saved_flags;
 
 static irqreturn_t rwnx_hostwake_irq_handler(int irq, void *para)
 {
 	static int wake_cnt;
+	unsigned long flags;
+
 	wake_cnt++;
 
-	/*
-	 * 2026-09-26: acknowledge the interrupt source BEFORE doing anything
-	 * else. This line is registered level-triggered (IRQF_TRIGGER_HIGH) and
-	 * the pin is driven high by sunxi-rf, so returning without deasserting it
-	 * re-entered this handler forever - observed as 416228 counts on
-	 * rwnx_hostwake_irq with no progress, and the first IPC command
-	 * (rwnx_send_set_stack_start_req) was never answered, which timed out
-	 * after ~6s and latched cmd_mgr CRASHED.
-	 */
-	sunxi_wlan_set_hostwake(0);
+	local_irq_save(flags);
+	disable_irq_nosync(irq);
+	local_irq_restore(flags);
 
 	rwnx_wakeup_lock_timeout(g_rwnx_plat->sdiodev->rwnx_hw->ws_rx, 1000);
 
 #ifdef CONFIG_OOB
 	complete(&g_rwnx_plat->sdiodev->bus_if->busrx_trgg);
 #endif
+
+	enable_irq(irq);
 
 	return IRQ_HANDLED;
 }

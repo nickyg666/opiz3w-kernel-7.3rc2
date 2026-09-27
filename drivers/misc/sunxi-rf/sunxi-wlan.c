@@ -87,32 +87,6 @@ int sunxi_wlan_get_bus_index(void)
 }
 EXPORT_SYMBOL_GPL(sunxi_wlan_get_bus_index);
 
-/*
- * 2026-09-26: drive the hostwake/OOB line by hand.
- *
- * The line is requested level-triggered by the aic8800 driver
- * (rwnx_register_hostwake_irq: IRQF_TRIGGER_HIGH) and sunxi-wlan requests it
- * GPIOF_OUT_INIT_HIGH, so it sits asserted forever. The aic8800 IRQ handler
- * returns IRQ_HANDLED without deasserting it, so the CPU re-entered the
- * handler continuously - the board showed rwnx_hostwake_irq at 416228
- * counts with no forward progress, and the first IPC command
- * (rwnx_send_set_stack_start_req) was never answered.
- *
- * The aic8800 driver has no hostwake GPIO of its own (it only obtains the IRQ
- * number from sunxi_wlan_get_oob_irq()), so the pin has to be driven from
- * here. This gives it a supported path to acknowledge the source.
- */
-void sunxi_wlan_set_hostwake(int on)
-{
-	if (!wlan_data || !gpio_is_valid(wlan_data->gpio_wlan_hostwake))
-		return;
-
-	gpio_set_value(wlan_data->gpio_wlan_hostwake,
-		       on ? wlan_data->gpio_wlan_hostwake_assert :
-			   !wlan_data->gpio_wlan_hostwake_assert);
-}
-EXPORT_SYMBOL_GPL(sunxi_wlan_set_hostwake);
-
 int sunxi_wlan_get_oob_irq(int *irq_flags, int *wakup_enable)
 {
 	struct platform_device *pdev;
