@@ -87,32 +87,6 @@ int sunxi_wlan_get_bus_index(void)
 }
 EXPORT_SYMBOL_GPL(sunxi_wlan_get_bus_index);
 
-/*
- * 2026-09-26: drive the hostwake/OOB line by hand.
- *
- * The line is requested level-triggered by the aic8800 driver
- * (rwnx_register_hostwake_irq: IRQF_TRIGGER_HIGH) and sunxi-wlan requests it
- * GPIOF_OUT_INIT_HIGH, so it sits asserted forever. The aic8800 IRQ handler
- * returns IRQ_HANDLED without deasserting it, so the CPU re-entered the
- * handler continuously - the board showed rwnx_hostwake_irq at 416228
- * counts with no forward progress, and the first IPC command
- * (rwnx_send_set_stack_start_req) was never answered.
- *
- * The aic8800 driver has no hostwake GPIO of its own (it only obtains the IRQ
- * number from sunxi_wlan_get_oob_irq()), so the pin has to be driven from
- * here. This gives it a supported path to acknowledge the source.
- */
-void sunxi_wlan_set_hostwake(int on)
-{
-	if (!wlan_data || !gpio_is_valid(wlan_data->gpio_wlan_hostwake))
-		return;
-
-	gpio_set_value(wlan_data->gpio_wlan_hostwake,
-		       on ? wlan_data->gpio_wlan_hostwake_assert :
-			   !wlan_data->gpio_wlan_hostwake_assert);
-}
-EXPORT_SYMBOL_GPL(sunxi_wlan_set_hostwake);
-
 int sunxi_wlan_get_oob_irq(int *irq_flags, int *wakup_enable)
 {
 	struct platform_device *pdev;
@@ -404,8 +378,11 @@ int sunxi_wlan_init(struct platform_device *pdev)
 #endif
 		dev_info(dev, "wlan_regon gpio=%d assert=%d\n", data->gpio_wlan_regon, data->gpio_wlan_regon_assert);
 
+		/* 2026-09-27: leave regon as the DT configured it (ASIS) so
+		 * sunxi_wlan_on() drives the power-on edge itself. Forcing it
+		 * OUT_INIT_LOW held the chip asserted-low, i.e. in reset. */
 		ret = devm_gpio_request_one(dev, data->gpio_wlan_regon,
-					    GPIOF_OUT_INIT_LOW, "wlan_regon");
+					    GPIOD_ASIS, "wlan_regon");
 		if (ret < 0) {
 			dev_err(dev, "can't request wlan_regon gpio %d\n",
 				data->gpio_wlan_regon);
@@ -436,8 +413,13 @@ int sunxi_wlan_init(struct platform_device *pdev)
 #endif
 		dev_info(dev, "wlan_hostwake gpio=%d assert=%d\n", data->gpio_wlan_hostwake, data->gpio_wlan_hostwake_assert);
 
+		/* 2026-09-27: the hostwake/OOB line is driven by the chip, not by
+		 * us. Requesting it GPIOF_OUT_INIT_HIGH pinned it asserted, which
+		 * made the level-triggered rwnx_hostwake_irq fire forever and
+		 * left commands unanswered. GPIOD_ASIS keeps the pin as the
+		 * DT configured it so the chip can drive it. */
 		ret = devm_gpio_request_one(dev, data->gpio_wlan_hostwake,
-					    GPIOF_OUT_INIT_HIGH, "wlan_hostwake");
+					    GPIOD_ASIS, "wlan_hostwake");
 		if (ret < 0) {
 			dev_err(dev, "can't request wlan_hostwake gpio %d\n",
 				data->gpio_wlan_hostwake);
