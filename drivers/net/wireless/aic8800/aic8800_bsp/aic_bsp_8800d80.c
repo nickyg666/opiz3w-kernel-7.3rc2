@@ -614,11 +614,25 @@ int aicbsp_8800d80_fw_init(struct priv_dev *aicdev)
 		return -1;
 
 #if IS_ENABLED(CONFIG_AIC8800_BTLPM_SUPPORT)
-	if (aicbt_init(aicdev))
-		return -1;
-
+	/*
+	 * 2026-09-26: aicbt_init() uploads the *Bluetooth* patch/firmware and is
+	 * gated on AICBT_PT_PWRON, which needs the BT side alive. On a WiFi-only
+	 * board (no BT firmware staged, BT not attached) that upload is never
+	 * answered, so it times out after ~6.4s. The timeout propagated: probe
+	 * returned -1, aicbsp_sdio_remove() tore the device down, wlan0 vanished,
+	 * and the scan then failed with -19 ENODEV instead of getting any further.
+	 *
+	 * WiFi does not depend on BT. Do the WiFi firmware upload first and
+	 * unconditionally, and treat BT init as best-effort: its failure must not
+	 * abort the WiFi bring-up. The chip is confirmed working either way - it
+	 * already reports "bt patch version: ... git 487f432" and loads all four
+	 * WiFi blobs.
+	 */
 	if (aicwifi_init(aicdev))
 		return -1;
+
+	if (aicbt_init(aicdev))
+		pr_err("aicbsp: %s, BT init failed, continuing WiFi-only\n", __func__);
 
 	if (need_binding_verify) {
 		printk("aicbsp: crypto data %02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X\n",
