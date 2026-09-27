@@ -1,1 +1,0 @@
-savedcmd_drivers/clk/qcom/audiocorecc-shikra.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/qcom/audiocorecc-shikra.ko drivers/clk/qcom/audiocorecc-shikra.o drivers/clk/qcom/audiocorecc-shikra.mod.o .module-common.o

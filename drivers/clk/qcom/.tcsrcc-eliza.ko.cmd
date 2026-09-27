@@ -1,1 +1,0 @@
-savedcmd_drivers/clk/qcom/tcsrcc-eliza.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/qcom/tcsrcc-eliza.ko drivers/clk/qcom/tcsrcc-eliza.o drivers/clk/qcom/tcsrcc-eliza.mod.o .module-common.o

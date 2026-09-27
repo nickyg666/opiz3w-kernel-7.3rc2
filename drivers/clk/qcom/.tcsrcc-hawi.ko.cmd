@@ -1,1 +1,0 @@
-savedcmd_drivers/clk/qcom/tcsrcc-hawi.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/qcom/tcsrcc-hawi.ko drivers/clk/qcom/tcsrcc-hawi.o drivers/clk/qcom/tcsrcc-hawi.mod.o .module-common.o

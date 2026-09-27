@@ -1,1 +1,0 @@
-savedcmd_drivers/clk/qcom/ipq-cmn-pll.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/qcom/ipq-cmn-pll.ko drivers/clk/qcom/ipq-cmn-pll.o drivers/clk/qcom/ipq-cmn-pll.mod.o .module-common.o

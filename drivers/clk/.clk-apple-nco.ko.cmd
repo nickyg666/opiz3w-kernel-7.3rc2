@@ -1,1 +1,0 @@
-savedcmd_drivers/clk/clk-apple-nco.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/clk-apple-nco.ko drivers/clk/clk-apple-nco.o drivers/clk/clk-apple-nco.mod.o .module-common.o

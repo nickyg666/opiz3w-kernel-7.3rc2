@@ -1,1 +1,0 @@
-savedcmd_drivers/clk/sophgo/built-in.a := rm -f drivers/clk/sophgo/built-in.a;  printf "drivers/clk/sophgo/%s " clk-cv1800.o clk-cv18xx-common.o clk-cv18xx-ip.o clk-cv18xx-pll.o | xargs aarch64-linux-gnu-ar cDPrST drivers/clk/sophgo/built-in.a

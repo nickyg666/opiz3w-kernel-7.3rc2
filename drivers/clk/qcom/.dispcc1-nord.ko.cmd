@@ -1,1 +1,0 @@
-savedcmd_drivers/clk/qcom/dispcc1-nord.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/qcom/dispcc1-nord.ko drivers/clk/qcom/dispcc1-nord.o drivers/clk/qcom/dispcc1-nord.mod.o .module-common.o

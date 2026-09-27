@@ -1,1 +1,0 @@
-savedcmd_drivers/clk/qcom/nsscc-ipq9574.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/qcom/nsscc-ipq9574.ko drivers/clk/qcom/nsscc-ipq9574.o drivers/clk/qcom/nsscc-ipq9574.mod.o .module-common.o

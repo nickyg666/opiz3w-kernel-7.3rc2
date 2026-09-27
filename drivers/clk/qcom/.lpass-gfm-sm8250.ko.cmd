@@ -1,1 +1,0 @@
-savedcmd_drivers/clk/qcom/lpass-gfm-sm8250.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/qcom/lpass-gfm-sm8250.ko drivers/clk/qcom/lpass-gfm-sm8250.o drivers/clk/qcom/lpass-gfm-sm8250.mod.o .module-common.o

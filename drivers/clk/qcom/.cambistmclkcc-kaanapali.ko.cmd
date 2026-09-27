@@ -1,1 +1,0 @@
-savedcmd_drivers/clk/qcom/cambistmclkcc-kaanapali.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/qcom/cambistmclkcc-kaanapali.ko drivers/clk/qcom/cambistmclkcc-kaanapali.o drivers/clk/qcom/cambistmclkcc-kaanapali.mod.o .module-common.o

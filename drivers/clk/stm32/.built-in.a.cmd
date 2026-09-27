@@ -1,1 +1,0 @@
-savedcmd_drivers/clk/stm32/built-in.a := rm -f drivers/clk/stm32/built-in.a;  printf "drivers/clk/stm32/%s " clk-stm32mp21.o clk-stm32-core.o reset-stm32.o clk-stm32mp25.o | xargs aarch64-linux-gnu-ar cDPrST drivers/clk/stm32/built-in.a

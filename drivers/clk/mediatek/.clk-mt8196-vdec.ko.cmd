@@ -1,1 +1,0 @@
-savedcmd_drivers/clk/mediatek/clk-mt8196-vdec.ko := aarch64-linux-gnu-ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1 --force-group-allocation  -T ./scripts/module.lds -o drivers/clk/mediatek/clk-mt8196-vdec.ko drivers/clk/mediatek/clk-mt8196-vdec.o drivers/clk/mediatek/clk-mt8196-vdec.mod.o .module-common.o
