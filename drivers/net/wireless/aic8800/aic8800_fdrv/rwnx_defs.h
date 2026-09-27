@@ -142,6 +142,12 @@ struct apm_probe_sta {
 	u8 sta_mac_addr[6];
 	u8 vif_idx;
 	u64 probe_id;
+	/*
+	 * 7.3+ only: the cookie cfg80211_ops::probe_peer() was called with,
+	 * echoed back via cfg80211_probe_status() once the probe completes.
+	 * See rwnx_cfg80211_probe_client().
+	 */
+	u64 cookie;
 	struct work_struct apmprobestaWork;
 	struct workqueue_struct *apmprobesta_wq;
 };

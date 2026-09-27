@@ -4001,7 +4001,20 @@ void apm_probe_sta_work_process(struct work_struct *work)
 	}
 
 	printk("sta %pM found = %d\n", mac, found);
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 17, 0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 3, 0)
+	/*
+	 * 7.3 added an MLO link_id parameter between cookie and acked. This
+	 * driver has no MLO support and -1 is the documented "non-MLO" value
+	 * (see the cfg80211_probe_status() kerneldoc). The cookie source also
+	 * changes: sta_probe.cookie is the value cfg80211 pre-assigned via
+	 * probe_peer() and must be echoed back, rather than the driver's own
+	 * probe_id counter. Ported from shenmintao/aic8800d80 commit 2c4ab4b42.
+	 */
+	if (found)
+		cfg80211_probe_status(rwnx_vif->ndev, mac, (u64)rwnx_vif->sta_probe.cookie, -1, 1, 0, false, GFP_ATOMIC);
+	else
+		cfg80211_probe_status(rwnx_vif->ndev, mac, (u64)rwnx_vif->sta_probe.cookie, -1, 0, 0, false, GFP_ATOMIC);
+#elif LINUX_VERSION_CODE >= KERNEL_VERSION(4, 17, 0)
 	if (found)
 		cfg80211_probe_status(rwnx_vif->ndev, mac, (u64)rwnx_vif->sta_probe.probe_id, 1, 0, false, false, GFP_ATOMIC);
 	else
@@ -4414,7 +4427,11 @@ static int rwnx_cfg80211_set_monitor_channel(struct wiphy *wiphy,
  *	later passes to cfg80211_probe_status().
  */
 int rwnx_cfg80211_probe_client(struct wiphy *wiphy, struct net_device *dev,
-			const u8 *peer, u64 *cookie)
+			#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 3, 0)
+const u8 *peer, u64 cookie)
+#else
+const u8 *peer, u64 *cookie)
+#endif
 {
 	//struct rwnx_hw *rwnx_hw = wiphy_priv(wiphy);
 	struct rwnx_vif *vif = netdev_priv(dev);
@@ -4435,9 +4452,21 @@ int rwnx_cfg80211_probe_client(struct wiphy *wiphy, struct net_device *dev,
 
 
 	memcpy(vif->sta_probe.sta_mac_addr, peer, 6);
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 3, 0)
+	/*
+	 * 7.3 (kernel commit 4ab9b637b94a) renamed probe_client to probe_peer and
+	 * made the cookie an input: cfg80211 pre-assigns it and expects the same
+	 * value echoed back, instead of the driver inventing one. Save it before
+	 * queueing the work, because the worker can run on another CPU as soon as
+	 * it is queued and echoes this value via cfg80211_probe_status().
+	 * Ported from shenmintao/aic8800d80 commit 2c4ab4b42.
+	 */
+	vif->sta_probe.cookie = cookie;
 	queue_work(vif->sta_probe.apmprobesta_wq, &vif->sta_probe.apmprobestaWork);
-
+#else
 	*cookie = vif->sta_probe.probe_id;
+	queue_work(vif->sta_probe.apmprobesta_wq, &vif->sta_probe.apmprobestaWork);
+#endif
 
 	return 0;
 }
@@ -6196,6 +6225,8 @@ static struct cfg80211_ops rwnx_cfg80211_ops = {
 	.set_monitor_channel = rwnx_cfg80211_set_monitor_channel,
 #if LINUX_VERSION_CODE < KERNEL_VERSION(7, 3, 0)
 	.probe_client = rwnx_cfg80211_probe_client,
+#else
+	.probe_peer = rwnx_cfg80211_probe_client,
 #endif
 #if LINUX_VERSION_CODE < KERNEL_VERSION(5, 8, 0)
 	.mgmt_frame_register = rwnx_cfg80211_mgmt_frame_register,
