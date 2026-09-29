@@ -325,11 +325,50 @@ int sunxi_wlan_init(struct platform_device *pdev)
 		for (i = 0; i < count; i++) {
 			data->power[i] = regulator_get(dev, data->power_name[i]);
 
-			if (IS_ERR_OR_NULL(data->power[i]))
-				return -ENOMEM;
+			if (IS_ERR(data->power[i])) {
+				/*
+				 * 2026-09-28: the AXP8191 regulator core registers
+				 * AFTER we probe, and now that the supply phandles
+				 * exist regulator_get() can tell us so with
+				 * -EPROBE_DEFER.
+				 *
+				 * Measured on 7.3.0-rc2-00017:
+				 *   [5.304296] wlan power axp8191-cldo1 never appeared
+				 *   [5.320509] platform 251b000.i2c: device links:
+				 *              waiting for supplier .../bldo1
+				 * The rails appear 16 ms after the old 2000 ms retry
+				 * window closed. Both rails come from the same PMIC
+				 * table, so bldo5 is in the same race even though
+				 * only cldo1 logged the fallback.
+				 *
+				 * Swallowing the error and using a dummy is what left
+				 * the WiFi vcc-pg unprogrammed and the chip dead on
+				 * SDIO. Wait for the PMIC (bounded), and if it truly
+				 * never registers, return -EPROBE_DEFER so the driver
+				 * core re-probes us later instead of running on a
+				 * dummy rail.
+				 */
+				unsigned long deadline = jiffies + msecs_to_jiffies(3000);
+
+				while (IS_ERR(data->power[i])) {
+					int err = PTR_ERR(data->power[i]);
+
+					regulator_put(data->power[i]);
+
+					if (time_after_eq(jiffies, deadline)) {
+						dev_warn(dev, "wlan power %s not ready (%d), deferring probe\n",
+							data->power_name[i], err);
+						return -EPROBE_DEFER;
+					}
+
+					msleep(20);
+					data->power[i] = regulator_get(dev,
+						data->power_name[i]);
+				}
+			}
 
 			dev_info(dev, "wlan power[%d] (%s) voltage: %dmV\n",
-					i, data->power_name[i], data->power_vol[i] / 1000);
+				i, data->power_name[i], data->power_vol[i] / 1000);
 		}
 	}
 

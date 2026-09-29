@@ -1683,6 +1683,58 @@
 	status = "okay";
 };
 
+/*
+ * 2026-09-28: raise the WiFi SDIO drive strength from the SoC default 10 to 40.
+ *
+ * Done by REDEFINING the vendor's own sdc1 groups (same names, same unit
+ * addresses) rather than by adding new ones. That matters: the BSP pinctrl
+ * driver binds DT groups to pins by matching the group's "pins" property
+ * against its own pin table, and the per-function group list
+ * (pctl->functions[].groups[]) is filled at probe from the compiled-in pin
+ * descriptor, not from the DT. An earlier attempt added two new groups
+ * (sdc1_wifi_strong / sdc1_clk_strong) and pointed the host at them - the
+ * groups were in the live DT, but the driver applied nothing and PG0-PG2 went
+ * to UNCLAIMED. Redefining in place keeps the group the driver already knows
+ * about and only changes the value it applies.
+ *
+ * drive-strength is validated by the driver: <10 is rejected, >40 is clamped
+ * to 40, and it rounds down to steps of 10 (pinctrl-sunxi-bsp.c:501-524).
+ */
+&sdc1_pins_a {
+	drive-strength = <40>;
+};
+
+&sdc1_pins_c {
+	drive-strength = <40>;
+};
+
+/*
+ * 2026-09-28: drive strength 40 is already applied above, by overriding the two
+ * existing dtsi groups in place:
+ *
+ *      &sdc1_pins_a { drive-strength = <40>; };
+ *      &sdc1_pins_c { drive-strength = <40>; };
+ *
+ * That is the correct mechanism and it must not be replaced with new group
+ * nodes. Two attempts at that failed, both measured:
+ *
+ *  1. A single new group holding only PG1-PG5 dropped PG0 out of the map (the
+ *     dtsi's sdc1_pins_c is the only node carrying PG0, the clock) and left all
+ *     six pins UNCLAIMED.
+ *  2. Two new groups, PG1-PG5 and PG0, produced "unknown pin" with an empty name
+ *     in dmesg and the vendor's own sdc1@0 / sdc1@2 groups disappeared from the
+ *     live device tree - a second &soc block at the same place clobbered them.
+ *
+ * Reason, from the driver: pinctrl-sunxi-bsp.c maps each pin by the string in
+ * "pins" looked up in the C descriptor's per-function pin list
+ * (pinctrl-sun60iw2.c:1519-1572 lists sdc1 on PG0-PG5). The group node's own
+ * name and label are never read, and there is no pinctrl_generic_add_group, so
+ * DT cannot introduce a new group - only override properties on the existing
+ * ones, which is what the two &sdc1_pins_x blocks above do.
+ *
+ * Values are clamped: <10 rejected, >40 becomes 40, rounded down to steps of 10
+ * (pinctrl-sunxi-bsp.c:501-524). 40 is valid and becomes register value 3.
+ */
 &mmc1 {
 	bus-width = <4>;
 	no-mmc;
@@ -3059,6 +3111,29 @@
 		clock-names;
 		wlan_power    = "axp8191-bldo5", "axp8191-cldo1"; /* vcc-pg/vcc-pm */
 		wlan_power_vol= <1800000>, <1800000>;
+		/* 2026-09-28 ROOT CAUSE of the aic8800 never enumerating:
+		 * regulator_get(dev, "axp8191-bldo5") kept resolving to a DUMMY
+		 * regulator, so regulator_set_voltage() returned -EINVAL and
+		 * sunxi_wlan_set_power(1) bailed out with
+		 *   "wlan power[0] (axp8191-bldo5) set voltage failed"
+		 * aicbsp_platform_power_on() then never applied the rail, never
+		 * delivered the PM1 reset edge, and aicbsp_reg_sdio_notify()
+		 * timed out after 2000 ms -> rwnx_mod_init "set power on fail".
+		 *
+		 * Evidence on the running board (7.3.0-rc2-00017):
+		 *   regulator_summary:
+		 *     soc@3000000:rfkill-axp8191-bldo5  ... 0mV   <- dummy
+		 *     axp8191-bldo5                     ... 1800mV (use_count 0)
+		 *   grep -rl supply /proc/device-tree/ -> no supply phandles at all
+		 *
+		 * 5.15's regulator_dev_lookup() had a by-name fallback that matched
+		 * regulator-name. 7.3 (drivers/regulator/core.c:2124) only follows
+		 * the "<name>-supply" DT phandle, so a bare wlan_power string can
+		 * never resolve. Declare the phandles explicitly, in the same
+		 * order as wlan_power, so devm_regulator_get() indexes line up.
+		 */
+		axp8191-bldo5-supply = <&reg_bldo5>;
+		axp8191-cldo1-supply = <&reg_cldo1>;
 		wlan_busnum   = <0x1>;
 		/* vendor values; duplicated as -gpios so of_get_named_gpio() can
 		 * actually find them (it only tries <name>-gpios / <name>-gpio) */
