@@ -327,6 +327,25 @@ err:
 static int aicbt_init(struct priv_dev *aicdev) { return 0; }
 #endif
 
+/*
+ * 2026-10-10: the boot ROM is told how to jump by this mode, and
+ * AIC8800-Tail-Readback-Proof.md (2026-09-27) ranked a wrong mode as the
+ * leading surviving cause of start_app never confirming - never tried, because
+ * start_app_reqcfm=0 stopped us observing the confirm at all.
+ *
+ *   1 = AUTO (what this driver always sent)
+ *   2 = CUSTOM
+ *   3 = REBOOT
+ *   4 = FNCALL   (what the D80C path uses)
+ *   5 = DUMMY    (what the D80C path uses by default)
+ *
+ * Sweep it with: modprobe aic8800_bsp start_app_mode=N
+ */
+int start_app_mode = HOST_START_APP_AUTO;
+module_param(start_app_mode, int, 0644);
+MODULE_PARM_DESC(start_app_mode,
+		 "boot-ROM start mode: 1=AUTO 2=CUSTOM 3=REBOOT 4=FNCALL 5=DUMMY");
+
 static int aicwifi_start_from_bootrom(struct priv_dev *aicdev)
 {
 	int ret = 0;
@@ -339,11 +358,11 @@ static int aicwifi_start_from_bootrom(struct priv_dev *aicdev)
 	 * line at all, so we do not know whether this function is reached, what it
 	 * returns, or what the firmware answers. Print on entry, after the send,
 	 * and on failure so the next cold boot settles it. */
-	pr_err("AICSTART enter %s fw_addr=0x%x reqcfm=%d\n",
-	       __func__, fw_addr, start_app_reqcfm);
+	pr_err("AICSTART enter %s fw_addr=0x%x reqcfm=%d mode=%d\n",
+	       __func__, fw_addr, start_app_reqcfm, start_app_mode);
 
 	/* fw start */
-	ret = rwnx_send_dbg_start_app_req(aicdev, fw_addr, HOST_START_APP_AUTO, &start_app_cfm);
+	ret = rwnx_send_dbg_start_app_req(aicdev, fw_addr, start_app_mode, &start_app_cfm);
 	pr_err("AICSTART %s ret=%d bootstatus=0x%x\n",
 	       __func__, ret, ret ? 0 : (start_app_cfm.bootstatus & 0xFF));
 	if (ret) {
@@ -641,6 +660,17 @@ int start_app_reqcfm = 0;
 module_param(start_app_reqcfm, int, 0644);
 MODULE_PARM_DESC(start_app_reqcfm,
 		 "1 = wait for DBG_START_APP_CFM (vendor default); 0 = fire and forget");
+
+/*
+ * 2026-10-10: with start_app_reqcfm=0 we never see the confirm, so
+ * "ret=0" only proves we did not wait. Set start_app_reqcfm=1 to wait again
+ * while sweeping the mode, e.g.
+ *
+ *   modprobe aic8800_bsp start_app_reqcfm=1 start_app_mode=N
+ *
+ * Expect -ETIMEDOUT after ~6 s if the ROM does not answer that mode.
+ * start_app_mode is declared above aicwifi_start_from_bootrom(), which uses it.
+ */
 
 int aicbsp_8800d80_fw_init(struct priv_dev *aicdev)
 {
