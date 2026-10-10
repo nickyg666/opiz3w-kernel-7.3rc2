@@ -337,6 +337,22 @@ static int aicwf_sdio_probe(struct sdio_func *func,
 	}
 
 	sdiodev->func = func;
+	/*
+	 * 2026-10-10: also capture the second SDIO function.
+	 *
+	 * The BSP claims the IRQ on card->sdio_func[1], enables it, and does all
+	 * FIFO reads/writes there (aicsdio.c:1219, :1661, :598, :635). This fdrv
+	 * only ever touched sdiodev->func, and enabled interrupts on func0
+	 * (aicwf_sdio.c:1246). Measured consequence: the BSP reads the radio
+	 * config out of the chip fine (96 userconfig_parsing lines) and IRQ 161
+	 * climbs, while this driver's RX path sees nothing at all (AICRX=0,
+	 * AICTX=0) and MM_SET_STACK_START_REQ always times out.
+	 *
+	 * Gated by a module param so it can be turned off without a rebuild.
+	 */
+	sdiodev->func2 = func->card->sdio_func[1];
+	if (sdiodev->func2)
+		dev_set_drvdata(&sdiodev->func2->dev, bus_if);
 	sdiodev->bus_if = bus_if;
 	sdiodev->oob_enable = false;
 	atomic_set(&sdiodev->is_bus_suspend, 0);
@@ -1247,6 +1263,28 @@ static int aicwf_sdio_bus_start(struct device *dev)
 		if (ret) {
 			sdio_err("set func0 int en fail %d\n", ret);
 		}
+		/*
+		 * 2026-10-10: also claim and enable the interrupt on the SECOND
+		 * sdio function, which is what the BSP does
+		 * (aicsdio.c:1219-1232). The chip signals device->host data on
+		 * that function; without claiming it here the fdrv's bus-RX thread
+		 * never wakes, which is why AICRX/AICTX stayed at 0 and every
+		 * MM_SET_STACK_START_REQ timed out.
+		 */
+		if (sdiodev->func2) {
+			sdio_claim_host(sdiodev->func2);
+			sdio_claim_irq(sdiodev->func2, aicwf_sdio_hal_irqhandler);
+			sdio_f0_writeb(sdiodev->func2, 0x07, 0x04, &ret);
+			if (ret) {
+				sdio_err("set func2 int en fail %d\n", ret);
+			} else {
+				pr_err("AIFUNC claimed irq on func2 num=%u\n",
+				       sdiodev->func2->num);
+			}
+			sdio_release_host(sdiodev->func2);
+		} else {
+			pr_err("AIFUNC func2 NULL - not claiming second irq\n");
+		}
 	}
 	sdio_release_host(sdiodev->func);
 
@@ -1355,6 +1393,28 @@ int sdio_busrx_thread(void *data)
 	}
 
 	while (1) {
+		/* TEMPORARY DIAGNOSTIC 2026-10-10: is this thread's wakeup ever
+		 * firing, and which physical sdio function is it using? The BSP
+		 * claims the IRQ on card->sdio_func[1] and does all FIFO I/O there
+		 * (aicsdio.c:1219, :598, :635); this fdrv only ever uses
+		 * sdiodev->func. Measured tonight: BSP gets 96 userconfig reads and
+		 * IRQ 161 climbs, while AICRX/AICTX stay 0 here. Print the func
+		 * numbers once at thread start and every wakeup so one insmod says
+		 * whether the wakeup fires and on which function. */
+		static int diag_printed;
+		if (!diag_printed) {
+			diag_printed = 1;
+			pr_err("AIFUNC thread start: sdiodev->func num=%u card=%p "
+			       "sdio_func[0] num=%u sdio_func[1] num=%u\n",
+			       sdiodev->func ? sdiodev->func->num : 99u,
+			       sdiodev->func ? (void *)sdiodev->func->card : NULL,
+			       (sdiodev->func && sdiodev->func->card &&
+				sdiodev->func->card->sdio_func[0]) ?
+					sdiodev->func->card->sdio_func[0]->num : 98u,
+			       (sdiodev->func && sdiodev->func->card &&
+				sdiodev->func->card->sdio_func[1]) ?
+					sdiodev->func->card->sdio_func[1]->num : 97u);
+		}
 		#if 0
 		if (kthread_should_stop()) {
 			sdio_err("sdio busrx thread stop\n");
