@@ -1264,27 +1264,13 @@ static int aicwf_sdio_bus_start(struct device *dev)
 			sdio_err("set func0 int en fail %d\n", ret);
 		}
 		/*
-		 * 2026-10-10: also claim and enable the interrupt on the SECOND
-		 * sdio function, which is what the BSP does
-		 * (aicsdio.c:1219-1232). The chip signals device->host data on
-		 * that function; without claiming it here the fdrv's bus-RX thread
-		 * never wakes, which is why AICRX/AICTX stayed at 0 and every
-		 * MM_SET_STACK_START_REQ timed out.
+		 * 2026-10-10 REVERTED: claiming the IRQ on sdio_func[1] here was
+		 * tried and measurably did nothing. AIFUNC showed the fdrv is
+		 * already bound to sdiodev->func with num=1, i.e. the function the
+		 * chip signals, so func 2 (which the BSP owns) was never the
+		 * problem. Claiming it also risks two RX threads contending for one
+		 * chip. Do not re-add without new evidence.
 		 */
-		if (sdiodev->func2) {
-			sdio_claim_host(sdiodev->func2);
-			sdio_claim_irq(sdiodev->func2, aicwf_sdio_hal_irqhandler);
-			sdio_f0_writeb(sdiodev->func2, 0x07, 0x04, &ret);
-			if (ret) {
-				sdio_err("set func2 int en fail %d\n", ret);
-			} else {
-				pr_err("AIFUNC claimed irq on func2 num=%u\n",
-				       sdiodev->func2->num);
-			}
-			sdio_release_host(sdiodev->func2);
-		} else {
-			pr_err("AIFUNC func2 NULL - not claiming second irq\n");
-		}
 	}
 	sdio_release_host(sdiodev->func);
 
@@ -1393,29 +1379,23 @@ int sdio_busrx_thread(void *data)
 	}
 
 	while (1) {
-		/* TEMPORARY DIAGNOSTIC 2026-10-10: is this thread's wakeup ever
-		 * firing, and which physical sdio function is it using? The BSP
-		 * claims the IRQ on card->sdio_func[1] and does all FIFO I/O there
-		 * (aicsdio.c:1219, :598, :635); this fdrv only ever uses
-		 * sdiodev->func. Measured tonight: BSP gets 96 userconfig reads and
-		 * IRQ 161 climbs, while AICRX/AICTX stay 0 here. Print the func
-		 * numbers once at thread start and every wakeup so one insmod says
-		 * whether the wakeup fires and on which function. */
-		static int diag_printed;
-		if (!diag_printed) {
-			diag_printed = 1;
-			pr_err("AIFUNC thread start: sdiodev->func num=%u card=%p "
-			       "sdio_func[0] num=%u sdio_func[1] num=%u\n",
-			       sdiodev->func ? sdiodev->func->num : 99u,
-			       sdiodev->func ? (void *)sdiodev->func->card : NULL,
-			       (sdiodev->func && sdiodev->func->card &&
-				sdiodev->func->card->sdio_func[0]) ?
-					sdiodev->func->card->sdio_func[0]->num : 98u,
-			       (sdiodev->func && sdiodev->func->card &&
-				sdiodev->func->card->sdio_func[1]) ?
-					sdiodev->func->card->sdio_func[1]->num : 97u);
-		}
-		#if 0
+		/*
+	 * TEMPORARY DIAGNOSTIC 2026-10-10: print on EVERY wakeup, not once at
+	 * start. The start-only version could not answer the question that
+	 * matters: does this thread ever get completed at all? Measured so far:
+	 * sdiodev->func num=1, sdio_func[1] num=2, AICTX=0, AICRX=0, while the
+	 * BSP completes 96 chip reads. So either the chip never transmits and the
+	 * BSP's success is polled register reads, or wakeups are being lost.
+	 * A wakeup counter separates those in one boot.
+	 */
+	{
+		static u32 aifunc_wakeups;
+		aifunc_wakeups++;
+		pr_err("AIFUNC wakeup #%u intstatus_read_done state=%d rx_cnt=%d\n",
+		       aifunc_wakeups, (int)bus_if->state,
+		       (int)atomic_read(&sdiodev->rx_priv->rx_cnt));
+	}
+	#if 0
 		if (kthread_should_stop()) {
 			sdio_err("sdio busrx thread stop\n");
 			break;
