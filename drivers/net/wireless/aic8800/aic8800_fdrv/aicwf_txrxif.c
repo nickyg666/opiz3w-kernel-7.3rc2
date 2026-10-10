@@ -374,7 +374,27 @@ int aicwf_process_rxframes(struct aicwf_rx_priv *rx_priv)
 				}
 
 				memcpy(msg, data, aggr_len + 4);
-				if (((*(msg + 2) & 0x7f) == SDIO_TYPE_CFG_CMD_RSP) && (rx_priv->sdiodev->bus_if->state != BUS_DOWN_ST))
+							/* TEMPORARY DIAGNOSTIC 2026-10-10: count what actually arrives on
+							 * the SDIO RX path. rwnx_rx_handle_msg() below is only reached
+							 * when the packet type is SDIO_TYPE_CFG_CMD_RSP, so "AICRX=0"
+							 * alone cannot distinguish "no packets at all" from "packets of
+							 * the wrong type". Count every packet by type. */
+							{
+								static u32 rx_pkts, rx_cfgrsp, rx_data, rx_print, rx_other;
+								u32 t = *(msg + 2) & 0x7f;
+								u32 *ctr = (t == SDIO_TYPE_CFG_CMD_RSP) ? &rx_cfgrsp :
+									   (t == SDIO_TYPE_CFG_DATA_CFM) ? &rx_data :
+									   (t == SDIO_TYPE_CFG_PRINT)    ? &rx_print :
+									   (t == 0)                     ? &rx_other : NULL;
+								if (ctr)
+									*ctr = ++*ctr;
+								else
+									rx_other = ++rx_other;
+								if ((rx_pkts = rx_pkts + 1) < 6)
+									pr_err("AICTX type=0x%02x len=%u cfgrsp=%u data=%u print=%u other=%u\n",
+									       t, aggr_len, rx_cfgrsp, rx_data, rx_print, rx_other);
+							}
+							if (((*(msg + 2) & 0x7f) == SDIO_TYPE_CFG_CMD_RSP) && (rx_priv->sdiodev->bus_if->state != BUS_DOWN_ST))
 					rwnx_rx_handle_msg(rx_priv->sdiodev->rwnx_hw, (struct ipc_e2a_msg *)(msg + 4));
 
 				if ((*(msg + 2) & 0x7f) == SDIO_TYPE_CFG_DATA_CFM)

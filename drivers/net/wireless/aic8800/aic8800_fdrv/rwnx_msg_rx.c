@@ -1103,9 +1103,48 @@ static inline int rwnx_rx_sm_external_auth_required_ind(struct rwnx_hw *rwnx_hw,
 }
 
 
+/***************************************************************************
+ * Messages from MM task
+ **************************************************************************/
+/*
+ * 2026-10-09: MM_SET_STACK_START_CFM handler.
+ *
+ * The firmware DOES answer this confirm - measured on the board, id=124
+ * arriving ~2ms after the request. But mm_hdlrs[] registered no entry for it,
+ * so msgind passed cb=NULL, and cmd_mgr_run_callback() bails out at
+ *
+ *     if (!cb) return 0;
+ *
+ * That early return skips the whole match branch in cmd_mgr_msgind(): the
+ * cmd's WAIT_CFM flag is never cleared, cmd->e2a_msg is never filled from
+ * msg->param, and cmd_complete() is never called. The request therefore always
+ * timed out, which set RWNX_CMD_MGR_STATE_CRASHED permanently (rwnx_cmds.c:260)
+ * and made every later send return -EPIPE.
+ *
+ * Returning 0 is all that is needed: the caller then performs the memcpy into
+ * cmd->e2a_msg (== the caller's set_start_cfm) and completes the command.
+ * Do NOT replace this with a fire-and-forget send instead - rwnx_main.c reads
+ * set_start_cfm.is_5g_support straight after, so skipping the payload copy
+ * would leave band_5g_support permanently false and disable the 5GHz band.
+ */
+static inline int rwnx_rx_mm_set_stack_start_cfm(struct rwnx_hw *rwnx_hw,
+		struct rwnx_cmd *cmd, struct ipc_e2a_msg *msg)
+{
+	struct mm_set_stack_start_cfm *cfm = (struct mm_set_stack_start_cfm *)msg->param;
+
+	RWNX_DBG(RWNX_FN_ENTRY_STR);
+
+	/* The payload is copied into cmd->e2a_msg by the caller once we return 0,
+	 * so nothing to do here beyond not failing. Reference cfm so the struct
+	 * layout is checked against this translation unit. */
+	(void)cfm;
+
+	return 0;
+}
+
 static inline int rwnx_rx_mesh_path_create_cfm(struct rwnx_hw *rwnx_hw,
-											   struct rwnx_cmd *cmd,
-											   struct ipc_e2a_msg *msg)
+					   struct rwnx_cmd *cmd,
+					   struct ipc_e2a_msg *msg)
 {
 	struct mesh_path_create_cfm *cfm = (struct mesh_path_create_cfm *)msg->param;
 	struct rwnx_vif *rwnx_vif = rwnx_hw->vif_table[cfm->vif_idx];
@@ -1358,6 +1397,7 @@ static inline int rwnx_rx_dbg_error_ind(struct rwnx_hw *rwnx_hw,
 #ifdef CONFIG_RWNX_FULLMAC
 
 static msg_cb_fct mm_hdlrs[MSG_I(MM_MAX)] = {
+	[MSG_I(MM_SET_STACK_START_CFM)]    = rwnx_rx_mm_set_stack_start_cfm,
 	[MSG_I(MM_CHANNEL_SWITCH_IND)]     = rwnx_rx_chan_switch_ind,
 	[MSG_I(MM_CHANNEL_PRE_SWITCH_IND)] = rwnx_rx_chan_pre_switch_ind,
 	[MSG_I(MM_REMAIN_ON_CHANNEL_EXP_IND)] = rwnx_rx_remain_on_channel_exp_ind,
@@ -1416,14 +1456,22 @@ static msg_cb_fct tdls_hdlrs[MSG_I(TDLS_MAX)] = {
 static msg_cb_fct *msg_hdlrs[] = {
 	[TASK_MM]    = mm_hdlrs,
 	[TASK_DBG]   = dbg_hdlrs,
-#ifdef CONFIG_RWNX_FULLMAC
+	/*
+	 * 2026-10-02: these sat behind #ifdef CONFIG_RWNX_FULLMAC, a symbol
+	 * defined in NO Kconfig anywhere in this tree. Registering [TASK_SCANU]
+	 * was therefore useless while the handlers it points at did not exist -
+	 * rwnx_rx_scanu_result_ind() and cfg80211_inform_bss() were compiled but
+	 * unreachable. It happens to build today only because the aic8800 Makefile
+	 * passes -DCONFIG_RWNX_FULLMAC on the command line, which is fragile.
+	 * Register them unconditionally so the dispatch no longer depends on a
+	 * compiler flag. See BREAKTHROUGH-wifi-scanning-works-BSS2.md defect #2.
+	 */
 	[TASK_TDLS]  = tdls_hdlrs,
 	[TASK_SCANU] = scan_hdlrs,
 	[TASK_ME]    = me_hdlrs,
 	[TASK_SM]    = sm_hdlrs,
 	[TASK_APM]   = apm_hdlrs,
 	[TASK_MESH]  = mesh_hdlrs,
-#endif /* CONFIG_RWNX_FULLMAC */
 };
 
 /**

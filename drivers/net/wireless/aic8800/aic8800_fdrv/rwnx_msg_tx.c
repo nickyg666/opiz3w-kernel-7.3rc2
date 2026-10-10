@@ -2447,13 +2447,29 @@ int rwnx_send_scanu_req(struct rwnx_hw *rwnx_hw, struct rwnx_vif *rwnx_vif,
 	}
 
 	/* Send the SCANU_START_REQ message to LMAC FW */
-	return rwnx_send_msg(rwnx_hw, req, 1,  SCANU_START_CFM_ADDTIONAL, NULL);
+	/*
+	 * 2026-10-02 (found in the vault, never carried into this tree):
+	 * this awaited SCANU_START_CFM_ADDTIONAL, but the chip answers
+	 * SCANU_START_CFM. The command therefore never completed, the radio was
+	 * never armed, and every scan produced 0 BSS. Proven fix - one token -
+	 * is SCANU_START_CFM. See BREAKTHROUGH-wifi-scanning-works-BSS2.md and
+	 * ROOTCAUSE-scan-waits-for-wrong-confirm-id.
+	 */
+	err = rwnx_send_msg(rwnx_hw, req, 1,  SCANU_START_CFM, NULL);
+	if (err)
+		goto error;
+	return 0;
 error:
+	/* The scan never started, so the latch set above must be released.
+	 * Without this, `scanning` stays 1 for the life of the module: every
+	 * later rwnx_cfg80211_scan() returns -EBUSY (rwnx_main.c) and the
+	 * suspend path in aicwf_sdio.c is held off by `!scanning`. */
+	scanning = 0;
 	if (req != NULL)
 		rwnx_msg_free(rwnx_hw, req);
 	if (ie_req != NULL)
 		rwnx_msg_free(rwnx_hw, ie_req);
-	return -ENOMEM;
+	return err ? err : -ENOMEM;
 }
 
 int rwnx_send_scanu_cancel_req(struct rwnx_hw *rwnx_hw, struct scan_cancel_cfm *cfm)

@@ -500,6 +500,11 @@ int aicbsp_driver_lpm_enable_reinit(struct aicbt_info_t *aicbt_info);
 extern u8 binding_enc_data[16];
 extern bool need_binding_verify;
 
+/* 2026-10-09: defined in aic_bsp_8800d80.c, read by rwnx_send_dbg_start_app_req()
+ * in aic_bsp_driver.c. 0 = fire-and-forget start_app (this board never gets
+ * DBG_START_APP_CFM); 1 = vendor default, waits and times out after 6 s. */
+extern int start_app_reqcfm;
+
 extern struct aicbsp_info_t aicbsp_info;
 extern struct mutex aicbsp_power_lock;
 extern const struct aicbsp_firmware *aicbsp_firmware_list;

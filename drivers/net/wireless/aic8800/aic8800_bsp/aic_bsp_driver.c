@@ -449,6 +449,24 @@ int rwnx_send_dbg_start_app_req(struct priv_dev *aicdev, u32 boot_addr, u32 boot
 
 	/* Send the DBG_START_APP_REQ message to LMAC FW */
 #if defined(AICWF_SDIO_SUPPORT)
+	/*
+	 * 2026-09-30 (restored 2026-10-09 after being lost from the live source):
+	 * this is the copy that actually runs during boot.
+	 * aicwifi_start_from_bootrom() in aic_bsp_8800d80.c calls THIS function.
+	 * There is an identically-named function in aic8800_fdrv/rwnx_msg_tx.c
+	 * that is dead code on this platform - patching that one does nothing.
+	 *
+	 * start_app_reqcfm=0 sends DBG_START_APP_REQ and does not wait for
+	 * DBG_START_APP_CFM. On this board the chip never sends that confirm, so
+	 * the upstream behaviour is an unconditional 6 s timeout followed by
+	 * -ETIMEDOUT. That timeout set RWNX_CMD_MGR_STATE_CRASHED, which is never
+	 * reset, so EVERY later message returned -EPIPE and the firmware never
+	 * received another byte (observed: 15x "cmd queue crashed", AICRX_COUNT=0,
+	 * empty "Firmware Version:").
+	 */
+	if (!start_app_reqcfm) {
+		return rwnx_send_msg(aicdev, start_app_req, 0, 0, NULL);
+	}
 	return rwnx_send_msg(aicdev, start_app_req, 1, DBG_START_APP_CFM, start_app_cfm);
 #elif defined(AICWF_USB_SUPPORT)
 	return rwnx_send_msg(aicdev, start_app_req, 0, 0, NULL);

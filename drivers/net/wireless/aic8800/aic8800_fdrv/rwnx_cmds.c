@@ -421,6 +421,44 @@ static int cmd_mgr_msgind(struct rwnx_cmd_mgr *cmd_mgr, struct rwnx_cmd_e2amsg *
 	struct rwnx_cmd *cmd;
 	bool found = false;
 
+	/* TEMPORARY DIAGNOSTIC (2026-10-09, wifi scan bring-up): report the id of
+	 * every firmware->host message so we can see which SCANU confirm the
+	 * running firmware actually sends. Remove once the scan path is settled. */
+	{
+		static u32 dbg_seen[8];
+		int i;
+		for (i = 0; i < 8; i++)
+			if (dbg_seen[i] == 0 || dbg_seen[i] == msg->id)
+				break;
+		if (i < 8) {
+			dbg_seen[i] = msg->id;
+			pr_err("AICRX task=%u idx=%u id=%u cb=%p cmd_pending=%d\n",
+			       (u32)MSG_T(msg->id), (u32)MSG_I(msg->id),
+			       (unsigned)msg->id, (void *)cb,
+			       (int)list_empty(&cmd_mgr->cmds) ? 0 : 1);
+		}
+	}
+
+	/* TEMPORARY DIAGNOSTIC 2: dump the queued commands so we can see whether
+	 * an arriving confirm actually matches one. This is the difference
+	 * between "firmware never answers" and "we do not match the answer". */
+	{
+		struct rwnx_cmd *c;
+		int n = 0;
+		spin_lock_bh(&cmd_mgr->lock);
+		list_for_each_entry(c, &cmd_mgr->cmds, list) {
+			if (n < 4)
+				pr_err("AICQ tkn=%d reqid=%u flags=0x%04x waitcfm=%d done=%d\n",
+				       c->tkn, (unsigned)c->reqid, (unsigned)c->flags,
+				       !!(c->flags & RWNX_CMD_FLAG_WAIT_CFM),
+				       !!(c->flags & RWNX_CMD_FLAG_DONE));
+			n++;
+		}
+		spin_unlock_bh(&cmd_mgr->lock);
+		if (n)
+			pr_err("AICQ total queued=%d msg_id=%u\n", n, (unsigned)msg->id);
+	}
+
 	// RWNX_DBG(RWNX_FN_ENTRY_STR);
 #ifdef CREATE_TRACE_POINTS
 	trace_msg_recv(msg->id);

@@ -335,13 +335,23 @@ static int aicwifi_start_from_bootrom(struct priv_dev *aicdev)
 	const u32 fw_addr = RAM_FMAC_FW_ADDR;
 	struct dbg_start_app_cfm start_app_cfm;
 
+	/* TEMPORARY DIAGNOSTIC 2026-10-09: the cold-boot log shows no start_app
+	 * line at all, so we do not know whether this function is reached, what it
+	 * returns, or what the firmware answers. Print on entry, after the send,
+	 * and on failure so the next cold boot settles it. */
+	pr_err("AICSTART enter %s fw_addr=0x%x reqcfm=%d\n",
+	       __func__, fw_addr, start_app_reqcfm);
+
 	/* fw start */
 	ret = rwnx_send_dbg_start_app_req(aicdev, fw_addr, HOST_START_APP_AUTO, &start_app_cfm);
+	pr_err("AICSTART %s ret=%d bootstatus=0x%x\n",
+	       __func__, ret, ret ? 0 : (start_app_cfm.bootstatus & 0xFF));
 	if (ret) {
 		return -1;
 	}
 	aicbsp_info.hwinfo_r = start_app_cfm.bootstatus & 0xFF;
 
+	pr_err("AICSTART hwinfo_r=0x%x\n", aicbsp_info.hwinfo_r);
 	return 0;
 }
 
@@ -536,25 +546,38 @@ static int aicwifi_patch_config(struct priv_dev *aicdev)
 
 static int aicwifi_init(struct priv_dev *aicdev)
 {
+	/* TEMPORARY DIAGNOSTIC 2026-10-09: each of these three can return early,
+	 * and an early return means aicwifi_start_from_bootrom() never runs - which
+	 * would explain a firmware that never answers. Mark each step. */
+	pr_err("AICWIFI step=enter\n");
+
 	if (rwnx_plat_bin_fw_upload_android(aicdev, RAM_FMAC_FW_ADDR, aicbsp_firmware_list[aicbsp_info.cpmode].wl_fw)) {
 		printk("download wifi fw fail\n");
+		pr_err("AICWIFI step=fw_upload FAILED\n");
 		return -1;
 	}
+	pr_err("AICWIFI step=fw_upload ok\n");
 
 	if (aicwifi_patch_config(aicdev)) {
 		printk("aicwifi_patch_config fail\n");
+		pr_err("AICWIFI step=patch_config FAILED\n");
 		return -1;
 	}
+	pr_err("AICWIFI step=patch_config ok\n");
 
 	if (aicwifi_sys_config(aicdev)) {
 		printk("aicwifi_sys_config fail\n");
+		pr_err("AICWIFI step=sys_config FAILED\n");
 		return -1;
 	}
+	pr_err("AICWIFI step=sys_config ok\n");
 
 	if (aicwifi_start_from_bootrom(aicdev)) {
 		printk("wifi start fail\n");
+		pr_err("AICWIFI step=start_from_bootrom FAILED\n");
 		return -1;
 	}
+	pr_err("AICWIFI step=start_from_bootrom ok\n");
 
 	return 0;
 }
@@ -591,6 +614,33 @@ static int aicbsp_system_config(struct priv_dev *aicdev)
 static int fw_variant = 0;
 module_param(fw_variant, int, 0644);
 MODULE_PARM_DESC(fw_variant, "aic8800d80 firmware variant: 0=u02 1=d80n 2=x2");
+
+/*
+ * 2026-09-30, restored into the live source 2026-10-09:
+ * start_app_reqcfm - fire-and-forget start_app.
+ *
+ * This board's chip never sends DBG_START_APP_CFM, so the vendor call
+ *
+ *     rwnx_send_dbg_start_app_req(aicdev, fw_addr, HOST_START_APP_AUTO, &cfm)
+ *
+ * waits 6 s and returns -ETIMEDOUT on every single boot. That timeout sets
+ * RWNX_CMD_MGR_STATE_CRASHED, which is never reset, so every later message
+ * returns -EPIPE: 15x "cmd queue crashed", zero firmware traffic, empty
+ * "Firmware Version:", and scan returning -EBUSY forever.
+ *
+ * With this at 0 the request is sent and the confirm is not waited for, so
+ * init continues. Only the BSP copy of rwnx_send_dbg_start_app_req() reads
+ * this; the identically-named fdrv function is dead code on this platform.
+ *
+ * 2026-10-09: default flipped 1 -> 0. Leaving it at 1 reproduces the dead
+ * queue on every boot, and the parameter was being ignored anyway (it did not
+ * exist in the live source), so the old default was never doing anything but
+ * costing a 6 s timeout. Keep 1 = vendor default if you ever need it back.
+ */
+int start_app_reqcfm = 0;
+module_param(start_app_reqcfm, int, 0644);
+MODULE_PARM_DESC(start_app_reqcfm,
+		 "1 = wait for DBG_START_APP_CFM (vendor default); 0 = fire and forget");
 
 int aicbsp_8800d80_fw_init(struct priv_dev *aicdev)
 {

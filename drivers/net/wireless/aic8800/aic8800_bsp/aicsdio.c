@@ -436,6 +436,27 @@ static int aicbsp_platform_power_on(void)
 	bsp_dbg("%s disable MMC_CAP_UHS_DDR50 for host %p\n", __func__, host);
 	host->caps &= ~MMC_CAP_UHS_DDR50;
 
+	/*
+	 * 2026-10-09: also clear SDR104 (and SDR50). The vendor code cleared only
+	 * MMC_CAP_UHS_DDR50, but this board's WiFi SDIO bus actually comes up in
+	 * UHS-I SDR104:
+	 *
+	 *   /sys/kernel/debug/mmc0/ios: timing spec: 6 (sd uhs SDR104)
+	 *   mmc0: new UHS-I speed SDR104 SDIO card at address 6721
+	 *
+	 * UHS modes are SD-card signalling; an SDIO function does not use them,
+	 * and leaving SDR104 latched matches the observed symptom exactly - the
+	 * firmware is uploaded and start_app returns 0, but NOT ONE message is
+	 * ever received (AICRX=0 on every cold boot), so the first
+	 * MM_SET_STACK_START_REQ times out and the command queue latches CRASHED.
+	 *
+	 * MMC_TIMING_UHS_SDR104 = 6, MMC_TIMING_UHS_DDR50 = 7 (include/linux/mmc/host.h),
+	 * so the bit we were missing is MMC_CAP_UHS_SDR104 = (1 << 19).
+	 */
+	host->caps &= ~(MMC_CAP_UHS_SDR104 | MMC_CAP_UHS_SDR50);
+	bsp_dbg("%s after UHS clear caps=0x%x timing=%u\n", __func__,
+		host->caps, host->ios.timing);
+
 	sema_init(&aic_chipup_sem, 0);
 	ret = aicbsp_reg_sdio_notify(&aic_chipup_sem);
 	if (ret) {
