@@ -14,8 +14,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(drm_bridge_connector_init, "");
 SYMBOL_FLAGS(drm_bridge_connector_init, 0x01);
 KSYMTAB_FUNC(drm_dp_dual_mode_read, "");

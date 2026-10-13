@@ -1,1 +1,1 @@
-drivers/gpu/drm/pl111/pl111_drm.o
+pl111/pl111_drm.o

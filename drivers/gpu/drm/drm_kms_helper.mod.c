@@ -10,8 +10,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(drm_atomic_helper_check_modeset, "");
 SYMBOL_FLAGS(drm_atomic_helper_check_modeset, 0x00);
 KSYMTAB_FUNC(drm_atomic_helper_check_wb_connector_state, "");

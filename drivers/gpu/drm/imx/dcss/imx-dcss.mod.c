@@ -14,8 +14,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_DATA(dcss_dev_pm_ops, "");
 SYMBOL_FLAGS(dcss_dev_pm_ops, 0x01);
 

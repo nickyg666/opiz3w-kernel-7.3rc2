@@ -1645,8 +1645,6 @@
 			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&ccu CLK_TWI0>;
 			resets = <&ccu RST_BUS_TWI0>;
-			dmas = <&dma 37>, <&dma 37>;
-			dma-names = "tx", "rx";
 			status = "disabled";
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -1660,8 +1658,6 @@
 			interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&ccu CLK_TWI1>;
 			resets = <&ccu RST_BUS_TWI1>;
-			dmas = <&dma 38>, <&dma 38>;
-			dma-names = "tx", "rx";
 			status = "disabled";
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -1675,8 +1671,6 @@
 			interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&ccu CLK_TWI2>;
 			resets = <&ccu RST_BUS_TWI2>;
-			dmas = <&dma 39>, <&dma 39>;
-			dma-names = "tx", "rx";
 			status = "disabled";
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -1690,8 +1684,6 @@
 			interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&ccu CLK_TWI3>;
 			resets = <&ccu RST_BUS_TWI3>;
-			dmas = <&dma 40>, <&dma 40>;
-			dma-names = "tx", "rx";
 			status = "disabled";
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -1705,8 +1697,6 @@
 			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&ccu CLK_TWI4>;
 			resets = <&ccu RST_BUS_TWI4>;
-			dmas = <&dma 41>, <&dma 41>;
-			dma-names = "tx", "rx";
 			status = "disabled";
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -1720,8 +1710,6 @@
 			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&ccu CLK_TWI5>;
 			resets = <&ccu RST_BUS_TWI5>;
-			dmas = <&dma 42>, <&dma 42>;
-			dma-names = "tx", "rx";
 			status = "disabled";
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -1735,8 +1723,6 @@
 			interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&ccu CLK_TWI6>;
 			resets = <&ccu RST_BUS_TWI6>;
-			dmas = <&dma 43>, <&dma 43>;
-			dma-names = "tx", "rx";
 			status = "disabled";
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -1750,8 +1736,6 @@
 			interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&ccu CLK_TWI7>;
 			resets = <&ccu RST_BUS_TWI7>;
-			dmas = <&dma 44>, <&dma 44>;
-			dma-names = "tx", "rx";
 			status = "disabled";
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -1765,8 +1749,6 @@
 			interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&ccu CLK_TWI8>;
 			resets = <&ccu RST_BUS_TWI8>;
-			dmas = <&dma 45>, <&dma 45>;
-			dma-names = "tx", "rx";
 			status = "disabled";
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -1780,8 +1762,6 @@
 			interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&ccu CLK_TWI9>;
 			resets = <&ccu RST_BUS_TWI9>;
-			dmas = <&dma 58>, <&dma 58>;
-			dma-names = "tx", "rx";
 			status = "disabled";
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -1795,8 +1775,6 @@
 			interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&ccu CLK_TWI10>;
 			resets = <&ccu RST_BUS_TWI10>;
-			dmas = <&dma 59>, <&dma 59>;
-			dma-names = "tx", "rx";
 			status = "disabled";
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -1810,8 +1788,6 @@
 			interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&ccu CLK_TWI11>;
 			resets = <&ccu RST_BUS_TWI11>;
-			dmas = <&dma 60>, <&dma 60>;
-			dma-names = "tx", "rx";
 			status = "disabled";
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -1825,8 +1801,6 @@
 			interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&ccu CLK_TWI12>;
 			resets = <&ccu RST_BUS_TWI12>;
-			dmas = <&dma 61>, <&dma 61>;
-			dma-names = "tx", "rx";
 			status = "disabled";
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -1840,8 +1814,6 @@
 			interrupts = <GIC_SPI 203 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&r_ccu CLK_R_TWI0>;
 			resets = <&r_ccu RST_BUS_R_TWI0>;
-			dmas = <&dma 47>, <&dma 47>;
-			dma-names = "tx", "rx";
 			pinctrl-names = "default";
 			pinctrl-0 = <&r_i2c0_pins>;
 			status = "disabled";
@@ -1857,8 +1829,6 @@
 			interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&r_ccu CLK_R_TWI1>;
 			resets = <&r_ccu RST_BUS_R_TWI1>;
-			dmas = <&dma 48>, <&dma 48>;
-			dma-names = "tx", "rx";
 			status = "disabled";
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -1872,8 +1842,6 @@
 			interrupts = <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&r_ccu CLK_R_TWI2>;
 			resets = <&r_ccu RST_BUS_R_TWI2>;
-			dmas = <&dma 49>, <&dma 49>;
-			dma-names = "tx", "rx";
 			status = "disabled";
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -2217,8 +2185,6 @@
 			clocks = <&ccu CLK_BUS_LEDC>, <&ccu CLK_LEDC>;
 			clock-names = "bus", "mod";
 			resets = <&ccu RST_BUS_LEDC>;
-			dmas = <&dma 46>;
-			dma-names = "tx";
 			#address-cells = <1>;
 			#size-cells = <0>;
 			status = "disabled";
@@ -3417,16 +3383,14 @@
 		spi0: spi@2540000 {
 			#address-cells = <1>;
 			#size-cells = <0>;
-			compatible = "allwinner,sunxi-spi-v1.3";
+			compatible = "allwinner,sun60iw2-spi";
 			device_type = "spi0";
 			reg = <0x0 0x02540000 0x0 0x1000>;
 			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-			clocks = <&ccu CLK_PLL_PERI0_300M>, <&ccu CLK_SPI0>, <&ccu CLK_BUS_SPI0>;
-			clock-names = "pll", "mod", "bus";
+			clocks = <&ccu CLK_BUS_SPI0>, <&ccu CLK_SPI0>;
+			clock-names = "ahb", "mod";
 			clock-frequency = <100000000>;
 			resets = <&ccu RST_BUS_SPI0>;
-			dmas = <&dma 23>, <&dma 23>;
-			dma-names = "tx", "rx";
 			sunxi,spi-num-cs = <2>;
 			status = "disabled";
 		};
@@ -3438,12 +3402,10 @@
 			device_type = "spi1";
 			reg = <0x0 0x02541000 0x0 0x1000>;
 			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-			clocks = <&ccu CLK_PLL_PERI0_300M>, <&ccu CLK_SPI1>, <&ccu CLK_BUS_SPI1>;
-			clock-names = "pll", "mod", "bus";
+			clocks = <&ccu CLK_BUS_SPI1>, <&ccu CLK_SPI1>;
+			clock-names = "ahb", "mod";
 			clock-frequency = <100000000>;
 			resets = <&ccu RST_BUS_SPI1>;
-			dmas = <&dma 24>, <&dma 24>;
-			dma-names = "tx", "rx";
 			sunxi,spi-num-cs = <1>;
 			status = "disabled";
 		};
@@ -3451,16 +3413,14 @@
 		spi2: spi@2542000 {
 			#address-cells = <1>;
 			#size-cells = <0>;
-			compatible = "allwinner,sunxi-spi-v1.3";
+			compatible = "allwinner,sun60iw2-spi";
 			device_type = "spi2";
 			reg = <0x0 0x02542000 0x0 0x1000>;
 			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-			clocks = <&ccu CLK_PLL_PERI0_300M>, <&ccu CLK_SPI2>, <&ccu CLK_BUS_SPI2>;
-			clock-names = "pll", "mod", "bus";
+			clocks = <&ccu CLK_BUS_SPI2>, <&ccu CLK_SPI2>;
+			clock-names = "ahb", "mod";
 			clock-frequency = <100000000>;
 			resets = <&ccu RST_BUS_SPI2>;
-			dmas = <&dma 25>, <&dma 25>;
-			dma-names = "tx", "rx";
 			sunxi,spi-num-cs = <1>;
 			status = "disabled";
 		};
@@ -3468,16 +3428,14 @@
 		spi3: spi@2543000 {
 			#address-cells = <1>;
 			#size-cells = <0>;
-			compatible = "allwinner,sunxi-spi-v1.3";
+			compatible = "allwinner,sun60iw2-spi";
 			device_type = "spi3";
 			reg = <0x0 0x02543000 0x0 0x1000>;
 			interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
-			clocks = <&ccu CLK_PLL_PERI0_300M>, <&ccu CLK_SPI3>, <&ccu CLK_BUS_SPI3>;
-			clock-names = "pll", "mod", "bus";
+			clocks = <&ccu CLK_BUS_SPI3>, <&ccu CLK_SPI3>;
+			clock-names = "ahb", "mod";
 			clock-frequency = <100000000>;
 			resets = <&ccu RST_BUS_SPI3>;
-			dmas = <&dma 26>, <&dma 26>;
-			dma-names = "tx", "rx";
 			sunxi,spi-num-cs = <1>;
 			status = "disabled";
 		};
@@ -3485,16 +3443,14 @@
 		spi4: spi@2544000 {
 			#address-cells = <1>;
 			#size-cells = <0>;
-			compatible = "allwinner,sunxi-spi-v1.3";
+			compatible = "allwinner,sun60iw2-spi";
 			device_type = "spi4";
 			reg = <0x0 0x02544000 0x0 0x1000>;
 			interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
-			clocks = <&ccu CLK_PLL_PERI0_300M>, <&ccu CLK_SPI4>, <&ccu CLK_BUS_SPI4>;
-			clock-names = "pll", "mod", "bus";
+			clocks = <&ccu CLK_BUS_SPI4>, <&ccu CLK_SPI4>;
+			clock-names = "ahb", "mod";
 			clock-frequency = <100000000>;
 			resets = <&ccu RST_BUS_SPI4>;
-			dmas = <&dma 54>, <&dma 54>;
-			dma-names = "tx", "rx";
 			sunxi,spi-num-cs = <1>;
 			status = "disabled";
 		};
@@ -3502,16 +3458,14 @@
 		r_spi: spi@7092000 {
 			#address-cells = <1>;
 			#size-cells = <0>;
-			compatible = "allwinner,sunxi-spi-v1.3";
+			compatible = "allwinner,sun60iw2-spi";
 			device_type = "r_spi";
 			reg = <0x0 0x07092000 0x0 0x1000>;
 			interrupts = <GIC_SPI 210 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&ccu CLK_PLL_PERI0_300M>, <&r_ccu CLK_R_SPI>, <&r_ccu CLK_R_BUS_SPI>;
-			clock-names = "pll", "mod", "bus";
+			clock-names = "ahb", "mod";
 			clock-frequency = <100000000>;
 			resets = <&r_ccu RST_BUS_R_SPI>;
-			dmas = <&dma 53>, <&dma 53>;
-			dma-names = "tx", "rx";
 			sunxi,spi-num-cs = <1>;
 			status = "disabled";
 		};
@@ -4529,8 +4483,16 @@
 				 <&ccu CLK_PLL_GPU0>,
 				 <&ccu CLK_BUS_GPU0>;
 			clock-names = "core", "mem", "sys";
+			/* power-domains RESTORED 2026-10-13: pvr_power_domains_init()
+			 * requires the property to exist (of_count_phandle_with_args
+			 * returns -ENOENT without it, probe fails before touching the
+			 * GPU). The driver's own genpd-attach path is what hangs the
+			 * SoC, so pvr_power_domains_init() now skips attaching and the
+			 * PPU sequence in pvr_power_on_sequence_manual() powers the GPU
+			 * directly instead.
+			 */
 			power-domains = <&pck600 PD_GPU_CORE>,
-				<&pck600 PD_GPU_TOP>;
+				 <&pck600 PD_GPU_TOP>;
 			power-domain-names = "a", "b";
 			resets = <&ccu RST_BUS_GPU0>;
 			operating-points-v2 = <&gpu_opp_table>;

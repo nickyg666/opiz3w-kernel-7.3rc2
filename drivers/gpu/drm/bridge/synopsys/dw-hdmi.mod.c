@@ -10,8 +10,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(dw_hdmi_to_plat_data, "");
 SYMBOL_FLAGS(dw_hdmi_to_plat_data, 0x01);
 KSYMTAB_FUNC(dw_hdmi_set_plugged_cb, "");

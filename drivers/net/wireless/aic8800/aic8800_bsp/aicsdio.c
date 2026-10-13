@@ -60,6 +60,21 @@ static const struct sdio_device_id aicbsp_sdmmc_ids[];
 extern bool sdio_f1_flag;
 #endif
 
+/*
+ * 2026-09-27: insmod-time SDIO drive-phase override.
+ *
+ * The vendor 5.15 sunxi-mmc-v5p3x.c does explicit 90/180 drive-phase selection
+ * and retries across a phase/delay table when a transfer fails; our mainline
+ * sunxi-mmc has no equivalent. This makes the aic8800-side phase settable at
+ * insmod so one build can sweep it. -1 keeps the vendor default.
+ *
+ * Must have external linkage: aic_bsp_8800d80.c references it, so a static here
+ * would be invisible to that translation unit (modpost caught exactly that).
+ */
+int sdio_phase_override = -1;
+module_param(sdio_phase_override, int, 0644);
+MODULE_PARM_DESC(sdio_phase_override, "SDIO drive phase override, -1 = vendor default");
+
 int aicbsp_device_init(void)
 {
 	return 0;
@@ -271,6 +286,15 @@ static int aicbsp_sdio_probe(struct sdio_func *func,
 			aicbsp_info.sdio_clock = min(host->f_max, AIC_SDIO_V3_CLOCK);
 		if (aicbsp_info.sdio_phase < 0)
 			aicbsp_info.sdio_phase = AIC_SDIO_V3_PHASE;
+		/* 2026-09-27: allow overriding the drive phase at insmod time, so one
+		 * build can sweep it. The vendor 5.15 sunxi-mmc-v5p3x.c retries
+		 * across a phase/delay table and we have no equivalent, so this is the
+		 * one link variable never yet varied. */
+		if (sdio_phase_override >= 0) {
+			pr_info("sdio_phase: override 0x%02X -> vendor 0x%02X\n",
+				sdio_phase_override, AIC_SDIO_V3_PHASE);
+			aicbsp_info.sdio_phase = sdio_phase_override;
+		}
 		err = aicwf_sdiov3_func_init(aicdev);
 	}
 
@@ -435,27 +459,6 @@ static int aicbsp_platform_power_on(void)
 
 	bsp_dbg("%s disable MMC_CAP_UHS_DDR50 for host %p\n", __func__, host);
 	host->caps &= ~MMC_CAP_UHS_DDR50;
-
-	/*
-	 * 2026-10-09: also clear SDR104 (and SDR50). The vendor code cleared only
-	 * MMC_CAP_UHS_DDR50, but this board's WiFi SDIO bus actually comes up in
-	 * UHS-I SDR104:
-	 *
-	 *   /sys/kernel/debug/mmc0/ios: timing spec: 6 (sd uhs SDR104)
-	 *   mmc0: new UHS-I speed SDR104 SDIO card at address 6721
-	 *
-	 * UHS modes are SD-card signalling; an SDIO function does not use them,
-	 * and leaving SDR104 latched matches the observed symptom exactly - the
-	 * firmware is uploaded and start_app returns 0, but NOT ONE message is
-	 * ever received (AICRX=0 on every cold boot), so the first
-	 * MM_SET_STACK_START_REQ times out and the command queue latches CRASHED.
-	 *
-	 * MMC_TIMING_UHS_SDR104 = 6, MMC_TIMING_UHS_DDR50 = 7 (include/linux/mmc/host.h),
-	 * so the bit we were missing is MMC_CAP_UHS_SDR104 = (1 << 19).
-	 */
-	host->caps &= ~(MMC_CAP_UHS_SDR104 | MMC_CAP_UHS_SDR50);
-	bsp_dbg("%s after UHS clear caps=0x%x timing=%u\n", __func__,
-		host->caps, host->ios.timing);
 
 	sema_init(&aic_chipup_sem, 0);
 	ret = aicbsp_reg_sdio_notify(&aic_chipup_sem);
@@ -838,10 +841,12 @@ struct sk_buff *aicwf_sdio_readframes(struct priv_dev *aicdev)
 	size = aicdev->rx_priv->data_len;
 	skb =  __dev_alloc_skb(size, GFP_KERNEL);
 	if (!skb) {
+		pr_err("AICRF alloc fail size=%u\n", size);
 		return NULL;
 	}
 
 	ret = aicwf_sdio_recv_pkt(aicdev, skb, size);
+	pr_err("AICRF size=%u ret=%d\n", size, ret);
 	if (ret) {
 		dev_kfree_skb(skb);
 		skb = NULL;
@@ -1235,6 +1240,28 @@ static int aicwf_sdio_bus_start(struct device *dev)
 			bsp_err("func2 intr register failed:%d\n", ret);
 	} else if (aicbsp_info.chipinfo->chipid == PRODUCT_ID_AIC8800D80) {
 		sdio_claim_host(aicdev->func[0]);
+		/*
+		 * 2026-10-10 REVERTED — DO NOT RE-INTRODUCE WITHOUT A DESIGN
+		 * CHANGE. The claim below was removed to hand the SDIO IRQ to
+		 * aic8800_fdrv, measured and it REGRESSED the lane:
+		 *
+		 *   cmd timed-out / tkn[0] result:-4 cmd:1026 - reqcfm(1027)
+		 *   sunxi-mmc WIFI_IOS_CARD sdio_funcs=1   (was 2)
+		 *   aicbsp: aicbsp_sdio_remove  (whole device torn down)
+		 *   rwnx_mod_init, set power on fail!
+		 *
+		 * The IRQ is not luxury: the chip's IPC command confirmations
+		 * (reqcfm) arrive on it, so removing the claim starves
+		 * aicwf_sdio_bus_start -> fw upload -> start_app. The BSP owns
+		 * the bus for bring-up and must keep claiming it.
+		 *
+		 * The underlying defect (proven by symbol table) is that BSP and
+		 * fdrv each export their own aicwf_rx_init / rxframe_enqueue /
+		 * process_rxframes / readframes, giving two disjoint RX queues:
+		 * BSP builds 473 skbs, AICRX=0, wlan0 rx=0. The real fix is to
+		 * make both sides share ONE rx_priv, not to move the IRQ claim.
+		 * See kernel ref aic8800-sdio-irq-storm.md.
+		 */
 		sdio_claim_irq(aicdev->func[0], aicwf_sdio_hal_irqhandler);
 
 		sdio_f0_writeb(aicdev->func[0], 0x07, 0x04, &ret);
@@ -1276,6 +1303,8 @@ int aicwf_busrx_thread(void *data)
 {
 	struct aicwf_rx_priv *rx_priv = (struct aicwf_rx_priv *)data;
 	struct aicwf_bus *bus_if = rx_priv->aicdev->bus_if;
+	pr_err("AICBRXT start bus_if=%p rx_priv=%p trgg=%p\n",
+	       bus_if, rx_priv, &bus_if->busrx_trgg);
 
 	while (1) {
 		if (kthread_should_stop()) {
@@ -1283,6 +1312,8 @@ int aicwf_busrx_thread(void *data)
 			break;
 		}
 		if (!wait_for_completion_interruptible(&bus_if->busrx_trgg)) {
+			pr_err("AICBRXT wake qcnt=%d rx_cnt=%d\n",
+			       rx_priv->rxq.qcnt, atomic_read(&rx_priv->rx_cnt));
 			aicwf_process_rxframes(rx_priv);
 		}
 	}
@@ -1319,12 +1350,14 @@ static void aicwf_sdio_enq_rxpkt(struct priv_dev *aicdev, struct sk_buff *pkt)
 	spin_lock_irqsave(&rx_priv->rxqlock, flags);
 	if (!aicwf_rxframe_enqueue(aicdev->dev, &rx_priv->rxq, pkt)) {
 		spin_unlock_irqrestore(&rx_priv->rxqlock, flags);
+		pr_err("AICENQ enqueue-fail pkt=%p\n", pkt);
 		aicwf_dev_skb_free(pkt);
 		return;
 	}
 	spin_unlock_irqrestore(&rx_priv->rxqlock, flags);
 
 	atomic_inc(&rx_priv->rx_cnt);
+	pr_err("AICENQ enq-ok pkt=%p rx_cnt=%d\n", pkt, atomic_read(&rx_priv->rx_cnt));
 }
 
 static void aicwf_sdio_hal_irqhandler(struct sdio_func *func)
@@ -1342,12 +1375,17 @@ static void aicwf_sdio_hal_irqhandler(struct sdio_func *func)
 		bsp_err("bus err\n");
 		return;
 	}
+	pr_err("AICIRQ enter chipid=0x%x bus_state=%d\n",
+	       aicbsp_info.chipinfo ? (unsigned)aicbsp_info.chipinfo->chipid : 0xffff,
+	       bus_if->state);
 	if (aicbsp_info.chipinfo->chipid == PRODUCT_ID_AIC8800D || aicbsp_info.chipinfo->chipid == PRODUCT_ID_AIC8800DC ||
 		aicbsp_info.chipinfo->chipid == PRODUCT_ID_AIC8800DW) {
 		ret = aicwf_sdio_readb(aicdev->func[0], aicdev->sdio_reg.block_cnt_reg, &intstatus);
+ 		pr_err("AIC8800DC: intstatus=0x%02x\\n", intstatus);
 		while (ret || (intstatus & SDIO_OTHER_INTERRUPT)) {
 			bsp_err("ret=%d, intstatus=%x\r\n", ret, intstatus);
 			ret = aicwf_sdio_readb(aicdev->func[0], aicdev->sdio_reg.block_cnt_reg, &intstatus);
+ 		pr_err("AIC8800DC: intstatus=0x%02x\\n", intstatus);
 			if (retry-- <= 0)
 				break;
 		}
@@ -1358,6 +1396,7 @@ static void aicwf_sdio_hal_irqhandler(struct sdio_func *func)
 				pkt = aicwf_sdio_readframes(aicdev);
 			} else {
 				aicwf_sdio_intr_get_len_bytemode(aicdev, &byte_len);//byte_len must<= 128
+ 				pr_err("AIC8800DC: byte_len=%d\\n", byte_len);
 				bsp_info("byte mode len=%d\r\n", byte_len);
 				pkt = aicwf_sdio_readframes(aicdev);
 			}
@@ -1370,6 +1409,7 @@ static void aicwf_sdio_hal_irqhandler(struct sdio_func *func)
 	} else if (aicbsp_info.chipinfo->chipid == PRODUCT_ID_AIC8800D80) {
 		do {
 			ret = aicwf_sdio_readb(aicdev->func[0], aicdev->sdio_reg.misc_int_status_reg, &intstatus);
+			pr_err("AICD80 misc_int_status read ret=%d intstatus=0x%02x\n", ret, intstatus);
 			if (!ret) {
 				break;
 			}
@@ -1383,6 +1423,7 @@ static void aicwf_sdio_hal_irqhandler(struct sdio_func *func)
 		if (intstatus & SDIO_OTHER_INTERRUPT) {
 			u8 int_pending;
 			ret = aicwf_sdio_readb(aicdev->func[0], aicdev->sdio_reg.sleep_reg, &int_pending);
+			pr_err("AICD80 other_irq sleep_reg read ret=%d int_pending=0x%02x\n", ret, int_pending);
 			if (ret < 0) {
 				bsp_err("reg:%d read failed!\n", aicdev->sdio_reg.sleep_reg);
 			}
@@ -1399,6 +1440,7 @@ static void aicwf_sdio_hal_irqhandler(struct sdio_func *func)
 				if (intmaskf2 == 127U) { // byte mode
 					//aicwf_sdio_intr_get_len_bytemode(aicdev, &byte_len, 1);//byte_len must<= 128
 					aicwf_sdio_intr_get_len_bytemode(aicdev, &byte_len);//byte_len must<= 128
+ 				pr_err("AIC8800DC: byte_len=%d\\n", byte_len);
 					bsp_info("byte mode len=%d\r\n", byte_len);
 					//pkt = aicwf_sdio_readframes(aicdev, 1);
 					pkt = aicwf_sdio_readframes(aicdev);
@@ -1411,6 +1453,7 @@ static void aicwf_sdio_hal_irqhandler(struct sdio_func *func)
 				if (intstatus == 120U) { // byte mode
 					//aicwf_sdio_intr_get_len_bytemode(aicdev, &byte_len, 0);//byte_len must<= 128
 					aicwf_sdio_intr_get_len_bytemode(aicdev, &byte_len);//byte_len must<= 128
+ 				pr_err("AIC8800DC: byte_len=%d\\n", byte_len);
 					bsp_info("byte mode len=%d\r\n", byte_len);
 					//pkt = aicwf_sdio_readframes(aicdev, 0);
 					pkt = aicwf_sdio_readframes(aicdev);
@@ -1418,6 +1461,7 @@ static void aicwf_sdio_hal_irqhandler(struct sdio_func *func)
 					aicdev->rx_priv->data_len = (intstatus & 0x7FU) * SDIOWIFI_FUNC_BLOCKSIZE;
 					//pkt = aicwf_sdio_readframes(aicdev, 0);
 					pkt = aicwf_sdio_readframes(aicdev);
+					pr_err("AICD80 readframes pkt=%p\n", pkt);
 				}
 			}
 	} else {
@@ -1431,6 +1475,8 @@ static void aicwf_sdio_hal_irqhandler(struct sdio_func *func)
 	}
 
 	complete(&bus_if->busrx_trgg);
+	pr_err("AICTRGG complete trgg=%p bus_if=%p drvdata=%p\n",
+	       &bus_if->busrx_trgg, bus_if, dev_get_drvdata(&func->dev));
 }
 
 /* 2026-09-26: bound on the SDIO interrupt-status drain loop in the IRQ
@@ -1485,6 +1531,7 @@ static void aicwf_sdio_hal_irqhandler_func2(struct sdio_func *func)
 		if (!ret && !(intstatus & SDIO_OTHER_INTERRUPT))
 			break;
 		ret = aicwf_sdio_readb(aicdev->func[0], aicdev->sdio_reg.block_cnt_reg, &intstatus);
+ 		pr_err("AIC8800DC: intstatus=0x%02x\\n", intstatus);
 	}
 	if (ret || (intstatus & SDIO_OTHER_INTERRUPT))
 		bsp_err("rx: intstatus=%x still set after %d retries\r\n",
@@ -1497,6 +1544,7 @@ static void aicwf_sdio_hal_irqhandler_func2(struct sdio_func *func)
 			bsp_info("byte mode len=%d\r\n", byte_len);
 
 			aicwf_sdio_intr_get_len_bytemode(aicdev, &byte_len);//byte_len must<= 128
+ 				pr_err("AIC8800DC: byte_len=%d\\n", byte_len);
 			pkt = aicwf_sdio_readmessages(aicdev);
 		}
 	} else {

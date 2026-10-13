@@ -14,8 +14,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(sun8i_tcon_top_set_hdmi_src, "");
 SYMBOL_FLAGS(sun8i_tcon_top_set_hdmi_src, 0x00);
 KSYMTAB_FUNC(sun8i_tcon_top_de_config, "");

@@ -14,8 +14,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(mtk_cec_set_hpd_event, "DRM_MTK_HDMI_V1");
 SYMBOL_FLAGS(mtk_cec_set_hpd_event, 0x01);
 KSYMTAB_FUNC(mtk_cec_hpd_high, "DRM_MTK_HDMI_V1");

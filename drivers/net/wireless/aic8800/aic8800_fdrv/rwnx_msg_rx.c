@@ -1442,8 +1442,43 @@ static msg_cb_fct mesh_hdlrs[MSG_I(MESH_MAX)] = {
 
 #endif /* CONFIG_RWNX_FULLMAC */
 
+/*
+ * 2026-10-11 REGRESSION FIX (dbg confirm stubs): a no-op handler so every
+ * DBG_*_CFM with no payload interest still fills the pending cmd's cb and
+ * releases rwnx_wait_cmd_confirm(). Without it, cfm arrivals ran handler=NULL
+ * and senders timed out -> RWNX_CMD_MGR_STATE_CRASHED -> no WiFi.
+ */
+static int rwnx_rx_dbg_null_handler(struct rwnx_hw *rwnx_hw,
+				    struct rwnx_cmd *cmd,
+				    struct ipc_e2a_msg *msg)
+{
+	(void)rwnx_hw; (void)cmd; (void)msg;
+	return 0;
+}
+
 static msg_cb_fct dbg_hdlrs[MSG_I(DBG_MAX)] = {
+	/*
+	 * 2026-10-11 REGRESSION FIX: dbg_hdlrs[] had lost every DBG confirm
+	 * handler. With only DBG_ERROR_IND registered, all DBG_START_APP_CFM
+	 * / DBG_MEM_WRITE_CFM / DBG_MEM_BLOCK_WRITE_CFM arrivals passed
+	 * handler=NULL straight into rwnx_rx_handle_msg(), the pending cmd's
+	 * msgcfm cb stayed NULL, and rwnx_wait_cmd_confirm() returned
+	 * ETIMEDOUT -> RWNX_CMD_MGR_STATE_CRASHED -> every later command
+	 * -EPIPE. Symptom: blkup sent=N cfm=0, no scan results, "bus down".
+	 * BREAKTHROUGH-wifi-scanning-works-BSS2.md defect #1 fixed this once
+	 * on 2026-10-02 by registering null-payload confirm stubs; the stubs
+	 * were later dropped from dbg_hdlrs during the confirm-refactor.
+	 */
 	[MSG_I(DBG_ERROR_IND)]                = rwnx_rx_dbg_error_ind,
+	[MSG_I(DBG_MEM_READ_CFM)]             = rwnx_rx_dbg_null_handler,
+	[MSG_I(DBG_MEM_WRITE_CFM)]            = rwnx_rx_dbg_null_handler,
+	[MSG_I(DBG_MEM_BLOCK_WRITE_CFM)]      = rwnx_rx_dbg_null_handler,
+	[MSG_I(DBG_START_APP_CFM)]            = rwnx_rx_dbg_null_handler,
+	[MSG_I(DBG_START_NPC_CFM)]            = rwnx_rx_dbg_null_handler,
+	[MSG_I(DBG_MEM_MASK_WRITE_CFM)]       = rwnx_rx_dbg_null_handler,
+	[MSG_I(DBG_GET_SYS_STAT_CFM)]         = rwnx_rx_dbg_null_handler,
+	[MSG_I(DBG_SET_MOD_FILTER_CFM)]       = rwnx_rx_dbg_null_handler,
+	[MSG_I(DBG_SET_SEV_FILTER_CFM)]       = rwnx_rx_dbg_null_handler,
 };
 
 static msg_cb_fct tdls_hdlrs[MSG_I(TDLS_MAX)] = {

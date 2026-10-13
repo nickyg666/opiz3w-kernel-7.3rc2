@@ -14,8 +14,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_DATA(vop2_component_ops, "");
 SYMBOL_FLAGS(vop2_component_ops, 0x01);
 KSYMTAB_FUNC(rockchip_drm_wait_vact_end, "");

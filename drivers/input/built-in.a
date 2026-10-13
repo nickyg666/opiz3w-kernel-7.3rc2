@@ -1,5 +1,5 @@
 !<thin>
-//                                              480       `
+//                                              502       `
 input.o/
 input-compat.o/
 input-mt.o/
@@ -24,10 +24,10 @@ mouse/logips2pp.o/
 mouse/trackpoint.o/
 mouse/cypress_ps2.o/
 mouse/psmouse-smbus.o/
+touchscreen/ads7846.o/
 misc/hisi_powerkey.o/
 misc/pm8941-pwrkey.o/
 misc/xen-kbdfront.o/
-
 /0              0           0     0     644     221080    `
 /9              0           0     0     644     33264     `
 /25             0           0     0     644     41760     `
@@ -52,6 +52,7 @@ misc/xen-kbdfront.o/
 /350            0           0     0     644     51008     `
 /370            0           0     0     644     41192     `
 /391            0           0     0     644     43576     `
-/414            0           0     0     644     24200     `
-/436            0           0     0     644     42912     `
-/458            0           0     0     644     53464     `
+/414            0           0     0     644     126920    `
+/437            0           0     0     644     24200     `
+/459            0           0     0     644     42912     `
+/481            0           0     0     644     53464     `

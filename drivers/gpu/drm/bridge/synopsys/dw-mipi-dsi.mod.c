@@ -10,8 +10,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(dw_mipi_dsi_set_slave, "");
 SYMBOL_FLAGS(dw_mipi_dsi_set_slave, 0x01);
 KSYMTAB_FUNC(dw_mipi_dsi_get_bridge, "");

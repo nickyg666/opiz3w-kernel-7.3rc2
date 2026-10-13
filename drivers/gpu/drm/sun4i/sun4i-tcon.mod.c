@@ -14,8 +14,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(sun4i_dclk_create, "");
 SYMBOL_FLAGS(sun4i_dclk_create, 0x00);
 KSYMTAB_FUNC(sun4i_dclk_free, "");

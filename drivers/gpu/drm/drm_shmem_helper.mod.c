@@ -10,8 +10,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(drm_gem_shmem_init, "");
 SYMBOL_FLAGS(drm_gem_shmem_init, 0x01);
 KSYMTAB_FUNC(drm_gem_shmem_create, "");

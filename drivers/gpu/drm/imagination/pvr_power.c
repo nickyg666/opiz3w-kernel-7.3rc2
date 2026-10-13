@@ -299,6 +299,45 @@ static int pvr_power_on_sequence_manual(struct pvr_device *pvr_dev)
 	if (err)
 		goto err_mem_clk_disable;
 
+	/* A733 GPU PPU power sequence (from vendor gpu_domain.c). */
+	{
+		void __iomem *ppu = ioremap(0x7060000, 0x1000);
+		if (ppu) {
+			int i;
+			for (i = 0; i < 8; i++) {
+				writel(1 << i, ppu + 0x0C);
+				udelay(1);
+			}
+			writel(1, ppu + 0x04);
+			udelay(1);
+			writel(0, ppu + 0x08);
+			writel(1 << 23, ppu + 0x0C);
+			udelay(10);
+			writel(1 << 18, ppu + 0x0C);
+			udelay(10);
+			writel(1 << 16, ppu + 0x0C);
+			udelay(5);
+			writel(1 << 19, ppu + 0x0C);
+			udelay(5);
+			writel(1 << 20, ppu + 0x0C);
+			udelay(5);
+			writel(1 << 21, ppu + 0x0C);
+			udelay(5);
+			writel(1 << 22, ppu + 0x0C);
+			udelay(5);
+			writel(1 << 17, ppu + 0x0C);
+			udelay(5);
+			writel(0, ppu + 0x08);
+			udelay(1);
+			writel(1, ppu + 0x00);
+			udelay(10);
+			writel(0, ppu + 0x20);
+			writel(1, ppu + 0x28);
+			writel(1, ppu + 0x2C);
+			iounmap(ppu);
+		}
+	}
+
 	return 0;
 
 err_mem_clk_disable:
@@ -620,91 +659,23 @@ pvr_watchdog_fini(struct pvr_device *pvr_dev)
 
 int pvr_power_domains_init(struct pvr_device *pvr_dev)
 {
-	static const char *const ROGUE_PD_NAMES[] = { "a", "b", "c", "d", "e" };
-
+	/*
+	 * A733 bring-up: the mainline pck600 genpd path hangs the SoC when
+	 * powervr attaches to the GPU power domains (dev_pm_domain_attach_list
+	 * -> pck600 -> bus stall). The GPU is instead powered directly via the
+	 * PPU register sequence in pvr_power_on_sequence_manual() (see the
+	 * ioremap(0x7060000) block below). Skip genpd attach entirely.
+	 */
 	struct drm_device *drm_dev = from_pvr_device(pvr_dev);
-	struct device *dev = drm_dev->dev;
 
-	struct dev_pm_domain_list *domains = NULL;
-	struct device_link **domain_links = NULL;
-	int domain_count;
-	int link_count;
+	drm_info(drm_dev, "pvr_power_domains_init: skipping genpd attach (A733 PPU direct power)\n");
 
-	int err;
-	int i;
-
-	domain_count = of_count_phandle_with_args(dev->of_node, "power-domains",
-						  "#power-domain-cells");
-	if (domain_count < 0) {
-		err = domain_count;
-		goto out;
-	}
-
-	if (domain_count <= 1) {
-		err = 0;
-		goto out;
-	}
-
-	if (domain_count > ARRAY_SIZE(ROGUE_PD_NAMES)) {
-		drm_err(drm_dev, "%s() only supports %zu domains on Rogue",
-			__func__, ARRAY_SIZE(ROGUE_PD_NAMES));
-		err = -EOPNOTSUPP;
-		goto out;
-	}
-
-	link_count = domain_count - 1;
-
-	domain_links = kzalloc_objs(*domain_links, link_count);
-	if (!domain_links) {
-		err = -ENOMEM;
-		goto out;
-	}
-
-	const struct dev_pm_domain_attach_data pd_attach_data = {
-		.pd_names = ROGUE_PD_NAMES,
-		.num_pd_names = domain_count,
-		.pd_flags = 0,
-	};
-
-	err = dev_pm_domain_attach_list(dev, &pd_attach_data, &domains);
-	if (err < 0)
-		goto err_free_links;
-
-	for (i = 0; i < link_count; i++) {
-		struct device_link *link;
-
-		link = device_link_add(domains->pd_devs[i + 1],
-				       domains->pd_devs[i],
-				       DL_FLAG_STATELESS | DL_FLAG_PM_RUNTIME);
-		if (!link) {
-			err = -ENODEV;
-			goto err_unlink;
-		}
-
-		domain_links[i] = link;
-	}
-
-	err = 0;
-	goto out;
-
-err_unlink:
-	while (--i >= 0)
-		device_link_del(domain_links[i]);
-
-	dev_pm_domain_detach_list(domains);
-	domains = NULL;
-
-err_free_links:
-	kfree(domain_links);
-	domain_links = NULL;
-
-out:
 	pvr_dev->power = (struct pvr_device_power){
-		.domains = domains,
-		.domain_links = domain_links,
+		.domains = NULL,
+		.domain_links = NULL,
 	};
 
-	return err;
+	return 0;
 }
 
 void pvr_power_domains_fini(struct pvr_device *pvr_dev)

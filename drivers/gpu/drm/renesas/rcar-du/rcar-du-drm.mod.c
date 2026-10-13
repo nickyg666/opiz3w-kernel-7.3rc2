@@ -14,8 +14,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 
 MODULE_INFO(depends, "drm_kms_helper,drm_dma_helper,vsp1,rcar_lvds,rcar_cmm,rcar_mipi_dsi,drm_client_lib,drm_display_helper");
 

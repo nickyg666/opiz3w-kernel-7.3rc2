@@ -20,6 +20,7 @@ drivers/gpu/drm/panel/panel-edp.o
 drivers/gpu/drm/panel/panel-himax-hx8279.o
 drivers/gpu/drm/panel/panel-himax-hx83112a.o
 drivers/gpu/drm/panel/panel-himax-hx83112b.o
+drivers/gpu/drm/panel/panel-ilitek-ili9341.o
 drivers/gpu/drm/panel/panel-ilitek-ili9882t.o
 drivers/gpu/drm/panel/panel-khadas-ts050.o
 drivers/gpu/drm/panel/panel-novatek-nt36672a.o
@@ -30,6 +31,7 @@ drivers/gpu/drm/panel/panel-raydium-rm67191.o
 drivers/gpu/drm/panel/panel-raydium-rm692e5.o
 drivers/gpu/drm/panel/panel-samsung-atna33xc20.o
 drivers/gpu/drm/panel/panel-sitronix-st7703.o
+drivers/gpu/drm/panel/panel-sitronix-st7789v.o
 drivers/gpu/drm/panel/panel-summit.o
 drivers/gpu/drm/panel/panel-startek-kd070fhfid015.o
 drivers/gpu/drm/panel/panel-truly-nt35597.o
@@ -77,6 +79,7 @@ drivers/gpu/drm/hisilicon/kirin/kirin-drm.o
 drivers/gpu/drm/hisilicon/kirin/dw_drm_dsi.o
 drivers/gpu/drm/mxsfb/mxsfb.o
 drivers/gpu/drm/mxsfb/imx-lcdif.o
+drivers/gpu/drm/tiny/ili9486.o
 drivers/gpu/drm/xlnx/zynqmp-dpsub.o
 drivers/gpu/drm/drm_exec.o
 drivers/gpu/drm/drm_gpuvm.o
@@ -84,6 +87,7 @@ drivers/gpu/drm/drm_dma_helper.o
 drivers/gpu/drm/drm_shmem_helper.o
 drivers/gpu/drm/drm_ttm_helper.o
 drivers/gpu/drm/drm_kms_helper.o
+drivers/gpu/drm/drm_mipi_dbi.o
 drivers/gpu/drm/ttm/ttm.o
 drivers/gpu/drm/scheduler/gpu-sched.o
 drivers/gpu/drm/v3d/v3d.o

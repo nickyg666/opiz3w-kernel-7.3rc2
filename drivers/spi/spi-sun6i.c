@@ -793,6 +793,13 @@ static const struct of_device_id sun6i_spi_match[] = {
 	 * register. But in practice we only care about the FIFO level.
 	 */
 	{ .compatible = "allwinner,sun55i-a523-spi", .data = &sun50i_r329_spi_cfg },
+	/*
+	 * A733 (sun60iw2) shares the R329/A523 SPI register layout. Using the
+	 * named SoC compatible here is required: the DTB must NOT use the
+	 * generic "allwinner,sunxi-spi-v1.3" string, which no in-tree driver
+	 * matches (allwinner-linux 6.x used the generic one).
+	 */
+	{ .compatible = "allwinner,sun60iw2-spi", .data = &sun50i_r329_spi_cfg },
 	{}
 };
 MODULE_DEVICE_TABLE(of, sun6i_spi_match);

@@ -14,8 +14,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(devm_drm_dp_hpd_bridge_alloc, "");
 SYMBOL_FLAGS(devm_drm_dp_hpd_bridge_alloc, 0x01);
 KSYMTAB_FUNC(devm_drm_dp_hpd_bridge_add, "");

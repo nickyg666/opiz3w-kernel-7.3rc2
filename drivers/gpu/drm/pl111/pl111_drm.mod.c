@@ -14,8 +14,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(pl111_versatile_init, "");
 SYMBOL_FLAGS(pl111_versatile_init, 0x01);
 

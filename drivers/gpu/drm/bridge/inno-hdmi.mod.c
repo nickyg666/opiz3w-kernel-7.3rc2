@@ -10,8 +10,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(inno_hdmi_bind, "");
 SYMBOL_FLAGS(inno_hdmi_bind, 0x01);
 

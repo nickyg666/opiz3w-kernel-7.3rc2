@@ -14,8 +14,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(aicbsp_get_feature, "");
 SYMBOL_FLAGS(aicbsp_get_feature, 0x01);
 KSYMTAB_FUNC(aicbsp_resv_mem_alloc_skb, "");
@@ -35,4 +33,4 @@ MODULE_ALIAS("sdio:c*v544Ad0146*");
 MODULE_ALIAS("sdio:c*vC8A1dC18D*");
 MODULE_ALIAS("sdio:c*vC8A1d0182*");
 
-MODULE_INFO(srcversion, "97EB0EDBD3F1491603FA2A6");
+MODULE_INFO(srcversion, "7EB2663F1A99306FC75103A");

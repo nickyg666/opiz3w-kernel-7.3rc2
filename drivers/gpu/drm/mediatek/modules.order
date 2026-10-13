@@ -1,8 +1,8 @@
-drivers/gpu/drm/mediatek/mediatek-drm.o
-drivers/gpu/drm/mediatek/mtk_hdmi_common.o
-drivers/gpu/drm/mediatek/mtk_cec.o
-drivers/gpu/drm/mediatek/mtk_hdmi.o
-drivers/gpu/drm/mediatek/mtk_hdmi_ddc.o
-drivers/gpu/drm/mediatek/mtk_hdmi_v2.o
-drivers/gpu/drm/mediatek/mtk_hdmi_ddc_v2.o
-drivers/gpu/drm/mediatek/mtk_dp.o
+mediatek/mediatek-drm.o
+mediatek/mtk_hdmi_common.o
+mediatek/mtk_cec.o
+mediatek/mtk_hdmi.o
+mediatek/mtk_hdmi_ddc.o
+mediatek/mtk_hdmi_v2.o
+mediatek/mtk_hdmi_ddc_v2.o
+mediatek/mtk_dp.o

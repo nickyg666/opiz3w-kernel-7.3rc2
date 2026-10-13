@@ -10,8 +10,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(drm_exec_init, "");
 SYMBOL_FLAGS(drm_exec_init, 0x00);
 KSYMTAB_FUNC(drm_exec_fini, "");

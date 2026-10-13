@@ -14,8 +14,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 
 MODULE_INFO(depends, "sunxi_rfkill,aic8800_bsp");
 
@@ -23,4 +21,4 @@ MODULE_ALIAS("sdio:c*v5449d0145*");
 MODULE_ALIAS("sdio:c*vC8A1dC08D*");
 MODULE_ALIAS("sdio:c*vC8A1d0082*");
 
-MODULE_INFO(srcversion, "ABFD88E86A6163F39FE9C38");
+MODULE_INFO(srcversion, "33B2F2F5BC46C3698085BAB");

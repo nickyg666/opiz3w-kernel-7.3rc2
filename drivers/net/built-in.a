@@ -1,5 +1,5 @@
 !<thin>
-//                                              1174      `
+//                                              1222      `
 loopback.o/
 phy/stubs.o/
 phy/mdio_bus.o/
@@ -51,6 +51,7 @@ ethernet/apm/xgene/xgene_enet_main.o/
 ethernet/apm/xgene/xgene_enet_ring2.o/
 ethernet/apm/xgene/xgene_enet_ethtool.o/
 ethernet/apm/xgene/xgene_enet_cle.o/
+wireless/aic8800/aic8800_btlpm/aic8800_btlpm.o/
 xen-netfront.o/
 net_failover.o/
 /0              0           0     0     644     76232     `
@@ -104,5 +105,6 @@ net_failover.o/
 /1025           0           0     0     644     29256     `
 /1064           0           0     0     644     42288     `
 /1105           0           0     0     644     40664     `
-/1142           0           0     0     644     259376    `
-/1158           0           0     0     644     99048     `
+/1142           0           0     0     644     103840    `
+/1190           0           0     0     644     259376    `
+/1206           0           0     0     644     99048     `

@@ -6,7 +6,7 @@
 //#define TYPEC_DP 1
 /{
 	board = "A733";
-	compatible = "xunlong,orangepi-4-pro", "arm,sun60iw2p1";
+	compatible = "xunlong,orangepi-zero3w", "arm,sun60iw2p1";
 	aliases {
 		serial0 = &uart0;
 		serial1 = &uart1;
@@ -1741,18 +1741,21 @@
 	no-sd;
 	cap-sd-highspeed;
 	/*sd-uhs-sdr12*/
-	sd-uhs-sdr25;
-	sd-uhs-sdr50;
-	sd-uhs-ddr50;
-	sd-uhs-sdr104;
+	/*sd-uhs-sdr25*/
+	/*sd-uhs-sdr50*/
+	/*sd-uhs-ddr50*/
+	/*sd-uhs-sdr104*/
 	/*sunxi-power-save-mode;*/
 	sunxi-dis-signal-vol-sw;
 	cap-sdio-irq;
 	keep-power-in-suspend;
 	ignore-pm-notify;
 	execute_tuning_in_kernel;
-	max-frequency = <208000000>;
-	sunxi-dly-208M  = <0 0 0 0 0 0>;
+	/* WiFi SDIO: measured 50 MHz high-speed only. 208 MHz + sd-uhs-* wedges
+	 * the SDIO IRQ (scan/DHCP hangs the chip) — see golden ticket
+	 * AIC8800-GOLDEN-TICKET-20261011.md, fdrv 0cb2f535, DTB e61583e2. */
+	max-frequency = <50000000>;
+	sunxi-dly-208M = <0 0 0 0 0 0>;
 	ctl-spec-caps = <0x428>;
 	status = "okay";
 };
@@ -3541,7 +3544,7 @@
 	spi0_cs_bitmap = <1>;
 	sunxi,spi-num-cs = <1>;
 	spi0_cs_number = <1>;
-	status = "disabled";
+	status = "okay";
 
 	spidev@0 {
 		device_type = "spi_board0";
@@ -3551,7 +3554,7 @@
 		spi-rx-bus-width = <1>;
 		spi-tx-bus-width = <1>;
 		m25p,fast-read = <1>;
-		status = "okay";
+		status = "disabled";
 	};
 };
 
@@ -3583,16 +3586,6 @@
 		status = "disabled";
 	};
 
-	ili9486@0 {
-		compatible = "iltek,ili9486";
-		reg = <0>;
-		spi-max-frequency = <32000000>;
-		dc-gpios = <&r_pio 0 3 0>;
-		reset-gpios = <&pio 3 0 0>;
-		width = <320>;
-		height = <480>;
-		scale = <1>;
-	};
 
 	ads7846@1 {
 		compatible = "ti,tsc2046";
@@ -3600,8 +3593,18 @@
 		spi-max-frequency = <2000000>;
 		interrupt-parent = <&pio>;
 		interrupts = <1 0 8>;
-		pendown-gpios = <&pio 1 0 1>;
-		ti,pressure-max = <0xfff>;
+		pendown-gpios = <&pio PB 0 GPIO_ACTIVE_LOW>;
+		ti,pressure-max = <4095>;
+		status = "okay";
+	};
+
+	ili9486@0 {
+		compatible = "waveshare,rpi-lcd-35";
+		reg = <0>;
+		spi-max-frequency = <32000000>;
+		dc-gpios = <&r_pio PL 3 GPIO_ACTIVE_HIGH>;
+		reset-gpios = <&pio PD 0 GPIO_ACTIVE_HIGH>;
+		status = "okay";
 	};
 };
 

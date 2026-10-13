@@ -1,1 +1,1 @@
-drivers/gpu/drm/clients/drm_client_lib.o
+clients/drm_client_lib.o

@@ -14,8 +14,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(rcar_cmm_setup, "");
 SYMBOL_FLAGS(rcar_cmm_setup, 0x01);
 KSYMTAB_FUNC(rcar_cmm_enable, "");

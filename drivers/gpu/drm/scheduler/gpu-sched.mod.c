@@ -14,8 +14,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(drm_sched_tdr_queue_imm, "");
 SYMBOL_FLAGS(drm_sched_tdr_queue_imm, 0x00);
 KSYMTAB_FUNC(drm_sched_fault, "");

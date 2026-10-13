@@ -14,8 +14,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(of_dp_aux_depopulate_bus, "");
 SYMBOL_FLAGS(of_dp_aux_depopulate_bus, 0x01);
 KSYMTAB_FUNC(of_dp_aux_populate_bus, "");

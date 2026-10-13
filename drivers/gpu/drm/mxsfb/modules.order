@@ -1,2 +1,2 @@
-drivers/gpu/drm/mxsfb/mxsfb.o
-drivers/gpu/drm/mxsfb/imx-lcdif.o
+mxsfb/mxsfb.o
+mxsfb/imx-lcdif.o

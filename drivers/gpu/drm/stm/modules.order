@@ -1,2 +1,2 @@
-drivers/gpu/drm/stm/lvds.o
-drivers/gpu/drm/stm/stm-drm.o
+stm/lvds.o
+stm/stm-drm.o

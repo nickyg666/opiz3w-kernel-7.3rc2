@@ -10,8 +10,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(mtk_hdmi_get_ncts, "DRM_MTK_HDMI");
 SYMBOL_FLAGS(mtk_hdmi_get_ncts, 0x01);
 KSYMTAB_FUNC(mtk_hdmi_audio_params, "DRM_MTK_HDMI");

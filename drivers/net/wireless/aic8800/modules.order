@@ -1,2 +1,2 @@
-drivers/net/wireless/aic8800/aic8800_bsp/aic8800_bsp.o
-drivers/net/wireless/aic8800/aic8800_fdrv/aic8800_fdrv.o
+aic8800_bsp/aic8800_bsp.o
+aic8800_fdrv/aic8800_fdrv.o

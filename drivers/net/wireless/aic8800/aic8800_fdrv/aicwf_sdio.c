@@ -353,6 +353,31 @@ static int aicwf_sdio_probe(struct sdio_func *func,
 	sdiodev->func2 = func->card->sdio_func[1];
 	if (sdiodev->func2)
 		dev_set_drvdata(&sdiodev->func2->dev, bus_if);
+
+	/*
+	 * 2026-10-10: AIIRQINIT measured
+	 *   sdio_claim_irq(sdiodev->func, …) = -EBUSY
+	 * so func->irq_handler was already non-NULL and
+	 * aicwf_sdio_hal_irqhandler() was NEVER installed - which is why AIIRQ
+	 * entries = 0, AICTX = 0 and AICRX = 0 for the whole life of the lane.
+	 * sdio_irq.c:309 returns -EBUSY precisely when func->irq_handler is set.
+	 *
+	 * TEMPORARY DIAGNOSTIC: name the owner of every function's IRQ so the
+	 * collision is visible. Remove once one owner per function is decided.
+	 */
+	{
+		int n;
+		for (n = 0; n < 4; n++) {
+			struct sdio_func *sf = func->card->sdio_func[n];
+			if (!sf)
+				continue;
+			pr_err("AIIRQOWN func[%d] num=%u irq_handler=%p this_drv=%p drvdata=%p\n",
+			       n, sf->num,
+			       (void *)(uintptr_t)sf->irq_handler,
+			       (void *)(uintptr_t)aicwf_sdio_hal_irqhandler,
+			       (void *)dev_get_drvdata(&sf->dev));
+		}
+	}
 	sdiodev->bus_if = bus_if;
 	sdiodev->oob_enable = false;
 	atomic_set(&sdiodev->is_bus_suspend, 0);
@@ -1257,7 +1282,52 @@ static int aicwf_sdio_bus_start(struct device *dev)
 	int ret = 0;
 
 	sdio_claim_host(sdiodev->func);
-	sdio_claim_irq(sdiodev->func, aicwf_sdio_hal_irqhandler);
+	/*
+	 * 2026-10-10: AIIRQ shows aicwf_sdio_hal_irqhandler() is never entered on
+	 * this board, so the claim either fails or is on a function that never
+	 * fires. The return value has always been discarded here, which makes a
+	 * silent failure indistinguishable from success. Report it.
+	 *
+	 * TEMPORARY DIAGNOSTIC - remove once the IRQ is confirmed delivered.
+	 */
+	{
+		int irq_ret = sdio_claim_irq(sdiodev->func, aicwf_sdio_hal_irqhandler);
+		if (irq_ret == -EBUSY) {
+			/*
+			 * 2026-10-10 ROOT CAUSE, measured:
+			 *
+			 *   AIIRQOWN func[0] num=1 irq_handler=0x98ab17f2  (BSP-owned)
+			 *                       func[1] num=2 irq_handler=0x0
+			 *
+			 * aic8800_bsp claims func[0]'s IRQ in its own
+			 * aicwf_sdio_bus_start() for firmware bring-up and never
+			 * releases it. It also re-assigns func[0] =
+			 * card->sdio_func[1-1] in aicbsp_sdio_probe (aicsdio.c:247),
+			 * so it operates on the very function this driver binds.
+			 *
+			 * Measured consequence: sdio_claim_irq() here returns
+			 * -EBUSY, aicwf_sdio_hal_irqhandler is never installed,
+			 * and this driver's entire RX stack is dead code
+			 * (AIIRQINIT=0, AIFUNC=0, AICFQ=0) while the BSP drains
+			 * the chip FIFO into ITS OWN rx_priv queue, which nothing
+			 * consumes (AICRX=0, AICTX=0, rx_cnt frozen at 1).
+			 *
+			 * The BSP's bring-up is already finished by the time this
+			 * runs - its firmware download completes during
+			 * aicbsp_sdio_probe, ~80 ms before this driver probes -
+			 * so taking the IRQ back is safe and is exactly the
+			 * handoff the split is missing. release+claim is
+			 * symmetric in sdio_irq.c (irq_handler cleared, card_irq
+			 * put/get balanced).
+			 */
+			pr_err("AIIRQTAKE func num=%u irq was EBUSY (BSP-owned), taking over\n",
+			       sdiodev->func ? sdiodev->func->num : 99u);
+			sdio_release_irq(sdiodev->func);
+			irq_ret = sdio_claim_irq(sdiodev->func, aicwf_sdio_hal_irqhandler);
+		}
+		pr_err("AIIRQINIT bus_start: claimed irq on func num=%u ret=%d\n",
+		       sdiodev->func ? sdiodev->func->num : 99u, irq_ret);
+	}
 	if (aicwf_chipid == PRODUCT_ID_AIC8800D80) {
 		sdio_f0_writeb(sdiodev->func, 0x07, 0x04, &ret);
 		if (ret) {
@@ -1388,13 +1458,6 @@ int sdio_busrx_thread(void *data)
 	 * BSP's success is polled register reads, or wakeups are being lost.
 	 * A wakeup counter separates those in one boot.
 	 */
-	{
-		static u32 aifunc_wakeups;
-		aifunc_wakeups++;
-		pr_err("AIFUNC wakeup #%u intstatus_read_done state=%d rx_cnt=%d\n",
-		       aifunc_wakeups, (int)bus_if->state,
-		       (int)atomic_read(&sdiodev->rx_priv->rx_cnt));
-	}
 	#if 0
 		if (kthread_should_stop()) {
 			sdio_err("sdio busrx thread stop\n");
@@ -1529,6 +1592,7 @@ void aicwf_sdio_hal_irqhandler(struct sdio_func *func)
 	int ret;
 	int retry = 10;
 
+
 	if ((sdiodev->rwnx_hw) == NULL) {
 		sdio_err("waiting for rwnx_hw->irq_enable is true\r\n");
 		return;
@@ -1647,6 +1711,11 @@ void aicwf_sdio_hal_irqhandler(struct sdio_func *func)
 			sdiodev->oob_enable == false){
 			complete(&bus_if->busrx_trgg);
 		}
+		/* TEMPORARY DIAGNOSTIC 2026-10-10 (D80 branch - the one our chip
+		 * takes): report whether the RX wakeup was actually signalled.
+		 * The BSP completes busrx_trgg unconditionally; this only does it
+		 * when rx_cnt == 1, so a wakeup with rx_cnt 0 leaves the RX thread
+		 * asleep forever - which matches the single observed wakeup. */
 	}
 	rwnx_wakeup_unlock(sdiodev->rwnx_hw->ws_irqrx);
 }

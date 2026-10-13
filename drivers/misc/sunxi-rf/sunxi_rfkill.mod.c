@@ -32,4 +32,4 @@ SYMBOL_FLAGS(sunxi_wlan_get_oob_irq, 0x01);
 MODULE_INFO(depends, "");
 
 
-MODULE_INFO(srcversion, "4A955145E29EA8AD40B3024");
+MODULE_INFO(srcversion, "178748223E630DE8A711DE5");

@@ -14,8 +14,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(samsung_dsim_probe, "");
 SYMBOL_FLAGS(samsung_dsim_probe, 0x01);
 KSYMTAB_FUNC(samsung_dsim_remove, "");

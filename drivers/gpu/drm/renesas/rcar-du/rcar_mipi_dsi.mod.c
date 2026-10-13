@@ -14,8 +14,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(rcar_mipi_dsi_pclk_enable, "");
 SYMBOL_FLAGS(rcar_mipi_dsi_pclk_enable, 0x01);
 KSYMTAB_FUNC(rcar_mipi_dsi_pclk_disable, "");

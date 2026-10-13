@@ -1,3 +1,3 @@
-drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.o
-drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.o
-drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.o
+bridge/imx/imx8mp-hdmi-tx.o
+bridge/imx/imx8mp-hdmi-pai.o
+bridge/imx/imx8mp-hdmi-pvi.o

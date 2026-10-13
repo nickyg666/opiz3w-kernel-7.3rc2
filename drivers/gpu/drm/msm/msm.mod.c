@@ -14,8 +14,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 
 MODULE_INFO(depends, "drm_kms_helper,drm_display_helper,gpu-sched,drm_gpuvm,ocmem,llcc-qcom,drm_exec,drm_dp_aux_bus,mdt_loader,drm_client_lib,ubwc_config");
 

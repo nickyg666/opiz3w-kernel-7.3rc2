@@ -10,8 +10,6 @@ __section(".gnu.linkonce.this_module") = {
 	.arch = MODULE_ARCH_INIT,
 };
 
-MODULE_INFO(intree, "Y");
-
 KSYMTAB_FUNC(analogix_dp_probe, "");
 SYMBOL_FLAGS(analogix_dp_probe, 0x01);
 KSYMTAB_FUNC(analogix_dp_suspend, "");
