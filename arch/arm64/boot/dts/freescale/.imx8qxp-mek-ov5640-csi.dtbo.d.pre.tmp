@@ -1,0 +1,4 @@
+imx8qxp-mek-ov5640-csi.o: \
+ arch/arm64/boot/dts/freescale/imx8qxp-mek-ov5640-csi.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/media/video-interfaces.h

@@ -1,0 +1,72 @@
+# 0 "arch/arm64/boot/dts/qcom/qrb2210-rb1-vision-mezzanine.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/qcom/qrb2210-rb1-vision-mezzanine.dtso"
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/clock/qcom,gcc-qcm2290.h" 1
+# 10 "arch/arm64/boot/dts/qcom/qrb2210-rb1-vision-mezzanine.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 11 "arch/arm64/boot/dts/qcom/qrb2210-rb1-vision-mezzanine.dtso" 2
+
+&pm8008 {
+ status = "okay";
+};
+
+&camss {
+ status = "okay";
+
+ vdd-csiphy-1p2-supply = <&pm4125_l5>;
+ vdd-csiphy-1p8-supply = <&pm4125_l13>;
+
+ ports {
+  port@0 {
+   csiphy0_ep: endpoint {
+    data-lanes = <0 1>;
+    remote-endpoint = <&ov9282_ep>;
+   };
+  };
+ };
+};
+
+&cci {
+ status = "okay";
+};
+
+&cci_i2c1 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+
+ camera@60 {
+  compatible = "ovti,ov9282";
+  reg = <0x60>;
+
+
+  reset-gpios = <&tlmm 18 0>;
+  pinctrl-0 = <&mclk3_default>;
+  pinctrl-names = "default";
+
+  clocks = <&gcc 43>;
+  assigned-clocks = <&gcc 43>;
+  assigned-clock-rates = <24000000>;
+
+  avdd-supply = <&vreg_l3p>;
+  dvdd-supply = <&vreg_l1p>;
+  dovdd-supply = <&vreg_l7p>;
+
+  port {
+   ov9282_ep: endpoint {
+    link-frequencies = /bits/ 64 <400000000>;
+    data-lanes = <1 2>;
+    remote-endpoint = <&csiphy0_ep>;
+   };
+  };
+ };
+};

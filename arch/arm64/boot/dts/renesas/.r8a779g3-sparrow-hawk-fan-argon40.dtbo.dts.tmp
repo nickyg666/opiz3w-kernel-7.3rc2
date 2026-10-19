@@ -1,0 +1,33 @@
+# 0 "arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-argon40.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-argon40.dtso"
+# 24 "arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-argon40.dtso"
+/dts-v1/;
+/plugin/;
+
+&{/} {
+ pwm-fan-ext {
+  compatible = "pwm-fan";
+  #cooling-cells = <2>;
+
+  pwms = <&pwmhat 0 33334 0>;
+
+  cooling-levels = <0 50 100 150 200 255>;
+  fan-shutdown-percent = <100>;
+ };
+};
+
+
+&i2c3 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+ clock-frequency = <400000>;
+ status = "okay";
+
+ pwmhat: pwm@1a {
+  compatible = "argon40,fan-hat";
+  reg = <0x1a>;
+  #pwm-cells = <3>;
+ };
+};

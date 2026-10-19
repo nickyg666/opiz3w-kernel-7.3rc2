@@ -1,0 +1,68 @@
+# 0 "arch/arm64/boot/dts/freescale/imx8qm-mek-ov5640-csi1.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx8qm-mek-ov5640-csi1.dtso"
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 10 "arch/arm64/boot/dts/freescale/imx8qm-mek-ov5640-csi1.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/media/video-interfaces.h" 1
+# 11 "arch/arm64/boot/dts/freescale/imx8qm-mek-ov5640-csi1.dtso" 2
+
+&i2c_mipi_csi1 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+ clock-frequency = <100000>;
+ pinctrl-0 = <&pinctrl_i2c_mipi_csi1>;
+ pinctrl-names = "default";
+ status = "okay";
+
+ ov5640_mipi_1: camera@3c {
+  compatible = "ovti,ov5640";
+  reg = <0x3c>;
+  clocks = <&xtal24m>;
+  clock-names = "xclk";
+  pinctrl-0 = <&pinctrl_mipi_csi1>;
+  pinctrl-names = "default";
+  powerdown-gpios = <&lsio_gpio1 31 0>;
+  reset-gpios = <&lsio_gpio1 30 1>;
+  AVDD-supply = <&reg_2v8>;
+  DVDD-supply = <&reg_1v5>;
+  DOVDD-supply = <&reg_1v8>;
+
+  port {
+   ov5640_mipi_1_ep: endpoint {
+    bus-type = <4>;
+    data-lanes = <1 2>;
+    remote-endpoint = <&mipi_csi1_in>;
+   };
+  };
+ };
+};
+
+&irqsteer_csi1 {
+ status = "okay";
+};
+
+&isi {
+ status = "okay";
+};
+
+&mipi_csi_1 {
+ status = "okay";
+
+ ports {
+  port@0 {
+   mipi_csi1_in: endpoint {
+    data-lanes = <1 2>;
+    remote-endpoint = <&ov5640_mipi_1_ep>;
+   };
+  };
+ };
+};

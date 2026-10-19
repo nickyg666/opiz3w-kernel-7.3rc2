@@ -1,0 +1,8 @@
+rtd1501s-phantom-8gb.o: \
+ arch/arm64/boot/dts/realtek/rtd1501s-phantom-8gb.dts \
+ arch/arm64/boot/dts/realtek/rtd1501s-phantom.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/thermal/thermal.h \
+ arch/arm64/boot/dts/realtek/rtd1501.dtsi \
+ arch/arm64/boot/dts/realtek/kent.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h

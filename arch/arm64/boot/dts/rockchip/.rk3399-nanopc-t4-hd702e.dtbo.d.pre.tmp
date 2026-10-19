@@ -1,0 +1,5 @@
+rk3399-nanopc-t4-hd702e.o: \
+ arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4-hd702e.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/pinctrl/rockchip.h

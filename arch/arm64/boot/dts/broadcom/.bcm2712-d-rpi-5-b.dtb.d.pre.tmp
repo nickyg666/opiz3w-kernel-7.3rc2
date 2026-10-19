@@ -1,0 +1,12 @@
+bcm2712-d-rpi-5-b.o: arch/arm64/boot/dts/broadcom/bcm2712-d-rpi-5-b.dts \
+ arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts \
+ arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/input/input.h \
+ scripts/dtc/include-prefixes/dt-bindings/input/linux-event-codes.h \
+ arch/arm64/boot/dts/broadcom/bcm2712.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/soc/bcm2835-pm.h \
+ arch/arm64/boot/dts/broadcom/rp1-common.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/clock/raspberrypi,rp1-clocks.h

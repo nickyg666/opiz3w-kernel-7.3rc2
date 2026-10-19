@@ -1,0 +1,7 @@
+rk3399-puma-haikou-video-demo.o: \
+ arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/clock/rk3399-cru.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/leds/common.h \
+ scripts/dtc/include-prefixes/dt-bindings/pinctrl/rockchip.h

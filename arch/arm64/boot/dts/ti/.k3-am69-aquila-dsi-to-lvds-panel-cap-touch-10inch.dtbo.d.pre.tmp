@@ -1,0 +1,5 @@
+k3-am69-aquila-dsi-to-lvds-panel-cap-touch-10inch.o: \
+ arch/arm64/boot/dts/ti/k3-am69-aquila-dsi-to-lvds-panel-cap-touch-10inch.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/pwm/pwm.h

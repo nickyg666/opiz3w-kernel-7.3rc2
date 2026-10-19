@@ -1,0 +1,56 @@
+--- a/arch/arm64/boot/dts/allwinner/sun60i-a733-orangepi-zero3w.dts
++++ b/arch/arm64/boot/dts/allwinner/sun60i-a733-orangepi-zero3w.dts
+@@ -4195,6 +4195,68 @@
+ 	};
+ };
+ 
++&gpu {
++	status = "okay";
++};
++
++&gpu_opp_table {
++	status = "okay";
++};
++
++/* GPU power domain is already defined in .dtsi as pck600 with PD_GPU_CORE (reg=5) and PD_GPU_TOP (reg=5)
++ * The .dtsi GPU node uses: power-domains = <&pck600 PD_GPU_CORE>, <&pck600 PD_GPU_TOP>;
++ * GPU regulator (axp8191-dcdc4) is already in the PMIC node in .dtsi
++ */
++
++/* WiFi SDIO (mmc1) - vendor DTB uses "allwinner,sunxi-mmc-v5p3x" but upstream driver uses
++ * "allwinner,sun60i-a733-mmc" / "allwinner,sun20i-d1-mmc". The upstream driver matches
++ * "allwinner,sun60i-a733-mmc" and uses the sun20i_d1_cfg data.
++ * Vendor DTB has additional properties for UHS/SDIO IRQ that we need for WiFi.
++ */
++&mmc1 {
++	compatible = "allwinner,sunxi-mmc-v5p3x", "allwinner,sun60i-a733-mmc", "allwinner,sun20i-d1-mmc";
++	device_type = "sdc1";
++	max-frequency = <208000000>;
++	bus-width = <4>;
++	no-mmc;
++	no-sd;
++	cap-sd-highspeed;
++	cap-sdio-irq;
++	ignore-pm-notify;
++	keep-power-in-suspend;
++	sunxi-dly-208M = <0 0 0 0 0 0>;
++	execute_tuning_in_kernel;
++	ctl-spec-caps = <0x428>;
++	/* UHS modes for SDIO WiFi */
++	sd-uhs-sdr25;
++	sd-uhs-sdr50;
++	sd-uhs-ddr50;
++	sd-uhs-sdr104;
++	sunxi-dis-signal-vol-sw;
++	status = "okay";
++};
++
++/* Ensure I2C controllers use the correct compatible for the sunxi-twi-v101 driver
++ * The .dtsi defines them as "allwinner,sun60i-a733-i2c" which matches i2c-mv64xxx.c
++ * with mv64xxx_i2c_regs_sun60i. This is the CORRECT driver now (fixed 2026-09-25).
++ * No change needed here - the mv64xxx driver with sun60i register map is correct.
++ */
++
++/* WiFi/BT power regulators - enable if needed by aic8800 */
++/* wifi_power_en and wifi_chip_en are commented out in base DTS
++ * Uncomment if aic8800 requires explicit power sequencing */

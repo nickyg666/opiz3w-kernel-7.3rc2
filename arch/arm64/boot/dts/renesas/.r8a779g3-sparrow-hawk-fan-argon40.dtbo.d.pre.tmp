@@ -1,0 +1,2 @@
+r8a779g3-sparrow-hawk-fan-argon40.o: \
+ arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-argon40.dtso

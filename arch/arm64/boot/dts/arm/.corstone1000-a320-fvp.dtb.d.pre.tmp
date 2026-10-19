@@ -1,0 +1,7 @@
+corstone1000-a320-fvp.o: \
+ arch/arm64/boot/dts/arm/corstone1000-a320-fvp.dts \
+ arch/arm64/boot/dts/arm/corstone1000-a320.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ arch/arm64/boot/dts/arm/corstone1000.dtsi \
+ arch/arm64/boot/dts/arm/corstone1000-fvp.dtsi

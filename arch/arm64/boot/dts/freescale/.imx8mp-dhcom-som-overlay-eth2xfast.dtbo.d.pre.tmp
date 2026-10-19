@@ -1,0 +1,4 @@
+imx8mp-dhcom-som-overlay-eth2xfast.o: \
+ arch/arm64/boot/dts/freescale/imx8mp-dhcom-som-overlay-eth2xfast.dtso \
+ arch/arm64/boot/dts/freescale/imx8mp-dhcom-som-overlay-eth1xfast.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/clock/imx8mp-clock.h

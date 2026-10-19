@@ -1,0 +1,33 @@
+# 0 "arch/arm64/boot/dts/qcom/monaco-el2.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/qcom/monaco-el2.dtso"
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+&gpu_zap_shader {
+ status = "disabled";
+};
+
+&iris {
+ status = "disabled";
+};
+
+&remoteproc_adsp {
+ iommus = <&apps_smmu 0x2000 0x0>;
+};
+
+&remoteproc_cdsp {
+ iommus = <&apps_smmu 0x19c0 0x0400>;
+};
+
+&remoteproc_gpdsp {
+ iommus = <&apps_smmu 0x28a0 0x0>;
+};

@@ -1,0 +1,7 @@
+rtd1861b-krypton-8gb.o: \
+ arch/arm64/boot/dts/realtek/rtd1861b-krypton-8gb.dts \
+ arch/arm64/boot/dts/realtek/rtd1861b-krypton.dtsi \
+ arch/arm64/boot/dts/realtek/rtd1861.dtsi \
+ arch/arm64/boot/dts/realtek/kent.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h

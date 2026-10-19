@@ -1,0 +1,1 @@
+lemans-el2.o: arch/arm64/boot/dts/qcom/lemans-el2.dtso

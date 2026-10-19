@@ -1,0 +1,35 @@
+# 0 "arch/arm64/boot/dts/qcom/lemans-el2.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/qcom/lemans-el2.dtso"
+# 10 "arch/arm64/boot/dts/qcom/lemans-el2.dtso"
+/dts-v1/;
+/plugin/;
+
+&gpu_zap_shader {
+ status = "disabled";
+};
+
+&iris {
+ status = "disabled";
+};
+
+&remoteproc_adsp {
+ iommus = <&apps_smmu 0x3000 0x0>;
+};
+
+&remoteproc_cdsp0 {
+ iommus = <&apps_smmu 0x21c0 0x0400>;
+};
+
+&remoteproc_cdsp1 {
+ iommus = <&apps_smmu 0x29c0 0x0400>;
+};
+
+&remoteproc_gpdsp0 {
+       iommus = <&apps_smmu 0x38a0 0x0>;
+};
+
+&remoteproc_gpdsp1 {
+       iommus = <&apps_smmu 0x38c0 0x0>;
+};

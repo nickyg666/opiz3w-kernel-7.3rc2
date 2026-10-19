@@ -1,0 +1,147 @@
+# 0 "arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-display-vz.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-display-vz.dtso"
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-display.dtsi" 1
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/clock/rk3568-cru.h" 1
+# 12 "arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-display.dtsi" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 13 "arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-display.dtsi" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 14 "arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-display.dtsi" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pinctrl/rockchip.h" 1
+# 15 "arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-display.dtsi" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/soc/rockchip,vop2.h" 1
+# 16 "arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-display.dtsi" 2
+
+&{/} {
+ display_backlight: backlight {
+  compatible = "pwm-backlight";
+  brightness-levels = <0 255>;
+  default-brightness-level = <255>;
+  num-interpolated-steps = <255>;
+  power-supply = <&vcc3v3_sd>;
+  pwms = <&pwm10 0 1000000 0>;
+ };
+
+ display_spi: spi {
+  compatible = "spi-gpio";
+  #address-cells = <1>;
+  #size-cells = <0>;
+  cs-gpios = <&gpio3 2 1>;
+  miso-gpios = <&gpio3 1 0>;
+  mosi-gpios = <&gpio3 10 0>;
+  num-chipselects = <1>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&lcd_spi>;
+  sck-gpios = <&gpio3 9 0>;
+
+  st7789: panel@0 {
+   compatible = "sitronix,st7789v";
+   reg = <0>;
+   assigned-clocks = <&cru 5>;
+   assigned-clock-rates = <700000000>;
+   backlight = <&display_backlight>;
+   pinctrl-names = "default";
+   pinctrl-0 = <&lcdc_clock &lcdc_data18 &lcd_rstn>;
+   power-supply = <&vcc3v3_sw>;
+   reset-gpios = <&gpio3 20 1>;
+   spi-max-frequency = <100000>;
+
+   port {
+    panel_in_vp2: endpoint {
+     remote-endpoint = <&vp2_out_rgb>;
+    };
+   };
+  };
+ };
+};
+
+&i2c1 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+ status = "okay";
+
+ st1624: touchscreen@55 {
+  compatible = "sitronix,st1624", "sitronix,st1633";
+  reg = <0x55>;
+  interrupt-parent = <&gpio0>;
+  interrupts = <13 2>;
+  gpios = <&gpio0 5 1>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&touch_int &touch_rstn>;
+  wakeup-source;
+ };
+};
+
+&pinctrl {
+ display: display-pinctrl {
+  lcd_rstn: lcd-rstn-pinctrl {
+   rockchip,pins = <3 20 0 &pcfg_pull_none>;
+  };
+
+  lcd_spi: lcd-spi-pinctrl {
+   rockchip,pins =
+
+    <3 1 0 &pcfg_pull_none>,
+
+    <3 2 0 &pcfg_pull_none>,
+
+    <3 9 0 &pcfg_pull_none>,
+
+    <3 10 0 &pcfg_pull_none>;
+  };
+ };
+
+ touchscreen: touchscreen-pinctrl {
+  touch_int: touch-int-pinctrl {
+   rockchip,pins = <0 13 0 &pcfg_pull_up>;
+  };
+
+  touch_rstn: touch-rstn-pinctrl {
+   rockchip,pins = <0 5 0 &pcfg_pull_none>;
+  };
+ };
+};
+
+&pwm10 {
+ pinctrl-names = "default";
+ pinctrl-0 = <&pwm10m1_pins>;
+ status = "okay";
+};
+
+&vp2 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ vp2_out_rgb: endpoint@1 {
+  reg = <1>;
+  remote-endpoint = <&panel_in_vp2>;
+ };
+};
+# 12 "arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-display-vz.dtso" 2
+
+&st7789 {
+ compatible = "jasonic,jt240mhqs-hwt-ek-e3";
+ rotation = <270>;
+};

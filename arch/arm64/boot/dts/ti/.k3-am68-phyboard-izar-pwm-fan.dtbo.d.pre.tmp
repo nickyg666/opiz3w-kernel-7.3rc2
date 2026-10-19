@@ -1,0 +1,4 @@
+k3-am68-phyboard-izar-pwm-fan.o: \
+ arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-pwm-fan.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/pwm/pwm.h \
+ arch/arm64/boot/dts/ti/k3-pinctrl.h

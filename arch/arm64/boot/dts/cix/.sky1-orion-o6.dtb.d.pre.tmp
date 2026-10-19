@@ -1,0 +1,11 @@
+sky1-orion-o6.o: arch/arm64/boot/dts/cix/sky1-orion-o6.dts \
+ arch/arm64/boot/dts/cix/sky1.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/cix,sky1.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/cix,sky1-audss-cru.h \
+ scripts/dtc/include-prefixes/dt-bindings/reset/cix,sky1-system-control.h \
+ scripts/dtc/include-prefixes/dt-bindings/reset/cix,sky1-s5-system-control.h \
+ scripts/dtc/include-prefixes/dt-bindings/reset/cix,sky1-audss-cru.h \
+ arch/arm64/boot/dts/cix/sky1-power.h \
+ arch/arm64/boot/dts/cix/sky1-pinfunc.h

@@ -1,0 +1,4 @@
+imx91-9x9-qsb-can1.o: \
+ arch/arm64/boot/dts/freescale/imx91-9x9-qsb-can1.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ arch/arm64/boot/dts/freescale/imx91-pinfunc.h

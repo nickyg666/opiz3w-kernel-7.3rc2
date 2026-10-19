@@ -1,0 +1,4 @@
+k3-am69-aquila-adapter-panel-cap-touch-7inch-dsi.o: \
+ arch/arm64/boot/dts/ti/k3-am69-aquila-adapter-panel-cap-touch-7inch-dsi.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h

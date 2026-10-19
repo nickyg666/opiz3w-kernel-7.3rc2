@@ -1,0 +1,4 @@
+imx8mp-hummingboard-iiot-panel-dsi-WJ70N3TYJHMNG0.o: \
+ arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot-panel-dsi-WJ70N3TYJHMNG0.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h

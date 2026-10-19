@@ -1,0 +1,6 @@
+imx8mp-libra-rdk-fpsc-lvds-peb-av-10.o: \
+ arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-peb-av-10.dtso \
+ arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-peb-av-10.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/imx8mp-clock.h \
+ arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h

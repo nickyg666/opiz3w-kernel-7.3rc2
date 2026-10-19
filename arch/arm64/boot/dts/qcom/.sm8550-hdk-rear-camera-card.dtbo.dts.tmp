@@ -1,0 +1,97 @@
+# 0 "arch/arm64/boot/dts/qcom/sm8550-hdk-rear-camera-card.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/qcom/sm8550-hdk-rear-camera-card.dtso"
+
+
+
+
+
+
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/clock/qcom,sm8550-camcc.h" 1
+# 9 "arch/arm64/boot/dts/qcom/sm8550-hdk-rear-camera-card.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 10 "arch/arm64/boot/dts/qcom/sm8550-hdk-rear-camera-card.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/leds/common.h" 1
+# 11 "arch/arm64/boot/dts/qcom/sm8550-hdk-rear-camera-card.dtso" 2
+
+/dts-v1/;
+/plugin/;
+
+&camss {
+ status = "okay";
+
+ vdda-phy-supply = <&vreg_l1e_0p88>;
+ vdda-pll-supply = <&vreg_l3e_1p2>;
+
+ ports {
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  port@3 {
+   reg = <3>;
+
+   csiphy3_ep: endpoint {
+    clock-lanes = <4>;
+    data-lanes = <0 1 2 3>;
+    remote-endpoint = <&cam_tele>;
+   };
+  };
+ };
+};
+
+&cci1 {
+ status = "okay";
+};
+
+&cci1_i2c0 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ sensor@10 {
+  compatible = "samsung,s5k3m5";
+  reg = <0x10>;
+  clocks = <&camcc 101>;
+  assigned-clocks = <&camcc 101>;
+  assigned-clock-rates = <24000000>;
+  reset-gpios = <&tlmm 119 1>;
+  pinctrl-0 = <&cam3_default>;
+  pinctrl-names = "default";
+  afvdd-supply = <&vreg_l7n_2p96>;
+  vdda-supply = <&vreg_l4m_2p8>;
+  vddd-supply = <&vreg_l2m_1p056>;
+  vddio-supply = <&vreg_l5n_1p8>;
+
+  port {
+   cam_tele: endpoint {
+    link-frequencies = /bits/ 64 <602500000>;
+    remote-endpoint = <&csiphy3_ep>;
+   };
+  };
+ };
+};
+
+&pm8550_flash {
+ status = "okay";
+
+ led-0 {
+  function = "flash";
+  color = <6>;
+  led-sources = <1>, <4>;
+  led-max-microamp = <500000>;
+  flash-max-microamp = <2000000>;
+  flash-max-timeout-us = <1280000>;
+  function-enumerator = <0>;
+ };
+
+ led-1 {
+  function = "flash";
+  color = <0>;
+  led-sources = <2>, <3>;
+  led-max-microamp = <500000>;
+  flash-max-microamp = <2000000>;
+  flash-max-timeout-us = <1280000>;
+  function-enumerator = <1>;
+ };
+};

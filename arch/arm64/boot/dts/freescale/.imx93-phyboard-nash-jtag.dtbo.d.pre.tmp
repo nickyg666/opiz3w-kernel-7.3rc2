@@ -1,0 +1,3 @@
+imx93-phyboard-nash-jtag.o: \
+ arch/arm64/boot/dts/freescale/imx93-phyboard-nash-jtag.dtso \
+ arch/arm64/boot/dts/freescale/imx93-pinfunc.h

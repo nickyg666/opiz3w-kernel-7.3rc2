@@ -1,0 +1,36 @@
+# 0 "arch/arm64/boot/dts/freescale/imx93-phyboard-nash-jtag.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx93-phyboard-nash-jtag.dtso"
+
+
+
+
+
+
+# 1 "arch/arm64/boot/dts/freescale/imx93-pinfunc.h" 1
+# 8 "arch/arm64/boot/dts/freescale/imx93-phyboard-nash-jtag.dtso" 2
+
+/dts-v1/;
+/plugin/;
+
+
+
+
+
+
+&gpio2 {
+ pinctrl-names = "default";
+ pinctrl-0 = <&pinctrl_jtag>;
+};
+
+&iomuxc {
+ pinctrl_jtag: jtaggrp {
+  fsl,pins = <
+   0x0070 0x0220 0x0000 0x5 0x0 0x31e
+   0x0074 0x0224 0x03D4 0x5 0x1 0x31e
+   0x0078 0x0228 0x03D8 0x5 0x1 0x31e
+   0x007C 0x022C 0x03DC 0x5 0x1 0x31e
+  >;
+ };
+};

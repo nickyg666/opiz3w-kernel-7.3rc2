@@ -1,0 +1,2 @@
+imx8mm-verdin-dev-nau8822-btl.o: \
+ arch/arm64/boot/dts/freescale/imx8mm-verdin-dev-nau8822-btl.dtso

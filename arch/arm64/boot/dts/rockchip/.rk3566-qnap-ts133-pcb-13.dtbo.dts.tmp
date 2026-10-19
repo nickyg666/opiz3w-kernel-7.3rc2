@@ -1,0 +1,61 @@
+# 0 "arch/arm64/boot/dts/rockchip/rk3566-qnap-ts133-pcb-13.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/rockchip/rk3566-qnap-ts133-pcb-13.dtso"
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 12 "arch/arm64/boot/dts/rockchip/rk3566-qnap-ts133-pcb-13.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pinctrl/rockchip.h" 1
+# 13 "arch/arm64/boot/dts/rockchip/rk3566-qnap-ts133-pcb-13.dtso" 2
+
+&{/} {
+# 25 "arch/arm64/boot/dts/rockchip/rk3566-qnap-ts133-pcb-13.dtso"
+ hdd1_pwr: regulator-hdd1-power {
+  compatible = "regulator-fixed";
+  gpio = <&gpio0 18 1>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&hdd1_power_pin>;
+  regulator-name = "hdd1-power";
+  regulator-boot-on;
+  vin-supply = <&dc_12v>;
+ };
+};
+
+&gpio2 {
+ hdd1-present-hog {
+  gpios = <2 1>;
+  gpio-hog;
+  input;
+  line-name = "hdd1-present";
+ };
+};
+
+&pinctrl {
+ pinctrl-names = "default";
+ pinctrl-0 = <&hdd1_present_pin>;
+
+ hdd-power {
+  hdd1_power_pin: hdd1-power-pin {
+   rockchip,pins = <0 18 0 &pcfg_pull_none>;
+  };
+ };
+
+ hdd-present {
+  hdd1_present_pin: hdd1-present-pin {
+   rockchip,pins = <2 2 0 &pcfg_pull_up>;
+  };
+ };
+};
+
+&sata2_port0 {
+ target-supply = <&hdd1_pwr>;
+};

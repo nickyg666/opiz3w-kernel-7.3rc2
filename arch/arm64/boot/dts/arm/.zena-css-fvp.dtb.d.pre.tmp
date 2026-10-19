@@ -1,0 +1,4 @@
+zena-css-fvp.o: arch/arm64/boot/dts/arm/zena-css-fvp.dts \
+ arch/arm64/boot/dts/arm/zena-css.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h

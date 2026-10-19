@@ -1,0 +1,43 @@
+# 0 "arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla-lvds-tm070jvhg33.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla-lvds-tm070jvhg33.dtso"
+
+
+
+
+
+
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/clock/imx93-clock.h" 1
+# 9 "arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla-lvds-tm070jvhg33.dtso" 2
+
+/dts-v1/;
+/plugin/;
+
+&backlight_lvds {
+ status = "okay";
+};
+
+&display {
+ compatible = "tianma,tm070jvhg33";
+ status = "okay";
+};
+
+&lcdif {
+ assigned-clocks = <&clk 10>;
+ assigned-clock-rates = <477400000>;
+ status = "okay";
+};
+
+&lvds_bridge {
+ status = "okay";
+};
+
+&media_blk_ctrl {
+ status = "okay";
+};
+
+&tpm5 {
+ status = "okay";
+};

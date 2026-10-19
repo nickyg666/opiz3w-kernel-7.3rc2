@@ -1,0 +1,50 @@
+# 0 "arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-etml1010g3dra.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-etml1010g3dra.dtso"
+
+
+
+
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 7 "arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-etml1010g3dra.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/clock/imx8mp-clock.h" 1
+# 8 "arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-etml1010g3dra.dtso" 2
+
+/dts-v1/;
+/plugin/;
+
+&backlight_lvds0 {
+ brightness-levels = <0 8 16 32 64 128 255>;
+ default-brightness-level = <8>;
+ enable-gpios = <&gpio5 23 1>;
+ num-interpolated-steps = <2>;
+ pwms = <&pwm1 0 66667 0>;
+ status = "okay";
+};
+
+&lcdif2 {
+ status = "okay";
+};
+
+&lvds_bridge {
+ assigned-clocks = <&clk 174>, <&clk 20>;
+ assigned-clock-parents = <&clk 40>;
+
+
+
+
+
+ assigned-clock-rates = <0>, <506800000>;
+ status = "okay";
+};
+
+&panel_lvds0 {
+ compatible = "edt,etml1010g3dra";
+ status = "okay";
+};
+
+&pwm1 {
+ status = "okay";
+};

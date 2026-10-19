@@ -1,0 +1,2 @@
+imx8mm-verdin-uart4-mcu.o: \
+ arch/arm64/boot/dts/freescale/imx8mm-verdin-uart4-mcu.dtso

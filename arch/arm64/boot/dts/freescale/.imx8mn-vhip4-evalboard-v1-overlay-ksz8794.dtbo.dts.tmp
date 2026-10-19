@@ -1,0 +1,121 @@
+# 0 "arch/arm64/boot/dts/freescale/imx8mn-vhip4-evalboard-v1-overlay-ksz8794.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx8mn-vhip4-evalboard-v1-overlay-ksz8794.dtso"
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 9 "arch/arm64/boot/dts/freescale/imx8mn-vhip4-evalboard-v1-overlay-ksz8794.dtso" 2
+
+# 1 "arch/arm64/boot/dts/freescale/imx8mn-pinfunc.h" 1
+# 11 "arch/arm64/boot/dts/freescale/imx8mn-vhip4-evalboard-v1-overlay-ksz8794.dtso" 2
+
+&pinctrl_ecspi1 {
+ fsl,pins = <
+  0x1F4 0x45C 0x5D8 0x0 0x0 0x10
+  0x1F8 0x460 0x5A8 0x0 0x0 0x10
+  0x1FC 0x464 0x5C4 0x0 0x0 0x90
+
+  0x230 0x498 0x000 0x5 0x0 0x150
+
+  0x200 0x468 0x000 0x5 0x0 0x150
+ >;
+};
+
+# 1 "arch/arm64/boot/dts/freescale/imx8mn-vhip4-evalboard-ksz8794-common.dtsi" 1
+# 10 "arch/arm64/boot/dts/freescale/imx8mn-vhip4-evalboard-ksz8794-common.dtsi"
+&ecspi1 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+ status = "okay";
+
+ ksz8794: ethernet-switch@1 {
+  compatible = "microchip,ksz8794";
+  pinctrl-names = "default", "reset";
+  pinctrl-0 = <&pinctrl_ks8794>;
+  pinctrl-1 = <&pinctrl_ks8794>;
+  reg = <1>;
+  reset-gpios = <&gpio4 28 1>;
+  spi-max-frequency = <5000000>;
+
+  ethernet-ports {
+   #address-cells = <1>;
+   #size-cells = <0>;
+
+   port@0 {
+    reg = <0>;
+    label = "lan1";
+   };
+
+   port@1 {
+    reg = <1>;
+    label = "lan2";
+   };
+
+   port@2 {
+    reg = <2>;
+    label = "lan3";
+   };
+
+   port@4 {
+    reg = <4>;
+    label = "cpu";
+    ethernet = <&fec1>;
+    phy-mode = "rgmii-id";
+    rx-internal-delay-ps = <2000>;
+    tx-internal-delay-ps = <2000>;
+    fixed-link {
+     full-duplex;
+     speed = <1000>;
+    };
+   };
+  };
+ };
+};
+
+&fec1 {
+ pinctrl-names = "default";
+ pinctrl-0 = <&pinctrl_fec1>;
+ phy-mode = "rgmii-id";
+ status = "okay";
+
+ fixed-link {
+  full-duplex;
+  speed = <1000>;
+ };
+};
+
+&iomuxc {
+ pinctrl_fec1: fec1-grp {
+  fsl,pins = <
+   0x068 0x2D0 0x000 0x0 0x0 0x16
+   0x06C 0x2D4 0x4C0 0x0 0x1 0x96
+   0x070 0x2D8 0x000 0x0 0x0 0x16
+   0x074 0x2DC 0x000 0x0 0x0 0x16
+   0x078 0x2E0 0x000 0x0 0x0 0x16
+   0x07C 0x2E4 0x000 0x0 0x0 0x16
+   0x09C 0x304 0x000 0x0 0x0 0x96
+   0x098 0x300 0x000 0x0 0x0 0x96
+   0x094 0x2FC 0x554 0x0 0x0 0x96
+   0x090 0x2F8 0x57C 0x0 0x0 0x96
+   0x084 0x2EC 0x000 0x0 0x0 0x10
+   0x08C 0x2F4 0x000 0x0 0x0 0x96
+   0x088 0x2F0 0x574 0x0 0x0 0x96
+   0x080 0x2E8 0x000 0x0 0x0 0x16
+   0x1D8 0x440 0x000 0x5 0x0 0x1d6
+  >;
+ };
+
+ pinctrl_ks8794: ks8794-grp {
+  fsl,pins = <
+
+   0x1CC 0x434 0x000 0x5 0x0 0x16
+  >;
+ };
+};
+# 25 "arch/arm64/boot/dts/freescale/imx8mn-vhip4-evalboard-v1-overlay-ksz8794.dtso" 2

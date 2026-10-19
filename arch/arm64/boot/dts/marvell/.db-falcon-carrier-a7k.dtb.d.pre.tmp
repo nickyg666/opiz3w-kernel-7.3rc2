@@ -1,0 +1,16 @@
+db-falcon-carrier-a7k.o: \
+ arch/arm64/boot/dts/marvell/db-falcon-carrier-a7k.dts \
+ arch/arm64/boot/dts/marvell/armada-7020-comexpress.dtsi \
+ arch/arm64/boot/dts/marvell/armada-7020.dtsi \
+ arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi \
+ arch/arm64/boot/dts/marvell/armada-ap806.dtsi \
+ arch/arm64/boot/dts/marvell/armada-ap80x.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/thermal/thermal.h \
+ arch/arm64/boot/dts/marvell/armada-70x0.dtsi \
+ arch/arm64/boot/dts/marvell/armada-cp110.dtsi \
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/mvebu-icu.h \
+ arch/arm64/boot/dts/marvell/armada-common.dtsi \
+ arch/arm64/boot/dts/marvell/db-falcon-carrier.dtsi

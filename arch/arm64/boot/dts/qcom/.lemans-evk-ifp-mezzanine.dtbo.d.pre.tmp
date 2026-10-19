@@ -1,0 +1,3 @@
+lemans-evk-ifp-mezzanine.o: \
+ arch/arm64/boot/dts/qcom/lemans-evk-ifp-mezzanine.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h

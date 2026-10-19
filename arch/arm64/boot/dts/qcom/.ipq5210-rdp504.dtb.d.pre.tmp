@@ -1,0 +1,6 @@
+ipq5210-rdp504.o: arch/arm64/boot/dts/qcom/ipq5210-rdp504.dts \
+ arch/arm64/boot/dts/qcom/ipq5210.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/qcom,ipq5210-gcc.h \
+ scripts/dtc/include-prefixes/dt-bindings/reset/qcom,ipq5210-gcc.h

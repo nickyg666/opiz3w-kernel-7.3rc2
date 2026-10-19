@@ -1,0 +1,13 @@
+versal-net-vn-x-b2197-01-revA.o: \
+ arch/arm64/boot/dts/xilinx/versal-net-vn-x-b2197-01-revA.dts \
+ arch/arm64/boot/dts/xilinx/versal-net.dtsi \
+ arch/arm64/boot/dts/xilinx/versal-net-clk.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ arch/arm64/boot/dts/xilinx/xlnx-versal-net-clk.h \
+ arch/arm64/boot/dts/xilinx/xlnx-versal-clk.h \
+ arch/arm64/boot/dts/xilinx/xlnx-versal-net-power.h \
+ arch/arm64/boot/dts/xilinx/xlnx-versal-power.h \
+ arch/arm64/boot/dts/xilinx/xlnx-versal-net-resets.h \
+ arch/arm64/boot/dts/xilinx/xlnx-versal-resets.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h

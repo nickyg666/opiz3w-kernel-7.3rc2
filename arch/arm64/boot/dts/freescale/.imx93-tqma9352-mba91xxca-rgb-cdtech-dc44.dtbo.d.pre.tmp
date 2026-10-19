@@ -1,0 +1,5 @@
+imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.o: \
+ arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/clock/imx93-clock.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h

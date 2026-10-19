@@ -1,0 +1,2 @@
+rk3588-rock-5b-pcie-srns.o: \
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtso

@@ -1,0 +1,99 @@
+# 0 "arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-wlbt-05.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-wlbt-05.dtso"
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 11 "arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-wlbt-05.dtso" 2
+# 1 "arch/arm64/boot/dts/freescale/imx93-pinfunc.h" 1
+# 12 "arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-wlbt-05.dtso" 2
+
+&{/} {
+ usdhc3_pwrseq: usdhc3-pwrseq {
+  compatible = "mmc-pwrseq-simple";
+  post-power-on-delay-ms = <100>;
+  power-off-delay-us = <60>;
+  reset-gpios = <&gpio4 7 1>;
+ };
+};
+
+&lpuart5 {
+ pinctrl-names = "default";
+ pinctrl-0 = <&pinctrl_uart5>;
+ status = "okay";
+
+ bluetooth {
+  compatible = "brcm,bcm43438-bt";
+  shutdown-gpios = <&gpio4 13 0>;
+  host-wakeup-gpios = <&gpio1 0 0>;
+  max-speed = <2000000>;
+ };
+};
+
+&usdhc3 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+ pinctrl-names = "default", "sleep";
+ pinctrl-0 = <&pinctrl_usdhc3>, <&pinctrl_wlbt>;
+ pinctrl-1 = <&pinctrl_usdhc3_sleep>, <&pinctrl_wlbt>;
+ mmc-pwrseq = <&usdhc3_pwrseq>;
+ bus-width = <4>;
+ non-removable;
+ no-1-8-v;
+ status = "okay";
+
+ brmcf: wifi@1 {
+  compatible = "brcm,bcm4329-fmac";
+  reg = <1>;
+ };
+};
+
+&iomuxc {
+ pinctrl_uart5: uart5grp {
+  fsl,pins = <
+   0x000C 0x01BC 0x0434 0x6 0x0 0x31e
+   0x0000 0x01B0 0x0430 0x6 0x0 0x31e
+   0x0008 0x01B8 0x042C 0x6 0x0 0x31e
+   0x0004 0x01B4 0x0000 0x6 0x0 0x31e
+  >;
+ };
+
+
+ pinctrl_usdhc3: usdhc3grp {
+  fsl,pins = <
+   0x0068 0x0218 0x0458 0x1 0x0 0x179e
+   0x006C 0x021C 0x045C 0x1 0x0 0x4000139e
+   0x0070 0x0220 0x0460 0x1 0x0 0x4000139e
+   0x0074 0x0224 0x0464 0x1 0x0 0x4000139e
+   0x0078 0x0228 0x0468 0x1 0x0 0x4000139e
+   0x007C 0x022C 0x046C 0x1 0x0 0x4000139e
+  >;
+ };
+
+ pinctrl_usdhc3_sleep: usdhc3sleepgrp {
+  fsl,pins = <
+   0x0068 0x0218 0x0458 0x1 0x0 0x31e
+   0x006C 0x021C 0x045C 0x1 0x0 0x31e
+   0x0070 0x0220 0x0460 0x1 0x0 0x31e
+   0x0074 0x0224 0x0464 0x1 0x0 0x31e
+   0x0078 0x0228 0x0468 0x1 0x0 0x31e
+   0x007C 0x022C 0x046C 0x1 0x0 0x31e
+  >;
+ };
+
+ pinctrl_wlbt: wlbtgrp {
+  fsl,pins = <
+   0x00CC 0x027C 0x0000 0x5 0x0 0x31e
+   0x00B4 0x0264 0x0000 0x5 0x0 0x31e
+   0x0170 0x0320 0x0000 0x5 0x0 0x31e
+  >;
+ };
+};

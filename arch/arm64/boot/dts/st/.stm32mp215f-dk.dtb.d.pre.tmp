@@ -1,0 +1,7 @@
+stm32mp215f-dk.o: arch/arm64/boot/dts/st/stm32mp215f-dk.dts \
+ arch/arm64/boot/dts/st/stm32mp215.dtsi \
+ arch/arm64/boot/dts/st/stm32mp213.dtsi \
+ arch/arm64/boot/dts/st/stm32mp211.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ arch/arm64/boot/dts/st/stm32mp21xf.dtsi

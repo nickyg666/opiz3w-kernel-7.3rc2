@@ -1,0 +1,8 @@
+rtd1920s-smallville-4gb.o: \
+ arch/arm64/boot/dts/realtek/rtd1920s-smallville-4gb.dts \
+ arch/arm64/boot/dts/realtek/rtd1920s-smallville.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/thermal/thermal.h \
+ arch/arm64/boot/dts/realtek/rtd1920.dtsi \
+ arch/arm64/boot/dts/realtek/kent.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h

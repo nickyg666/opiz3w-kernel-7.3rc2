@@ -1,0 +1,19 @@
+# 0 "arch/arm64/boot/dts/freescale/imx8mp-evk-flexcan2.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx8mp-evk-flexcan2.dtso"
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+&flexcan2 {
+ status = "okay";
+};
+
+&micfil {
+ status = "disabled";
+};

@@ -1,0 +1,118 @@
+# 0 "arch/arm64/boot/dts/ti/k3-am625-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/ti/k3-am625-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtso"
+# 15 "arch/arm64/boot/dts/ti/k3-am625-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtso"
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 19 "arch/arm64/boot/dts/ti/k3-am625-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 20 "arch/arm64/boot/dts/ti/k3-am625-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pwm/pwm.h" 1
+# 21 "arch/arm64/boot/dts/ti/k3-am625-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtso" 2
+
+&{/} {
+ backlight_pwm3: backlight-pwm3 {
+  compatible = "pwm-backlight";
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_i2s_2_d_out_gpio>;
+  brightness-levels = <0 45 63 88 119 158 203 255>;
+  default-brightness-level = <4>;
+
+  enable-gpios = <&main_gpio0 34 0>;
+  power-supply = <&reg_3v3>;
+
+  pwms = <&epwm1 0 6666667 (1 << 0)>;
+ };
+
+ panel-lvds-bridge {
+  compatible = "logictechno,lt170410-2whc";
+  backlight = <&backlight_pwm3>;
+  power-supply = <&reg_3v3_dsi>;
+
+  port {
+   panel_lvds_bridge_in: endpoint {
+    remote-endpoint = <&dsi_lvds_bridge_out>;
+   };
+  };
+ };
+
+ reg_3v3_dsi: regulator-3v3-dsi {
+  compatible = "regulator-fixed";
+  regulator-max-microvolt = <3300000>;
+  regulator-min-microvolt = <3300000>;
+  regulator-name = "+V3.3_DSI";
+ };
+};
+
+&dsi_bridge {
+ status = "okay";
+};
+
+&dsi_bridge_ports {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ port@1 {
+  reg = <1>;
+
+  dsi_bridge_out: endpoint {
+   remote-endpoint = <&dsi_lvds_bridge_in>;
+  };
+ };
+};
+
+&dss {
+ status = "okay";
+};
+
+
+&main_i2c1 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ bridge@2c {
+  compatible = "ti,sn65dsi84";
+  reg = <0x2c>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_dsi1_bkl_en>;
+
+  enable-gpios = <&main_gpio0 30 0>;
+
+  ports {
+   #address-cells = <1>;
+   #size-cells = <0>;
+
+   port@0 {
+    reg = <0>;
+
+    dsi_lvds_bridge_in: endpoint {
+     remote-endpoint = <&dsi_bridge_out>;
+     data-lanes = <1 2 3 4>;
+    };
+   };
+
+   port@2 {
+    reg = <2>;
+
+    dsi_lvds_bridge_out: endpoint {
+     remote-endpoint = <&panel_lvds_bridge_in>;
+    };
+   };
+  };
+ };
+
+ touchscreen@4a {
+  compatible = "atmel,maxtouch";
+  reg = <0x4a>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_dsi1_int>, <&pinctrl_i2s_2_bclk_gpio>;
+
+  interrupt-parent = <&main_gpio1>;
+  interrupts = <49 2>;
+
+  reset-gpios = <&main_gpio0 35 1>;
+ };
+};

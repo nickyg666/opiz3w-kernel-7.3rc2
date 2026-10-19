@@ -1,0 +1,70 @@
+# 0 "arch/arm64/boot/dts/freescale/imx8mn-vhip4-evalboard-v2-overlay-adin1300.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx8mn-vhip4-evalboard-v2-overlay-adin1300.dtso"
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 10 "arch/arm64/boot/dts/freescale/imx8mn-vhip4-evalboard-v2-overlay-adin1300.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h" 1
+# 9 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h"
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 10 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h" 2
+# 11 "arch/arm64/boot/dts/freescale/imx8mn-vhip4-evalboard-v2-overlay-adin1300.dtso" 2
+# 1 "arch/arm64/boot/dts/freescale/imx8mn-pinfunc.h" 1
+# 12 "arch/arm64/boot/dts/freescale/imx8mn-vhip4-evalboard-v2-overlay-adin1300.dtso" 2
+
+&fec1 {
+ pinctrl-names = "default";
+ pinctrl-0 = <&pinctrl_fec1>;
+ phy-handle = <&ethphy0>;
+ phy-mode = "rgmii-id";
+ status = "okay";
+
+ mdio {
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  ethphy0: ethernet-phy@0 {
+   reg = <0>;
+
+   adi,rx-internal-delay-ps = <1800>;
+   adi,tx-internal-delay-ps = <2200>;
+   interrupts-extended = <&gpio4 31 8>;
+   reset-gpios = <&gpio4 28 1>;
+   reset-assert-us = <10000>;
+   reset-deassert-us = <10000>;
+  };
+ };
+};
+
+&iomuxc {
+ pinctrl_fec1: fec1-grp {
+  fsl,pins = <
+   0x068 0x2D0 0x000 0x0 0x0 0x16
+   0x06C 0x2D4 0x4C0 0x0 0x1 0x96
+   0x070 0x2D8 0x000 0x0 0x0 0x16
+   0x074 0x2DC 0x000 0x0 0x0 0x16
+   0x078 0x2E0 0x000 0x0 0x0 0x16
+   0x07C 0x2E4 0x000 0x0 0x0 0x16
+   0x09C 0x304 0x000 0x0 0x0 0x96
+   0x098 0x300 0x000 0x0 0x0 0x96
+   0x094 0x2FC 0x554 0x0 0x0 0x96
+   0x090 0x2F8 0x57C 0x0 0x0 0x96
+   0x084 0x2EC 0x000 0x0 0x0 0x16
+   0x08C 0x2F4 0x000 0x0 0x0 0x96
+   0x088 0x2F0 0x574 0x0 0x0 0x96
+   0x080 0x2E8 0x000 0x0 0x0 0x16
+
+   0x1CC 0x434 0x000 0x5 0x0 0x156
+
+   0x1D8 0x440 0x000 0x5 0x0 0x1d6
+  >;
+ };
+};

@@ -1,0 +1,98 @@
+# 0 "arch/arm64/boot/dts/freescale/imx8mm-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx8mm-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtso"
+# 15 "arch/arm64/boot/dts/freescale/imx8mm-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtso"
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 19 "arch/arm64/boot/dts/freescale/imx8mm-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 20 "arch/arm64/boot/dts/freescale/imx8mm-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pwm/pwm.h" 1
+# 21 "arch/arm64/boot/dts/freescale/imx8mm-verdin-dsi-to-lvds-panel-cap-touch-10inch.dtso" 2
+
+&{/} {
+ backlight_pwm3: backlight-pwm3 {
+  compatible = "pwm-backlight";
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_i2s_2_d_out_dsi_1_bkl_en>;
+  brightness-levels = <0 45 63 88 119 158 203 255>;
+  default-brightness-level = <4>;
+
+  enable-gpios = <&gpio3 24 0>;
+  power-supply = <&reg_3p3v>;
+
+  pwms = <&pwm1 0 6666667 (1 << 0)>;
+ };
+
+ panel-lvds-bridge {
+  compatible = "logictechno,lt170410-2whc";
+  backlight = <&backlight_pwm3>;
+  power-supply = <&reg_dsi_lvds>;
+
+  port {
+   panel_lvds_bridge_in: endpoint {
+    remote-endpoint = <&dsi_lvds_bridge_out>;
+   };
+  };
+ };
+
+ reg_dsi_lvds: regulator-dsi-lvds {
+  compatible = "regulator-fixed";
+
+  gpios = <&gpio5 1 0>;
+  enable-active-high;
+  regulator-boot-on;
+  regulator-name = "DSI_1_PWR_EN";
+ };
+};
+
+&atmel_mxt_ts {
+ vdd-supply = <&reg_dsi_lvds>;
+
+ status = "okay";
+};
+
+&lcdif {
+ status = "okay";
+};
+
+&lvds_ti_sn65dsi84 {
+ vcc-supply = <&reg_dsi_lvds>;
+
+ status = "okay";
+
+ ports {
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  port@0 {
+   reg = <0>;
+
+   dsi_lvds_bridge_in: endpoint {
+    data-lanes = <1 2 3 4>;
+    remote-endpoint = <&mipi_dsi_out>;
+   };
+  };
+
+  port@2 {
+   reg = <2>;
+
+   dsi_lvds_bridge_out: endpoint {
+    remote-endpoint = <&panel_lvds_bridge_in>;
+   };
+  };
+ };
+};
+
+&mipi_dsi {
+ samsung,esc-clock-frequency = <16000000>;
+
+ status = "okay";
+};
+
+&mipi_dsi_out {
+ remote-endpoint = <&dsi_lvds_bridge_in>;
+};

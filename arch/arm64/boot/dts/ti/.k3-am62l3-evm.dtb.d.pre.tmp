@@ -1,0 +1,15 @@
+k3-am62l3-evm.o: arch/arm64/boot/dts/ti/k3-am62l3-evm.dts \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/input/input.h \
+ scripts/dtc/include-prefixes/dt-bindings/input/linux-event-codes.h \
+ scripts/dtc/include-prefixes/dt-bindings/leds/common.h \
+ scripts/dtc/include-prefixes/dt-bindings/net/ti-dp83867.h \
+ scripts/dtc/include-prefixes/dt-bindings/thermal/thermal.h \
+ arch/arm64/boot/dts/ti/k3-am62l3.dtsi \
+ arch/arm64/boot/dts/ti/k3-am62l.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ arch/arm64/boot/dts/ti/k3-pinctrl.h \
+ arch/arm64/boot/dts/ti/k3-am62l-main.dtsi \
+ arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/bus/ti-sysc.h

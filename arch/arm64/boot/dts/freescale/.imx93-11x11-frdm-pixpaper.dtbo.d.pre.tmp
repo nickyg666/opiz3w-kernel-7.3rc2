@@ -1,0 +1,4 @@
+imx93-11x11-frdm-pixpaper.o: \
+ arch/arm64/boot/dts/freescale/imx93-11x11-frdm-pixpaper.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ arch/arm64/boot/dts/freescale/imx93-pinfunc.h

@@ -1,0 +1,13 @@
+tegra264-p4071-0000+p3834-0008.o: \
+ arch/arm64/boot/dts/nvidia/tegra264-p4071-0000+p3834-0008.dts \
+ arch/arm64/boot/dts/nvidia/tegra264-p3834-0008.dtsi \
+ arch/arm64/boot/dts/nvidia/tegra264-p3834.dtsi \
+ arch/arm64/boot/dts/nvidia/tegra264.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/clock/nvidia,tegra264.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/mailbox/tegra186-hsp.h \
+ scripts/dtc/include-prefixes/dt-bindings/memory/nvidia,tegra264.h \
+ scripts/dtc/include-prefixes/dt-bindings/power/nvidia,tegra264-bpmp.h \
+ scripts/dtc/include-prefixes/dt-bindings/reset/nvidia,tegra264.h \
+ arch/arm64/boot/dts/nvidia/tegra264-p4071-0000+p3834.dtsi

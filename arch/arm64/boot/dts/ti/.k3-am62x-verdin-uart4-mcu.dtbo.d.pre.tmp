@@ -1,0 +1,2 @@
+k3-am62x-verdin-uart4-mcu.o: \
+ arch/arm64/boot/dts/ti/k3-am62x-verdin-uart4-mcu.dtso

@@ -1,0 +1,162 @@
+# 0 "arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dtso"
+
+
+
+
+
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 8 "arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dtso" 2
+
+# 1 "arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h" 1
+# 10 "arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dtso" 2
+
+/dts-v1/;
+/plugin/;
+
+&{/} {
+ model = "GOcontroll Moduline Display with BOE av123z7m-n17 display";
+
+ panel {
+  compatible = "boe,av123z7m-n17";
+  backlight = <&backlight>;
+  enable-gpios = <&gpio1 7 0>;
+  pinctrl-0 = <&pinctrl_panel>;
+  pinctrl-names = "default";
+  power-supply = <&reg_3v3_per>;
+  reset-gpios = <&gpio1 9 1>;
+
+  ports {
+   #address-cells = <1>;
+   #size-cells = <0>;
+
+   port@0 {
+    reg = <0>;
+    dual-lvds-odd-pixels;
+
+    panel_in0: endpoint {
+     remote-endpoint = <&lvds1_out>;
+    };
+   };
+
+   port@1 {
+    reg = <1>;
+    dual-lvds-even-pixels;
+
+    panel_in1: endpoint {
+     remote-endpoint = <&lvds0_out>;
+    };
+   };
+  };
+ };
+};
+
+&i2c4 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+
+ bridge@2d {
+  compatible = "ti,sn65dsi84";
+  reg = <0x2d>;
+  enable-gpios = <&gpio4 14 0>;
+  pinctrl-0 = <&pinctrl_lvds_bridge>;
+  pinctrl-names = "default";
+  vcc-supply = <&reg_1v8_per>;
+
+  ports {
+   #address-cells = <1>;
+   #size-cells = <0>;
+
+   port@0 {
+    reg = <0>;
+
+    dsi_lvds_bridge_in: endpoint {
+     data-lanes = <1 2 3 4>;
+     remote-endpoint = <&mipi_dsi_out>;
+    };
+   };
+
+   port@2 {
+    reg = <2>;
+
+    lvds0_out: endpoint {
+     remote-endpoint = <&panel_in1>;
+    };
+   };
+
+   port@3 {
+    reg = <3>;
+
+    lvds1_out: endpoint {
+     remote-endpoint = <&panel_in0>;
+    };
+   };
+  };
+ };
+
+ backlight: backlight@6f {
+  compatible = "maxim,max25014";
+  reg = <0x6f>;
+  default-brightness = <50>;
+  enable-gpios = <&gpio1 4 0>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_backlight>;
+  maxim,iset = <7>;
+  maxim,strings = <1 1 1 1>;
+ };
+};
+
+&iomuxc {
+ pinctrl_backlight: backlightgrp {
+  fsl,pins = <
+   0x024 0x284 0x000 0x0 0x0
+    (0x40 | 0x100)
+  >;
+ };
+
+ pinctrl_lvds_bridge: lvdsbridgegrp {
+  fsl,pins = <
+   0x180 0x3E0 0x000 0x5 0x0
+    0x0
+  >;
+ };
+
+ pinctrl_panel: panelgrp {
+  fsl,pins = <
+   0x030 0x290 0x000 0x0 0x0
+    0x0
+   0x038 0x298 0x000 0x0 0x0
+    0x0
+  >;
+ };
+};
+
+&lcdif1 {
+ status = "okay";
+};
+
+&mipi_dsi {
+
+
+
+
+
+
+
+ samsung,burst-clock-frequency = <535000000>;
+ samsung,esc-clock-frequency = <12000000>;
+ status = "okay";
+
+ ports {
+  port@1 {
+   mipi_dsi_out: endpoint {
+    data-lanes = <1 2 3 4>;
+    remote-endpoint = < &dsi_lvds_bridge_in>;
+   };
+  };
+ };
+};

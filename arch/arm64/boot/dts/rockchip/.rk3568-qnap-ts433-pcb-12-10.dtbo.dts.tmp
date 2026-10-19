@@ -1,0 +1,148 @@
+# 0 "arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433-pcb-12-10.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433-pcb-12-10.dtso"
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 12 "arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433-pcb-12-10.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pinctrl/rockchip.h" 1
+# 13 "arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433-pcb-12-10.dtso" 2
+
+&{/} {
+# 25 "arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433-pcb-12-10.dtso"
+ hdd1_pwr: regulator-hdd1-power {
+  compatible = "regulator-fixed";
+  gpio = <&gpio0 18 1>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&hdd1_power_pin>;
+  regulator-name = "hdd1-power";
+  regulator-boot-on;
+  vin-supply = <&dc_12v>;
+ };
+
+ hdd2_pwr: regulator-hdd2-power {
+  compatible = "regulator-fixed";
+  gpio = <&gpio0 19 1>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&hdd2_power_pin>;
+  regulator-name = "hdd2-power";
+  regulator-boot-on;
+  vin-supply = <&dc_12v>;
+ };
+
+
+
+
+
+
+ hdd3_pwr: regulator-hdd3-power {
+  compatible = "regulator-fixed";
+  gpio = <&gpio0 20 1>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&hdd3_power_pin>;
+  regulator-name = "hdd3-power";
+  regulator-always-on;
+  regulator-boot-on;
+  vin-supply = <&dc_12v>;
+ };
+
+ hdd4_pwr: regulator-hdd4-power {
+  compatible = "regulator-fixed";
+  gpio = <&gpio0 21 1>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&hdd4_power_pin>;
+  regulator-name = "hdd4-power";
+  regulator-always-on;
+  regulator-boot-on;
+  vin-supply = <&dc_12v>;
+ };
+};
+
+&gpio2 {
+ hdd1-present-hog {
+  gpios = <2 1>;
+  gpio-hog;
+  input;
+  line-name = "hdd1-present";
+ };
+
+ hdd2-present-hog {
+  gpios = <1 1>;
+  gpio-hog;
+  input;
+  line-name = "hdd2-present";
+ };
+
+ hdd3-present-hog {
+  gpios = <24 1>;
+  gpio-hog;
+  input;
+  line-name = "hdd3-present";
+ };
+
+ hdd4-present-hog {
+  gpios = <25 1>;
+  gpio-hog;
+  input;
+  line-name = "hdd4-present";
+ };
+};
+
+&pinctrl {
+ pinctrl-names = "default";
+ pinctrl-0 = <&hdd1_present_pin &hdd2_present_pin &hdd3_present_pin
+       &hdd4_present_pin>;
+
+ hdd-power {
+  hdd1_power_pin: hdd1-power-pin {
+   rockchip,pins = <0 18 0 &pcfg_pull_none>;
+  };
+
+  hdd2_power_pin: hdd2-power-pin {
+   rockchip,pins = <0 19 0 &pcfg_pull_none>;
+  };
+
+  hdd3_power_pin: hdd3-power-pin {
+   rockchip,pins = <0 20 0 &pcfg_pull_none>;
+  };
+
+  hdd4_power_pin: hdd4-power-pin {
+   rockchip,pins = <0 21 0 &pcfg_pull_none>;
+  };
+ };
+
+ hdd-present {
+  hdd1_present_pin: hdd1-present-pin {
+   rockchip,pins = <2 2 0 &pcfg_pull_up>;
+  };
+
+  hdd2_present_pin: hdd2-present-pin {
+   rockchip,pins = <2 1 0 &pcfg_pull_up>;
+  };
+
+  hdd3_present_pin: hdd3-present-pin {
+   rockchip,pins = <2 24 0 &pcfg_pull_up>;
+  };
+
+  hdd4_present_pin: hdd4-present-pin {
+   rockchip,pins = <2 25 0 &pcfg_pull_up>;
+  };
+ };
+};
+
+&sata1_port0 {
+ target-supply = <&hdd2_pwr>;
+};
+
+&sata2_port0 {
+ target-supply = <&hdd1_pwr>;
+};

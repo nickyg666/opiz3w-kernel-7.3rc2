@@ -1,0 +1,13 @@
+fsl-ls1012a-tqmls1012al-mbls1012al.o: \
+ arch/arm64/boot/dts/freescale/fsl-ls1012a-tqmls1012al-mbls1012al.dts \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/input/input.h \
+ scripts/dtc/include-prefixes/dt-bindings/input/linux-event-codes.h \
+ scripts/dtc/include-prefixes/dt-bindings/leds/common.h \
+ scripts/dtc/include-prefixes/dt-bindings/net/ti-dp83867.h \
+ arch/arm64/boot/dts/freescale/fsl-ls1012a-tqmls1012al.dtsi \
+ arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/clock/fsl,qoriq-clockgen.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/thermal/thermal.h

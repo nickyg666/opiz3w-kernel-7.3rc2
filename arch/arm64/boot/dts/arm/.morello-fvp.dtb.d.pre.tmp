@@ -1,0 +1,4 @@
+morello-fvp.o: arch/arm64/boot/dts/arm/morello-fvp.dts \
+ arch/arm64/boot/dts/arm/morello.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h

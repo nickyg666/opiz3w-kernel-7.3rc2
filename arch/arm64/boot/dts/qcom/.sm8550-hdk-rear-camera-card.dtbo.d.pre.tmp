@@ -1,0 +1,5 @@
+sm8550-hdk-rear-camera-card.o: \
+ arch/arm64/boot/dts/qcom/sm8550-hdk-rear-camera-card.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/clock/qcom,sm8550-camcc.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/leds/common.h

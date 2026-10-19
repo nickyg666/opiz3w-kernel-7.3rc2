@@ -1,0 +1,20 @@
+# 0 "arch/arm64/boot/dts/freescale/imx8mm-phycore-no-spiflash.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx8mm-phycore-no-spiflash.dtso"
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+&flexspi {
+ status = "disabled";
+};
+
+&som_flash {
+ status = "disabled";
+};

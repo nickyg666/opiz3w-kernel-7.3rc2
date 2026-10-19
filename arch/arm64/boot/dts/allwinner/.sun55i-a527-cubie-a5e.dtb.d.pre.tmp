@@ -1,0 +1,16 @@
+sun55i-a527-cubie-a5e.o: \
+ arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts \
+ arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/sun6i-rtc.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/sun55i-a523-ccu.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/sun55i-a523-mcu-ccu.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/sun55i-a523-r-ccu.h \
+ scripts/dtc/include-prefixes/dt-bindings/reset/sun55i-a523-ccu.h \
+ scripts/dtc/include-prefixes/dt-bindings/reset/sun55i-a523-mcu-ccu.h \
+ scripts/dtc/include-prefixes/dt-bindings/reset/sun55i-a523-r-ccu.h \
+ scripts/dtc/include-prefixes/dt-bindings/power/allwinner,sun55i-a523-ppu.h \
+ scripts/dtc/include-prefixes/dt-bindings/power/allwinner,sun55i-a523-pck-600.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/leds/common.h

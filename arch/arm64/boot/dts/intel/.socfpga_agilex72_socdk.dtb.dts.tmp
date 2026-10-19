@@ -1,0 +1,192 @@
+# 0 "arch/arm64/boot/dts/intel/socfpga_agilex72_socdk.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/intel/socfpga_agilex72_socdk.dts"
+
+
+
+
+# 1 "arch/arm64/boot/dts/intel/socfpga_agilex72.dtsi" 1
+
+
+
+
+/dts-v1/;
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h" 1
+# 9 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h"
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 10 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h" 2
+# 7 "arch/arm64/boot/dts/intel/socfpga_agilex72.dtsi" 2
+
+
+/ {
+ compatible = "intel,socfpga-agilex72";
+ #address-cells = <2>;
+ #size-cells = <2>;
+
+ reserved-memory {
+  #address-cells = <2>;
+  #size-cells = <2>;
+  ranges;
+
+  atf_reserved: atf@80000000 {
+   compatible = "shared-dma-pool";
+   reg = <0x0 0x80000000 0x0 0x100000>;
+   alignment = <0x1000>;
+   no-map;
+  };
+
+  service_reserved: svcbuffer@80100000 {
+   compatible = "shared-dma-pool";
+   reg = <0x0 0x80100000 0x0 0xf00000>;
+   alignment = <0x1000>;
+   no-map;
+  };
+ };
+
+ cpus {
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  cpu0: cpu@0 {
+   compatible = "arm,cortex-a520";
+   device_type = "cpu";
+   enable-method = "psci";
+   reg = <0x0>;
+  };
+
+  cpu1: cpu@100 {
+   compatible = "arm,cortex-a520";
+   device_type = "cpu";
+   enable-method = "psci";
+   reg = <0x100>;
+  };
+
+  cpu2: cpu@200 {
+   compatible = "arm,cortex-a720";
+   device_type = "cpu";
+   enable-method = "psci";
+   reg = <0x200>;
+  };
+
+  cpu3: cpu@300 {
+   compatible = "arm,cortex-a720";
+   device_type = "cpu";
+   enable-method = "psci";
+   reg = <0x300>;
+  };
+ };
+
+ clocks {
+  uart_clk: uart-clk {
+   compatible = "fixed-clock";
+   #clock-cells = <0>;
+   clock-frequency = <125000000>;
+  };
+ };
+
+ psci {
+  compatible = "arm,psci-0.2";
+  method = "smc";
+ };
+
+ timer {
+  compatible = "arm,armv8-timer";
+  interrupt-parent = <&intc>;
+  interrupts = <1 13 8>,
+        <1 14 8>,
+        <1 11 8>,
+        <1 10 8>;
+ };
+
+ intc: interrupt-controller@7000000 {
+  compatible = "arm,gic-v3";
+  reg = <0x0 0x7000000 0x0 0x10000>,
+        <0x0 0x7080000 0x0 0x100000>;
+  ranges;
+  #interrupt-cells = <3>;
+  #address-cells = <2>;
+  #size-cells = <2>;
+  interrupt-controller;
+  #redistributor-regions = <1>;
+  redistributor-stride = <0x0 0x40000>;
+
+  its: msi-controller@7040000 {
+   compatible = "arm,gic-v3-its";
+   reg = <0x0 0x7040000 0x0 0x20000>;
+   msi-controller;
+   #msi-cells = <1>;
+  };
+ };
+
+ soc: soc@0 {
+  compatible = "simple-bus";
+  ranges = <0 0 0 0xffffffff>;
+  #address-cells = <1>;
+  #size-cells = <1>;
+  device_type = "soc";
+  interrupt-parent = <&intc>;
+
+  smmu: iommu@c100000 {
+   compatible = "arm,smmu-v3";
+   reg = <0x0c100000 0x30000>;
+   interrupts = <0 134 1>,
+         <0 129 1>,
+         <0 132 1>;
+   interrupt-names = "eventq", "gerror", "priq";
+   dma-coherent;
+   #iommu-cells = <1>;
+  };
+
+  ocram: sram@0 {
+   compatible = "mmio-sram";
+   reg = <0x00000000 0x80000>;
+   ranges = <0 0 0x80000>;
+   #address-cells = <1>;
+   #size-cells = <1>;
+  };
+
+  uart0: serial@9038000 {
+   compatible = "snps,dw-apb-uart";
+   reg = <0x9038000 0x100>;
+   interrupts = <0 108 4>;
+   reg-shift = <2>;
+   reg-io-width = <4>;
+   clocks = <&uart_clk>;
+   status = "disabled";
+  };
+
+  uart1: serial@9039000 {
+   compatible = "snps,dw-apb-uart";
+   reg = <0x9039000 0x100>;
+   interrupts = <0 109 4>;
+   reg-shift = <2>;
+   reg-io-width = <4>;
+   clocks = <&uart_clk>;
+   status = "disabled";
+  };
+ };
+};
+# 6 "arch/arm64/boot/dts/intel/socfpga_agilex72_socdk.dts" 2
+
+/ {
+ model = "Altera SoCFPGA Agilex72 SoCDK";
+ compatible = "intel,socfpga-agilex72-socdk", "intel,socfpga-agilex72";
+
+ aliases {
+  serial0 = &uart0;
+ };
+
+ chosen {
+  stdout-path = "serial0:115200n8";
+ };
+
+ memory@80000000 {
+  device_type = "memory";
+  reg = <0x0 0x80000000 0x0 0x80000000>;
+ };
+};
+
+&uart0 {
+ status = "okay";
+};

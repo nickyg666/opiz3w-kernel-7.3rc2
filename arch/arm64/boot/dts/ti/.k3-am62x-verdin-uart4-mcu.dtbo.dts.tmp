@@ -1,0 +1,17 @@
+# 0 "arch/arm64/boot/dts/ti/k3-am62x-verdin-uart4-mcu.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/ti/k3-am62x-verdin-uart4-mcu.dtso"
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+&mcu_uart0 {
+ status = "reserved";
+};

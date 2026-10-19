@@ -1,0 +1,2 @@
+imx8mp-dhcom-pdk-overlay-eth2xfast.o: \
+ arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk-overlay-eth2xfast.dtso

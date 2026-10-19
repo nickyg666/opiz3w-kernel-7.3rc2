@@ -1,0 +1,4 @@
+ax3000-evk.o: arch/arm64/boot/dts/axiado/ax3000-evk.dts \
+ arch/arm64/boot/dts/axiado/ax3000.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h

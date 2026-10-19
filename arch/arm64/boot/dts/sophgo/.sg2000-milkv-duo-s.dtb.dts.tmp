@@ -1,0 +1,843 @@
+# 0 "arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts"
+
+
+/dts-v1/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pinctrl/pinctrl-sg2000.h" 1
+# 11 "./scripts/dtc/include-prefixes/dt-bindings/pinctrl/pinctrl-sg2000.h"
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pinctrl/pinctrl-cv18xx.h" 1
+# 12 "./scripts/dtc/include-prefixes/dt-bindings/pinctrl/pinctrl-sg2000.h" 2
+# 6 "arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts" 2
+# 1 "arch/arm64/boot/dts/sophgo/sg2000.dtsi" 1
+
+
+
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h" 1
+# 9 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h"
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 10 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h" 2
+# 6 "arch/arm64/boot/dts/sophgo/sg2000.dtsi" 2
+# 1 "./scripts/dtc/include-prefixes/riscv/sophgo/cv180x.dtsi" 1
+
+
+
+
+
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/clock/sophgo,cv1800.h" 1
+# 8 "./scripts/dtc/include-prefixes/riscv/sophgo/cv180x.dtsi" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 9 "./scripts/dtc/include-prefixes/riscv/sophgo/cv180x.dtsi" 2
+
+# 1 "./scripts/dtc/include-prefixes/riscv/sophgo/cv18xx-reset.h" 1
+# 11 "./scripts/dtc/include-prefixes/riscv/sophgo/cv180x.dtsi" 2
+
+/ {
+ #address-cells = <1>;
+ #size-cells = <1>;
+
+ osc: oscillator {
+  compatible = "fixed-clock";
+  clock-output-names = "osc_25m";
+  #clock-cells = <0>;
+ };
+
+ soc {
+  compatible = "simple-bus";
+  #address-cells = <1>;
+  #size-cells = <1>;
+  ranges;
+
+  syscon: syscon@3000000 {
+   compatible = "sophgo,cv1800b-top-syscon",
+         "syscon", "simple-mfd";
+   reg = <0x03000000 0x1000>;
+   #address-cells = <1>;
+   #size-cells = <1>;
+
+   usbphy: phy@48 {
+    compatible = "sophgo,cv1800b-usb2-phy";
+    reg = <0x48 0x4>;
+    #phy-cells = <0>;
+    clocks = <&clk 93>,
+      <&clk 94>,
+      <&clk 95>;
+    clock-names = "app", "stb", "lpm";
+    resets = <&rst 58>;
+   };
+
+   dmamux: dma-router@154 {
+    compatible = "sophgo,cv1800b-dmamux";
+    reg = <0x154 0x8>, <0x298 0x4>;
+    #dma-cells = <2>;
+    dma-masters = <&dmac>;
+   };
+  };
+
+  rst: reset-controller@3003000 {
+   compatible = "sophgo,cv1800b-reset";
+   reg = <0x3003000 0x1000>;
+   #reset-cells = <1>;
+  };
+
+  mdio: mdio-mux@3009800 {
+   compatible = "mdio-mux-mmioreg", "mdio-mux";
+   reg = <0x3009800 0x4>;
+   #address-cells = <1>;
+   #size-cells = <0>;
+   mdio-parent-bus = <&gmac0_mdio>;
+   mux-mask = <0x80>;
+   status = "disabled";
+
+   internal_mdio: mdio@0 {
+    #address-cells = <1>;
+    #size-cells = <0>;
+    reg = <0>;
+
+    internal_ephy: phy@0 {
+     compatible = "ethernet-phy-ieee802.3-c22";
+     reg = <1>;
+    };
+   };
+
+   external_mdio: mdio@80 {
+    #address-cells = <1>;
+    #size-cells = <0>;
+    reg = <0x80>;
+   };
+  };
+
+  gpio0: gpio@3020000 {
+   compatible = "snps,dw-apb-gpio";
+   reg = <0x3020000 0x1000>;
+   #address-cells = <1>;
+   #size-cells = <0>;
+   resets = <&rst 44>;
+
+   porta: gpio-controller@0 {
+    compatible = "snps,dw-apb-gpio-port";
+    gpio-controller;
+    #gpio-cells = <2>;
+    ngpios = <32>;
+    reg = <0>;
+    interrupt-controller;
+    #interrupt-cells = <2>;
+    interrupts = <0 (44) 4>;
+   };
+  };
+
+  gpio1: gpio@3021000 {
+   compatible = "snps,dw-apb-gpio";
+   reg = <0x3021000 0x1000>;
+   #address-cells = <1>;
+   #size-cells = <0>;
+   resets = <&rst 45>;
+
+   portb: gpio-controller@0 {
+    compatible = "snps,dw-apb-gpio-port";
+    gpio-controller;
+    #gpio-cells = <2>;
+    ngpios = <32>;
+    reg = <0>;
+    interrupt-controller;
+    #interrupt-cells = <2>;
+    interrupts = <0 (45) 4>;
+   };
+  };
+
+  gpio2: gpio@3022000 {
+   compatible = "snps,dw-apb-gpio";
+   reg = <0x3022000 0x1000>;
+   #address-cells = <1>;
+   #size-cells = <0>;
+   resets = <&rst 46>;
+
+   portc: gpio-controller@0 {
+    compatible = "snps,dw-apb-gpio-port";
+    gpio-controller;
+    #gpio-cells = <2>;
+    ngpios = <32>;
+    reg = <0>;
+    interrupt-controller;
+    #interrupt-cells = <2>;
+    interrupts = <0 (46) 4>;
+   };
+  };
+
+  gpio3: gpio@3023000 {
+   compatible = "snps,dw-apb-gpio";
+   reg = <0x3023000 0x1000>;
+   #address-cells = <1>;
+   #size-cells = <0>;
+   resets = <&rst 75>;
+
+   portd: gpio-controller@0 {
+    compatible = "snps,dw-apb-gpio-port";
+    gpio-controller;
+    #gpio-cells = <2>;
+    ngpios = <32>;
+    reg = <0>;
+    interrupt-controller;
+    #interrupt-cells = <2>;
+    interrupts = <0 (47) 4>;
+   };
+  };
+
+  saradc: adc@30f0000 {
+   compatible = "sophgo,cv1800b-saradc";
+   reg = <0x030f0000 0x1000>;
+   clocks = <&clk 18>;
+   interrupts = <0 (84) 4>;
+   #address-cells = <1>;
+   #size-cells = <0>;
+   status = "disabled";
+
+   channel@0 {
+    reg = <0>;
+   };
+
+   channel@1 {
+    reg = <1>;
+   };
+
+   channel@2 {
+    reg = <2>;
+   };
+  };
+
+  i2c0: i2c@4000000 {
+   compatible = "snps,designware-i2c";
+   reg = <0x04000000 0x10000>;
+   #address-cells = <1>;
+   #size-cells = <0>;
+   clocks = <&clk 51>, <&clk 53>;
+   clock-names = "ref", "pclk";
+   interrupts = <0 (33) 4>;
+   resets = <&rst 27>;
+   status = "disabled";
+  };
+
+  i2c1: i2c@4010000 {
+   compatible = "snps,designware-i2c";
+   reg = <0x04010000 0x10000>;
+   #address-cells = <1>;
+   #size-cells = <0>;
+   clocks = <&clk 51>, <&clk 54>;
+   clock-names = "ref", "pclk";
+   interrupts = <0 (34) 4>;
+   resets = <&rst 28>;
+   status = "disabled";
+  };
+
+  i2c2: i2c@4020000 {
+   compatible = "snps,designware-i2c";
+   reg = <0x04020000 0x10000>;
+   #address-cells = <1>;
+   #size-cells = <0>;
+   clocks = <&clk 51>, <&clk 55>;
+   clock-names = "ref", "pclk";
+   interrupts = <0 (35) 4>;
+   resets = <&rst 29>;
+   status = "disabled";
+  };
+
+  i2c3: i2c@4030000 {
+   compatible = "snps,designware-i2c";
+   reg = <0x04030000 0x10000>;
+   #address-cells = <1>;
+   #size-cells = <0>;
+   clocks = <&clk 51>, <&clk 56>;
+   clock-names = "ref", "pclk";
+   interrupts = <0 (36) 4>;
+   resets = <&rst 30>;
+   status = "disabled";
+  };
+
+  i2c4: i2c@4040000 {
+   compatible = "snps,designware-i2c";
+   reg = <0x04040000 0x10000>;
+   #address-cells = <1>;
+   #size-cells = <0>;
+   clocks = <&clk 51>, <&clk 57>;
+   clock-names = "ref", "pclk";
+   interrupts = <0 (37) 4>;
+   resets = <&rst 31>;
+   status = "disabled";
+  };
+
+  gmac0: ethernet@4070000 {
+   compatible = "sophgo,cv1800b-dwmac", "snps,dwmac-3.70a";
+   reg = <0x04070000 0x10000>;
+   clocks = <&clk 35>, <&clk 34>;
+   clock-names = "stmmaceth", "ptp_ref";
+   interrupts = <0 (15) 4>;
+   interrupt-names = "macirq";
+   phy-handle = <&internal_ephy>;
+   phy-mode = "internal";
+   resets = <&rst 12>;
+   reset-names = "stmmaceth";
+   rx-fifo-depth = <8192>;
+   tx-fifo-depth = <8192>;
+   snps,multicast-filter-bins = <0>;
+   snps,perfect-filter-entries = <1>;
+   snps,aal;
+   snps,txpbl = <8>;
+   snps,rxpbl = <8>;
+   snps,mtl-rx-config = <&gmac0_mtl_rx_setup>;
+   snps,mtl-tx-config = <&gmac0_mtl_tx_setup>;
+   snps,axi-config = <&gmac0_stmmac_axi_setup>;
+   status = "disabled";
+
+   gmac0_mdio: mdio {
+    compatible = "snps,dwmac-mdio";
+    #address-cells = <1>;
+    #size-cells = <0>;
+   };
+
+   gmac0_mtl_rx_setup: rx-queues-config {
+    snps,rx-queues-to-use = <1>;
+    queue0 {};
+   };
+
+   gmac0_mtl_tx_setup: tx-queues-config {
+    snps,tx-queues-to-use = <1>;
+    queue0 {};
+   };
+
+   gmac0_stmmac_axi_setup: stmmac-axi-config {
+    snps,blen = <16 8 4 0 0 0 0>;
+    snps,rd_osr_lmt = <2>;
+    snps,wr_osr_lmt = <1>;
+   };
+  };
+
+  uart0: serial@4140000 {
+   compatible = "snps,dw-apb-uart";
+   reg = <0x04140000 0x100>;
+   interrupts = <0 (28) 4>;
+   clocks = <&clk 77>, <&clk 78>;
+   clock-names = "baudclk", "apb_pclk";
+   reg-shift = <2>;
+   reg-io-width = <4>;
+   resets = <&rst 23>;
+   status = "disabled";
+  };
+
+  uart1: serial@4150000 {
+   compatible = "snps,dw-apb-uart";
+   reg = <0x04150000 0x100>;
+   interrupts = <0 (29) 4>;
+   clocks = <&clk 79>, <&clk 80>;
+   clock-names = "baudclk", "apb_pclk";
+   reg-shift = <2>;
+   reg-io-width = <4>;
+   resets = <&rst 24>;
+   status = "disabled";
+  };
+
+  uart2: serial@4160000 {
+   compatible = "snps,dw-apb-uart";
+   reg = <0x04160000 0x100>;
+   interrupts = <0 (30) 4>;
+   clocks = <&clk 81>, <&clk 82>;
+   clock-names = "baudclk", "apb_pclk";
+   reg-shift = <2>;
+   reg-io-width = <4>;
+   resets = <&rst 25>;
+   status = "disabled";
+  };
+
+  uart3: serial@4170000 {
+   compatible = "snps,dw-apb-uart";
+   reg = <0x04170000 0x100>;
+   interrupts = <0 (31) 4>;
+   clocks = <&clk 83>, <&clk 84>;
+   clock-names = "baudclk", "apb_pclk";
+   reg-shift = <2>;
+   reg-io-width = <4>;
+   resets = <&rst 26>;
+   status = "disabled";
+  };
+
+  spi0: spi@4180000 {
+   compatible = "snps,dw-apb-ssi";
+   reg = <0x04180000 0x10000>;
+   #address-cells = <1>;
+   #size-cells = <0>;
+   clocks = <&clk 61>, <&clk 62>;
+   clock-names = "ssi_clk", "pclk";
+   interrupts = <0 (38) 4>;
+   resets = <&rst 40>;
+   status = "disabled";
+  };
+
+  spi1: spi@4190000 {
+   compatible = "snps,dw-apb-ssi";
+   reg = <0x04190000 0x10000>;
+   #address-cells = <1>;
+   #size-cells = <0>;
+   clocks = <&clk 61>, <&clk 63>;
+   clock-names = "ssi_clk", "pclk";
+   interrupts = <0 (39) 4>;
+   resets = <&rst 41>;
+   status = "disabled";
+  };
+
+  spi2: spi@41a0000 {
+   compatible = "snps,dw-apb-ssi";
+   reg = <0x041a0000 0x10000>;
+   #address-cells = <1>;
+   #size-cells = <0>;
+   clocks = <&clk 61>, <&clk 64>;
+   clock-names = "ssi_clk", "pclk";
+   interrupts = <0 (40) 4>;
+   resets = <&rst 42>;
+   status = "disabled";
+  };
+
+  spi3: spi@41b0000 {
+   compatible = "snps,dw-apb-ssi";
+   reg = <0x041b0000 0x10000>;
+   #address-cells = <1>;
+   #size-cells = <0>;
+   clocks = <&clk 61>, <&clk 65>;
+   clock-names = "ssi_clk", "pclk";
+   interrupts = <0 (41) 4>;
+   resets = <&rst 43>;
+   status = "disabled";
+  };
+
+  uart4: serial@41c0000 {
+   compatible = "snps,dw-apb-uart";
+   reg = <0x041c0000 0x100>;
+   interrupts = <0 (32) 4>;
+   clocks = <&clk 85>, <&clk 86>;
+   clock-names = "baudclk", "apb_pclk";
+   reg-shift = <2>;
+   reg-io-width = <4>;
+   resets = <&rst 74>;
+   status = "disabled";
+  };
+
+  sdhci0: mmc@4310000 {
+   compatible = "sophgo,cv1800b-dwcmshc";
+   reg = <0x4310000 0x1000>;
+   interrupts = <0 (20) 4>;
+   clocks = <&clk 27>,
+     <&clk 28>;
+   clock-names = "core", "bus";
+   status = "disabled";
+  };
+
+  sdhci1: mmc@4320000 {
+   compatible = "sophgo,cv1800b-dwcmshc";
+   reg = <0x4320000 0x1000>;
+   interrupts = <0 (22) 4>;
+   clocks = <&clk 30>,
+     <&clk 31>;
+   clock-names = "core", "bus";
+   status = "disabled";
+  };
+
+  dmac: dma-controller@4330000 {
+   compatible = "sophgo,cv1800b-axi-dma", "snps,axi-dma-1.01a";
+   reg = <0x04330000 0x1000>;
+   interrupts = <0 (13) 4>;
+   clocks = <&clk 46>, <&clk 46>;
+   clock-names = "core-clk", "cfgr-clk";
+   #dma-cells = <1>;
+   dma-channels = <8>;
+   snps,block-size = <1024 1024 1024 1024
+        1024 1024 1024 1024>;
+   snps,priority = <0 1 2 3 4 5 6 7>;
+   snps,dma-masters = <2>;
+   snps,data-width = <2>;
+   status = "disabled";
+  };
+
+  usb: usb@4340000 {
+   compatible = "sophgo,cv1800b-usb";
+   reg = <0x04340000 0x10000>;
+   clocks = <&clk 91>, <&clk 92>;
+   clock-names = "otg", "utmi";
+   g-np-tx-fifo-size = <32>;
+   g-rx-fifo-size = <1536>;
+   g-tx-fifo-size = <128 128 64 64 64 64 32 32>;
+   interrupts = <0 (14) 4>;
+   phys = <&usbphy>;
+   phy-names = "usb2-phy";
+   resets = <&rst 11>;
+   reset-names = "dwc2";
+   status = "disabled";
+  };
+
+  gpio4: gpio@5021000 {
+   compatible = "snps,dw-apb-gpio";
+   reg = <0x5021000 0x1000>;
+   #address-cells = <1>;
+   #size-cells = <0>;
+
+   porte: gpio-controller@0 {
+    compatible = "snps,dw-apb-gpio-port";
+    gpio-controller;
+    #gpio-cells = <2>;
+    ngpios = <32>;
+    reg = <0>;
+    interrupt-controller;
+    #interrupt-cells = <2>;
+    interrupts = <0 (54) 4>;
+   };
+  };
+
+  rtc@5025000 {
+   compatible = "sophgo,cv1800b-rtc", "syscon";
+   reg = <0x5025000 0x2000>;
+   interrupts = <0 (1) 4>,
+         <0 (2) 4>,
+         <0 (3) 4>;
+   interrupt-names = "alarm", "longpress", "vbat";
+   clocks = <&clk 15>,
+     <&clk 16>;
+   clock-names = "rtc", "mcu";
+  };
+ };
+};
+# 7 "arch/arm64/boot/dts/sophgo/sg2000.dtsi" 2
+# 1 "./scripts/dtc/include-prefixes/riscv/sophgo/cv181x.dtsi" 1
+# 9 "./scripts/dtc/include-prefixes/riscv/sophgo/cv181x.dtsi"
+/ {
+ soc {
+  emmc: mmc@4300000 {
+   compatible = "sophgo,cv1800b-dwcmshc";
+   reg = <0x4300000 0x1000>;
+   interrupts = <0 (18) 4>;
+   clocks = <&clk 24>,
+     <&clk 25>;
+   clock-names = "core", "bus";
+   status = "disabled";
+  };
+ };
+};
+# 8 "arch/arm64/boot/dts/sophgo/sg2000.dtsi" 2
+
+/ {
+ compatible = "sophgo,sg2000";
+ interrupt-parent = <&gic>;
+
+ cpus {
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  cpu@0 {
+   compatible = "arm,cortex-a53";
+   device_type = "cpu";
+   reg = <0>;
+   enable-method = "psci";
+   i-cache-size = <32768>;
+   d-cache-size = <32768>;
+   next-level-cache = <&l2>;
+  };
+
+  l2: l2-cache {
+   compatible = "cache";
+   cache-level = <2>;
+   cache-unified;
+   cache-size = <0x20000>;
+  };
+ };
+
+ memory@80000000 {
+  device_type = "memory";
+  reg = <0x80000000 0x20000000>;
+ };
+
+ pmu {
+  compatible = "arm,cortex-a53-pmu";
+  interrupts = <0 119 4>,
+        <0 120 4>;
+ };
+
+ psci {
+  compatible = "arm,psci-0.2";
+  method = "smc";
+  cpu_on = <0xc4000003>;
+  cpu_off = <0x84000002>;
+ };
+
+ soc {
+  gic: interrupt-controller@1f01000 {
+   compatible = "arm,cortex-a15-gic";
+   interrupt-controller;
+   #interrupt-cells = <3>;
+   reg = <0x01f01000 0x1000>,
+         <0x01f02000 0x2000>;
+  };
+
+  pinctrl: pinctrl@3001000 {
+   compatible = "sophgo,sg2000-pinctrl";
+   reg = <0x03001000 0x1000>,
+         <0x05027000 0x1000>;
+   reg-names = "sys", "rtc";
+  };
+
+  clk: clock-controller@3002000 {
+   compatible = "sophgo,sg2000-clk";
+   reg = <0x03002000 0x1000>;
+   clocks = <&osc>;
+   #clock-cells = <1>;
+  };
+ };
+
+ timer {
+  compatible = "arm,armv8-timer";
+  interrupts = <1 13 ((((1 << (2)) - 1) << 8) | 8)>,
+        <1 14 ((((1 << (2)) - 1) << 8) | 8)>,
+        <1 11 ((((1 << (2)) - 1) << 8) | 8)>,
+        <1 10 ((((1 << (2)) - 1) << 8) | 8)>;
+  always-on;
+  clock-frequency = <25000000>;
+ };
+};
+# 7 "arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts" 2
+
+/ {
+ model = "Milk-V Duo S";
+ compatible = "milkv,duo-s", "sophgo,sg2000";
+
+ aliases {
+  i2c4 = &i2c4;
+  mmc0 = &sdhci0;
+  mmc1 = &emmc;
+  mmc2 = &sdhci1;
+  serial0 = &uart0;
+  serial4 = &uart4;
+ };
+
+ chosen {
+  stdout-path = "serial0:115200n8";
+ };
+
+ wifi_pwrseq: wifi-pwrseq {
+  compatible = "mmc-pwrseq-simple";
+  reset-gpios = <&porta 15 1>;
+  power-off-delay-us = <50000>;
+  post-power-on-delay-ms = <200>;
+ };
+};
+
+&osc {
+ clock-frequency = <25000000>;
+};
+
+&pinctrl {
+ emmc_cfg: emmc-cfg {
+  emmc-rstn-pins {
+   pinmux = <((((((('P') - 'A' + 1) << 8) + ((4) - 1))) & 0xffff) | (((0) & 0xff) << 16) | (((0xff) & 0xff) << 24))>;
+   bias-pull-up;
+   drive-strength-microamp = <10800>;
+   power-source = <1800>;
+  };
+
+  emmc-clk-pins {
+   pinmux = <((((((('R') - 'A' + 1) << 8) + ((4) - 1))) & 0xffff) | (((0) & 0xff) << 16) | (((0xff) & 0xff) << 24))>;
+   bias-pull-up;
+   drive-strength-microamp = <10800>;
+   power-source = <1800>;
+  };
+
+  emmc-cmd-pins {
+   pinmux = <((((((('R') - 'A' + 1) << 8) + ((3) - 1))) & 0xffff) | (((0) & 0xff) << 16) | (((0xff) & 0xff) << 24))>;
+   bias-pull-up;
+   drive-strength-microamp = <10800>;
+   power-source = <1800>;
+  };
+
+  emmc-data-pins {
+   pinmux = <((((((('P') - 'A' + 1) << 8) + ((2) - 1))) & 0xffff) | (((0) & 0xff) << 16) | (((0xff) & 0xff) << 24))>,
+     <((((((('R') - 'A' + 1) << 8) + ((2) - 1))) & 0xffff) | (((0) & 0xff) << 16) | (((0xff) & 0xff) << 24))>,
+     <((((((('P') - 'A' + 1) << 8) + ((3) - 1))) & 0xffff) | (((0) & 0xff) << 16) | (((0xff) & 0xff) << 24))>,
+     <((((((('P') - 'A' + 1) << 8) + ((1) - 1))) & 0xffff) | (((0) & 0xff) << 16) | (((0xff) & 0xff) << 24))>;
+   bias-pull-up;
+   drive-strength-microamp = <10800>;
+   power-source = <1800>;
+  };
+ };
+
+ i2c4_cfg: i2c4-cfg {
+  i2c4-pins {
+   pinmux = <((((((('B') - 'A' + 1) << 8) + ((9) - 1))) & 0xffff) | (((7) & 0xff) << 16) | (((0xff) & 0xff) << 24))>,
+     <((((((('E') - 'A' + 1) << 8) + ((10) - 1))) & 0xffff) | (((7) & 0xff) << 16) | (((0xff) & 0xff) << 24))>;
+   bias-pull-up;
+   drive-strength-microamp = <4000>;
+   power-source = <1800>;
+  };
+ };
+
+ sdhci0_cfg: sdhci0-cfg {
+  sdhci0-cd-pins {
+   pinmux = <((((((('K') - 'A' + 1) << 8) + ((2) - 1))) & 0xffff) | (((0) & 0xff) << 16) | (((0xff) & 0xff) << 24))>;
+   bias-pull-up;
+   drive-strength-microamp = <10800>;
+   power-source = <3300>;
+  };
+
+  sdhci0-clk-pins {
+   pinmux = <((((((('L') - 'A' + 1) << 8) + ((1) - 1))) & 0xffff) | (((0) & 0xff) << 16) | (((0xff) & 0xff) << 24))>;
+   bias-pull-up;
+   drive-strength-microamp = <16100>;
+   power-source = <3300>;
+  };
+
+  sdhci0-cmd-pins {
+   pinmux = <((((((('L') - 'A' + 1) << 8) + ((3) - 1))) & 0xffff) | (((0) & 0xff) << 16) | (((0xff) & 0xff) << 24))>;
+   bias-pull-up;
+   drive-strength-microamp = <10800>;
+   power-source = <3300>;
+  };
+
+  sdhci0-data-pins {
+   pinmux = <((((((('L') - 'A' + 1) << 8) + ((2) - 1))) & 0xffff) | (((0) & 0xff) << 16) | (((0xff) & 0xff) << 24))>,
+     <((((((('K') - 'A' + 1) << 8) + ((3) - 1))) & 0xffff) | (((0) & 0xff) << 16) | (((0xff) & 0xff) << 24))>,
+     <((((((('M') - 'A' + 1) << 8) + ((2) - 1))) & 0xffff) | (((0) & 0xff) << 16) | (((0xff) & 0xff) << 24))>,
+     <((((((('M') - 'A' + 1) << 8) + ((1) - 1))) & 0xffff) | (((0) & 0xff) << 16) | (((0xff) & 0xff) << 24))>;
+   bias-pull-up;
+   drive-strength-microamp = <10800>;
+   power-source = <3300>;
+  };
+ };
+
+ sdhci1_cfg: sdhci1-cfg {
+  sdhci1-clk-pins {
+   pinmux = <((((((('A') - 'A' + 1) << 8) + ((2) - 1))) & 0xffff) | (((1) & 0xff) << 16) | (((0xff) & 0xff) << 24))>;
+   bias-pull-up;
+   drive-strength-microamp = <10800>;
+   power-source = <1800>;
+  };
+
+  sdhci1-cmd-pins {
+   pinmux = <((((((('B') - 'A' + 1) << 8) + ((3) - 1))) & 0xffff) | (((1) & 0xff) << 16) | (((0xff) & 0xff) << 24))>;
+   bias-pull-up;
+   drive-strength-microamp = <10800>;
+   power-source = <1800>;
+  };
+
+  sdhci1-data-pins {
+   pinmux = <((((((('B') - 'A' + 1) << 8) + ((2) - 1))) & 0xffff) | (((1) & 0xff) << 16) | (((0xff) & 0xff) << 24))>,
+     <((((((('B') - 'A' + 1) << 8) + ((1) - 1))) & 0xffff) | (((1) & 0xff) << 16) | (((0xff) & 0xff) << 24))>,
+     <((((((('C') - 'A' + 1) << 8) + ((2) - 1))) & 0xffff) | (((7) & 0xff) << 16) | (((0xff) & 0xff) << 24))>,
+     <((((((('C') - 'A' + 1) << 8) + ((1) - 1))) & 0xffff) | (((7) & 0xff) << 16) | (((0xff) & 0xff) << 24))>;
+   bias-pull-up;
+   drive-strength-microamp = <10800>;
+   power-source = <1800>;
+  };
+ };
+
+ uart0_cfg: uart0-cfg {
+  uart0-pins {
+   pinmux = <((((((('M') - 'A' + 1) << 8) + ((5) - 1))) & 0xffff) | (((0) & 0xff) << 16) | (((0xff) & 0xff) << 24))>,
+     <((((((('M') - 'A' + 1) << 8) + ((4) - 1))) & 0xffff) | (((0) & 0xff) << 16) | (((0xff) & 0xff) << 24))>;
+   bias-pull-up;
+   drive-strength-microamp = <10800>;
+   power-source = <3300>;
+  };
+ };
+
+ uart4_cfg: uart4-cfg {
+  uart4-data-pins {
+   pinmux = <((((((('K') - 'A' + 1) << 8) + ((15) - 1))) & 0xffff) | (((5) & 0xff) << 16) | (((0xff) & 0xff) << 24))>,
+     <((((((('K') - 'A' + 1) << 8) + ((13) - 1))) & 0xffff) | (((5) & 0xff) << 16) | (((0xff) & 0xff) << 24))>;
+   drive-strength-microamp = <10800>;
+   power-source = <3300>;
+  };
+
+  uart4-control-pins {
+   pinmux = <((((((('K') - 'A' + 1) << 8) + ((14) - 1))) & 0xffff) | (((5) & 0xff) << 16) | (((0xff) & 0xff) << 24))>,
+     <((((((('L') - 'A' + 1) << 8) + ((15) - 1))) & 0xffff) | (((5) & 0xff) << 16) | (((0xff) & 0xff) << 24))>;
+   bias-pull-up;
+   drive-strength-microamp = <10800>;
+   power-source = <3300>;
+  };
+ };
+};
+
+&dmac {
+ status = "okay";
+};
+
+&emmc {
+ bus-width = <4>;
+ no-1-8-v;
+ cap-mmc-hw-reset;
+ no-sd;
+ no-sdio;
+ non-removable;
+ pinctrl-0 = <&emmc_cfg>;
+ pinctrl-names = "default";
+ status = "okay";
+};
+
+&gmac0 {
+ status = "okay";
+};
+
+&i2c4 {
+ pinctrl-0 = <&i2c4_cfg>;
+ pinctrl-names = "default";
+ status = "okay";
+};
+
+&mdio {
+ status = "okay";
+};
+
+&saradc {
+ status = "okay";
+};
+
+&sdhci0 {
+ bus-width = <4>;
+ disable-wp;
+ no-1-8-v;
+ pinctrl-0 = <&sdhci0_cfg>;
+ pinctrl-names = "default";
+ status = "okay";
+};
+
+&sdhci1 {
+ bus-width = <4>;
+ cap-sdio-irq;
+ cap-sd-highspeed;
+ keep-power-in-suspend;
+ no-mmc;
+ no-sd;
+ non-removable;
+ max-frequency = <150000000>;
+ mmc-pwrseq = <&wifi_pwrseq>;
+ pinctrl-0 = <&sdhci1_cfg>;
+ pinctrl-names = "default";
+ sd-uhs-sdr50;
+ sd-uhs-sdr104;
+ status = "okay";
+};
+
+&uart0 {
+ pinctrl-0 = <&uart0_cfg>;
+ pinctrl-names = "default";
+ status = "okay";
+};
+
+&uart4 {
+ pinctrl-0 = <&uart4_cfg>;
+ pinctrl-names = "default";
+ uart-has-rtscts;
+ status = "okay";
+};
+
+&usb {
+ dr_mode = "host";
+ status = "okay";
+};

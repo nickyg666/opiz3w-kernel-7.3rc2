@@ -1,0 +1,237 @@
+# 0 "arch/arm64/boot/dts/st/stm32mp215f-dk.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/st/stm32mp215f-dk.dts"
+
+
+
+
+
+
+/dts-v1/;
+
+# 1 "arch/arm64/boot/dts/st/stm32mp215.dtsi" 1
+
+
+
+
+
+# 1 "arch/arm64/boot/dts/st/stm32mp213.dtsi" 1
+
+
+
+
+
+# 1 "arch/arm64/boot/dts/st/stm32mp211.dtsi" 1
+
+
+
+
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h" 1
+# 9 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h"
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 10 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h" 2
+# 7 "arch/arm64/boot/dts/st/stm32mp211.dtsi" 2
+
+/ {
+ #address-cells = <2>;
+ #size-cells = <2>;
+
+ cpus {
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  cpu0: cpu@0 {
+   compatible = "arm,cortex-a35";
+   reg = <0>;
+   device_type = "cpu";
+   enable-method = "psci";
+  };
+ };
+
+ arm-pmu {
+  compatible = "arm,cortex-a35-pmu";
+  interrupts = <0 368 4>;
+  interrupt-affinity = <&cpu0>;
+  interrupt-parent = <&intc>;
+ };
+
+ arm_wdt: watchdog {
+  compatible = "arm,smc-wdt";
+  arm,smc-id = <0xbc000000>;
+  status = "disabled";
+ };
+
+ ck_flexgen_08: clock-64000000 {
+  compatible = "fixed-clock";
+  #clock-cells = <0>;
+  clock-frequency = <64000000>;
+ };
+
+ ck_flexgen_51: clock-200000000 {
+  compatible = "fixed-clock";
+  #clock-cells = <0>;
+  clock-frequency = <200000000>;
+ };
+
+ firmware {
+  optee {
+   compatible = "linaro,optee-tz";
+   method = "smc";
+  };
+
+  scmi: scmi {
+   compatible = "linaro,scmi-optee";
+   #address-cells = <1>;
+   #size-cells = <0>;
+   linaro,optee-channel-id = <0>;
+
+   scmi_clk: protocol@14 {
+    reg = <0x14>;
+    #clock-cells = <1>;
+   };
+
+   scmi_reset: protocol@16 {
+    reg = <0x16>;
+    #reset-cells = <1>;
+   };
+  };
+ };
+
+ psci {
+  compatible = "arm,psci-1.0";
+  method = "smc";
+ };
+
+ timer {
+  compatible = "arm,armv8-timer";
+  interrupt-parent = <&intc>;
+  interrupts = <1 13 ((((1 << (1)) - 1) << 8) | 8)>,
+        <1 14 ((((1 << (1)) - 1) << 8) | 8)>,
+        <1 11 ((((1 << (1)) - 1) << 8) | 8)>,
+        <1 10 ((((1 << (1)) - 1) << 8) | 8)>;
+  arm,no-tick-in-suspend;
+ };
+
+ soc@0 {
+  compatible = "simple-bus";
+  ranges = <0x0 0x0 0x0 0x0 0x80000000>;
+  dma-ranges = <0x0 0x0 0x80000000 0x1 0x0>;
+  interrupt-parent = <&intc>;
+  #address-cells = <1>;
+  #size-cells = <2>;
+
+  rifsc: bus@42080000 {
+   compatible = "st,stm32mp21-rifsc", "simple-bus";
+   reg = <0x42080000 0x0 0x1000>;
+   ranges;
+   dma-ranges;
+   #address-cells = <1>;
+   #size-cells = <2>;
+   #access-controller-cells = <1>;
+
+   usart2: serial@400e0000 {
+    compatible = "st,stm32h7-uart";
+    reg = <0x400e0000 0x0 0x400>;
+    interrupts = <0 102 4>;
+    clocks = <&ck_flexgen_08>;
+    access-controllers = <&rifsc 32>;
+    status = "disabled";
+   };
+  };
+
+  bsec: efuse@44000000 {
+   compatible = "st,stm32mp25-bsec";
+   reg = <0x44000000 0x0 0x1000>;
+   #address-cells = <1>;
+   #size-cells = <1>;
+
+   part_number_otp@24 {
+    reg = <0x24 0x4>;
+   };
+
+   package_otp@1e8 {
+    reg = <0x1e8 0x1>;
+    bits = <0 3>;
+   };
+  };
+
+  syscfg: syscon@44230000 {
+   compatible = "st,stm32mp21-syscfg", "syscon";
+   reg = <0x44230000 0x0 0x10000>;
+  };
+
+  intc: interrupt-controller@4ac10000 {
+   compatible = "arm,gic-400";
+   reg = <0x4ac10000 0x0 0x1000>,
+         <0x4ac20000 0x0 0x20000>,
+         <0x4ac40000 0x0 0x20000>,
+         <0x4ac60000 0x0 0x20000>;
+         #interrupt-cells = <3>;
+         interrupt-controller;
+  };
+ };
+};
+# 7 "arch/arm64/boot/dts/st/stm32mp213.dtsi" 2
+
+/ {
+};
+# 7 "arch/arm64/boot/dts/st/stm32mp215.dtsi" 2
+
+/ {
+};
+# 10 "arch/arm64/boot/dts/st/stm32mp215f-dk.dts" 2
+# 1 "arch/arm64/boot/dts/st/stm32mp21xf.dtsi" 1
+
+
+
+
+
+
+/ {
+};
+# 11 "arch/arm64/boot/dts/st/stm32mp215f-dk.dts" 2
+
+/ {
+ model = "STMicroelectronics STM32MP215F-DK Discovery Board";
+ compatible = "st,stm32mp215f-dk", "st,stm32mp215";
+
+ aliases {
+  serial0 = &usart2;
+ };
+
+ chosen {
+  stdout-path = "serial0:115200n8";
+ };
+
+ memory@80000000 {
+  device_type = "memory";
+  reg = <0x0 0x80000000 0x0 0x80000000>;
+ };
+
+ reserved-memory {
+  #address-cells = <2>;
+  #size-cells = <2>;
+  ranges;
+
+  fw@80000000 {
+   compatible = "shared-dma-pool";
+   reg = <0x0 0x80000000 0x0 0x4000000>;
+   no-map;
+  };
+ };
+};
+
+&arm_wdt {
+ timeout-sec = <32>;
+ status = "okay";
+};
+
+&bsec {
+ bootph-all;
+};
+
+&usart2 {
+ status = "okay";
+};

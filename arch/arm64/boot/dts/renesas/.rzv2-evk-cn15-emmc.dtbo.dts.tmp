@@ -1,0 +1,49 @@
+# 0 "arch/arm64/boot/dts/renesas/rzv2-evk-cn15-emmc.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/renesas/rzv2-evk-cn15-emmc.dtso"
+# 9 "arch/arm64/boot/dts/renesas/rzv2-evk-cn15-emmc.dtso"
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 13 "arch/arm64/boot/dts/renesas/rzv2-evk-cn15-emmc.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pinctrl/rzg2l-pinctrl.h" 1
+# 14 "arch/arm64/boot/dts/renesas/rzv2-evk-cn15-emmc.dtso" 2
+
+&{/} {
+ aliases {
+  mmc0 = "/soc/mmc@15c00000";
+ };
+};
+
+&pinctrl {
+ sdhi0_emmc_pins: emmc-pins {
+  sd0-clk {
+   pins = "SD0CLK";
+   renesas,output-impedance = <3>;
+   slew-rate = <0>;
+  };
+
+  sd0-dat-cmd {
+   pins = "SD0DAT0", "SD0DAT1", "SD0DAT2", "SD0DAT3", "SD0DAT4",
+          "SD0DAT5", "SD0DAT6", "SD0DAT7", "SD0CMD";
+   input-enable;
+   renesas,output-impedance = <3>;
+   slew-rate = <0>;
+  };
+ };
+};
+
+&sdhi0 {
+ pinctrl-0 = <&sdhi0_emmc_pins>;
+ pinctrl-1 = <&sdhi0_emmc_pins>;
+ pinctrl-names = "default", "state_uhs";
+ vmmc-supply = <&reg_3p3v>;
+ vqmmc-supply = <&reg_1p8v>;
+ bus-width = <8>;
+ mmc-hs200-1_8v;
+ non-removable;
+ fixed-emmc-driver-type = <1>;
+ status = "okay";
+};

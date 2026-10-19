@@ -1,0 +1,8 @@
+artpec8-grizzly.o: arch/arm64/boot/dts/exynos/axis/artpec8-grizzly.dts \
+ arch/arm64/boot/dts/exynos/axis/artpec8.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/axis,artpec8-clk.h \
+ arch/arm64/boot/dts/exynos/axis/artpec8-pinctrl.dtsi \
+ arch/arm64/boot/dts/exynos/axis/artpec-pinctrl.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h

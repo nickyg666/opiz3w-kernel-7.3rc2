@@ -1,0 +1,120 @@
+# 0 "arch/arm64/boot/dts/freescale/imx8mp-dhcom-som-overlay-eth2xfast.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx8mp-dhcom-som-overlay-eth2xfast.dtso"
+
+
+
+
+# 1 "arch/arm64/boot/dts/freescale/imx8mp-dhcom-som-overlay-eth1xfast.dtso" 1
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/clock/imx8mp-clock.h" 1
+# 9 "arch/arm64/boot/dts/freescale/imx8mp-dhcom-som-overlay-eth1xfast.dtso" 2
+
+&eqos {
+ pinctrl-0 = <&pinctrl_eqos_rmii>;
+ phy-handle = <&ethphy0f>;
+ phy-mode = "rmii";
+
+ assigned-clock-parents = <&clk 54>,
+     <&clk 58>,
+     <&clk 57>;
+ assigned-clock-rates = <0>, <100000000>, <50000000>;
+};
+
+&ethphy0g {
+ status = "disabled";
+};
+
+&ethphy0f {
+ status = "okay";
+};
+
+&fec {
+ status = "disabled";
+};
+
+
+
+&hdmi_blk_ctrl {
+ status = "disabled";
+};
+
+&hdmi_pvi {
+ status = "disabled";
+};
+
+&hdmi_tx {
+ status = "disabled";
+};
+
+&hdmi_tx_phy {
+ status = "disabled";
+};
+
+&irqsteer_hdmi {
+ status = "disabled";
+};
+
+&lcdif3 {
+ status = "disabled";
+};
+
+&pcie_phy {
+ status = "disabled";
+};
+
+&pcie {
+ status = "disabled";
+};
+
+
+&uart2 {
+ bluetooth {
+  status = "disabled";
+ };
+};
+
+&usb_dwc3_0 {
+ maximum-speed = "high-speed";
+};
+
+&usb_dwc3_1 {
+ maximum-speed = "high-speed";
+};
+
+
+&usdhc1 {
+ status = "disabled";
+};
+# 6 "arch/arm64/boot/dts/freescale/imx8mp-dhcom-som-overlay-eth2xfast.dtso" 2
+
+
+
+&ethphy1f {
+ status = "okay";
+};
+
+&fec {
+ pinctrl-0 = <&pinctrl_fec_rmii>;
+ phy-handle = <&ethphy1f>;
+ phy-mode = "rmii";
+ status = "okay";
+
+ assigned-clock-parents = <&clk 54>,
+     <&clk 58>,
+     <&clk 57>,
+     <&clk 57>;
+ assigned-clock-rates = <0>, <100000000>, <50000000>, <0>;
+};
+
+
+&touch_som {
+ status = "disabled";
+};

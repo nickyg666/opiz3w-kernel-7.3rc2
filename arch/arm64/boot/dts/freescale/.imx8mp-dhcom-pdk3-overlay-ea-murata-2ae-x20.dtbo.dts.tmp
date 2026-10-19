@@ -1,0 +1,62 @@
+# 0 "arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3-overlay-ea-murata-2ae-x20.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3-overlay-ea-murata-2ae-x20.dtso"
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/clock/imx8mp-clock.h" 1
+# 9 "arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3-overlay-ea-murata-2ae-x20.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 10 "arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3-overlay-ea-murata-2ae-x20.dtso" 2
+
+
+
+&{/} {
+ led {
+  led-0 {
+
+   status = "disabled";
+  };
+ };
+};
+
+&uart3 {
+ assigned-clocks = <&clk 144>;
+ assigned-clock-parents = <&clk 49>;
+ assigned-clock-rates = <80000000>;
+
+ bluetooth {
+  compatible = "cypress,cyw4373a0-bt";
+  max-speed = <4000000>;
+ };
+};
+
+
+&usdhc2 {
+ pinctrl-names = "default";
+ pinctrl-0 = <&pinctrl_usdhc2>;
+ broken-cd;
+ cap-power-off-card;
+ keep-power-in-suspend;
+ non-removable;
+ vmmc-supply = <&buck4>;
+
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ wifi@1 {
+  compatible = "cypress,cyw4373-fmac", "brcm,bcm4329-fmac";
+  reg = <1>;
+
+
+
+
+
+  reset-gpios = <&gpio4 27 1>;
+ };
+};

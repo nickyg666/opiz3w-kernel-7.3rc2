@@ -1,0 +1,8 @@
+t6030-j516s.o: arch/arm64/boot/dts/apple/t6030-j516s.dts \
+ arch/arm64/boot/dts/apple/t6030.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/apple-aic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/pinctrl/apple.h \
+ arch/arm64/boot/dts/apple/t6030-pmgr.dtsi \
+ arch/arm64/boot/dts/apple/t603x-j514-j516.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/leds/common.h

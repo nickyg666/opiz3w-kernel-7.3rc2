@@ -1,0 +1,7 @@
+imx93-phyboard-segin-peb-av-02.o: \
+ arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-02.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/clock/imx93-clock.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ arch/arm64/boot/dts/freescale/imx93-pinfunc.h

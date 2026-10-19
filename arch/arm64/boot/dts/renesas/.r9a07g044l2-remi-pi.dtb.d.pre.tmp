@@ -1,0 +1,10 @@
+r9a07g044l2-remi-pi.o: \
+ arch/arm64/boot/dts/renesas/r9a07g044l2-remi-pi.dts \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/pinctrl/rzg2l-pinctrl.h \
+ arch/arm64/boot/dts/renesas/r9a07g044l2.dtsi \
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/r9a07g044-cpg.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/renesas-cpg-mssr.h

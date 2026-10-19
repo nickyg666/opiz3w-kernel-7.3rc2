@@ -1,0 +1,3 @@
+lemans-evk-camera.o: arch/arm64/boot/dts/qcom/lemans-evk-camera.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/clock/qcom,sa8775p-camcc.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h

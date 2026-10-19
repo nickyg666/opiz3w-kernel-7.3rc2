@@ -1,0 +1,22 @@
+# 0 "arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot-rs485-a.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot-rs485-a.dtso"
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+&uart3 {
+ linux,rs485-enabled-at-boot-time;
+};
+
+&uart3_rs_232_485_mux {
+
+ idle-state = <1>;
+};

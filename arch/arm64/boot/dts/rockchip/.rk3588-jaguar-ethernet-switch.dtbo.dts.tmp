@@ -1,0 +1,185 @@
+# 0 "arch/arm64/boot/dts/rockchip/rk3588-jaguar-ethernet-switch.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/rockchip/rk3588-jaguar-ethernet-switch.dtso"
+# 21 "arch/arm64/boot/dts/rockchip/rk3588-jaguar-ethernet-switch.dtso"
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/clock/rockchip,rk3588-cru.h" 1
+# 25 "arch/arm64/boot/dts/rockchip/rk3588-jaguar-ethernet-switch.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 26 "arch/arm64/boot/dts/rockchip/rk3588-jaguar-ethernet-switch.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 27 "arch/arm64/boot/dts/rockchip/rk3588-jaguar-ethernet-switch.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/leds/common.h" 1
+# 28 "arch/arm64/boot/dts/rockchip/rk3588-jaguar-ethernet-switch.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pinctrl/rockchip.h" 1
+# 29 "arch/arm64/boot/dts/rockchip/rk3588-jaguar-ethernet-switch.dtso" 2
+
+&{/} {
+ aliases {
+  ethernet1 = "/ethernet@fe1c0000";
+ };
+
+ mezzanine-leds {
+  compatible = "gpio-leds";
+  pinctrl-names = "default";
+  pinctrl-0 = <&led_usr1_pin &led_usr2_pin>;
+
+  led-1 {
+   gpios = <&gpio1 17 0>;
+   label = "USR1";
+  };
+
+  led-2 {
+   gpios = <&gpio3 20 0>;
+   label = "USR2";
+  };
+ };
+};
+
+&gmac1 {
+ clock_in_out = "output";
+ phy-mode = "rgmii-id";
+ pinctrl-names = "default";
+ pinctrl-0 = <&gmac1_rx_bus2
+       &gmac1_tx_bus2
+       &gmac1_rgmii_clk
+       &gmac1_rgmii_bus
+       &eth1_pins>;
+ rx_delay = <0x0>;
+ tx_delay = <0x0>;
+ status = "okay";
+
+ fixed-link {
+  speed = <1000>;
+  full-duplex;
+ };
+};
+
+&i2c1 {
+ #address-cells = <1>;
+
+
+
+
+ clock-frequency = <400000>;
+ #size-cells = <0>;
+ status = "okay";
+
+ adc@48 {
+  compatible = "ti,ads1015";
+  reg = <0x48>;
+  #address-cells = <1>;
+  interrupt-parent = <&gpio3>;
+  interrupts = <23 2>;
+  pinctrl-0 = <&adc_alert>;
+  pinctrl-names = "default";
+  #io-channel-cells = <1>;
+  #size-cells = <0>;
+
+  channel@1 {
+   reg = <5>;
+   ti,datarate = <0>;
+   ti,gain = <5>;
+  };
+
+  channel@2 {
+   reg = <6>;
+   ti,datarate = <0>;
+   ti,gain = <5>;
+  };
+ };
+
+ switch@5f {
+  compatible = "microchip,ksz9896";
+  reg = <0x5f>;
+  interrupt-parent = <&gpio3>;
+  interrupts = <15 2>;
+  pinctrl-0 = <&eth_reset_n &eth_intrp_n>;
+  pinctrl-names = "default";
+  reset-gpios = <&gpio3 14 1>;
+  microchip,synclko-disable;
+
+  ethernet-ports {
+   #address-cells = <1>;
+   #size-cells = <0>;
+
+   lan1: port@0 {
+    reg = <0>;
+    label = "ETH1";
+   };
+
+   lan2: port@1 {
+    reg = <1>;
+    label = "ETH2";
+   };
+
+   lan3: port@2 {
+    reg = <2>;
+    label = "ETH3";
+   };
+
+   lan4: port@3 {
+    reg = <3>;
+    label = "ETH4";
+   };
+
+   port@5 {
+    reg = <5>;
+    ethernet = <&gmac1>;
+    label = "CPU";
+    phy-mode = "rgmii-id";
+    rx-internal-delay-ps = <2000>;
+    tx-internal-delay-ps = <2000>;
+
+    fixed-link {
+     speed = <1000>;
+     full-duplex;
+    };
+   };
+  };
+ };
+};
+
+&pinctrl {
+ adc {
+  adc_alert: adc-alert-irq {
+   rockchip,pins =
+    <3 23 0 &pcfg_pull_up>;
+  };
+ };
+
+ ethernet {
+  eth_intrp_n: eth-intrp-n {
+   rockchip,pins =
+    <3 15 0 &pcfg_pull_none>;
+  };
+
+  eth_reset_n: eth-reset-n {
+   rockchip,pins =
+    <3 14 0 &pcfg_pull_none>;
+  };
+ };
+
+ leds {
+  led_usr1_pin: led-usr1-pin {
+   rockchip,pins =
+    <1 17 0 &pcfg_pull_down>;
+  };
+
+  led_usr2_pin: led-usr2-pin {
+   rockchip,pins =
+    <3 20 0 &pcfg_pull_down>;
+  };
+ };
+};
+
+&uart9 {
+
+ pinctrl-0 = <&uart9m2_xfer &uart9m2_rtsn>;
+ pinctrl-names = "default";
+ linux,rs485-enabled-at-boot-time;
+ status = "okay";
+};

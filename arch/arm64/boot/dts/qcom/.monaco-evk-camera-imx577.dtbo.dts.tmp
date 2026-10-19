@@ -1,0 +1,72 @@
+# 0 "arch/arm64/boot/dts/qcom/monaco-evk-camera-imx577.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/qcom/monaco-evk-camera-imx577.dtso"
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/clock/qcom,sa8775p-camcc.h" 1
+# 10 "arch/arm64/boot/dts/qcom/monaco-evk-camera-imx577.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 11 "arch/arm64/boot/dts/qcom/monaco-evk-camera-imx577.dtso" 2
+
+&camss {
+ vdda-phy-supply = <&vreg_l4a>;
+ vdda-pll-supply = <&vreg_l5a>;
+
+ status = "okay";
+
+ ports {
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  port@1 {
+   reg = <1>;
+
+   csiphy1_ep: endpoint {
+    data-lanes = <0 1 2 3>;
+    remote-endpoint = <&imx577_ep1>;
+   };
+  };
+ };
+};
+
+&cci1 {
+ pinctrl-0 = <&cci1_0_default>;
+ pinctrl-1 = <&cci1_0_sleep>;
+
+ status = "okay";
+};
+
+&cci1_i2c0 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ camera@1a {
+  compatible = "sony,imx577";
+  reg = <0x1a>;
+
+  reset-gpios = <&expander2 1 1>;
+  pinctrl-0 = <&cam1_default>;
+  pinctrl-names = "default";
+
+  clocks = <&camcc 60>;
+  assigned-clocks = <&camcc 60>;
+  assigned-clock-rates = <24000000>;
+
+  avdd-supply = <&vreg_cam1_2p8>;
+
+  port {
+   imx577_ep1: endpoint {
+    link-frequencies = /bits/ 64 <600000000>;
+    data-lanes = <1 2 3 4>;
+    remote-endpoint = <&csiphy1_ep>;
+   };
+  };
+ };
+};

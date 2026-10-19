@@ -1,0 +1,61 @@
+# 0 "arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-lvds-tm070jvhg33.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-lvds-tm070jvhg33.dtso"
+
+
+
+
+
+
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/clock/imx93-clock.h" 1
+# 9 "arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-lvds-tm070jvhg33.dtso" 2
+
+/dts-v1/;
+/plugin/;
+
+&backlight {
+ status = "okay";
+};
+
+&display {
+ compatible = "tianma,tm070jvhg33";
+ status = "okay";
+};
+
+&dpi_bridge {
+ pinctrl-names = "default";
+ pinctrl-0 = <&pinctrl_rgbdisp>;
+ status = "okay";
+};
+
+&dpi_to_panel {
+ remote-endpoint = <&lvds_encoder_input>;
+};
+
+&lcdif {
+ assigned-clocks = <&clk 10>;
+ assigned-clock-rates = <477400000>;
+ status = "okay";
+};
+
+&lvds_encoder {
+ status = "okay";
+};
+
+&lvds_encoder_input {
+ remote-endpoint = <&dpi_to_panel>;
+};
+
+&lvds_encoder_output {
+ remote-endpoint = <&panel_in>;
+};
+
+&media_blk_ctrl {
+ status = "okay";
+};
+
+&panel_in {
+ remote-endpoint = <&lvds_encoder_output>;
+};

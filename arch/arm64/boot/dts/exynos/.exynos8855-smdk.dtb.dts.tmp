@@ -1,0 +1,791 @@
+# 0 "arch/arm64/boot/dts/exynos/exynos8855-smdk.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/exynos/exynos8855-smdk.dts"
+# 11 "arch/arm64/boot/dts/exynos/exynos8855-smdk.dts"
+/dts-v1/;
+
+# 1 "arch/arm64/boot/dts/exynos/exynos8855.dtsi" 1
+# 12 "arch/arm64/boot/dts/exynos/exynos8855.dtsi"
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h" 1
+# 9 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h"
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 10 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h" 2
+# 13 "arch/arm64/boot/dts/exynos/exynos8855.dtsi" 2
+
+/ {
+ compatible = "samsung,exynos8855";
+ #address-cells = <2>;
+ #size-cells = <1>;
+
+ interrupt-parent = <&gic>;
+
+ aliases {
+  pinctrl0 = &pinctrl_alive;
+  pinctrl1 = &pinctrl_cmgp;
+  pinctrl2 = &pinctrl_hsi_ufs;
+  pinctrl3 = &pinctrl_peric;
+  pinctrl4 = &pinctrl_pericmmc;
+  pinctrl5 = &pinctrl_usi;
+ };
+
+ oscclk: clock-oscclk {
+  compatible = "fixed-clock";
+  clock-output-names = "oscclk";
+  #clock-cells = <0>;
+ };
+
+ cpus {
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  cpu-map {
+   cluster0 {
+    core0 {
+     cpu = <&cpu0>;
+    };
+
+    core1 {
+     cpu = <&cpu1>;
+    };
+
+    core2 {
+     cpu = <&cpu2>;
+    };
+
+    core3 {
+     cpu = <&cpu3>;
+    };
+   };
+
+   cluster1 {
+    core0 {
+     cpu = <&cpu4>;
+    };
+
+    core1 {
+     cpu = <&cpu5>;
+    };
+
+    core2 {
+     cpu = <&cpu6>;
+    };
+   };
+
+   cluster2 {
+    core0 {
+     cpu = <&cpu7>;
+    };
+   };
+  };
+
+  cpu0: cpu@0 {
+   device_type = "cpu";
+   compatible = "arm,cortex-a520";
+   reg = <0x0>;
+   enable-method = "psci";
+  };
+
+  cpu1: cpu@100 {
+   device_type = "cpu";
+   compatible = "arm,cortex-a520";
+   reg = <0x100>;
+   enable-method = "psci";
+  };
+
+  cpu2: cpu@200 {
+   device_type = "cpu";
+   compatible = "arm,cortex-a520";
+   reg = <0x200>;
+   enable-method = "psci";
+  };
+
+  cpu3: cpu@300 {
+   device_type = "cpu";
+   compatible = "arm,cortex-a520";
+   reg = <0x300>;
+   enable-method = "psci";
+  };
+
+  cpu4: cpu@400 {
+   device_type = "cpu";
+   compatible = "arm,cortex-a720";
+   reg = <0x400>;
+   enable-method = "psci";
+  };
+
+  cpu5: cpu@500 {
+   device_type = "cpu";
+   compatible = "arm,cortex-a720";
+   reg = <0x500>;
+   enable-method = "psci";
+  };
+
+  cpu6: cpu@600 {
+   device_type = "cpu";
+   compatible = "arm,cortex-a720";
+   reg = <0x600>;
+   enable-method = "psci";
+  };
+
+  cpu7: cpu@700 {
+   device_type = "cpu";
+   compatible = "arm,cortex-a720";
+   reg = <0x700>;
+   enable-method = "psci";
+  };
+ };
+
+ psci {
+  compatible = "arm,psci-1.0";
+  method = "smc";
+ };
+
+ soc: soc@0 {
+  compatible = "simple-bus";
+  #address-cells = <1>;
+  #size-cells = <1>;
+  ranges = <0x0 0x0 0x0 0x20000000>;
+
+  gic: interrupt-controller@10200000 {
+   compatible = "arm,gic-v3";
+   #interrupt-cells = <3>;
+   interrupt-controller;
+   reg = <0x10200000 0x10000>,
+         <0x10240000 0x140000>;
+   interrupts = <1 9 4>;
+  };
+
+  pinctrl_alive: pinctrl@11850000 {
+   compatible = "samsung,exynos8855-pinctrl";
+   reg = <0x11850000 0x1000>;
+
+   wakeup-interrupt-controller {
+    compatible = "samsung,exynos8855-wakeup-eint",
+          "samsung,exynos7-wakeup-eint";
+   };
+  };
+
+  pinctrl_cmgp: pinctrl@12030000 {
+   compatible = "samsung,exynos8855-pinctrl";
+   reg = <0x12030000 0x1000>;
+   interrupts = <0 114 4>;
+  };
+
+  pinctrl_usi: pinctrl@15030000 {
+   compatible = "samsung,exynos8855-pinctrl";
+   reg = <0x15030000 0x1000>;
+   interrupts = <0 440 4>;
+  };
+
+  pinctrl_peric: pinctrl@15440000 {
+   compatible = "samsung,exynos8855-pinctrl";
+   reg = <0x15440000 0x1000>;
+   interrupts = <0 394 4>;
+  };
+
+  pinctrl_pericmmc: pinctrl@154f0000 {
+   compatible = "samsung,exynos8855-pinctrl";
+   reg = <0x154f0000 0x1000>;
+   interrupts = <0 395 4>;
+  };
+
+  pinctrl_hsi_ufs: pinctrl@17040000 {
+   compatible = "samsung,exynos8855-pinctrl";
+   reg = <0x17040000 0x1000>;
+   interrupts = <0 318 4>;
+  };
+ };
+
+ timer {
+  compatible = "arm,armv8-timer";
+
+  interrupts =
+       <1 13 8>,
+       <1 14 8>,
+       <1 11 8>,
+       <1 10 8>;
+ };
+};
+
+# 1 "arch/arm64/boot/dts/exynos/exynos8855-pinctrl.dtsi" 1
+# 17 "arch/arm64/boot/dts/exynos/exynos8855-pinctrl.dtsi"
+# 1 "arch/arm64/boot/dts/exynos/exynos-pinctrl.h" 1
+# 18 "arch/arm64/boot/dts/exynos/exynos8855-pinctrl.dtsi" 2
+
+&pinctrl_alive {
+ gpa0: gpa0-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 0 4>,
+        <0 1 4>,
+        <0 2 4>,
+        <0 3 4>,
+        <0 4 4>,
+        <0 5 4>,
+        <0 6 4>,
+        <0 7 4>;
+ };
+
+ gpa1: gpa1-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 8 4>,
+        <0 9 4>,
+        <0 10 4>,
+        <0 11 4>,
+        <0 12 4>;
+ };
+
+ gpq0: gpq0-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+ };
+
+ gpq1: gpq1-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+ };
+
+ gpc0: gpc0-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 13 4>;
+ };
+
+ gpc1: gpc1-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 14 4>;
+ };
+
+ gpc2: gpc2-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 15 4>;
+ };
+
+ gpc3: gpc3-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 16 4>;
+ };
+
+ gpc4: gpc4-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 17 4>;
+ };
+
+ gpc5: gpc5-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 18 4>;
+ };
+
+ gpc6: gpc6-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 19 4>;
+ };
+
+ gpc7: gpc7-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 20 4>;
+ };
+
+ gpc8: gpc8-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 21 4>;
+ };
+
+ gpc9: gpc9-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 22 4>;
+ };
+
+ gpc10: gpc10-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 23 4>;
+ };
+
+ gpc11: gpc11-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 24 4>;
+ };
+
+ gpc12: gpc12-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 25 4>;
+ };
+
+ gpc13: gpc13-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 26 4>;
+ };
+
+ gpc14: gpc14-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 27 4>;
+ };
+
+ gpj0: gpj0-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 28 4>;
+ };
+
+ gpj1: gpj1-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 29 4>;
+ };
+
+ gpj2: gpj2-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 30 4>;
+ };
+};
+
+&pinctrl_cmgp {
+ gpm0: gpm0-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 114 4>;
+ };
+
+ gpm1: gpm1-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 115 4>;
+ };
+
+ gpm2: gpm2-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 116 4>;
+ };
+
+ gpm3: gpm3-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 117 4>;
+ };
+
+ gpm4: gpm4-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 118 4>;
+ };
+
+ gpm5: gpm5-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 119 4>;
+ };
+
+ gpm6: gpm6-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 120 4>;
+ };
+
+ gpm7: gpm7-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 121 4>;
+ };
+
+ gpm8: gpm8-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 122 4>;
+ };
+
+ gpm9: gpm9-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 123 4>;
+ };
+
+ gpm10: gpm10-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 124 4>;
+ };
+
+ gpm11: gpm11-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 125 4>;
+ };
+
+ gpm12: gpm12-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 126 4>;
+ };
+
+ gpm13: gpm13-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 127 4>;
+ };
+
+ gpm14: gpm14-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 128 4>;
+ };
+
+ gpm15: gpm15-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 129 4>;
+ };
+
+ gpm16: gpm16-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 130 4>;
+ };
+
+ gpm17: gpm17-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 131 4>;
+ };
+
+ gpm18: gpm18-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 132 4>;
+ };
+
+ gpm19: gpm19-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 133 4>;
+ };
+
+ gpm20: gpm20-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 134 4>;
+ };
+
+ gpm21: gpm21-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+  interrupt-parent = <&gic>;
+  interrupts = <0 135 4>;
+ };
+};
+
+&pinctrl_hsi_ufs {
+ gpf3: gpf3-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+};
+
+&pinctrl_peric {
+ gpp0: gpp0-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpp1: gpp1-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpp2: gpp2-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpg0: gpg0-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpg1: gpg1-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpb0: gpb0-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpb1: gpb1-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+};
+
+&pinctrl_pericmmc {
+ gpf2: gpf2-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+};
+
+&pinctrl_usi {
+ gpp3: gpp3-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpp4: gpp4-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpg2: gpg2-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpg3: gpg3-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+};
+# 210 "arch/arm64/boot/dts/exynos/exynos8855.dtsi" 2
+# 14 "arch/arm64/boot/dts/exynos/exynos8855-smdk.dts" 2
+
+/ {
+ model = "Samsung Exynos8855 SMDK board";
+ compatible = "samsung,exynos8855-smdk","samsung,exynos8855";
+
+ chosen {
+ };
+
+ memory@80000000 {
+  device_type = "memory";
+  reg = <0x0 0x80000000 0x80000000>;
+ };
+
+};
+
+&oscclk {
+ clock-frequency = <76800000>;
+};

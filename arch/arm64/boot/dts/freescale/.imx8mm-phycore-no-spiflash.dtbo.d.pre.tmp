@@ -1,0 +1,2 @@
+imx8mm-phycore-no-spiflash.o: \
+ arch/arm64/boot/dts/freescale/imx8mm-phycore-no-spiflash.dtso

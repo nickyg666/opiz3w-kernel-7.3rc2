@@ -1,0 +1,1 @@
+imx943-evk-sdwifi.o: arch/arm64/boot/dts/freescale/imx943-evk-sdwifi.dtso

@@ -1,0 +1,5 @@
+r8a78000-ironhide.o: arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts \
+ scripts/dtc/include-prefixes/dt-bindings/soc/renesas,r8a78000-mfis.h \
+ arch/arm64/boot/dts/renesas/r8a78000.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h

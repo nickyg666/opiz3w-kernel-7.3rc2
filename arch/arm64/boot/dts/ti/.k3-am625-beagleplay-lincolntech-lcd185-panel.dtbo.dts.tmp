@@ -1,0 +1,161 @@
+# 0 "arch/arm64/boot/dts/ti/k3-am625-beagleplay-lincolntech-lcd185-panel.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/ti/k3-am625-beagleplay-lincolntech-lcd185-panel.dtso"
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 12 "arch/arm64/boot/dts/ti/k3-am625-beagleplay-lincolntech-lcd185-panel.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 13 "arch/arm64/boot/dts/ti/k3-am625-beagleplay-lincolntech-lcd185-panel.dtso" 2
+# 1 "arch/arm64/boot/dts/ti/k3-pinctrl.h" 1
+# 14 "arch/arm64/boot/dts/ti/k3-am625-beagleplay-lincolntech-lcd185-panel.dtso" 2
+
+&{/} {
+ backlight: backlight {
+  compatible = "pwm-backlight";
+  pinctrl-names = "default";
+  pinctrl-0 = <&backlight_pins_default>;
+  brightness-levels = <0 4 8 16 32 64 128 255>;
+  default-brightness-level = <6>;
+  enable-gpios = <&main_gpio0 0 0>;
+  pwms = <&epwm0 1 20000 0>;
+ };
+
+ lcd {
+  compatible = "lincolntech,lcd185-101ct";
+  backlight = <&backlight>;
+# 38 "arch/arm64/boot/dts/ti/k3-am625-beagleplay-lincolntech-lcd185-panel.dtso"
+  power-supply = <&vsys_5v0>;
+  ports {
+   #address-cells = <1>;
+   #size-cells = <0>;
+
+   port@0 {
+    reg = <0>;
+    dual-lvds-odd-pixels;
+    lcd_in0: endpoint {
+     remote-endpoint = <&oldi_0_out>;
+    };
+   };
+   port@1 {
+    reg = <1>;
+    dual-lvds-even-pixels;
+    lcd_in1: endpoint {
+     remote-endpoint = <&oldi_1_out>;
+    };
+   };
+  };
+ };
+};
+
+&main_pmx0 {
+ touchscreen_pins_default: touchscreen-default-pins {
+  pinctrl-single,pins = <
+   (((0x01b4) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (7))
+   (((0x00a0) & 0x1fff)) ((((1 << (18)) | (1 << (14)) | (1 << (16)))) | (7))
+  >;
+ };
+
+ backlight_pins_default: bl-default-pins {
+  pinctrl-single,pins = <
+   (((0x0000) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (7))
+   (((0x01b8) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (2))
+  >;
+ };
+};
+
+&dss {
+ status = "okay";
+};
+
+&oldi0 {
+ status = "okay";
+ ti,companion-oldi = <&oldi1>;
+};
+
+&oldi1 {
+ status = "okay";
+ ti,secondary-oldi;
+ ti,companion-oldi = <&oldi0>;
+};
+
+&oldi0_port0 {
+ oldi_0_in: endpoint {
+  remote-endpoint = <&dpi0_out0>;
+ };
+};
+
+&oldi0_port1 {
+ oldi_0_out: endpoint {
+  remote-endpoint = <&lcd_in0>;
+ };
+};
+
+&oldi1_port0 {
+ oldi_1_in: endpoint {
+  remote-endpoint = <&dpi0_out1>;
+ };
+};
+
+&oldi1_port1 {
+ oldi_1_out: endpoint {
+  remote-endpoint = <&lcd_in1>;
+ };
+};
+
+&dss_ports {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+
+ port@0 {
+  reg = <0>;
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  dpi0_out0: endpoint@0 {
+   reg = <0>;
+   remote-endpoint = <&oldi_0_in>;
+  };
+  dpi0_out1: endpoint@1 {
+   reg = <1>;
+   remote-endpoint = <&oldi_1_in>;
+  };
+ };
+};
+
+&main_i2c2 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ eeprom@57 {
+  compatible = "atmel,24c256";
+  reg = <0x57>;
+ };
+
+ touchscreen@5d {
+  compatible = "goodix,gt928";
+  reg = <0x5d>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&touchscreen_pins_default>;
+  interrupt-parent = <&main_gpio0>;
+  interrupts = <39 2>;
+  irq-gpios = <&main_gpio0 39 0>;
+  reset-gpios = <&main_gpio1 15 0>;
+  touchscreen-size-x = <1920>;
+  touchscreen-size-y = <1200>;
+ };
+};
+
+&epwm0 {
+ status = "okay";
+};

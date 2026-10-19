@@ -1,0 +1,4 @@
+k3-am68-phyboard-izar-peb-av-15.o: \
+ arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ arch/arm64/boot/dts/ti/k3-pinctrl.h

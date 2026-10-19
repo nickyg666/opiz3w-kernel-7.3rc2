@@ -1,0 +1,4 @@
+imx8mp-kontron-dl.o: arch/arm64/boot/dts/freescale/imx8mp-kontron-dl.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h

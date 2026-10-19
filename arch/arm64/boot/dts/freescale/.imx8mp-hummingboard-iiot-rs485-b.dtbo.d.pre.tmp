@@ -1,0 +1,2 @@
+imx8mp-hummingboard-iiot-rs485-b.o: \
+ arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot-rs485-b.dtso

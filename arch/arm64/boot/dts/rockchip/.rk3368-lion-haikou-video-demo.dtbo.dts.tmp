@@ -1,0 +1,169 @@
+# 0 "arch/arm64/boot/dts/rockchip/rk3368-lion-haikou-video-demo.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/rockchip/rk3368-lion-haikou-video-demo.dtso"
+# 12 "arch/arm64/boot/dts/rockchip/rk3368-lion-haikou-video-demo.dtso"
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/clock/rk3368-cru.h" 1
+# 16 "arch/arm64/boot/dts/rockchip/rk3368-lion-haikou-video-demo.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 17 "arch/arm64/boot/dts/rockchip/rk3368-lion-haikou-video-demo.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 18 "arch/arm64/boot/dts/rockchip/rk3368-lion-haikou-video-demo.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/leds/common.h" 1
+# 19 "arch/arm64/boot/dts/rockchip/rk3368-lion-haikou-video-demo.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pinctrl/rockchip.h" 1
+# 20 "arch/arm64/boot/dts/rockchip/rk3368-lion-haikou-video-demo.dtso" 2
+
+&{/} {
+ backlight: backlight {
+  compatible = "pwm-backlight";
+  power-supply = <&dc_12v>;
+  pwms = <&pwm1 0 25000 0>;
+ };
+
+ cam_afvdd_2v8: regulator-cam-afvdd-2v8 {
+  compatible = "regulator-fixed";
+  gpio = <&pca9670 2 1>;
+  regulator-max-microvolt = <2800000>;
+  regulator-min-microvolt = <2800000>;
+  regulator-name = "cam-afvdd-2v8";
+  vin-supply = <&vcc2v8_video>;
+ };
+
+ cam_avdd_2v8: regulator-cam-avdd-2v8 {
+  compatible = "regulator-fixed";
+  gpio = <&pca9670 4 1>;
+  regulator-max-microvolt = <2800000>;
+  regulator-min-microvolt = <2800000>;
+  regulator-name = "cam-avdd-2v8";
+  vin-supply = <&vcc2v8_video>;
+ };
+
+ cam_dovdd_1v8: regulator-cam-dovdd-1v8 {
+  compatible = "regulator-fixed";
+  gpio = <&pca9670 3 1>;
+  regulator-max-microvolt = <1800000>;
+  regulator-min-microvolt = <1800000>;
+  regulator-name = "cam-dovdd-1v8";
+  vin-supply = <&vcc1v8_video>;
+ };
+
+ cam_dvdd_1v2: regulator-cam-dvdd-1v2 {
+  compatible = "regulator-fixed";
+  enable-active-high;
+  gpio = <&pca9670 5 0>;
+  regulator-max-microvolt = <1200000>;
+  regulator-min-microvolt = <1200000>;
+  regulator-name = "cam-dvdd-1v2";
+  vin-supply = <&vcc3v3_baseboard>;
+ };
+
+ vcc1v8_video: regulator-vcc1v8-video {
+  compatible = "regulator-fixed";
+  regulator-always-on;
+  regulator-boot-on;
+  regulator-max-microvolt = <1800000>;
+  regulator-min-microvolt = <1800000>;
+  regulator-name = "vcc1v8-video";
+  vin-supply = <&vcc3v3_baseboard>;
+ };
+
+ vcc2v8_video: regulator-vcc2v8-video {
+  compatible = "regulator-fixed";
+  regulator-always-on;
+  regulator-boot-on;
+  regulator-max-microvolt = <2800000>;
+  regulator-min-microvolt = <2800000>;
+  regulator-name = "vcc2v8-video";
+  vin-supply = <&vcc3v3_baseboard>;
+ };
+
+ video-adapter-leds {
+  compatible = "gpio-leds";
+
+  video-adapter-led {
+   color = <3>;
+   gpios = <&pca9670 7 0>;
+   label = "video-adapter-led";
+   linux,default-trigger = "none";
+  };
+ };
+};
+
+&dphy {
+ status = "okay";
+};
+
+&i2c_gp2 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ clock-frequency = <400000>;
+
+ touchscreen@14 {
+  compatible = "goodix,gt911";
+  reg = <0x14>;
+  interrupt-parent = <&gpio1>;
+  interrupts = <13 8>;
+  irq-gpios = <&gpio1 13 0>;
+  pinctrl-0 = <&touch_int>;
+  pinctrl-names = "default";
+  reset-gpios = <&pca9670 1 0>;
+  AVDD28-supply = <&vcc2v8_video>;
+  VDDIO-supply = <&vcc3v3_baseboard>;
+ };
+
+ pca9670: gpio@27 {
+  compatible = "nxp,pca9670";
+  reg = <0x27>;
+  gpio-controller;
+  #gpio-cells = <2>;
+  pinctrl-0 = <&pca9670_resetn>;
+  pinctrl-names = "default";
+  reset-gpios = <&gpio1 5 1>;
+ };
+};
+
+&mipi_dsi {
+ #address-cells = <1>;
+ #size-cells = <0>;
+ status = "okay";
+
+ panel@0 {
+  compatible = "leadtek,ltk050h3148w";
+  reg = <0>;
+  backlight = <&backlight>;
+  iovcc-supply = <&vcc1v8_video>;
+  reset-gpios = <&pca9670 0 1>;
+  vci-supply = <&vcc2v8_video>;
+
+  port {
+   mipi_in_panel: endpoint {
+    remote-endpoint = <&mipi_out_panel>;
+   };
+  };
+ };
+};
+
+&mipi_out {
+ mipi_out_panel: endpoint {
+  remote-endpoint = <&mipi_in_panel>;
+ };
+};
+
+&pinctrl {
+ pca9670 {
+  pca9670_resetn: pca9670-resetn {
+   rockchip,pins = <1 5 0 &pcfg_pull_none>;
+  };
+ };
+
+ touch {
+  touch_int: touch-int {
+   rockchip,pins = <1 13 0 &pcfg_pull_none>;
+  };
+ };
+};

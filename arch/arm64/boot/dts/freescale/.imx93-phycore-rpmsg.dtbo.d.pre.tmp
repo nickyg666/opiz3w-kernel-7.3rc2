@@ -1,0 +1,2 @@
+imx93-phycore-rpmsg.o: \
+ arch/arm64/boot/dts/freescale/imx93-phycore-rpmsg.dtso

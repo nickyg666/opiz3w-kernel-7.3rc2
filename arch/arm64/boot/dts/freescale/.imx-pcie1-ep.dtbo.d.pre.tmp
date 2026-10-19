@@ -1,0 +1,1 @@
+imx-pcie1-ep.o: arch/arm64/boot/dts/freescale/imx-pcie1-ep.dtso

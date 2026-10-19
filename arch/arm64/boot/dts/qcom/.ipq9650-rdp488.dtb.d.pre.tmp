@@ -1,0 +1,6 @@
+ipq9650-rdp488.o: arch/arm64/boot/dts/qcom/ipq9650-rdp488.dts \
+ arch/arm64/boot/dts/qcom/ipq9650.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/qcom,ipq9650-gcc.h \
+ scripts/dtc/include-prefixes/dt-bindings/reset/qcom,ipq9650-gcc.h

@@ -1,0 +1,2 @@
+imx8mp-evk-flexcan2.o: \
+ arch/arm64/boot/dts/freescale/imx8mp-evk-flexcan2.dtso

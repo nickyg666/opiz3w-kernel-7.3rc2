@@ -1,0 +1,424 @@
+# SPDX-License-Identifier: GPL-2.0-only
+
+source "$(srctree)/bsp/platform/Kconfig.common"
+
+menu "Platform Information"
+
+config AW_BSP
+	bool "Allwinner Platform"
+	select ARCH_SUNXI
+	select ARCH_HAS_RESET_CONTROLLER
+	select GENERIC_IRQ_CHIP
+	select PINCTRL
+	select RESET_CONTROLLER
+	help
+	  This enables support for Allwinner sunxi based SoCs like the A64.
+
+choice
+	prompt "SoC Family"
+	default ARCH_SUN8I  if ARM
+	default ARCH_SUN50I if ARM64
+	default ARCH_SUN20I if RISCV
+	depends on AW_BSP
+	help
+	  Select the Family for SoC
+
+config ARCH_SUN8I
+	bool "SUN8I"
+	depends on AW_BSP && ARM
+	help
+	  Allwinner SUN8I SoC Family
+
+config ARCH_SUN50I
+	bool "SUN50I"
+	depends on AW_BSP
+	#select xxx if ARM
+	#select xxx64 if ARM64
+	help
+	  Allwinner SUN50I SoC Family
+
+config ARCH_SUN55I
+	bool "SUN55I"
+	depends on AW_BSP
+	help
+	  Allwinner SUN55I SoC Family
+
+config ARCH_SUN60I
+	bool "SUN60I"
+	depends on AW_BSP && ARM64
+	help
+	  Allwinner SUN60I SoC Family
+
+config ARCH_SUN65I
+	bool "SUN65I"
+	depends on AW_BSP && ARM64
+	help
+	  Allwinner SUN65I SoC Family
+
+config ARCH_SUN20I
+	bool "SUN20I"
+	depends on AW_BSP && RISCV
+	help
+	  Allwinner SUN20I SoC Family
+
+endchoice  # SoC Family
+
+choice
+	prompt "SoC Wafer"
+	default ARCH_SUN50IW10
+	depends on AW_BSP
+	help
+	  Select the wafer
+
+config ARCH_SUN60IW1
+	bool "SUN60IW1"
+	depends on ARCH_SUN60I
+	help
+	  Support for Allwinner SUN60IW1 SoC
+
+config ARCH_SUN60IW2
+	bool "SUN60IW2"
+	depends on ARCH_SUN60I
+	help
+	  Support for Allwinner SUN60IW2 SoC
+
+config ARCH_SUN65IW1
+	bool "SUN65IW1"
+	depends on ARCH_SUN65I
+	help
+	  Support for Allwinner SUN60IW3 SoC
+
+config ARCH_SUN55IW3
+	bool "SUN55IW3"
+	depends on ARCH_SUN55I
+	help
+	  Support for Allwinner SUN55IW3 SoC
+
+config ARCH_SUN55IW5
+	bool "SUN55IW5"
+	depends on ARCH_SUN55I
+	help
+	  Support for Allwinner SUN55IW5 SoC
+
+config ARCH_SUN50IW10
+	bool "SUN50IW10"
+	depends on ARCH_SUN50I
+	help
+	  Support for Allwinner SUN50IW10 SoC
+
+config ARCH_SUN50IW6
+	bool "SUN50IW6"
+	depends on ARCH_SUN50I
+	help
+	  Support for Allwinner SUN50IW6 SoC
+
+config ARCH_SUN50IW9
+	bool "SUN50IW9"
+	depends on ARCH_SUN50I
+	help
+	  Support for Allwinner SUN50IW9 SoC
+
+config ARCH_SUN50IW3
+	bool "SUN50IW3"
+	depends on ARCH_SUN50I
+	help
+	  Support for Allwinner SUN50IW3 SoC
+
+config ARCH_SUN50IW4
+	bool "SUN50IW4"
+	depends on ARCH_SUN50I
+	help
+	  Support for Allwinner SUN50IW4 SoC
+
+config ARCH_SUN50IW5
+	bool "SUN50IW5"
+	depends on ARCH_SUN50I
+	help
+	  Support for Allwinner SUN50IW5 SoC
+
+endchoice  # SoC Wafer
+
+config AW_BSP_UART
+	bool "BSP UART support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP UART support
+
+config AW_BSP_TIMER
+	bool "BSP Timer support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP Timer support
+
+config AW_BSP_DMA
+	bool "BSP DMA support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP DMA support
+
+config AW_BSP_CLK
+	bool "BSP CLK support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP CLK support
+
+config AW_BSP_PWM
+	bool "BSP PWM support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP PWM support
+
+config AW_BSP_GPIO
+	bool "BSP GPIO support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP GPIO support
+
+config AW_BSP_PINCTRL
+	bool "BSP PINCTRL support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP PINCTRL support
+
+config AW_BSP_MMC
+	bool "BSP MMC support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP MMC support
+
+config AW_BSP_UFS
+	bool "BSP UFS support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP UFS support
+
+config AW_BSP_G2D
+	bool "BSP G2D support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP G2D support
+
+config AW_BSP_DI
+	bool "BSP DI support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP DI support
+
+config AW_BSP_VIN
+	bool "BSP VIN support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP VIN support
+
+config AW_BSP_VFE
+	bool "BSP VFE support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP VFE support
+
+config AW_BSP_VE
+	bool "BSP VE support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP VE support
+
+config AW_BSP_SOUND
+	bool "BSP SOUND support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP SOUND support
+
+config AW_BSP_CE
+	bool "BSP CE support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP CE support
+
+config AW_BSP_SMC
+	bool "BSP SMC support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP SMC support
+
+config AW_BSP_SID
+	bool "BSP SID support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP SID support
+
+config AW_BSP_PCIE
+	bool "BSP PCIE support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP PCIE support
+
+config AW_BSP_GMAC
+	bool "BSP GMAC support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP GMAC support
+
+config AW_BSP_USB
+	bool "BSP USB support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP USB support
+
+config AW_BSP_TWI
+	bool "BSP TWI support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP TWI support
+
+config AW_BSP_SPI
+	bool "BSP SPI support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP SPI support
+
+config AW_BSP_NET
+	bool "BSP NET support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP NET support
+
+config AW_BSP_DRM
+	bool "BSP DRM support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP DRM support
+
+config AW_BSP_THERMAL
+	bool "BSP THERMAL support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP THERMAL support
+
+config AW_BSP_POWER
+	bool "BSP POWER support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP POWER support
+
+config AW_BSP_OPP
+	bool "BSP OPP support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP OPP support
+
+config AW_BSP_IRQCHIP
+	bool "BSP IRQCHIP support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP IRQCHIP support
+
+config AW_BSP_DEBUG
+	bool "BSP DEBUG support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP DEBUG support
+
+config AW_BSP_DRM_HEAP
+	bool "BSP DRM HEAP support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP DRM HEAP support
+
+config AW_BSP_STMMAC
+	bool "BSP STMMAC support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP STMMAC support
+
+config AW_BSP_PHY
+	bool "BSP PHY support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP PHY support
+
+config AW_BSP_REDEPOSIT
+	bool "BSP REDEPOSIT support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP REDEPOSIT support
+
+config AW_BSP_MTD
+	bool "BSP MTD support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP MTD support
+
+config AW_BSP_IOMMU
+	bool "BSP IOMMU support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP IOMMU support
+
+config AW_BSP_DUMPEG
+	bool "BSP DUMPEG support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP DUMPEG support
+
+config AW_BSP_BUS
+	bool "BSP BUS support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP BUS support
+
+config AW_BSP_RTC
+	bool "BSP RTC support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP RTC support
+
+config AW_BSP_INPUT
+	bool "BSP INPUT support"
+	depends on AW_BSP
+	default n
+	help
+	  Enable BSP INPUT support
+
+endmenu
+
+
+

@@ -1,0 +1,78 @@
+# 0 "arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-eval-01.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-eval-01.dtso"
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 10 "arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-eval-01.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/input/linux-event-codes.h" 1
+# 11 "arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-eval-01.dtso" 2
+# 1 "arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h" 1
+# 12 "arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-eval-01.dtso" 2
+
+&{/} {
+ gpio-keys {
+  compatible = "gpio-keys";
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_gpio_keys>;
+
+  button-0 {
+   label = "home";
+   linux,code = <102>;
+   gpios = <&gpio4 17 1>;
+   wakeup-source;
+  };
+
+  button-1 {
+   label = "menu";
+   linux,code = <139>;
+   gpios = <&gpio5 29 1>;
+   wakeup-source;
+  };
+ };
+
+ user-leds {
+  compatible = "gpio-leds";
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_user_leds>;
+
+  user-led1 {
+   gpios = <&gpio4 14 0>;
+   default-state = "on";
+  };
+
+  user-led2 {
+   gpios = <&gpio4 15 0>;
+   default-state = "on";
+  };
+
+  user-led3 {
+   gpios = <&gpio5 28 0>;
+   default-state = "on";
+  };
+ };
+};
+
+&iomuxc {
+ pinctrl_gpio_keys: gpio_keysgrp {
+  fsl,pins = <
+   0x1A0 0x408 0x000 0x5 0x0 0x16
+   0x250 0x4B8 0x000 0x5 0x0 0x16
+  >;
+ };
+
+ pinctrl_user_leds: user_ledsgrp {
+  fsl,pins = <
+   0x198 0x400 0x000 0x5 0x0 0x16
+   0x24C 0x4B4 0x000 0x5 0x0 0x16
+   0x194 0x3FC 0x000 0x5 0x0 0x16
+  >;
+ };
+};

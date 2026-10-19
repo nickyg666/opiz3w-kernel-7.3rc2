@@ -1,0 +1,6 @@
+rk3588-rock-5b-plus-radxa-cam4k-cam1.o: \
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus-radxa-cam4k-cam1.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/clock/rockchip,rk3588-cru.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/media/video-interfaces.h \
+ scripts/dtc/include-prefixes/dt-bindings/pinctrl/rockchip.h

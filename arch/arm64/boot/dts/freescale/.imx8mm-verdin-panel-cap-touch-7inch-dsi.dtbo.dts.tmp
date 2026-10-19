@@ -1,0 +1,122 @@
+# 0 "arch/arm64/boot/dts/freescale/imx8mm-verdin-panel-cap-touch-7inch-dsi.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx8mm-verdin-panel-cap-touch-7inch-dsi.dtso"
+# 16 "arch/arm64/boot/dts/freescale/imx8mm-verdin-panel-cap-touch-7inch-dsi.dtso"
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 20 "arch/arm64/boot/dts/freescale/imx8mm-verdin-panel-cap-touch-7inch-dsi.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 21 "arch/arm64/boot/dts/freescale/imx8mm-verdin-panel-cap-touch-7inch-dsi.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pwm/pwm.h" 1
+# 22 "arch/arm64/boot/dts/freescale/imx8mm-verdin-panel-cap-touch-7inch-dsi.dtso" 2
+
+&{/} {
+ backlight_pwm3: backlight-pwm3 {
+  compatible = "pwm-backlight";
+  brightness-levels = <0 45 63 88 119 158 203 255>;
+  default-brightness-level = <4>;
+  power-supply = <&reg_3p3v>;
+
+  pwms = <&pwm1 0 6666667 0>;
+ };
+
+ panel-lvds-bridge {
+  compatible = "riverdi,rvt70hslnwca0", "panel-lvds";
+  backlight = <&backlight_pwm3>;
+  data-mapping = "vesa-24";
+  height-mm = <86>;
+  width-mm = <154>;
+
+  panel-timing {
+   clock-frequency = <51200000>;
+   de-active = <1>;
+   hactive = <1024>;
+   hback-porch = <100 100 100>;
+   hfront-porch = <16 160 216>;
+   hsync-active = <0>;
+   hsync-len = <50 60 140>;
+   pixelclk-active = <1>;
+   vactive = <600>;
+   vback-porch = <23 23 23>;
+   vfront-porch = <1 12 126>;
+   vsync-active = <0>;
+   vsync-len = <1 10 20>;
+  };
+
+  port {
+   panel_lvds_bridge_in: endpoint {
+    remote-endpoint = <&dsi_lvds_bridge_out>;
+   };
+  };
+ };
+};
+
+
+&i2c2 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ status = "okay";
+
+ bridge@2c {
+  compatible = "ti,sn65dsi83";
+  reg = <0x2c>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_gpio_10_dsi>;
+
+  enable-gpios = <&gpio3 3 0>;
+  vcc-supply = <&reg_1p8v>;
+
+  ports {
+   #address-cells = <1>;
+   #size-cells = <0>;
+
+   port@0 {
+    reg = <0>;
+
+    dsi_lvds_bridge_in: endpoint {
+     data-lanes = <1 2 3 4>;
+     remote-endpoint = <&mipi_dsi_out>;
+    };
+   };
+
+   port@2 {
+    reg = <2>;
+
+    dsi_lvds_bridge_out: endpoint {
+     remote-endpoint = <&panel_lvds_bridge_in>;
+    };
+   };
+  };
+ };
+
+ touchscreen@41 {
+  compatible = "ilitek,ili2132";
+  reg = <0x41>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_gpio_9_dsi>, <&pinctrl_i2s_2_bclk_touch_reset>;
+
+
+  interrupt-parent = <&gpio3>;
+  interrupts = <15 1>;
+
+  reset-gpios = <&gpio3 23 1>;
+ };
+};
+
+&lcdif {
+ status = "okay";
+};
+
+&mipi_dsi {
+ samsung,esc-clock-frequency = <16000000>;
+
+ status = "okay";
+};
+
+&mipi_dsi_out {
+ remote-endpoint = <&dsi_lvds_bridge_in>;
+};

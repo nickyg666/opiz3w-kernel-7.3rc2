@@ -1,0 +1,4 @@
+imx8mp-hummingboard-iiot-panel-lvds-WF70A8SYJHLNGA.o: \
+ arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot-panel-lvds-WF70A8SYJHLNGA.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h

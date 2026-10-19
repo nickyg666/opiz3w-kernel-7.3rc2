@@ -1,0 +1,54 @@
+# 0 "arch/arm64/boot/dts/freescale/imx91-9x9-qsb-can1.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx91-9x9-qsb-can1.dtso"
+
+
+
+
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 7 "arch/arm64/boot/dts/freescale/imx91-9x9-qsb-can1.dtso" 2
+# 1 "arch/arm64/boot/dts/freescale/imx91-pinfunc.h" 1
+# 8 "arch/arm64/boot/dts/freescale/imx91-9x9-qsb-can1.dtso" 2
+
+/dts-v1/;
+/plugin/;
+
+&{/} {
+ flexcan_phy: can-phy {
+  compatible = "nxp,tja1057";
+  #phy-cells = <0>;
+  max-bitrate = <5000000>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_flexcan_phy>;
+  silent-gpios = <&gpio1 10 0>;
+ };
+};
+
+&flexcan1 {
+ phys = <&flexcan_phy>;
+ pinctrl-names = "default";
+ pinctrl-0 = <&pinctrl_flexcan1>, <&can_fun>;
+ status = "okay";
+};
+
+&iomuxc {
+ pinctrl_flexcan_phy: flexcanphygrp {
+  fsl,pins = <
+   0x0198 0x0348 0x0000 0x05 0x00 0x31e
+  >;
+ };
+
+ pinctrl_flexcan1: flexcan1grp {
+  fsl,pins = <
+   0x0190 0x0340 0x0000 0x06 0x00 0x139e
+   0x0194 0x0344 0x0360 0x06 0x01 0x139e
+  >;
+ };
+};
+
+
+&micfil {
+ status = "disabled";
+};

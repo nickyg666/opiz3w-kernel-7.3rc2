@@ -1,0 +1,24 @@
+# 0 "arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtso"
+# 11 "arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtso"
+/dts-v1/;
+/plugin/;
+
+&pcie30phy {
+ rockchip,rx-common-refclk-mode = <0 0 0 0>;
+};
+
+&pcie3x4 {
+ status = "disabled";
+};
+
+&pcie3x4_ep {
+ vpcie3v3-supply = <&vcc3v3_pcie30>;
+ status = "okay";
+};
+
+&mmu600_pcie {
+ status = "disabled";
+};

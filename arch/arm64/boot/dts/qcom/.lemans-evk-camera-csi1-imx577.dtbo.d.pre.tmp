@@ -1,0 +1,4 @@
+lemans-evk-camera-csi1-imx577.o: \
+ arch/arm64/boot/dts/qcom/lemans-evk-camera-csi1-imx577.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/clock/qcom,sa8775p-camcc.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h

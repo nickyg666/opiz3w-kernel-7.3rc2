@@ -1,0 +1,4 @@
+mt8395-radxa-nio-12l-8-hd-panel.o: \
+ arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l-8-hd-panel.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h

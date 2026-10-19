@@ -1,0 +1,193 @@
+# 0 "arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-oldi-lcd185.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-oldi-lcd185.dtso"
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pwm/pwm.h" 1
+# 11 "arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-oldi-lcd185.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 12 "arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-oldi-lcd185.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 13 "arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-oldi-lcd185.dtso" 2
+# 1 "arch/arm64/boot/dts/ti/k3-pinctrl.h" 1
+# 14 "arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-oldi-lcd185.dtso" 2
+
+&{/} {
+ display {
+  compatible = "lincolntech,lcd185-101ct";
+  backlight = <&backlight>;
+  power-supply = <&vdd_usb_5v0>;
+
+  ports {
+   #address-cells = <1>;
+   #size-cells = <0>;
+
+   port@0 {
+    reg = <0>;
+    dual-lvds-odd-pixels;
+    lcd_in0: endpoint {
+     remote-endpoint = <&oldi_0_out>;
+    };
+   };
+
+   port@1 {
+    reg = <1>;
+    dual-lvds-even-pixels;
+    lcd_in1: endpoint {
+     remote-endpoint = <&oldi_1_out>;
+    };
+   };
+  };
+ };
+
+ backlight: backlight {
+  compatible = "pwm-backlight";
+  brightness-levels = <0 4 8 16 32 64 128 255>;
+  default-brightness-level = <6>;
+  enable-gpios = <&gpio_exp 5 0>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&bl_pwm_pins_default>;
+  pwms = <&epwm0 1 50000 0>;
+ };
+
+ vdd_usb_5v0: regulator-vdd-usb5v0 {
+  compatible = "regulator-fixed";
+  regulator-name = "vdd-usb5v0";
+  regulator-min-microvolt = <5000000>;
+  regulator-max-microvolt = <5000000>;
+  regulator-always-on;
+  regulator-boot-on;
+ };
+};
+
+&dss {
+ pinctrl-names = "default";
+ pinctrl-0 = <&main_oldi0_pins_default>, <&main_dss0_pins_default>;
+};
+
+&dss_ports {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+
+ port@0 {
+  reg = <0>;
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  dpi0_out0: endpoint@0 {
+   reg = <0>;
+   remote-endpoint = <&oldi_0_in>;
+  };
+
+  dpi0_out1: endpoint@1 {
+   reg = <1>;
+   remote-endpoint = <&oldi_1_in>;
+  };
+ };
+};
+
+&epwm0 {
+ status = "okay";
+};
+
+&main_i2c1 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ touchscreen@5d {
+  compatible = "goodix,gt928";
+  reg = <0x5d>;
+
+  pinctrl-names = "default";
+  pinctrl-0 = <&touch_screen_pins_default>;
+
+  interrupt-parent = <&main_gpio0>;
+  interrupts = <19 8>;
+
+  reset-gpios = <&main_gpio0 18 0>;
+  irq-gpios = <&main_gpio0 19 0>;
+ };
+};
+
+&main_pmx0 {
+ bl_pwm_pins_default: bl-pwm-default-pins {
+  pinctrl-single,pins = <
+   (((0x01b8) & 0x1fff)) ((((1 << (18)) | (1 << (14)) | (1 << (16)))) | (2))
+  >;
+ };
+
+ touch_screen_pins_default: touch-screen-default-pins {
+  pinctrl-single,pins = <
+   (((0x048) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (7))
+   (((0x04c) & 0x1fff)) ((((1 << (18)) | (1 << (14)) | (1 << (16)))) | (7))
+  >;
+ };
+
+ main_oldi0_pins_default: main-oldi0-default-pins {
+  pinctrl-single,pins = <
+   (((0x0260) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x025c) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x0268) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x0264) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x0270) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x026c) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x0278) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x0274) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x0280) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x027c) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x0288) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x0284) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x0290) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x028c) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x0298) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x0294) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x02a0) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x029c) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x02a8) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+   (((0x02a4) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (0))
+  >;
+ };
+};
+
+&oldi0 {
+ ti,companion-oldi = <&oldi1>;
+ status = "okay";
+};
+
+&oldi0_port0 {
+ oldi_0_in: endpoint {
+  remote-endpoint = <&dpi0_out0>;
+ };
+};
+
+&oldi0_port1 {
+ oldi_0_out: endpoint {
+  remote-endpoint = <&lcd_in0>;
+ };
+};
+
+&oldi1 {
+ ti,secondary-oldi;
+ status = "okay";
+};
+
+&oldi1_port0 {
+ oldi_1_in: endpoint {
+  remote-endpoint = <&dpi0_out1>;
+ };
+};
+
+&oldi1_port1 {
+ oldi_1_out: endpoint {
+  remote-endpoint = <&lcd_in1>;
+ };
+};

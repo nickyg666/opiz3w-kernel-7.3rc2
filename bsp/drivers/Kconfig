@@ -1,0 +1,65 @@
+# SPDX-License-Identifier: GPL-2.0-only
+
+menu "Allwinner BSP Device Drivers"
+
+# Minimal System
+source "$(srctree)/bsp/drivers/clk/Kconfig"
+source "$(srctree)/bsp/drivers/pinctrl/Kconfig"
+source "$(srctree)/bsp/drivers/uart/Kconfig"
+source "$(srctree)/bsp/drivers/timer/Kconfig"
+
+# Basic System
+source "$(srctree)/bsp/drivers/dma/Kconfig"
+source "$(srctree)/bsp/drivers/rtc/Kconfig"
+source "$(srctree)/bsp/drivers/bus/Kconfig"
+source "$(srctree)/bsp/drivers/dumpreg/Kconfig"
+source "$(srctree)/bsp/drivers/iommu/Kconfig"
+
+# Storage
+source "$(srctree)/bsp/drivers/mmc/Kconfig"
+source "$(srctree)/bsp/drivers/ufs/Kconfig"
+source "$(srctree)/bsp/drivers/mtd/Kconfig"
+source "$(srctree)/bsp/drivers/redeposit/Kconfig"
+
+# Graphics
+source "$(srctree)/bsp/drivers/g2d/Kconfig"
+source "$(srctree)/bsp/drivers/di/Kconfig"
+source "$(srctree)/bsp/drivers/vin/Kconfig"
+source "$(srctree)/bsp/drivers/vfe/Kconfig"
+source "$(srctree)/bsp/drivers/drm/Kconfig"
+
+# Multi-Media
+source "$(srctree)/bsp/drivers/ve/Kconfig"
+
+# Audio
+source "$(srctree)/bsp/drivers/sound/Kconfig"
+
+# Security
+source "$(srctree)/bsp/drivers/ce/Kconfig"
+source "$(srctree)/bsp/drivers/smc/Kconfig"
+source "$(srctree)/bsp/drivers/sid/Kconfig"
+source "$(srctree)/bsp/drivers/drm_heap/Kconfig"
+
+# I/O Connectivity
+source "$(srctree)/bsp/drivers/pcie/Kconfig"
+source "$(srctree)/bsp/drivers/phy/Kconfig"
+source "$(srctree)/bsp/drivers/gmac/Kconfig"
+source "$(srctree)/bsp/drivers/stmmac/Kconfig"
+source "$(srctree)/bsp/drivers/usb/Kconfig"
+source "$(srctree)/bsp/drivers/twi/Kconfig"
+source "$(srctree)/bsp/drivers/spi-ng/Kconfig"
+source "$(srctree)/bsp/drivers/pwm/Kconfig"
+source "$(srctree)/bsp/drivers/input/Kconfig"
+
+# Wireless
+source "$(srctree)/bsp/drivers/net/Kconfig"
+
+# Power Management
+source "$(srctree)/bsp/drivers/irqchip/Kconfig"
+source "$(srctree)/bsp/drivers/thermal/Kconfig"
+source "$(srctree)/bsp/drivers/power/Kconfig"
+
+# Debug
+# source "$(srctree)/bsp/drivers/debug/Kconfig"
+
+endmenu

@@ -1,0 +1,6 @@
+config COMPAT_OF_GPIO
+    bool "OF GPIO compat shim for legacy of_get_named_gpio"
+    depends on OF
+    default y
+    help
+      Provides of_get_named_gpio() using gpiod API.

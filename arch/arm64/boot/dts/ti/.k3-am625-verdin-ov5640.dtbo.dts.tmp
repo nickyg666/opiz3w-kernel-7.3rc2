@@ -1,0 +1,86 @@
+# 0 "arch/arm64/boot/dts/ti/k3-am625-verdin-ov5640.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/ti/k3-am625-verdin-ov5640.dtso"
+# 11 "arch/arm64/boot/dts/ti/k3-am625-verdin-ov5640.dtso"
+/dts-v1/;
+/plugin/;
+
+# 1 "arch/arm64/boot/dts/ti/k3-am625-verdin-ov5640.dtsi" 1
+
+
+
+
+
+
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 9 "arch/arm64/boot/dts/ti/k3-am625-verdin-ov5640.dtsi" 2
+
+&{/} {
+ clk_ov5640_osc: ov5640-xclk {
+  compatible = "fixed-clock";
+  #clock-cells = <0>;
+ };
+
+ regulator_camera: regulator-camera {
+  compatible = "regulator-fixed";
+
+  gpio = <&main_gpio0 42 0>;
+  enable-active-high;
+  regulator-name = "V_CSI";
+  startup-delay-us = <5000>;
+ };
+};
+
+&csi0_port0 {
+ status = "okay";
+
+ csi2rx0_in_sensor: endpoint {
+  remote-endpoint = <&csi2_cam0>;
+  bus-type = <4>;
+  clock-lanes = <0>;
+  data-lanes = <1 2>;
+ };
+};
+
+&dphy0 {
+ status = "okay";
+};
+
+&main_i2c3 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ camera@3c {
+  compatible = "ovti,ov5640";
+  reg = <0x3c>;
+
+  clocks = <&clk_ov5640_osc>;
+  clock-names = "xclk";
+  AVDD-supply = <&regulator_camera>;
+  DOVDD-supply = <&regulator_camera>;
+  DVDD-supply = <&regulator_camera>;
+
+  powerdown-gpios = <&main_gpio0 36 0>;
+
+  reset-gpios = <&main_gpio0 40 1>;
+
+  port {
+   csi2_cam0: endpoint {
+    remote-endpoint = <&csi2rx0_in_sensor>;
+    clock-lanes = <0>;
+    data-lanes = <1 2>;
+   };
+  };
+ };
+};
+
+&ti_csi2rx0 {
+ status = "okay";
+};
+# 15 "arch/arm64/boot/dts/ti/k3-am625-verdin-ov5640.dtso" 2
+
+&clk_ov5640_osc {
+ clock-frequency = <27000000>;
+};

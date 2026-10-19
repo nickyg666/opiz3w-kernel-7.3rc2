@@ -1,0 +1,3 @@
+imx8mm-phycore-rpmsg.o: \
+ arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/clock/imx8mm-clock.h

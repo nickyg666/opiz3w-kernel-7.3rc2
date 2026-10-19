@@ -1,0 +1,4 @@
+imx8mp-libra-rdk-fpsc-lvds-ph128800t006-zhc01.o: \
+ arch/arm64/boot/dts/freescale/imx8mp-libra-rdk-fpsc-lvds-ph128800t006-zhc01.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/imx8mp-clock.h

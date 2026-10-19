@@ -1,0 +1,21 @@
+sun60i-a733-cubie-a7a.o: \
+ arch/arm64/boot/dts/allwinner/sun60i-a733-cubie-a7a.dts \
+ arch/arm64/boot/dts/allwinner/sun60iw2p1.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/clock/sun60iw2-ccu.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/sun60iw2-rtc.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/sun60iw2-r-ccu.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/sun60iw2-cpupll-ccu.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/sunxi-ccu.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/sun4i-gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/reset/sun60iw2-ccu.h \
+ scripts/dtc/include-prefixes/dt-bindings/reset/sun60iw2-r-ccu.h \
+ scripts/dtc/include-prefixes/dt-bindings/power/allwinner,sun60i-a733-pck-600.h \
+ scripts/dtc/include-prefixes/dt-bindings/phy/phy.h \
+ scripts/dtc/include-prefixes/dt-bindings/usb/pd.h \
+ scripts/dtc/include-prefixes/dt-bindings/thermal/thermal.h \
+ scripts/dtc/include-prefixes/dt-bindings/display/sunxi-lcd.h \
+ scripts/dtc/include-prefixes/dt-bindings/spi/sunxi-spi.h \
+ arch/arm64/boot/dts/allwinner/sun60iw2p1-cpu-vf.dtsi

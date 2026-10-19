@@ -1,0 +1,5 @@
+imx93-9x9-qsb-ontat-kd50g21-40nt-a1.o: \
+ arch/arm64/boot/dts/freescale/imx93-9x9-qsb-ontat-kd50g21-40nt-a1.dtso \
+ arch/arm64/boot/dts/freescale/imx93-9x9-qsb-ontat-kd50g21-40nt-a1.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ arch/arm64/boot/dts/freescale/imx93-pinfunc.h

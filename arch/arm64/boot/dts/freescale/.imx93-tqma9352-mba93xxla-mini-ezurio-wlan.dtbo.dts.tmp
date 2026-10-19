@@ -1,0 +1,41 @@
+# 0 "arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla-mini-ezurio-wlan.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla-mini-ezurio-wlan.dtso"
+
+
+
+
+
+
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 9 "arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla-mini-ezurio-wlan.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 10 "arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla-mini-ezurio-wlan.dtso" 2
+
+/dts-v1/;
+/plugin/;
+
+&lpuart7 {
+ status = "okay";
+
+ bluetooth {
+  compatible = "brcm,bcm4329-bt";
+  vbat-supply = <&reg_3v3>;
+  vddio-supply = <&reg_3v3>;
+  shutdown-gpios = <&expander0 5 0>;
+ };
+};
+
+&usdhc3 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+ status = "okay";
+
+ brcmf_sdio: wifi@1 {
+  compatible = "brcm,bcm4329-fmac";
+  reg = <1>;
+  reset-gpios = <&gpio1 11 1>;
+ };
+};

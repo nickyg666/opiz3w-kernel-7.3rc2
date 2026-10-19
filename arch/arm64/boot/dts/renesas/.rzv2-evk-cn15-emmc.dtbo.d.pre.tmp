@@ -1,0 +1,3 @@
+rzv2-evk-cn15-emmc.o: arch/arm64/boot/dts/renesas/rzv2-evk-cn15-emmc.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/pinctrl/rzg2l-pinctrl.h

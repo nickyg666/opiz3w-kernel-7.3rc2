@@ -1,0 +1,109 @@
+# 0 "arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus-radxa-cam4k-cam1.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus-radxa-cam4k-cam1.dtso"
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/clock/rockchip,rk3588-cru.h" 1
+# 11 "arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus-radxa-cam4k-cam1.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 12 "arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus-radxa-cam4k-cam1.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/media/video-interfaces.h" 1
+# 13 "arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus-radxa-cam4k-cam1.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pinctrl/rockchip.h" 1
+# 14 "arch/arm64/boot/dts/rockchip/rk3588-rock-5b-plus-radxa-cam4k-cam1.dtso" 2
+
+&{/} {
+ savdd_cam1: regulator-savdd-cam1 {
+  compatible = "regulator-fixed";
+  regulator-min-microvolt = <2900000>;
+  regulator-max-microvolt = <2900000>;
+  regulator-name = "savdd_cam1";
+  vin-supply = <&vcc_3v3_s3>;
+ };
+
+ sdvdd_cam1: regulator-sdvdd-cam1 {
+  compatible = "regulator-fixed";
+  regulator-min-microvolt = <1100000>;
+  regulator-max-microvolt = <1100000>;
+  regulator-name = "sdvdd_cam1";
+  vin-supply = <&vcc5v0_sys>;
+ };
+
+ siovdd_cam1: regulator-siovdd-cam1 {
+  compatible = "regulator-fixed";
+  regulator-min-microvolt = <1800000>;
+  regulator-max-microvolt = <1800000>;
+  regulator-name = "siovdd_cam1";
+  vin-supply = <&vcc_3v3_s3>;
+ };
+};
+
+&i2c4 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+ status = "okay";
+
+ cam1_imx415: camera-sensor@1a {
+  compatible = "sony,imx415";
+  reg = <0x1a>;
+  assigned-clocks = <&cru 247>;
+  assigned-clock-rates = <37125000>;
+  avdd-supply = <&savdd_cam1>;
+  clocks = <&cru 247>;
+  dvdd-supply = <&sdvdd_cam1>;
+  orientation = <2>;
+  ovdd-supply = <&siovdd_cam1>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&cam1_rstn &mipim0_camera4_clk>;
+  reset-gpios = <&gpio2 8 1>;
+
+  port {
+   cam1_imx415_output: endpoint {
+    data-lanes = <1 2 3 4>;
+    link-frequencies = /bits/ 64 <445500000>;
+    remote-endpoint = <&csi4_input>;
+   };
+  };
+ };
+};
+
+&pinctrl {
+ cam1 {
+  cam1_rstn: cam1-rstn-pinctrl {
+   rockchip,pins = <2 8 0 &pcfg_pull_none>;
+  };
+ };
+};
+
+&csi4 {
+ status = "okay";
+};
+
+&csi4_in {
+ csi4_input: endpoint {
+  bus-type = <4>;
+  data-lanes = <1 2 3 4>;
+  link-frequencies = /bits/ 64 <445500000>;
+  remote-endpoint = <&cam1_imx415_output>;
+ };
+};
+
+&csi_dphy1 {
+ status = "okay";
+};
+
+&vicap {
+ status = "okay";
+};
+
+&vicap_mmu {
+ status = "okay";
+};

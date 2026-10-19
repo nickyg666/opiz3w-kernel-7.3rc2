@@ -1,0 +1,13 @@
+fsl-lx2162a-clearfog.o: \
+ arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dts \
+ scripts/dtc/include-prefixes/dt-bindings/leds/common.h \
+ arch/arm64/boot/dts/freescale/fsl-lx2162a.dtsi \
+ arch/arm64/boot/dts/freescale/fsl-lx216x.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/clock/fsl,qoriq-clockgen.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/thermal/thermal.h \
+ arch/arm64/boot/dts/freescale/fsl-lx216xa-pcie-gen3.dtsi \
+ arch/arm64/boot/dts/freescale/fsl-lx2162a-serdes.dtsi \
+ arch/arm64/boot/dts/freescale/fsl-lx2162a-sr-som.dtsi

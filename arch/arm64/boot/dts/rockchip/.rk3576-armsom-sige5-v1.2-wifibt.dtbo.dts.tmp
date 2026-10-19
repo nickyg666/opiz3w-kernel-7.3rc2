@@ -1,0 +1,56 @@
+# 0 "arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5-v1.2-wifibt.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5-v1.2-wifibt.dtso"
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 12 "arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5-v1.2-wifibt.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 13 "arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5-v1.2-wifibt.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pinctrl/rockchip.h" 1
+# 14 "arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5-v1.2-wifibt.dtso" 2
+
+&sdio {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ wifi@1 {
+  compatible = "brcm,bcm4329-fmac";
+  reg = <1>;
+  clock-names = "lpo";
+  clocks = <&hym8563>;
+  interrupt-names = "host-wake";
+  interrupt-parent = <&gpio0>;
+  interrupts = <8 4>;
+  pinctrl-0 = <&wifi_wake_host>;
+  pinctrl-names = "default";
+ };
+};
+
+&uart4 {
+ status = "okay";
+
+ bluetooth {
+  compatible = "brcm,bcm43438-bt";
+  clock-names = "lpo";
+  clocks = <&hym8563>;
+  device-wakeup-gpios = <&gpio1 31 0>;
+  interrupt-names = "host-wakeup";
+  interrupt-parent = <&gpio0>;
+  interrupts = <9 4>;
+  pinctrl-0 = <&bt_reg_on>, <&bt_wake_host>, <&host_wake_bt>;
+  pinctrl-names = "default";
+  shutdown-gpios = <&gpio0 22 0>;
+  vbat-supply = <&vcc_3v3_s3>;
+  vddio-supply = <&vcc_1v8_s3>;
+ };
+};

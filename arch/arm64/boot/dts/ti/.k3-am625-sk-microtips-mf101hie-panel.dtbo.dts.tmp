@@ -1,0 +1,120 @@
+# 0 "arch/arm64/boot/dts/ti/k3-am625-sk-microtips-mf101hie-panel.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/ti/k3-am625-sk-microtips-mf101hie-panel.dtso"
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 12 "arch/arm64/boot/dts/ti/k3-am625-sk-microtips-mf101hie-panel.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 13 "arch/arm64/boot/dts/ti/k3-am625-sk-microtips-mf101hie-panel.dtso" 2
+
+# 1 "arch/arm64/boot/dts/ti/k3-pinctrl.h" 1
+# 15 "arch/arm64/boot/dts/ti/k3-am625-sk-microtips-mf101hie-panel.dtso" 2
+
+&{/} {
+ display {
+  compatible = "microtips,mf-101hiebcaf0";
+# 28 "arch/arm64/boot/dts/ti/k3-am625-sk-microtips-mf101hie-panel.dtso"
+  power-supply = <&vcc_3v3_sys>;
+  ports {
+   #address-cells = <1>;
+   #size-cells = <0>;
+
+   port@0 {
+    reg = <0>;
+    dual-lvds-odd-pixels;
+    lcd_in0: endpoint {
+     remote-endpoint = <&oldi_0_out>;
+    };
+   };
+   port@1 {
+    reg = <1>;
+    dual-lvds-even-pixels;
+    lcd_in1: endpoint {
+     remote-endpoint = <&oldi_1_out>;
+    };
+   };
+  };
+ };
+};
+
+&dss {
+ status = "okay";
+};
+
+&oldi0 {
+ status = "okay";
+ ti,companion-oldi = <&oldi1>;
+};
+
+&oldi1 {
+ status = "okay";
+ ti,secondary-oldi;
+ ti,companion-oldi = <&oldi0>;
+};
+
+&oldi0_port0 {
+ oldi_0_in: endpoint {
+  remote-endpoint = <&dpi0_out0>;
+ };
+};
+
+&oldi0_port1 {
+ oldi_0_out: endpoint {
+  remote-endpoint = <&lcd_in0>;
+ };
+};
+
+&oldi1_port0 {
+ oldi_1_in: endpoint {
+  remote-endpoint = <&dpi0_out1>;
+ };
+};
+
+&oldi1_port1 {
+ oldi_1_out: endpoint {
+  remote-endpoint = <&lcd_in1>;
+ };
+};
+
+&dss_ports {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+
+ port@0 {
+  reg = <0>;
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  dpi0_out0: endpoint@0 {
+   reg = <0>;
+   remote-endpoint = <&oldi_0_in>;
+  };
+  dpi0_out1: endpoint@1 {
+   reg = <1>;
+   remote-endpoint = <&oldi_1_in>;
+  };
+ };
+};
+
+&main_i2c0 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ touchscreen@41 {
+  compatible = "ilitek,ili251x";
+  reg = <0x41>;
+  interrupt-parent = <&exp1>;
+  interrupts = <22 2>;
+ };
+};

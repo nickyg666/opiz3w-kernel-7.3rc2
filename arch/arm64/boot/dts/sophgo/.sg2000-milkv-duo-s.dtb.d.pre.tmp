@@ -1,0 +1,11 @@
+sg2000-milkv-duo-s.o: arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts \
+ scripts/dtc/include-prefixes/dt-bindings/pinctrl/pinctrl-sg2000.h \
+ scripts/dtc/include-prefixes/dt-bindings/pinctrl/pinctrl-cv18xx.h \
+ arch/arm64/boot/dts/sophgo/sg2000.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/riscv/sophgo/cv180x.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/clock/sophgo,cv1800.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/riscv/sophgo/cv18xx-reset.h \
+ scripts/dtc/include-prefixes/riscv/sophgo/cv181x.dtsi

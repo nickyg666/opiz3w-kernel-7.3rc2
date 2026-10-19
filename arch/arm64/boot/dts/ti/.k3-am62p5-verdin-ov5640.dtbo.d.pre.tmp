@@ -1,0 +1,4 @@
+k3-am62p5-verdin-ov5640.o: \
+ arch/arm64/boot/dts/ti/k3-am62p5-verdin-ov5640.dtso \
+ arch/arm64/boot/dts/ti/k3-am62p5-verdin-ov5640.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h

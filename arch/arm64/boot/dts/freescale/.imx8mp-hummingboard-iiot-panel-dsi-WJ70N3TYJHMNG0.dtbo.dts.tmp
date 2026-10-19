@@ -1,0 +1,66 @@
+# 0 "arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot-panel-dsi-WJ70N3TYJHMNG0.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot-panel-dsi-WJ70N3TYJHMNG0.dtso"
+# 9 "arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot-panel-dsi-WJ70N3TYJHMNG0.dtso"
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 13 "arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot-panel-dsi-WJ70N3TYJHMNG0.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 14 "arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot-panel-dsi-WJ70N3TYJHMNG0.dtso" 2
+
+&{/} {
+ dsi_backlight: dsi-backlight {
+  compatible = "gpio-backlight";
+  gpios = <&tca6408_u48 3 1>;
+ };
+};
+
+&i2c_dsi {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ touchscreen@41 {
+  compatible = "ilitek,ili2130";
+  reg = <0x41>;
+  interrupts-extended = <&tca6416_u21 13 8>;
+  reset-gpios = <&tca6408_u48 6 1>;
+ };
+};
+
+&lcdif1 {
+ status = "okay";
+};
+
+&mipi_dsi {
+ #address-cells = <1>;
+ #size-cells = <0>;
+ samsung,esc-clock-frequency = <10000000>;
+ status = "okay";
+
+ panel@0 {
+
+  compatible = "ronbo,rb070d30";
+  reg = <0>;
+
+  reset-gpios = <&tca6408_u48 1 0>;
+  backlight = <&dsi_backlight>;
+  power-gpios = <&tca6408_u48 2 0>;
+  shlr-gpios = <&tca6408_u48 4 1>;
+  updn-gpios = <&tca6408_u48 5 0>;
+  vcc-lcd-supply = <&reg_dsi_panel>;
+
+  port {
+   panel_from_dsim: endpoint {
+    remote-endpoint = <&mipi_dsi_out>;
+   };
+  };
+ };
+};
+
+&mipi_dsi_out {
+ data-lanes = <1 2 3 4>;
+ remote-endpoint = <&panel_from_dsim>;
+};

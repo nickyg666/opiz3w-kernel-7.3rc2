@@ -1,0 +1,86 @@
+# 0 "arch/arm64/boot/dts/freescale/imx93-11x11-evk-dy1212w-4856.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx93-11x11-evk-dy1212w-4856.dtso"
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/clock/imx93-clock.h" 1
+# 10 "arch/arm64/boot/dts/freescale/imx93-11x11-evk-dy1212w-4856.dtso" 2
+
+&{/} {
+ panel-lvds {
+  compatible = "boe,ev121wxm-n10-1850";
+  backlight = <&backlight_lvds>;
+  power-supply = <&buck4>;
+
+  panel-timing {
+
+
+
+
+
+   clock-frequency = <71142858>;
+   hactive = <1280>;
+   vactive = <800>;
+   hfront-porch = <48>;
+   hback-porch = <80>;
+   hsync-len = <32>;
+   vfront-porch = <3>;
+   vback-porch = <14>;
+   vsync-len = <6>;
+  };
+
+  port {
+   panel_lvds_in: endpoint {
+    remote-endpoint = <&ldb_lvds_ch0>;
+   };
+  };
+ };
+};
+
+&backlight_lvds {
+ status = "okay";
+};
+
+&lcdif {
+ status = "okay";
+};
+
+&lvds_bridge {
+ status = "okay";
+
+ ports {
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  port@1 {
+   reg = <1>;
+
+   ldb_lvds_ch0: endpoint {
+    remote-endpoint = <&panel_lvds_in>;
+   };
+  };
+ };
+};
+
+&media_blk_ctrl {
+ assigned-clocks = <&clk 77>,
+     <&clk 78>,
+     <&clk 80>,
+     <&clk 10>;
+ assigned-clock-parents = <&clk 5>,
+     <&clk 6>,
+     <&clk 10>;
+
+
+
+
+ assigned-clock-rates = <400000000>, <133333333>, <71142858>, <498000000>;
+ status = "okay";
+};

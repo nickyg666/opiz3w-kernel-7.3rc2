@@ -1,0 +1,4 @@
+imx93-phyboard-nash-pwm-fan.o: \
+ arch/arm64/boot/dts/freescale/imx93-phyboard-nash-pwm-fan.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/pwm/pwm.h \
+ arch/arm64/boot/dts/freescale/imx93-pinfunc.h

@@ -1,0 +1,1 @@
+talos-el2.o: arch/arm64/boot/dts/qcom/talos-el2.dtso

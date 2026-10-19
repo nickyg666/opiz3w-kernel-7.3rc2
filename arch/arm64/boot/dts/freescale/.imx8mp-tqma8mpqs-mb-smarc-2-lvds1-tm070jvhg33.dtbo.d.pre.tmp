@@ -1,0 +1,2 @@
+imx8mp-tqma8mpqs-mb-smarc-2-lvds1-tm070jvhg33.o: \
+ arch/arm64/boot/dts/freescale/imx8mp-tqma8mpqs-mb-smarc-2-lvds1-tm070jvhg33.dtso

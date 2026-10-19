@@ -1,0 +1,2 @@
+imx8mp-dhcom-pdk2-overlay-531-100-x22.o: \
+ arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2-overlay-531-100-x22.dtso

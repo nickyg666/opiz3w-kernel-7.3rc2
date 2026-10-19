@@ -1,0 +1,137 @@
+# 0 "arch/arm64/boot/dts/ti/k3-am69-aquila-dsi-to-lvds-panel-cap-touch-10inch.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/ti/k3-am69-aquila-dsi-to-lvds-panel-cap-touch-10inch.dtso"
+# 14 "arch/arm64/boot/dts/ti/k3-am69-aquila-dsi-to-lvds-panel-cap-touch-10inch.dtso"
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 18 "arch/arm64/boot/dts/ti/k3-am69-aquila-dsi-to-lvds-panel-cap-touch-10inch.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 19 "arch/arm64/boot/dts/ti/k3-am69-aquila-dsi-to-lvds-panel-cap-touch-10inch.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pwm/pwm.h" 1
+# 20 "arch/arm64/boot/dts/ti/k3-am69-aquila-dsi-to-lvds-panel-cap-touch-10inch.dtso" 2
+
+&{/} {
+ backlight_pwm3: backlight-pwm3 {
+  compatible = "pwm-backlight";
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_gpio_19_dsi_1>;
+  brightness-levels = <0 45 63 88 119 158 203 255>;
+  default-brightness-level = <4>;
+
+  enable-gpios = <&main_gpio0 13 0>;
+
+  pwms = <&main_ehrpwm5 0 6666667 (1 << 0)>;
+ };
+
+ panel-lvds-bridge {
+  compatible = "logictechno,lt170410-2whc";
+  backlight = <&backlight_pwm3>;
+  power-supply = <&reg_3v3_dsi>;
+
+  port {
+   panel_lvds_bridge_in: endpoint {
+    remote-endpoint = <&dsi_lvds_bridge_out>;
+   };
+  };
+ };
+
+ reg_3v3_dsi: regulator-3v3-dsi {
+  compatible = "regulator-fixed";
+  regulator-max-microvolt = <3300000>;
+  regulator-min-microvolt = <3300000>;
+  regulator-name = "+V3.3_DSI";
+ };
+};
+
+&dphy_tx0 {
+ status = "okay";
+};
+
+&dsi0 {
+ status = "okay";
+};
+
+&dsi0_ports {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ port@0 {
+  reg = <0>;
+
+  dsi0_out: endpoint {
+   remote-endpoint = <&dsi_lvds_bridge_in>;
+  };
+ };
+
+ port@1 {
+  reg = <1>;
+
+  dsi0_in: endpoint {
+   remote-endpoint = <&dpi2_out>;
+  };
+ };
+};
+
+&dss_ports {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ port@2 {
+  reg = <2>;
+
+  dpi2_out: endpoint {
+   remote-endpoint = <&dsi0_in>;
+  };
+ };
+};
+
+&i2c_dsi_0 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ bridge@2c {
+  compatible = "ti,sn65dsi84";
+  reg = <0x2c>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_gpio_20_dsi_1>;
+
+  enable-gpios = <&main_gpio0 18 0>;
+
+  ports {
+   #address-cells = <1>;
+   #size-cells = <0>;
+
+   port@0 {
+    reg = <0>;
+
+    dsi_lvds_bridge_in: endpoint {
+     remote-endpoint = <&dsi0_out>;
+     data-lanes = <1 2 3 4>;
+    };
+   };
+
+   port@2 {
+    reg = <2>;
+
+    dsi_lvds_bridge_out: endpoint {
+     remote-endpoint = <&panel_lvds_bridge_in>;
+    };
+   };
+  };
+ };
+
+ touchscreen@4a {
+  compatible = "atmel,maxtouch";
+  reg = <0x4a>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_gpio_17_dsi_1>, <&pinctrl_gpio_18_dsi_1>;
+
+  interrupt-parent = <&main_gpio0>;
+  interrupts = <12 2>;
+
+  reset-gpios = <&main_gpio0 31 1>;
+ };
+};

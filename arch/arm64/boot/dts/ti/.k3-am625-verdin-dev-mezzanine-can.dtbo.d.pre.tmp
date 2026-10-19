@@ -1,0 +1,3 @@
+k3-am625-verdin-dev-mezzanine-can.o: \
+ arch/arm64/boot/dts/ti/k3-am625-verdin-dev-mezzanine-can.dtso \
+ arch/arm64/boot/dts/ti/k3-pinctrl.h

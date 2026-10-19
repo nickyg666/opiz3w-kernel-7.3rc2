@@ -1,0 +1,4 @@
+qrb2210-rb1-vision-mezzanine.o: \
+ arch/arm64/boot/dts/qcom/qrb2210-rb1-vision-mezzanine.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/clock/qcom,gcc-qcm2290.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h

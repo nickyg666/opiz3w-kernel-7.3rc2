@@ -1,0 +1,13 @@
+t6031-j516c.o: arch/arm64/boot/dts/apple/t6031-j516c.dts \
+ arch/arm64/boot/dts/apple/t6031.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/apple-aic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/pinctrl/apple.h \
+ arch/arm64/boot/dts/apple/multi-die-cpp.h \
+ arch/arm64/boot/dts/apple/t6031-base.dtsi \
+ arch/arm64/boot/dts/apple/t6031-die0.dtsi \
+ arch/arm64/boot/dts/apple/t6031-dieX.dtsi \
+ arch/arm64/boot/dts/apple/t6031-gpio-pins.dtsi \
+ arch/arm64/boot/dts/apple/t6031-pmgr.dtsi \
+ arch/arm64/boot/dts/apple/t603x-j514-j516.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/leds/common.h

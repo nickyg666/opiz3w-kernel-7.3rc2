@@ -1,0 +1,11 @@
+imx952-evk.o: arch/arm64/boot/dts/freescale/imx952-evk.dts \
+ scripts/dtc/include-prefixes/dt-bindings/pwm/pwm.h \
+ scripts/dtc/include-prefixes/dt-bindings/usb/pd.h \
+ arch/arm64/boot/dts/freescale/imx952.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/dma/fsl-edma.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ arch/arm64/boot/dts/freescale/imx952-clock.h \
+ arch/arm64/boot/dts/freescale/imx952-pinfunc.h \
+ arch/arm64/boot/dts/freescale/imx952-power.h

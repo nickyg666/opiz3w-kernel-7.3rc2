@@ -1,0 +1,28 @@
+# 0 "arch/arm64/boot/dts/rockchip/rk3576-evb1-v10-pcie1.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/rockchip/rk3576-evb1-v10-pcie1.dtso"
+# 10 "arch/arm64/boot/dts/rockchip/rk3576-evb1-v10-pcie1.dtso"
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pinctrl/rockchip.h" 1
+# 14 "arch/arm64/boot/dts/rockchip/rk3576-evb1-v10-pcie1.dtso" 2
+
+&pcie1 {
+ pinctrl-0 = <&pcie1m0_pins &pcie1_rst>;
+ pinctrl-names = "default";
+ status = "okay";
+};
+
+&pinctrl {
+ pcie1 {
+  pcie1_rst: pcie1-rst {
+   rockchip,pins = <4 20 0 &pcfg_pull_none>;
+  };
+ };
+};
+
+&usb_drd1_dwc3 {
+ status = "disabled";
+};

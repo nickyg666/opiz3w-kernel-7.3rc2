@@ -1,0 +1,5 @@
+r9a09g057h48-kakip-pixpaper.o: \
+ arch/arm64/boot/dts/renesas/r9a09g057h48-kakip-pixpaper.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/pinctrl/renesas,r9a09g057-pinctrl.h \
+ scripts/dtc/include-prefixes/dt-bindings/pinctrl/rzg2l-pinctrl.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h

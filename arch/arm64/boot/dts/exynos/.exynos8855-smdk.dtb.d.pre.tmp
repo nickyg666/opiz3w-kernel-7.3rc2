@@ -1,0 +1,6 @@
+exynos8855-smdk.o: arch/arm64/boot/dts/exynos/exynos8855-smdk.dts \
+ arch/arm64/boot/dts/exynos/exynos8855.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ arch/arm64/boot/dts/exynos/exynos8855-pinctrl.dtsi \
+ arch/arm64/boot/dts/exynos/exynos-pinctrl.h

@@ -1,0 +1,4 @@
+k3-am642-phyboard-electra-peb-c-010.o: \
+ arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-peb-c-010.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/net/ti-dp83869.h \
+ arch/arm64/boot/dts/ti/k3-pinctrl.h

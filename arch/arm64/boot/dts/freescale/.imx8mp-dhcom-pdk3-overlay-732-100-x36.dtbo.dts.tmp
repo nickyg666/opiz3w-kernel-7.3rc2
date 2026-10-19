@@ -1,0 +1,75 @@
+# 0 "arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3-overlay-732-100-x36.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3-overlay-732-100-x36.dtso"
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "arch/arm64/boot/dts/freescale/imx8mp-dhcom-overlay-panel-clock.dtsi" 1
+
+
+
+
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/clock/imx8mp-clock.h" 1
+# 7 "arch/arm64/boot/dts/freescale/imx8mp-dhcom-overlay-panel-clock.dtsi" 2
+
+&media_blk_ctrl {
+
+
+
+
+
+ assigned-clocks = <&clk 97>,
+     <&clk 98>,
+     <&clk 172>,
+     <&clk 313>,
+     <&clk 19>,
+     <&clk 20>;
+ assigned-clock-parents = <&clk 65>,
+     <&clk 56>,
+     <&clk 39>,
+     <&clk 40>;
+ assigned-clock-rates = <500000000>, <200000000>,
+          <0>, <0>, <0>, <0>;
+};
+
+&tc_bridge {
+ assigned-clocks = <&clk 317>,
+     <&clk 319>,
+     <&clk 47>;
+ assigned-clock-parents = <&clk 47>;
+};
+# 9 "arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3-overlay-732-100-x36.dtso" 2
+
+&lcdif1 {
+ status = "okay";
+};
+
+&mipi_dsi {
+ samsung,burst-clock-frequency = <1000000000>;
+ status = "okay";
+};
+
+&tc_bridge {
+ assigned-clock-rates = <26000000>, <26000000>, <416000000>;
+ toshiba,hpd-pin = <0>;
+ status = "okay";
+
+ ports {
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  port@2 {
+   reg = <2>;
+
+   endpoint {
+    toshiba,pre-emphasis = /bits/ 8 <1 1>;
+   };
+  };
+ };
+};

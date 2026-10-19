@@ -1,0 +1,6 @@
+imx8mp-phyboard-pollux-peb-av-10-etml1010g3dra.o: \
+ arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-peb-av-10-etml1010g3dra.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/imx8mp-clock.h \
+ arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-peb-av-10.dtsi \
+ arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h

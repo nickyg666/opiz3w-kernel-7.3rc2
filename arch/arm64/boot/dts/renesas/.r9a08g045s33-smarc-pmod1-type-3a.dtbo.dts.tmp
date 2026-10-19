@@ -1,0 +1,29 @@
+# 0 "arch/arm64/boot/dts/renesas/r9a08g045s33-smarc-pmod1-type-3a.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/renesas/r9a08g045s33-smarc-pmod1-type-3a.dtso"
+# 26 "arch/arm64/boot/dts/renesas/r9a08g045s33-smarc-pmod1-type-3a.dtso"
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pinctrl/rzg2l-pinctrl.h" 1
+# 30 "arch/arm64/boot/dts/renesas/r9a08g045s33-smarc-pmod1-type-3a.dtso" 2
+# 1 "arch/arm64/boot/dts/renesas/rzg3s-smarc-switches.h" 1
+# 31 "arch/arm64/boot/dts/renesas/r9a08g045s33-smarc-pmod1-type-3a.dtso" 2
+
+&pinctrl {
+ scif1_pins: scif1-pins {
+  pinmux = <((14) * 8 + (0) | ((1) << 16))>,
+    <((14) * 8 + (1) | ((1) << 16))>,
+    <((16) * 8 + (0) | ((1) << 16))>,
+    <((16) * 8 + (1) | ((1) << 16))>;
+ };
+};
+
+
+&scif1 {
+ pinctrl-names = "default";
+ pinctrl-0 = <&scif1_pins>;
+ uart-has-rtscts;
+ status = "okay";
+};

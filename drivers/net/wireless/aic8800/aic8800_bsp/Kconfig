@@ -1,0 +1,62 @@
+# SPDX-License-Identifier: GPL-2.0
+# AIC8800 BSP driver configuration
+
+config AIC8800_BSP_SUPPORT
+	tristate "AIC8800 BSP driver"
+	depends on AIC_WLAN_SUPPORT && (AIC_INTF_SDIO || AIC_INTF_USB)
+	help
+	  This is support for AIC8800 BSP driver.
+
+config CONFIG_PLATFORM_ALLWINNER
+	bool "Allwinner platform support"
+	default y if ARCH_SUNXI
+	help
+	  Enable Allwinner platform specific code in BSP driver.
+
+config CONFIG_SDIO_PWRCTRL
+	bool "SDIO power control"
+	default y if AIC_INTF_SDIO
+	help
+	  Enable SDIO power control for AIC8800.
+
+config CONFIG_VRF_DCDC_MODE
+	bool "VRF DCDC mode"
+	default y
+	help
+	  Enable VRF DCDC mode.
+
+config CONFIG_OOB
+	bool "OOB mode"
+	default n
+	help
+	  Enable OOB mode.
+
+config CONFIG_DPD
+	bool "DPD"
+	default y
+	help
+	  Enable DPD calibration.
+
+config CONFIG_FORCE_DPD_CALIB
+	bool "Force DPD calibration"
+	default y
+	help
+	  Force DPD calibration.
+
+config CONFIG_AMSDU_RX
+	bool "AMSDU RX"
+	default y
+	help
+	  Enable AMSDU RX.
+
+config CONFIG_PREALLOC_TXQ
+	bool "Prealloc TXQ"
+	default y
+	help
+	  Enable preallocated TX queues.
+
+config CONFIG_SDIO_F1_FLAG
+	bool "SDIO F1 flag"
+	default y
+	help
+	  Enable SDIO F1 flag.

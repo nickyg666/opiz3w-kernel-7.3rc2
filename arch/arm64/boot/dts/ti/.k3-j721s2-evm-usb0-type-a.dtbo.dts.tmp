@@ -1,0 +1,24 @@
+# 0 "arch/arm64/boot/dts/ti/k3-j721s2-evm-usb0-type-a.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/ti/k3-j721s2-evm-usb0-type-a.dtso"
+# 11 "arch/arm64/boot/dts/ti/k3-j721s2-evm-usb0-type-a.dtso"
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 15 "arch/arm64/boot/dts/ti/k3-j721s2-evm-usb0-type-a.dtso" 2
+
+&exp_som {
+ p0-hog {
+
+  gpio-hog;
+  gpios = <0 0>;
+  output-high;
+  line-name = "USB2.0_MUX_SEL";
+ };
+};
+
+&usb0 {
+ dr_mode = "host";
+};

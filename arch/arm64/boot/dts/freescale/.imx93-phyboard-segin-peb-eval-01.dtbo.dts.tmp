@@ -1,0 +1,62 @@
+# 0 "arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-eval-01.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-eval-01.dtso"
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 11 "arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-eval-01.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/input/input.h" 1
+# 13 "./scripts/dtc/include-prefixes/dt-bindings/input/input.h"
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/input/linux-event-codes.h" 1
+# 14 "./scripts/dtc/include-prefixes/dt-bindings/input/input.h" 2
+# 12 "arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-eval-01.dtso" 2
+# 1 "arch/arm64/boot/dts/freescale/imx93-pinfunc.h" 1
+# 13 "arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-eval-01.dtso" 2
+
+&{/} {
+ gpio-keys {
+  compatible = "gpio-keys";
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_gpio_keys>;
+
+  button-s2 {
+   label = "sleep";
+   linux,code = <142>;
+   gpios = <&gpio1 10 1>;
+   wakeup-source;
+  };
+ };
+
+ user-leds {
+  compatible = "gpio-leds";
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_user_leds>;
+
+  user-led2 {
+   gpios = <&gpio4 13 0>;
+   default-state = "on";
+  };
+ };
+};
+
+&iomuxc {
+ pinctrl_gpio_keys: gpiokeysgrp {
+  fsl,pins = <
+   0x0198 0x0348 0x0000 0x5 0x0 0x31e
+  >;
+ };
+
+ pinctrl_user_leds: userledsgrp {
+  fsl,pins = <
+   0x00CC 0x027C 0x0000 0x5 0x0 0x31e
+  >;
+ };
+};

@@ -1,0 +1,4 @@
+imx93-tqma9352-mba93xxla-mini-ezurio-wlan.o: \
+ arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla-mini-ezurio-wlan.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h

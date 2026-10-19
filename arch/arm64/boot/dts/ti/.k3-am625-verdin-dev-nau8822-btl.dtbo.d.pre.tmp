@@ -1,0 +1,2 @@
+k3-am625-verdin-dev-nau8822-btl.o: \
+ arch/arm64/boot/dts/ti/k3-am625-verdin-dev-nau8822-btl.dtso

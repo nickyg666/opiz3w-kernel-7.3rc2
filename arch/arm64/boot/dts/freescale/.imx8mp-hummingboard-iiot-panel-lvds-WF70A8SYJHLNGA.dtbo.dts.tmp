@@ -1,0 +1,96 @@
+# 0 "arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot-panel-lvds-WF70A8SYJHLNGA.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot-panel-lvds-WF70A8SYJHLNGA.dtso"
+# 9 "arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot-panel-lvds-WF70A8SYJHLNGA.dtso"
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 13 "arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot-panel-lvds-WF70A8SYJHLNGA.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 14 "arch/arm64/boot/dts/freescale/imx8mp-hummingboard-iiot-panel-lvds-WF70A8SYJHLNGA.dtso" 2
+
+&{/} {
+ lvds_backlight: lvds-backlight {
+  compatible = "gpio-backlight";
+  gpios = <&tca6408_u37 3 1>;
+ };
+
+ panel-lvds {
+  compatible = "winstar,wf70a8syjhlnga", "panel-lvds";
+  backlight = <&lvds_backlight>;
+  data-mapping = "vesa-24";
+  enable-gpios = <&tca6408_u37 2 0>;
+  height-mm = <86>;
+  power-supply = <&reg_dsi_panel>;
+  reset-gpios = <&tca6408_u37 1 0>;
+  width-mm = <154>;
+
+  panel-timing {
+
+
+
+
+
+   clock-frequency = <49500000>;
+   de-active = <1>;
+   hactive = <1024>;
+   hback-porch = <144>;
+   hfront-porch = <40>;
+   hsync-active = <0>;
+   hsync-len = <104>;
+   vactive = <600>;
+   vback-porch = <11>;
+   vfront-porch = <3>;
+   vsync-active = <1>;
+   vsync-len = <10>;
+  };
+
+  port {
+   panel_from_lvds: endpoint {
+    remote-endpoint = <&ldb_lvds_ch0>;
+   };
+  };
+ };
+};
+
+&i2c_lvds {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ touchscreen@41 {
+  compatible = "ilitek,ili2130";
+  reg = <0x41>;
+  interrupts-extended = <&tca6416_u21 13 8>;
+  reset-gpios = <&tca6408_u37 6 1>;
+ };
+};
+
+&lcdif2 {
+ status = "okay";
+};
+
+&ldb_lvds_ch0 {
+ remote-endpoint = <&panel_from_lvds>;
+};
+
+&lvds_bridge {
+ status = "okay";
+};
+
+&tca6408_u37 {
+ lvds-lr-hog {
+  gpios = <4 0>;
+  gpio-hog;
+  line-name = "lvds-l/r";
+  output-high;
+ };
+
+ lvds-ud-hog {
+  gpios = <5 0>;
+  gpio-hog;
+  line-name = "lvds-u/d";
+  output-high;
+ };
+};

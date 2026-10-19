@@ -1,0 +1,7 @@
+amlogic-a9-a311y3-by401.o: \
+ arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts \
+ arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/pinctrl/amlogic,pinctrl.h

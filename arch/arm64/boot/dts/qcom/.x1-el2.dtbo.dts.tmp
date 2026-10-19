@@ -1,0 +1,64 @@
+# 0 "arch/arm64/boot/dts/qcom/x1-el2.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/qcom/x1-el2.dtso"
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+&apss_watchdog {
+ status = "okay";
+};
+
+
+&gpu_zap_shader {
+ status = "disabled";
+};
+
+&iris {
+
+ status = "disabled";
+};
+# 33 "arch/arm64/boot/dts/qcom/x1-el2.dtso"
+&pcie3 {
+ iommu-map = <0 &pcie_smmu 0x30000 0x10000>;
+ msi-map = <0 &gic_its 0xb0000 0x10000>;
+};
+
+&pcie4 {
+ iommu-map = <0 &pcie_smmu 0x40000 0x10000>;
+};
+
+&pcie5 {
+ iommu-map = <0 &pcie_smmu 0x50000 0x10000>;
+ msi-map = <0 &gic_its 0xd0000 0x10000>;
+};
+
+&pcie6a {
+ iommu-map = <0 &pcie_smmu 0x60000 0x10000>;
+};
+
+&pcie_smmu {
+ status = "okay";
+};
+
+&remoteproc_adsp {
+ iommus = <&apps_smmu 0x1000 0x80>;
+};
+
+&remoteproc_cdsp {
+ iommus = <&apps_smmu 0x0c00 0x0>;
+};
+
+
+
+
+
+&sbsa_watchdog {
+ status = "disabled";
+};

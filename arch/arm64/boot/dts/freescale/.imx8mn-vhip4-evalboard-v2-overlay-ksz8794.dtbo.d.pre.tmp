@@ -1,0 +1,5 @@
+imx8mn-vhip4-evalboard-v2-overlay-ksz8794.o: \
+ arch/arm64/boot/dts/freescale/imx8mn-vhip4-evalboard-v2-overlay-ksz8794.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ arch/arm64/boot/dts/freescale/imx8mn-pinfunc.h \
+ arch/arm64/boot/dts/freescale/imx8mn-vhip4-evalboard-ksz8794-common.dtsi

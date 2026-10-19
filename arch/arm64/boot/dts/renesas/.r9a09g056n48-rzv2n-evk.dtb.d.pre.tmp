@@ -1,0 +1,11 @@
+r9a09g056n48-rzv2n-evk.o: \
+ arch/arm64/boot/dts/renesas/r9a09g056n48-rzv2n-evk.dts \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/input/input.h \
+ scripts/dtc/include-prefixes/dt-bindings/input/linux-event-codes.h \
+ arch/arm64/boot/dts/renesas/r9a09g056.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/clock/renesas,r9a09g056-cpg.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/renesas-cpg-mssr.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/pinctrl/rzg2l-pinctrl.h

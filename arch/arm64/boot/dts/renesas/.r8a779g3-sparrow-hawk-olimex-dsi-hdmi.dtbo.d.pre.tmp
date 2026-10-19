@@ -1,0 +1,2 @@
+r8a779g3-sparrow-hawk-olimex-dsi-hdmi.o: \
+ arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-olimex-dsi-hdmi.dtso

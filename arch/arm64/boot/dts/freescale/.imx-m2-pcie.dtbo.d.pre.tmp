@@ -1,0 +1,1 @@
+imx-m2-pcie.o: arch/arm64/boot/dts/freescale/imx-m2-pcie.dtso

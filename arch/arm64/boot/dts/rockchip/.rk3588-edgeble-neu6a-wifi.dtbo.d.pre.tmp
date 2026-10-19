@@ -1,0 +1,4 @@
+rk3588-edgeble-neu6a-wifi.o: \
+ arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-wifi.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/pinctrl/rockchip.h

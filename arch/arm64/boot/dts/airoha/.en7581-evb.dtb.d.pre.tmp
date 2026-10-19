@@ -1,0 +1,6 @@
+en7581-evb.o: arch/arm64/boot/dts/airoha/en7581-evb.dts \
+ arch/arm64/boot/dts/airoha/en7581.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/en7523-clk.h \
+ scripts/dtc/include-prefixes/dt-bindings/reset/airoha,en7581-reset.h

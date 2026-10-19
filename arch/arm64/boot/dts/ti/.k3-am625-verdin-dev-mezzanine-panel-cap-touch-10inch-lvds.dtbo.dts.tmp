@@ -1,0 +1,95 @@
+# 0 "arch/arm64/boot/dts/ti/k3-am625-verdin-dev-mezzanine-panel-cap-touch-10inch-lvds.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/ti/k3-am625-verdin-dev-mezzanine-panel-cap-touch-10inch-lvds.dtso"
+# 12 "arch/arm64/boot/dts/ti/k3-am625-verdin-dev-mezzanine-panel-cap-touch-10inch-lvds.dtso"
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 16 "arch/arm64/boot/dts/ti/k3-am625-verdin-dev-mezzanine-panel-cap-touch-10inch-lvds.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 17 "arch/arm64/boot/dts/ti/k3-am625-verdin-dev-mezzanine-panel-cap-touch-10inch-lvds.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pwm/pwm.h" 1
+# 18 "arch/arm64/boot/dts/ti/k3-am625-verdin-dev-mezzanine-panel-cap-touch-10inch-lvds.dtso" 2
+
+&{/} {
+ backlight_pwm2: backlight-pwm2 {
+  compatible = "pwm-backlight";
+  brightness-levels = <0 45 63 88 119 158 203 255>;
+  default-brightness-level = <4>;
+
+  enable-gpios = <&mcu_gpio0 4 0>;
+
+  pwms = <&epwm0 1 6666667 (1 << 0)>;
+ };
+
+ panel-lvds-native {
+  compatible = "logictechno,lt170410-2whc";
+  backlight = <&backlight_pwm2>;
+  power-supply = <&reg_3v3_lvds>;
+
+  port {
+   panel_lvds_native_in: endpoint {
+    remote-endpoint = <&oldi0_out>;
+   };
+  };
+ };
+
+ reg_3v3_lvds: regulator-3v3-lvds {
+  compatible = "regulator-fixed";
+  regulator-max-microvolt = <3300000>;
+  regulator-min-microvolt = <3300000>;
+  regulator-name = "+V3.3_LVDS";
+ };
+};
+
+&dss {
+ status = "okay";
+};
+
+&dss_ports {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+
+ port@0 {
+  reg = <0>;
+
+  dss0_out: endpoint {
+   remote-endpoint = <&oldi0_in>;
+  };
+ };
+};
+
+
+&main_i2c2 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ touchscreen@4a {
+  compatible = "atmel,maxtouch";
+  reg = <0x4a>;
+
+  interrupt-parent = <&mcu_gpio0>;
+  interrupts = <3 2>;
+
+  reset-gpios = <&mcu_gpio0 2 1>;
+ };
+};
+
+&oldi0 {
+ status = "okay";
+};
+
+&oldi0_port0 {
+ oldi0_in: endpoint {
+  remote-endpoint = <&dss0_out>;
+ };
+};
+
+&oldi0_port1 {
+ oldi0_out: endpoint {
+  remote-endpoint = <&panel_lvds_native_in>;
+ };
+};

@@ -1,0 +1,8 @@
+artpec9-alfred.o: arch/arm64/boot/dts/exynos/axis/artpec9-alfred.dts \
+ arch/arm64/boot/dts/exynos/axis/artpec9.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/clock/axis,artpec9-clk.h \
+ arch/arm64/boot/dts/exynos/axis/artpec9-pinctrl.dtsi \
+ arch/arm64/boot/dts/exynos/axis/artpec-pinctrl.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h

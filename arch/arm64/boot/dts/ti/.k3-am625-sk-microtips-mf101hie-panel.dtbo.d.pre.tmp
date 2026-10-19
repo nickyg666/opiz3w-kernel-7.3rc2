@@ -1,0 +1,5 @@
+k3-am625-sk-microtips-mf101hie-panel.o: \
+ arch/arm64/boot/dts/ti/k3-am625-sk-microtips-mf101hie-panel.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ arch/arm64/boot/dts/ti/k3-pinctrl.h

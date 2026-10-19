@@ -1,0 +1,127 @@
+# 0 "arch/arm64/boot/dts/ti/k3-am625-verdin-panel-cap-touch-10inch-lvds-v2.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/ti/k3-am625-verdin-panel-cap-touch-10inch-lvds-v2.dtso"
+# 12 "arch/arm64/boot/dts/ti/k3-am625-verdin-panel-cap-touch-10inch-lvds-v2.dtso"
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 16 "arch/arm64/boot/dts/ti/k3-am625-verdin-panel-cap-touch-10inch-lvds-v2.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 17 "arch/arm64/boot/dts/ti/k3-am625-verdin-panel-cap-touch-10inch-lvds-v2.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pwm/pwm.h" 1
+# 18 "arch/arm64/boot/dts/ti/k3-am625-verdin-panel-cap-touch-10inch-lvds-v2.dtso" 2
+# 1 "arch/arm64/boot/dts/ti/k3-pinctrl.h" 1
+# 19 "arch/arm64/boot/dts/ti/k3-am625-verdin-panel-cap-touch-10inch-lvds-v2.dtso" 2
+
+&{/} {
+ backlight_pwm2: backlight-pwm2 {
+  compatible = "pwm-backlight";
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_i2s_2_d_out_gpio>;
+  brightness-levels = <0 45 63 88 119 158 203 255>;
+  default-brightness-level = <4>;
+
+  enable-gpios = <&main_gpio0 34 0>;
+
+  pwms = <&epwm0 1 6666667 0>;
+ };
+
+ panel-lvds-native {
+  compatible = "optologic,scx1001511ggc49", "panel-lvds";
+  backlight = <&backlight_pwm2>;
+  data-mapping = "vesa-24";
+  height-mm = <136>;
+  width-mm = <217>;
+
+  panel-timing {
+   clock-frequency = <64500000>;
+   hactive = <1280>;
+   hback-porch = <20>;
+   hfront-porch = <20>;
+   hsync-len = <2>;
+   vactive = <800>;
+   vback-porch = <5>;
+   vfront-porch = <5>;
+   vsync-len = <3>;
+   de-active = <1>;
+   hsync-active = <0>;
+   vsync-active = <0>;
+   pixelclk-active = <0>;
+  };
+
+  port {
+   panel_lvds_native_in: endpoint {
+    remote-endpoint = <&oldi0_out>;
+   };
+  };
+ };
+};
+
+&dss {
+ status = "okay";
+};
+
+&dss_ports {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+
+ port@0 {
+  reg = <0>;
+
+  dss0_out: endpoint {
+   remote-endpoint = <&oldi0_in>;
+  };
+ };
+};
+
+
+&main_i2c2 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ touchscreen@41 {
+  compatible = "ilitek,ili251x";
+  reg = <0x41>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_i2s_2_d_in_gpio>,
+       <&pinctrl_i2s_2_sync_gpio>;
+
+  interrupt-parent = <&main_gpio0>;
+  interrupts = <37 1>;
+
+  reset-gpios = <&main_gpio0 33 1>;
+ };
+};
+
+&main_pmx0 {
+ pinctrl_i2s_2_d_in_gpio: main-gpio0-33-default-pins {
+  pinctrl-single,pins = <
+   (((0x0088) & 0x1fff)) ((((1 << (18)) | (1 << (14)) | (1 << (16)))) | (7))
+  >;
+ };
+
+ pinctrl_i2s_2_sync_gpio: main-gpio0-37-default-pins {
+  pinctrl-single,pins = <
+   (((0x0098) & 0x1fff)) ((((1 << (18)) | (1 << (14)) | (1 << (16)))) | (7))
+  >;
+ };
+};
+
+&oldi0 {
+ status = "okay";
+};
+
+&oldi0_port0 {
+ oldi0_in: endpoint {
+  remote-endpoint = <&dss0_out>;
+ };
+};
+
+&oldi0_port1 {
+ oldi0_out: endpoint {
+  remote-endpoint = <&panel_lvds_native_in>;
+ };
+};

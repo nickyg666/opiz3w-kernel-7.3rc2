@@ -1,0 +1,11 @@
+exynos2200-g0s.o: arch/arm64/boot/dts/exynos/exynos2200-g0s.dts \
+ arch/arm64/boot/dts/exynos/exynos2200.dtsi \
+ scripts/dtc/include-prefixes/dt-bindings/clock/samsung,exynos2200-cmu.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/soc/samsung,exynos-usi.h \
+ arch/arm64/boot/dts/exynos/exynos2200-pinctrl.dtsi \
+ arch/arm64/boot/dts/exynos/exynos-pinctrl.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/input/input.h \
+ scripts/dtc/include-prefixes/dt-bindings/input/linux-event-codes.h

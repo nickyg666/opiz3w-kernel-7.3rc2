@@ -1,0 +1,7 @@
+px30-ringneck-haikou-video-demo.o: \
+ arch/arm64/boot/dts/rockchip/px30-ringneck-haikou-video-demo.dtso \
+ scripts/dtc/include-prefixes/dt-bindings/clock/px30-cru.h \
+ scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h \
+ scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h \
+ scripts/dtc/include-prefixes/dt-bindings/leds/common.h \
+ scripts/dtc/include-prefixes/dt-bindings/pinctrl/rockchip.h

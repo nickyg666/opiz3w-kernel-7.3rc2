@@ -1,0 +1,54 @@
+# 0 "arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-wifi.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-wifi.dtso"
+# 10 "arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-wifi.dtso"
+/dts-v1/;
+/plugin/;
+
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 14 "arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-wifi.dtso" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/pinctrl/rockchip.h" 1
+# 15 "arch/arm64/boot/dts/rockchip/rk3588-edgeble-neu6a-wifi.dtso" 2
+
+&{/} {
+ vcc3v3_pcie2x1l1: regulator-vcc3v3-pcie2x1l1 {
+  compatible = "regulator-fixed";
+  enable-active-high;
+  gpios = <&gpio0 20 0>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&pcie2_1_vcc3v3_en>;
+  regulator-name = "vcc3v3_pcie2x1l1";
+  regulator-always-on;
+  regulator-boot-on;
+  regulator-min-microvolt = <3300000>;
+  regulator-max-microvolt = <3300000>;
+  startup-delay-us = <50000>;
+  vin-supply = <&vcc5v0_sys>;
+ };
+};
+
+&combphy2_psu {
+ status = "okay";
+};
+
+
+&pcie2x1l1 {
+ pinctrl-names = "default";
+ pinctrl-0 = <&pcie2_1_rst>;
+ reset-gpios = <&gpio4 2 0>;
+ vpcie3v3-supply = <&vcc3v3_pcie2x1l1>;
+ status = "okay";
+};
+
+&pinctrl {
+ pcie2 {
+  pcie2_1_rst: pcie2-1-rst {
+   rockchip,pins = <4 2 0 &pcfg_pull_none>;
+  };
+
+  pcie2_1_vcc3v3_en: pcie2-1-vcc-en {
+   rockchip,pins = <0 20 0 &pcfg_pull_none>;
+  };
+ };
+};

@@ -1,0 +1,385 @@
+# 0 "arch/arm64/boot/dts/exynos/axis/artpec8-grizzly.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/exynos/axis/artpec8-grizzly.dts"
+# 11 "arch/arm64/boot/dts/exynos/axis/artpec8-grizzly.dts"
+/dts-v1/;
+# 1 "arch/arm64/boot/dts/exynos/axis/artpec8.dtsi" 1
+# 11 "arch/arm64/boot/dts/exynos/axis/artpec8.dtsi"
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h" 1
+# 9 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h"
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/irq.h" 1
+# 10 "./scripts/dtc/include-prefixes/dt-bindings/interrupt-controller/arm-gic.h" 2
+# 12 "arch/arm64/boot/dts/exynos/axis/artpec8.dtsi" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/clock/axis,artpec8-clk.h" 1
+# 13 "arch/arm64/boot/dts/exynos/axis/artpec8.dtsi" 2
+
+/ {
+ compatible = "axis,artpec8";
+ interrupt-parent = <&gic>;
+ #address-cells = <2>;
+ #size-cells = <2>;
+
+ aliases {
+  pinctrl0 = &pinctrl_fsys;
+  pinctrl1 = &pinctrl_peric;
+ };
+
+ cpus {
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  cpu0: cpu@0 {
+   device_type = "cpu";
+   compatible = "arm,cortex-a53";
+   reg = <0x0>;
+   enable-method = "psci";
+   cpu-idle-states = <&cpu_sleep>;
+   clocks = <&cmu_cpucl 13>;
+   clock-names = "cpu";
+  };
+
+  cpu1: cpu@1 {
+   device_type = "cpu";
+   compatible = "arm,cortex-a53";
+   reg = <0x1>;
+   enable-method = "psci";
+   cpu-idle-states = <&cpu_sleep>;
+  };
+
+  cpu2: cpu@2 {
+   device_type = "cpu";
+   compatible = "arm,cortex-a53";
+   reg = <0x2>;
+   enable-method = "psci";
+   cpu-idle-states = <&cpu_sleep>;
+  };
+
+  cpu3: cpu@3 {
+   device_type = "cpu";
+   compatible = "arm,cortex-a53";
+   reg = <0x3>;
+   enable-method = "psci";
+   cpu-idle-states = <&cpu_sleep>;
+  };
+
+  idle-states {
+   entry-method = "psci";
+
+   cpu_sleep: cpu-sleep {
+    compatible = "arm,idle-state";
+    arm,psci-suspend-param = <0x0010000>;
+    local-timer-stop;
+    entry-latency-us = <300>;
+    exit-latency-us = <1200>;
+    min-residency-us = <2000>;
+   };
+  };
+ };
+
+ fin_pll: clock-finpll {
+  compatible = "fixed-factor-clock";
+  clocks = <&osc_clk>;
+  #clock-cells = <0>;
+  clock-div = <2>;
+  clock-mult = <1>;
+  clock-output-names = "fin_pll";
+ };
+
+ osc_clk: clock-osc {
+
+  compatible = "fixed-clock";
+  #clock-cells = <0>;
+  clock-output-names = "osc_clk";
+ };
+
+ pmu {
+  compatible = "arm,cortex-a53-pmu";
+  interrupts = <0 10 4>,
+        <0 11 4>,
+        <0 12 4>,
+        <0 13 4>;
+  interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
+ };
+
+ psci {
+  compatible = "arm,psci-0.2";
+  method = "smc";
+ };
+
+ soc: soc@0 {
+  compatible = "simple-bus";
+  ranges = <0x0 0x0 0x0 0x17000000>;
+  #address-cells = <1>;
+  #size-cells = <1>;
+
+  cmu_imem: clock-controller@10010000 {
+   compatible = "axis,artpec8-cmu-imem";
+   reg = <0x10010000 0x4000>;
+   #clock-cells = <1>;
+   clocks = <&fin_pll>,
+     <&cmu_cmu 24>,
+     <&cmu_cmu 25>;
+   clock-names = "fin_pll", "aclk", "jpeg";
+  };
+
+  timer@10040000 {
+   compatible = "axis,artpec8-mct", "samsung,exynos4210-mct";
+   reg = <0x10040000 0x1000>;
+   clocks = <&fin_pll>, <&cmu_imem 5>;
+   clock-names = "fin_pll", "mct";
+   interrupts = <0 455 4>,
+         <0 456 4>,
+         <0 457 4>,
+         <0 458 4>,
+         <0 459 4>,
+         <0 460 4>,
+         <0 461 4>,
+         <0 462 4>,
+         <0 463 4>,
+         <0 464 4>,
+         <0 465 4>,
+         <0 466 4>;
+  };
+
+  gic: interrupt-controller@10201000 {
+   compatible = "arm,gic-400";
+   reg = <0x10201000 0x1000>,
+         <0x10202000 0x2000>,
+         <0x10204000 0x2000>,
+         <0x10206000 0x2000>;
+   #interrupt-cells = <3>;
+   interrupt-controller;
+   interrupts = <1 9 ((((1 << (4)) - 1) << 8) | 4)>;
+  };
+
+  cmu_cpucl: clock-controller@11410000 {
+   compatible = "axis,artpec8-cmu-cpucl";
+   reg = <0x11410000 0x4000>;
+   #clock-cells = <1>;
+   clocks = <&fin_pll>,
+     <&cmu_cmu 16>;
+   clock-names = "fin_pll", "switch";
+  };
+
+  cmu_cmu: clock-controller@12400000 {
+   compatible = "axis,artpec8-cmu-cmu";
+   reg = <0x12400000 0x4000>;
+   #clock-cells = <1>;
+   clocks = <&fin_pll>;
+   clock-names = "fin_pll";
+  };
+
+  cmu_core: clock-controller@12410000 {
+   compatible = "axis,artpec8-cmu-core";
+   reg = <0x12410000 0x4000>;
+   #clock-cells = <1>;
+   clocks = <&fin_pll>,
+     <&cmu_cmu 14>,
+     <&cmu_cmu 15>;
+   clock-names = "fin_pll", "main", "dlp";
+  };
+
+  cmu_bus: clock-controller@12c10000 {
+   compatible = "axis,artpec8-cmu-bus";
+   reg = <0x12c10000 0x4000>;
+   #clock-cells = <1>;
+   clocks = <&fin_pll>,
+     <&cmu_cmu 10>,
+     <&cmu_cmu 11>;
+   clock-names = "fin_pll", "bus", "dlp";
+  };
+
+  cmu_peri: clock-controller@16410000 {
+   compatible = "axis,artpec8-cmu-peri";
+   reg = <0x16410000 0x4000>;
+   #clock-cells = <1>;
+   clocks = <&fin_pll>,
+     <&cmu_cmu 29>,
+     <&cmu_cmu 30>,
+     <&cmu_cmu 28>;
+   clock-names = "fin_pll", "ip", "audio", "disp";
+  };
+
+  pinctrl_peric: pinctrl@165f0000 {
+   compatible = "axis,artpec8-pinctrl";
+   reg = <0x165f0000 0x1000>;
+   interrupts = <0 150 4>;
+  };
+
+  cmu_fsys: clock-controller@16c10000 {
+   compatible = "axis,artpec8-cmu-fsys";
+   reg = <0x16c10000 0x4000>;
+   #clock-cells = <1>;
+   clocks = <&fin_pll>,
+     <&cmu_cmu 20>,
+     <&cmu_cmu 21>,
+     <&cmu_cmu 18>,
+     <&cmu_cmu 19>;
+   clock-names = "fin_pll", "scan0", "scan1", "bus", "ip";
+  };
+
+  pinctrl_fsys: pinctrl@16c30000 {
+   compatible = "axis,artpec8-pinctrl";
+   reg = <0x16c30000 0x1000>;
+   interrupts = <0 99 4>;
+  };
+
+  serial_0: serial@16cc0000 {
+   compatible = "axis,artpec8-uart";
+   reg = <0x16cc0000 0x100>;
+   clocks = <&cmu_fsys 42>,
+     <&cmu_fsys 43>;
+   clock-names = "uart", "clk_uart_baud0";
+   interrupts = <0 121 4>;
+   pinctrl-names = "default";
+   pinctrl-0 = <&serial0_bus>;
+  };
+ };
+
+ timer {
+  compatible = "arm,armv8-timer";
+  interrupts = <1 13 ((((1 << (4)) - 1) << 8) | 8)>,
+        <1 14 ((((1 << (4)) - 1) << 8) | 8)>,
+        <1 11 ((((1 << (4)) - 1) << 8) | 8)>,
+        <1 10 ((((1 << (4)) - 1) << 8) | 8)>;
+ };
+};
+# 13 "arch/arm64/boot/dts/exynos/axis/artpec8-grizzly.dts" 2
+# 1 "arch/arm64/boot/dts/exynos/axis/artpec8-pinctrl.dtsi" 1
+# 11 "arch/arm64/boot/dts/exynos/axis/artpec8-pinctrl.dtsi"
+# 1 "arch/arm64/boot/dts/exynos/axis/artpec-pinctrl.h" 1
+# 12 "arch/arm64/boot/dts/exynos/axis/artpec8-pinctrl.dtsi" 2
+
+&pinctrl_fsys {
+ gpe0: gpe0-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpe1: gpe1-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpe2: gpe2-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpf0: gpf0-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpf1: gpf1-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpf2: gpf2-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpf3: gpf3-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpf4: gpf4-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gps0: gps0-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gps1: gps1-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ serial0_bus: serial0-bus-pins {
+  samsung,pins = "gpf4-4", "gpf4-5";
+  samsung,pin-function = <2>;
+  samsung,pin-pud = <3>;
+  samsung,pin-drv = <0xa>;
+ };
+};
+
+&pinctrl_peric {
+ gpa0: gpa0-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpa1: gpa1-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpa2: gpa2-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+
+ gpk0: gpk0-gpio-bank {
+  gpio-controller;
+  #gpio-cells = <2>;
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+};
+# 14 "arch/arm64/boot/dts/exynos/axis/artpec8-grizzly.dts" 2
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 15 "arch/arm64/boot/dts/exynos/axis/artpec8-grizzly.dts" 2
+/ {
+ model = "ARTPEC-8 grizzly board";
+ compatible = "axis,artpec8-grizzly", "axis,artpec8";
+
+ aliases {
+  serial0 = &serial_0;
+ };
+
+ chosen {
+  stdout-path = &serial_0;
+ };
+
+ memory@80000000 {
+  device_type = "memory";
+  reg = <0x0 0x80000000 0x0 0x80000000>;
+ };
+};
+
+&osc_clk {
+ clock-frequency = <50000000>;
+};

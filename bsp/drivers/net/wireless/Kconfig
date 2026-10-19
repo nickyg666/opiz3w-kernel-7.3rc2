@@ -1,0 +1,17 @@
+menu "Wireless LAN"
+	depends on !S390
+	depends on NET
+
+if WLAN
+
+# 2026-09-26: this file used to re-source
+#   $(srctree)/bsp/drivers/net/wireless/aic8800/Kconfig
+# but drivers/net/wireless/Kconfig already sources the canonical copy at
+# drivers/net/wireless/aic8800/Kconfig. Sourcing both made Kconfig fail with
+# "repeated inclusion of .../aic8800_fdrv/Kconfig", which broke `olddefconfig`
+# and therefore every build. Keep only the canonical source in drivers/.
+# (bsp/ is a symlink to /home/host/kernel-trees/allwinner-bsp.)
+
+endif
+
+endmenu

@@ -1,0 +1,84 @@
+# 0 "arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640.dtso"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640.dtso"
+# 12 "arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640.dtso"
+/dts-v1/;
+/plugin/;
+
+# 1 "arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640.dtsi" 1
+# 9 "arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640.dtsi"
+# 1 "./scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h" 1
+# 10 "arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640.dtsi" 2
+
+&{/} {
+ clock_camera_csi_2: clock-camera-csi-2 {
+  compatible = "fixed-clock";
+  #clock-cells = <0>;
+ };
+
+ regulator_camera_csi_2: regulator-camera-csi-2 {
+  compatible = "regulator-fixed";
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_gpio_16_csi_2>;
+
+  gpio = <&wkup_gpio0 39 0>;
+  enable-active-high;
+  regulator-name = "V_CSI_2";
+  startup-delay-us = <5000>;
+ };
+};
+
+&csi1_port0 {
+ status = "okay";
+
+ csi1_port0_in: endpoint {
+  remote-endpoint = <&csi1_port0_cam_out>;
+  bus-type = <4>;
+  clock-lanes = <0>;
+  data-lanes = <1 2>;
+ };
+};
+
+&dphy1 {
+ status = "okay";
+};
+
+
+&main_i2c2 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ camera@3c {
+  compatible = "ovti,ov5640";
+  reg = <0x3c>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_gpio_13_csi_2>, <&pinctrl_gpio_14_csi_2>;
+  clocks = <&clock_camera_csi_2>;
+  clock-names = "xclk";
+  AVDD-supply = <&regulator_camera_csi_2>;
+  DOVDD-supply = <&regulator_camera_csi_2>;
+  DVDD-supply = <&regulator_camera_csi_2>;
+
+  powerdown-gpios = <&wkup_gpio0 33 0>;
+
+  reset-gpios = <&wkup_gpio0 32 1>;
+
+  port {
+   csi1_port0_cam_out: endpoint {
+    remote-endpoint = <&csi1_port0_in>;
+    clock-lanes = <0>;
+    data-lanes = <1 2>;
+   };
+  };
+ };
+};
+
+&ti_csi2rx1 {
+ status = "okay";
+};
+# 16 "arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640.dtso" 2
+
+&clock_camera_csi_2 {
+ clock-frequency = <27000000>;
+};
