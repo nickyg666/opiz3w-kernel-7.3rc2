@@ -16,3 +16,6 @@ modules.order
 build.log
 *.bak
 *.bak-*
+
+.tmp_vmlinux*
+vmlinux.unstripped
